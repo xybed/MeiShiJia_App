@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 100%p表示在当前的左上角加上父控件宽度的50%做为起点x轴坐标-->
+    <!-- 如果是100%，表示在当前控件的左上角加上自己宽度的100%做为起始点-->
+    <translate
+        android:duration="@integer/config_activityDefaultDur"
+        android:fromXDelta="100%p"
+        android:toXDelta="0"/>
+
+</set>

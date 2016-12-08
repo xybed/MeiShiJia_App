@@ -1,0 +1,35 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowAnimationStyle">@style/Animation.Activity.Bd</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 设置activity统一的切换动画效果-->
+    <style name="Animation.Activity.Bd" parent="android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+    </style>
+
+    <!--LoadingDialog的样式-->
+    <style name="Loading_Dialog" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+</resources>

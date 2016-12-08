@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+//获取时间戳
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+8:00"))
+}
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+    defaultConfig {
+        applicationId "com.mumu.meishijia"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
+
+            buildConfigField 'String','Base_Api_Url','"http://192.168.0.104:8080/realmadrid/"'
+            buildConfigField 'String','Time',"\"${releaseTime()}\""
+        }
+
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
+
+            buildConfigField 'String','Base_Api_Url','"http://192.168.0.104:8080/realmadrid/"'
+            buildConfigField 'String','Time',"\"${releaseTime()}\""
+        }
+    }
+
+    afterEvaluate {
+        //这个配置是关于multidex的，生成的apk中会包含多个dex文件，例如classes.dex,classes2.dex
+        tasks.matching {
+            it.name.startsWith('dex')
+        }.each { dx ->
+            if (dx.additionalParameters == null) {
+                dx.additionalParameters = []
+            }
+            dx.additionalParameters += '--multi-dex' // enable multidex
+
+            // optional
+            // dx.additionalParameters += "--main-dex-list=$projectDir/<filename>".toString() // enable the main-dex-list
+        }
+    }
+
+    dexOptions {
+        incremental true
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
+    //用于解决Dex方法数超出限制的问题
+    compile 'com.android.support:multidex:1.0.1'
+    //兼容4.4沉浸式状态栏
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.4'
+    //butterknife 7.0.1
+    compile 'com.jakewharton:butterknife:7.0.1'
+    //底部tab栏库
+    compile 'com.ashokvarma.android:bottom-navigation-bar:1.3.0'
+    //rxjava+retrofit导的库
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+}
