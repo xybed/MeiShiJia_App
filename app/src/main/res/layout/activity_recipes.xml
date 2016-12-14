@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_bg_color"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/theme_height_a"
+        android:background="@color/theme_color_white">
+        <ImageView
+            android:id="@+id/btn_left"
+            android:layout_width="@dimen/theme_height_a"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_bg_white_gray_h"
+            android:contentDescription="@string/img_description"
+            android:scaleType="centerInside"
+            android:src="@drawable/bar_back_btn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/com_cookbook_category"
+            android:textColor="@color/title_bar_text_center_color"
+            android:textSize="@dimen/title_bar_text_center_size"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <lib.widget.FrameProgressLayout
+        android:id="@+id/frame_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:listSelector="#00000000"
+        android:divider="@null"
+        android:scrollbars="none">
+
+    </ListView>
+
+</LinearLayout>

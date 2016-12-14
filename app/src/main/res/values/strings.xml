@@ -3,8 +3,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    
+
+    <string name="img_description">jia</string>
+
     <string name="com_jia_love">佳佳爱</string>
     <string name="com_kitchen_qa">厨房问答</string>
     <string name="com_cookbook_category">菜谱分类</string>
+    <string name="com_click_refresh">点击刷新</string>
+    <string name="com_no_data">暂无数据</string>
 </resources>
