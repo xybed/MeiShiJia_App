@@ -1,6 +1,7 @@
 package com.mumu.meishijia.view.food;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -56,12 +57,15 @@ public class FoodFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     @OnClick({R.id.llay_jia_love, R.id.llay_kitchen_qa, R.id.llay_cookbook_category})
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.llay_jia_love:
                 break;
             case R.id.llay_kitchen_qa:
                 break;
             case R.id.llay_cookbook_category:
+                intent = new Intent(getActivity(), RecipeActivity.class);
+                startActivity(intent);
                 break;
         }
     }

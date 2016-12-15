@@ -24,7 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String','Base_Api_Url','"http://192.168.0.104:8080/realmadrid/"'
+            buildConfigField 'String','Base_Api_Url','"http://192.168.0.110:8080/meishijia/"'
             buildConfigField 'String','Time',"\"${releaseTime()}\""
         }
 
@@ -33,7 +33,7 @@ android {
             shrinkResources false
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String','Base_Api_Url','"http://192.168.0.104:8080/realmadrid/"'
+            buildConfigField 'String','Base_Api_Url','"http://192.168.0.110:8080/meishijia/"'
             buildConfigField 'String','Time',"\"${releaseTime()}\""
         }
     }
