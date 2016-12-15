@@ -1,6 +1,6 @@
 package com.mumu.meishijia.presenter.food;
 
-import com.mumu.meishijia.model.food.RecipeModel;
+import com.mumu.meishijia.model.food.RecipeSubModel;
 import com.mumu.meishijia.view.food.RecipeView;
 import com.mumu.meishijia.viewmodel.food.IRecipeViewModel;
 import com.mumu.meishijia.viewmodel.food.RecipeViewModel;
@@ -26,7 +26,7 @@ public class RecipePresenter implements RecipeViewModel.RecipeListener{
     }
 
     @Override
-    public void getSuccess(List<RecipeModel> result) {
+    public void getSuccess(List<RecipeSubModel> result) {
         view.getSuccess(result);
     }
 

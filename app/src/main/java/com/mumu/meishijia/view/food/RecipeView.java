@@ -1,6 +1,6 @@
 package com.mumu.meishijia.view.food;
 
-import com.mumu.meishijia.model.food.RecipeModel;
+import com.mumu.meishijia.model.food.RecipeSubModel;
 import com.mumu.meishijia.view.BaseView;
 
 import java.util.List;
@@ -11,6 +11,6 @@ import java.util.List;
  */
 
 public interface RecipeView extends BaseView{
-    void getSuccess(List<RecipeModel> result);
+    void getSuccess(List<RecipeSubModel> result);
     void getFail(String errMsg);
 }

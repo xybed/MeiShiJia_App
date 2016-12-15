@@ -1,7 +1,7 @@
 package com.mumu.meishijia.api.food;
 
 import com.mumu.meishijia.model.BaseModel;
-import com.mumu.meishijia.model.food.RecipeModel;
+import com.mumu.meishijia.model.food.RecipeSubModel;
 
 import java.util.List;
 import java.util.Map;
@@ -16,5 +16,5 @@ import rx.Observable;
 
 public interface RecipeService {
     @POST("food/recipe")
-    Observable<BaseModel<List<RecipeModel>>> getRecipe(@QueryMap Map<String, String> map);
+    Observable<BaseModel<List<RecipeSubModel>>> getRecipe(@QueryMap Map<String, String> map);
 }

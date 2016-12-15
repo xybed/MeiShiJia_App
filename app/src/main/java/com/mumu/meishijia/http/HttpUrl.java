@@ -9,4 +9,6 @@ public class HttpUrl {
     public static final String BASE_API_URL = BuildConfig.Base_Api_Url;
     public static final String TOKEN_KEY = "MeiShiJia";
 
+    //获取菜谱分类
+    public static final String Get_Recipe = "food/recipe";
 }
