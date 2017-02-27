@@ -75,4 +75,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    //阿里json解析的框架
+    compile 'com.alibaba:fastjson:1.2.23'
 }
