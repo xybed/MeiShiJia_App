@@ -12,7 +12,7 @@ import com.mumu.meishijia.view.BaseActivity;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lib.utils.ToastUtil;
@@ -21,9 +21,9 @@ import lib.widget.FrameProgressLayout;
 
 public class RecipeActivity extends BaseActivity implements RecipeView {
 
-    @Bind(R.id.frame_progress)
+    @BindView(R.id.frame_progress)
     FrameProgressLayout frameProgress;
-    @Bind(R.id.flow_layout)
+    @BindView(R.id.flow_layout)
     FlowLayout flowLayout;
 
     private RecipePresenter presenter;

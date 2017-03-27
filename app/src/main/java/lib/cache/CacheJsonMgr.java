@@ -39,7 +39,7 @@ public class CacheJsonMgr {
 
     private <T> Object getJsonObject(Class<T> clazz, String cacheKey) {
         Object object = null;
-        File file = FileUtil.newFile(dirPath, cacheKey);
+        File file = FileUtil.createFile(dirPath, cacheKey);
         if(file.exists()){
             InputStream inputStream = FileUtil.getInputStreamFromFile(file);
             String jsonStr = FileUtil.getStringFromInputStream(inputStream);
@@ -62,15 +62,15 @@ public class CacheJsonMgr {
         if (fileName == null || fileName.isEmpty()) {
             return;
         }
-        File file = FileUtil.newFile(dirPath, fileName);
-        FileUtil.stringToFile(jsonStr, file);
+        File file = FileUtil.createFile(dirPath, fileName);
+        FileUtil.stringToFile(jsonStr, file, false);
     }
 
-    public void delectJson(String fileName){
+    public void deleteJson(String fileName){
         if (fileName == null || fileName.length() < 1) {
             return;
         }
-        File file = FileUtil.newFile(dirPath, fileName);
+        File file = FileUtil.createFile(dirPath, fileName);
         FileUtil.delectFile(file);
     }
 }

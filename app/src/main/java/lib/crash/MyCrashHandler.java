@@ -5,7 +5,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.compat.BuildConfig;
+
+import com.mumu.meishijia.BuildConfig;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -13,7 +14,7 @@ import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
 
-import lib.utils.BugUtil;
+import lib.utils.FileUtil;
 
 /**
  * Created by 7mu on 2016/5/4.
@@ -49,10 +50,10 @@ public class MyCrashHandler implements UncaughtExceptionHandler {
         // 2.获取手机的硬件信息.
         String mobileInfo = getMobileInfo();
         // 3.把错误的堆栈信息 获取出来
-        String errorinfo = getErrorInfo(ex);
+        String errorInfo = getErrorInfo(ex);
 
 //        if(IM_TESTOR || BuildConfig.DEBUG) {
-            BugUtil.stringToSdcard(errorinfo);
+            FileUtil.saveBug(errorInfo);
 //        }
 
         if(!BuildConfig.DEBUG && !IM_TESTOR) {

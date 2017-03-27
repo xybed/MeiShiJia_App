@@ -12,13 +12,13 @@ import com.mumu.meishijia.view.food.FoodFragment;
 import com.mumu.meishijia.view.mine.MineFragment;
 import com.mumu.meishijia.view.shop.ShopFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import lib.utils.ToastUtil;
 
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.bottom_navigation_bar)
+    @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar bottomNavigationBar;
 
     private Fragment content;
@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case 2:
                 switchFragment(content, getMineFragment());
-                transparencyStatusBar(false);
+                transparencyStatusBar();
                 break;
         }
     }

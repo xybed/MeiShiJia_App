@@ -28,6 +28,7 @@
     <dimen name="theme_margin_hundred">100dp</dimen>
     <dimen name="theme_padding_three">3dp</dimen>
     <dimen name="theme_padding_five">5dp</dimen>
+    <dimen name="theme_padding_eight">8dp</dimen>
     <dimen name="theme_padding_ten">10dp</dimen>
     <dimen name="theme_padding_twelve">12dp</dimen>
     <dimen name="theme_padding_fifteen">15dp</dimen>
@@ -41,4 +42,8 @@
 
     <!--height-->
     <dimen name="theme_height_a">44dp</dimen>
+    <dimen name="theme_height_b">50dp</dimen>
+
+    <!--头像长宽-->
+    <dimen name="avatar_img_size">78dp</dimen>
 </resources>

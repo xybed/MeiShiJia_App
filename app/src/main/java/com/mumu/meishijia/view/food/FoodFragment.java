@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.view.BaseFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lib.utils.ScreenUtil;
@@ -23,9 +23,10 @@ import lib.utils.ScreenUtil;
  */
 public class FoodFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    @Bind(R.id.img_banner)
+
+    @BindView(R.id.img_banner)
     ImageView imgBanner;
-    @Bind(R.id.swipe_refresh)
+    @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
 
     public FoodFragment() {
@@ -37,17 +38,12 @@ public class FoodFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_food, container, false);
-        ButterKnife.bind(this, view);
+
         ScreenUtil.measureViewByImg(getActivity(), imgBanner, 2.9);
         swipeRefresh.setColorSchemeResources(R.color.theme_color_green_a);
         swipeRefresh.setOnRefreshListener(this);
+        ButterKnife.bind(this, view);
         return view;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     @Override

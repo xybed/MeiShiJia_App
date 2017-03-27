@@ -1,0 +1,10 @@
+<resources>
+    <string name="img_description">jia</string>
+
+    <string name="com_jia_love">佳佳爱</string>
+    <string name="com_kitchen_qa">厨房问答</string>
+    <string name="com_cookbook_category">菜谱分类</string>
+    <string name="com_click_refresh">点击刷新</string>
+    <string name="com_no_data">暂无数据</string>
+    <string name="com_wait">请稍候......</string>
+</resources>

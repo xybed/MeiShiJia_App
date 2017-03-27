@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
     <!--整个app的主题色-->
-    <color name="theme_color">#ffffffff</color>
+    <color name="theme_color">#ffe8866c</color>
+    <color name="theme_color_transparent">#77e8866c</color>
     <!--背景色-->
-    <color name="theme_bg_color">#fff6f8f3</color>
+    <color name="theme_bg_color">#fffafafa</color>
     <!--标题栏背景色-->
     <color name="title_bar_bg_color">#ffffffff</color>
     <!--标题栏标题的颜色-->

@@ -17,8 +17,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/selector_bg_white_gray_h"
             android:contentDescription="@string/img_description"
-            android:scaleType="centerInside"
-            android:src="@drawable/bar_back_btn" />
+            android:scaleType="centerInside" />
 
         <TextView
             android:layout_width="wrap_content"
