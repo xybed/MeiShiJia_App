@@ -15,7 +15,7 @@ public class HttpResultFunc<T> implements Func1<BaseModel<T>, T> {
         MyLogUtil.e("http_返回数据", new Gson().toJson(baseModel));
         switch (baseModel.getResultCode()){
             case -1:
-                throw new ApiException("请求错误");
+                throw new ApiException(baseModel.getDetail());
             case -99:
                 throw new ApiException("未登录");
             default:

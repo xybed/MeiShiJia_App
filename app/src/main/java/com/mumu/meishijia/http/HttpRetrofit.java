@@ -9,6 +9,7 @@ import com.google.gson.JsonSyntaxException;
 import com.mumu.meishijia.BuildConfig;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.model.BaseModel;
+import com.mumu.meishijia.view.mine.LoginActivity;
 
 import java.net.SocketTimeoutException;
 import java.util.List;
@@ -89,7 +90,7 @@ public class HttpRetrofit {
                 }else if(e instanceof JsonSyntaxException){
                     retroResListener.onFailure("json格式不符");
                 }else if("未登录".equals(e.getMessage())){
-//                    goLogin();
+                    goLogin();
                 }else{
                     retroResListener.onFailure(e.getMessage());
                 }
@@ -148,4 +149,13 @@ public class HttpRetrofit {
         return subscriber;
     }
 
+    public void cancelRequest(Subscriber subscriber){
+        subscriber.unsubscribe();
+    }
+
+    private void goLogin(){
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 }

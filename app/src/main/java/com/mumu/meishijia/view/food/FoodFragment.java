@@ -38,11 +38,10 @@ public class FoodFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_food, container, false);
-
+        ButterKnife.bind(this, view);
         ScreenUtil.measureViewByImg(getActivity(), imgBanner, 2.9);
         swipeRefresh.setColorSchemeResources(R.color.theme_color_green_a);
         swipeRefresh.setOnRefreshListener(this);
-        ButterKnife.bind(this, view);
         return view;
     }
 
