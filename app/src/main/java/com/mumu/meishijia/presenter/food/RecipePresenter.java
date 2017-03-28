@@ -2,7 +2,6 @@ package com.mumu.meishijia.presenter.food;
 
 import com.mumu.meishijia.model.food.RecipeSubModel;
 import com.mumu.meishijia.view.food.RecipeView;
-import com.mumu.meishijia.viewmodel.food.IRecipeViewModel;
 import com.mumu.meishijia.viewmodel.food.RecipeViewModel;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 public class RecipePresenter implements RecipeViewModel.RecipeListener{
 
     private RecipeView view;
-    private IRecipeViewModel viewModel;
+    private RecipeViewModel viewModel;
 
     public RecipePresenter(RecipeView view){
         this.view = view;

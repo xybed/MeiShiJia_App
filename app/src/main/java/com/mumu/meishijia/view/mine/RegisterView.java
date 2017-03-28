@@ -7,4 +7,6 @@ package com.mumu.meishijia.view.mine;
 public interface RegisterView {
     void onTimerRunning(int totalTime);
     void onTimerEnd();
+    void registerSuccess(String result);
+    void registerFail(String errMsg);
 }

@@ -2,6 +2,7 @@ package com.mumu.meishijia.view.mine;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -107,6 +108,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
                 getVerifyCode();
                 break;
             case R.id.btn_register:
+                register();
                 break;
         }
     }
@@ -142,6 +144,27 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
         }
     }
 
+    private void register(){
+        /*
+        1.验证手机号
+        2.验证密码
+        3.调用短信sdk，验证验证码是否正确
+         */
+        if(!RegexUtil.checkMobile(editUsername.getText().toString())) {
+            ToastUtil.show(getString(R.string.user_input_phone_number));
+            return;
+        }else if(!RegexUtil.checkPassword(editPassword.getText().toString())){
+            ToastUtil.show(getString(R.string.user_input_password));
+            return;
+        }else if(TextUtils.isEmpty(editVerifyCode.getText().toString())){
+            ToastUtil.show(getString(R.string.user_input_verify_code));
+            return;
+        }
+        //回调正确的地方去调presenter的注册
+        showLoadingDialog(getString(R.string.com_wait));
+        SMSSDK.submitVerificationCode("86", editUsername.getText().toString(), editVerifyCode.getText().toString());
+    }
+
     @Override
     public void onTimerRunning(int totalTime) {
         btnGetVerify.setText(getString(R.string.user_second_placeholder, totalTime));
@@ -158,13 +181,29 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
 
     @Override
     public void submitSuccess() {
+        dismissLoadingDialog();
         //短信验证成功,去注册
-        showLoadingDialog(getString(R.string.com_wait));
+        showLoadingDialog(getString(R.string.user_registering));
+        presenter.register(editUsername.getText().toString(), editPassword.getText().toString(), editVerifyCode.getText().toString());
     }
 
     @Override
     public void smsError() {
+        dismissLoadingDialog();
         presenter.stopTimer();
+        ToastUtil.show(getString(R.string.user_error_verify_code));
+    }
+
+    @Override
+    public void registerSuccess(String result) {
+        dismissLoadingDialog();
+        //注册成功，自动去登录
+    }
+
+    @Override
+    public void registerFail(String errMsg) {
+        dismissLoadingDialog();
+        ToastUtil.show(errMsg);
     }
 
     @Override

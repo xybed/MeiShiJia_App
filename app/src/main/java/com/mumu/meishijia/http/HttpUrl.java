@@ -11,4 +11,6 @@ public class HttpUrl {
 
     //获取菜谱分类
     public static final String Get_Recipe = "food/recipe";
+    //注册
+    public static final String Register = "user/register";
 }

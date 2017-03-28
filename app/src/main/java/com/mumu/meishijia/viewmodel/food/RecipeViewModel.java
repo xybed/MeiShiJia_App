@@ -13,13 +13,12 @@ import java.util.List;
  * Created by Administrator on 2016/12/14.
  */
 
-public class RecipeViewModel implements IRecipeViewModel{
+public class RecipeViewModel {
 
     public RecipeViewModel(RecipeListener listener){
         this.listener = listener;
     }
 
-    @Override
     public void getRecipe(){
         HttpRequestParams params = new HttpRequestParams();
         HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();

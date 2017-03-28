@@ -199,4 +199,8 @@ public final class RegexUtil {
 		return Pattern.matches(regex, ipAddress);
 	}
 
+	public static boolean checkPassword(String password){
+		String regex = "[a-zA-Z0-9]{6,10}";
+		return Pattern.matches(regex, password);
+	}
 }

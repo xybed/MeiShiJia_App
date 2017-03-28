@@ -10,5 +10,9 @@
     <string name="user_get_verify_code">获取验证码</string>
     <string name="user_verify_code">验证码</string>
     <string name="user_input_phone_number">请填写正确手机号</string>
+    <string name="user_input_password">请填写符合规则的密码</string>
+    <string name="user_input_verify_code">请填写验证码</string>
+    <string name="user_error_verify_code">错误的验证码</string>
     <string name="user_second_placeholder">%1$d秒</string>
+    <string name="user_registering">正在注册</string>
 </resources>
