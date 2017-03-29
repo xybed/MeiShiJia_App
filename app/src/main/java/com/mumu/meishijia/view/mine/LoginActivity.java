@@ -11,15 +11,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.hwangjr.rxbus.RxBus;
+import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.constacts.RxBusAction;
+import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.presenter.mine.LoginPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+import com.mumu.meishijia.view.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import lib.utils.RegexUtil;
 import lib.utils.StringUtil;
+import lib.utils.ToastUtil;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements LoginView{
 
     @BindView(R.id.edit_username)
     EditText editUsername;
@@ -30,6 +38,8 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.btn_login)
     Button btnLogin;
 
+    private LoginPresenter presenter;
+
     private boolean isLook;
 
     @Override
@@ -39,6 +49,7 @@ public class LoginActivity extends BaseActivity {
 
         ButterKnife.bind(this);
         addWatcher();
+        presenter = new LoginPresenter(this);
     }
 
     private void addWatcher(){
@@ -90,6 +101,7 @@ public class LoginActivity extends BaseActivity {
                 togglePassword();
                 break;
             case R.id.btn_login:
+                login();
                 break;
             case R.id.txt_register:
                 intent = new Intent(this, RegisterActivity.class);
@@ -113,5 +125,41 @@ public class LoginActivity extends BaseActivity {
         }
         isLook = !isLook;
         editPassword.setSelection(editPassword.getText().length());
+    }
+
+    private void login(){
+        /*
+        1.验证手机号
+        2.验证密码规则
+         */
+        if(!RegexUtil.checkMobile(editUsername.getText().toString())) {
+            ToastUtil.show(getString(R.string.user_input_phone_number));
+            return;
+        }else if(!RegexUtil.checkPassword(editPassword.getText().toString())){
+            ToastUtil.show(getString(R.string.user_input_password));
+            return;
+        }
+        showLoadingDialog(getString(R.string.user_logging), false, false);
+        presenter.login(editUsername.getText().toString(), editPassword.getText().toString());
+    }
+
+    @Override
+    public void loginSuccess(UserModel result) {
+        dismissLoadingDialog();
+        //登录成功，跳转主界面
+        MyApplication.getInstance().setUser(result);
+        MyApplication.getInstance().setLogin(true);
+        //通知我的界面刷新数据
+        RxBus.get().post(RxBusAction.Login, result);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void loginFail(String errMsg) {
+        dismissLoadingDialog();
+        ToastUtil.show(errMsg);
     }
 }

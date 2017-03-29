@@ -7,6 +7,7 @@ package com.mumu.meishijia.model.mine;
 public class UserModel {
     private int id;
     private String username;
+    private String avatar;
     private String realName;
     private String nickname;
     private String mobilePhone;
@@ -32,6 +33,14 @@ public class UserModel {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getRealName() {

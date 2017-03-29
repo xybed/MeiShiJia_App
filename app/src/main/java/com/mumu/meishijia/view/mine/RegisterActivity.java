@@ -1,5 +1,6 @@
 package com.mumu.meishijia.view.mine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -11,9 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.hwangjr.rxbus.RxBus;
+import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.constacts.RxBusAction;
+import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.RegisterPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+import com.mumu.meishijia.view.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +57,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
 
         ButterKnife.bind(this);
         addWatcher();
+        RxBus.get().register(this);
         presenter = new RegisterPresenter(this);
         shareSDKLogin = new ShareSDKLogin(this, this);
     }
@@ -137,7 +144,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
         2.开启倒计时，设置按钮状态
          */
         if(RegexUtil.checkMobile(editUsername.getText().toString())){
-//            SMSSDK.getVerificationCode("86", editUsername.getText().toString());
+            SMSSDK.getVerificationCode("86", editUsername.getText().toString());
             presenter.startTimer();
         }else{
             ToastUtil.show(getString(R.string.user_input_phone_number));
@@ -161,7 +168,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
             return;
         }
         //回调正确的地方去调presenter的注册
-        showLoadingDialog(getString(R.string.com_wait));
+        showLoadingDialog(getString(R.string.com_wait), false, false);
         SMSSDK.submitVerificationCode("86", editUsername.getText().toString(), editVerifyCode.getText().toString());
     }
 
@@ -183,7 +190,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
     public void submitSuccess() {
         dismissLoadingDialog();
         //短信验证成功,去注册
-        showLoadingDialog(getString(R.string.user_registering));
+        showLoadingDialog(getString(R.string.user_registering), false, false);
         presenter.register(editUsername.getText().toString(), editPassword.getText().toString(), editVerifyCode.getText().toString());
     }
 
@@ -198,6 +205,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
     public void registerSuccess(String result) {
         dismissLoadingDialog();
         //注册成功，自动去登录
+        showLoadingDialog(getString(R.string.user_register_success_and_login), false, false);
+        presenter.login(editUsername.getText().toString(), editPassword.getText().toString());
     }
 
     @Override
@@ -207,9 +216,30 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
     }
 
     @Override
+    public void loginSuccess(UserModel result) {
+        dismissLoadingDialog();
+        //登录成功，跳转主界面
+        MyApplication.getInstance().setUser(result);
+        MyApplication.getInstance().setLogin(true);
+        //通知我的界面刷新数据
+        RxBus.get().post(RxBusAction.Login, result);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void loginFail(String errMsg) {
+        dismissLoadingDialog();
+        ToastUtil.show(errMsg);
+    }
+
+    @Override
     protected void onDestroy() {
         presenter.stopTimer();
         SMSSDK.unregisterAllEventHandler();
+        RxBus.get().unregister(this);
         super.onDestroy();
     }
 }

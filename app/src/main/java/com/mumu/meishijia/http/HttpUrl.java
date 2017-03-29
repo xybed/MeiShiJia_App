@@ -3,6 +3,7 @@ package com.mumu.meishijia.http;
 import com.mumu.meishijia.BuildConfig;
 
 /**
+ * api接口
  * Created by 7mu on 2016/5/12.
  */
 public class HttpUrl {
@@ -13,4 +14,6 @@ public class HttpUrl {
     public static final String Get_Recipe = "food/recipe";
     //注册
     public static final String Register = "user/register";
+    //登录
+    public static final String Login = "user/login";
 }

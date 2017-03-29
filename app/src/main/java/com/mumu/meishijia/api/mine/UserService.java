@@ -1,6 +1,7 @@
 package com.mumu.meishijia.api.mine;
 
 import com.mumu.meishijia.model.BaseModel;
+import com.mumu.meishijia.model.mine.UserModel;
 
 import java.util.Map;
 
@@ -15,4 +16,6 @@ import rx.Observable;
 public interface UserService {
     @POST("user/register")
     Observable<BaseModel<String>> register(@QueryMap Map<String, String> map);
+    @POST("user/login")
+    Observable<BaseModel<UserModel>> login(@QueryMap Map<String, String> map);
 }

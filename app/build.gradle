@@ -24,7 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String','Base_Api_Url','"http://192.168.0.110:8080/meishijia/"'
+            buildConfigField 'String','Base_Api_Url','"http://192.168.0.101:8080/meishijia/"'
             buildConfigField 'String','Time',"\"${releaseTime()}\""
         }
 
@@ -33,7 +33,7 @@ android {
             shrinkResources false
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String','Base_Api_Url','"http://192.168.0.110:8080/meishijia/"'
+            buildConfigField 'String','Base_Api_Url','"http://192.168.0.101:8080/meishijia/"'
             buildConfigField 'String','Time',"\"${releaseTime()}\""
         }
     }
@@ -82,11 +82,12 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     //底部tab栏库
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.3.0'
-    //rxjava+retrofit导的库
+    //rxjava+retrofit+rxbus导的库
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.hwangjr.rxbus:rxbus:1.0.5'
     //阿里json解析的框架
     compile 'com.alibaba:fastjson:1.2.23'
     //图片加载框架, glide 3.7.0

@@ -15,4 +15,6 @@
     <string name="user_error_verify_code">错误的验证码</string>
     <string name="user_second_placeholder">%1$d秒</string>
     <string name="user_registering">正在注册</string>
+    <string name="user_logging">正在登录</string>
+    <string name="user_register_success_and_login">注册成功，正在自动登录</string>
 </resources>
