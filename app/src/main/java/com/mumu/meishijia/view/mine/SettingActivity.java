@@ -8,12 +8,14 @@ import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constacts.RxBusAction;
+import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.SettingPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.MainActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import lib.cache.CacheJsonMgr;
 import lib.utils.ToastUtil;
 
 public class SettingActivity extends BaseActivity implements SettingView{
@@ -49,6 +51,8 @@ public class SettingActivity extends BaseActivity implements SettingView{
         //退出登录
         MyApplication.getInstance().setUser(null);
         MyApplication.getInstance().setLogin(false);
+        //清空用户信息
+        CacheJsonMgr.getInstance(this).deleteJson(UserModel.class.getSimpleName());
         RxBus.get().post(RxBusAction.Login, "");
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

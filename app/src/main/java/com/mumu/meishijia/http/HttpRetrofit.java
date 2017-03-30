@@ -9,6 +9,7 @@ import com.google.gson.JsonSyntaxException;
 import com.mumu.meishijia.BuildConfig;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.model.BaseModel;
+import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.view.mine.LoginActivity;
 
 import java.net.SocketTimeoutException;
@@ -27,6 +28,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
+ * Retrofit统一处理类
  * Created by 7mu on 2016/8/24.
  */
 public class HttpRetrofit {
@@ -158,6 +160,7 @@ public class HttpRetrofit {
     private void goLogin(){
         MyApplication.getInstance().setUser(null);
         MyApplication.getInstance().setLogin(false);
+        CacheJsonMgr.getInstance(context).deleteJson(UserModel.class.getSimpleName());
         Intent intent = new Intent(context, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
