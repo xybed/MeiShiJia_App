@@ -52,6 +52,10 @@ public class MineFragment extends BaseFragment {
 
     private void initUI(View view){
         ButterKnife.bind(this, view);
+        checkLoginRefreshUI();
+    }
+
+    private void checkLoginRefreshUI(){
         if (MyApplication.getInstance().isLogin()) {
             Glide.with(this).load(MyApplication.getInstance().getUser().getAvatar())
                     .placeholder(R.drawable.ic_launcher)
@@ -67,12 +71,16 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.llay_top_img})
+    @OnClick({R.id.llay_top_img, R.id.llay_setting})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
             case R.id.llay_top_img:
                 intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.llay_setting:
+                intent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -84,13 +92,8 @@ public class MineFragment extends BaseFragment {
                 @Tag(RxBusAction.Login)
         }
     )
-    public void rbRefreshTop(UserModel userModel){
-        Glide.with(this).load(userModel.getAvatar())
-                .placeholder(R.drawable.ic_launcher)
-                .error(R.drawable.ic_launcher)
-                .transform(new GlideCircleTransform(getActivity()))
-                .into(imgAvatar);
-        txtUser.setText(userModel.getNickname());
+    public void rbRefreshTop(String s){
+        checkLoginRefreshUI();
     }
 
     @Override

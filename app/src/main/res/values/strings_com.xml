@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="img_description">jia</string>
 
@@ -7,4 +8,7 @@
     <string name="com_click_refresh">点击刷新</string>
     <string name="com_no_data">暂无数据</string>
     <string name="com_wait">请稍候......</string>
+    <string name="com_commit">提交</string>
+    <string name="com_committing">正在提交</string>
+    <string name="com_setting">设置</string>
 </resources>

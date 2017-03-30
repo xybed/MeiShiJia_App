@@ -1,8 +1,6 @@
 package com.mumu.meishijia.view.mine;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,14 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.hwangjr.rxbus.RxBus;
-import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
-import com.mumu.meishijia.constacts.RxBusAction;
-import com.mumu.meishijia.model.mine.UserModel;
-import com.mumu.meishijia.presenter.mine.RegisterPresenter;
+import com.mumu.meishijia.presenter.mine.ForgetPwdPresenter;
 import com.mumu.meishijia.view.BaseActivity;
-import com.mumu.meishijia.view.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,22 +24,22 @@ import lib.utils.RegexUtil;
 import lib.utils.StringUtil;
 import lib.utils.ToastUtil;
 
-public class RegisterActivity extends BaseActivity implements RegisterView, ShareSDKLogin.SMSListener{
+public class ForgetPwdActivity extends BaseActivity implements ForgetPwdView, ShareSDKLogin.SMSListener{
 
     @BindView(R.id.edit_username)
     EditText editUsername;
-    @BindView(R.id.edit_password)
-    EditText editPassword;
-    @BindView(R.id.img_password_look)
-    ImageView imgPasswordLook;
     @BindView(R.id.edit_verify_code)
     EditText editVerifyCode;
     @BindView(R.id.btn_get_verify)
     Button btnGetVerify;
-    @BindView(R.id.btn_register)
-    Button btnRegister;
+    @BindView(R.id.edit_password)
+    EditText editPassword;
+    @BindView(R.id.img_password_look)
+    ImageView imgPasswordLook;
+    @BindView(R.id.btn_commit)
+    Button btnCommit;
 
-    private RegisterPresenter presenter;
+    private ForgetPwdPresenter presenter;
 
     private ShareSDKLogin shareSDKLogin;
     private boolean isLook;
@@ -54,23 +47,22 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_forget_pwd);
 
         ButterKnife.bind(this);
         addWatcher();
-        RxBus.get().register(this);
-        presenter = new RegisterPresenter(this);
         shareSDKLogin = new ShareSDKLogin(this, this);
+        presenter = new ForgetPwdPresenter(this);
     }
 
     private void addWatcher(){
-        btnRegister.setClickable(false);
-        editUsername.addTextChangedListener(new RegisterTextWatcher());
-        editPassword.addTextChangedListener(new RegisterTextWatcher());
-        editVerifyCode.addTextChangedListener(new RegisterTextWatcher());
+        btnCommit.setClickable(false);
+        editUsername.addTextChangedListener(new ForgetPwdTextWatcher());
+        editVerifyCode.addTextChangedListener(new ForgetPwdTextWatcher());
+        editPassword.addTextChangedListener(new ForgetPwdTextWatcher());
     }
 
-    private class RegisterTextWatcher implements TextWatcher{
+    private class ForgetPwdTextWatcher implements TextWatcher{
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -79,7 +71,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            setRegisterButtonState();
+            setCommitButtonState();
         }
 
         @Override
@@ -89,51 +81,36 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
     }
 
     /**
-     * 设置注册按钮状态
+     * 设置提交按钮状态
      */
-    private void setRegisterButtonState(){
+    private void setCommitButtonState(){
         if(!StringUtil.isEmpty(editUsername.getText().toString())
-                && !StringUtil.isEmpty(editPassword.getText().toString())
-                && !StringUtil.isEmpty(editVerifyCode.getText().toString())){
-            btnRegister.setBackgroundResource(R.drawable.selector_rect_theme_color);
-            btnRegister.setClickable(true);
+                && !StringUtil.isEmpty(editVerifyCode.getText().toString())
+                && !StringUtil.isEmpty(editPassword.getText().toString())){
+            btnCommit.setBackgroundResource(R.drawable.selector_rect_theme_color);
+            btnCommit.setClickable(true);
         }else{
-            btnRegister.setBackgroundResource(R.drawable.shape_rect_gray_b);
-            btnRegister.setClickable(false);
+            btnCommit.setBackgroundResource(R.drawable.shape_rect_gray_b);
+            btnCommit.setClickable(false);
         }
     }
 
-    @OnClick({R.id.btn_left, R.id.img_password_look, R.id.btn_get_verify, R.id.btn_register})
+    @OnClick({R.id.btn_left, R.id.btn_get_verify, R.id.img_password_look, R.id.btn_commit})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_left:
                 finish();
                 break;
-            case R.id.img_password_look:
-                togglePassword();
-                break;
             case R.id.btn_get_verify:
                 getVerifyCode();
                 break;
-            case R.id.btn_register:
-                register();
+            case R.id.img_password_look:
+                togglePassword();
+                break;
+            case R.id.btn_commit:
+                modifyPwd();
                 break;
         }
-    }
-
-    /**
-     * 切换密码可见
-     */
-    private void togglePassword() {
-        if(!isLook){
-            imgPasswordLook.setImageResource(R.drawable.icon_password_look);
-            editPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-        }else{
-            imgPasswordLook.setImageResource(R.drawable.icon_password_unlook);
-            editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        }
-        isLook = !isLook;
-        editPassword.setSelection(editPassword.getText().length());
     }
 
     /**
@@ -152,7 +129,22 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
         }
     }
 
-    private void register(){
+    /**
+     * 切换密码可见
+     */
+    private void togglePassword() {
+        if(!isLook){
+            imgPasswordLook.setImageResource(R.drawable.icon_password_look);
+            editPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        }else{
+            imgPasswordLook.setImageResource(R.drawable.icon_password_unlook);
+            editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
+        isLook = !isLook;
+        editPassword.setSelection(editPassword.getText().length());
+    }
+
+    private void modifyPwd(){
         /*
         1.验证手机号
         2.验证密码
@@ -168,8 +160,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
             ToastUtil.show(getString(R.string.user_input_verify_code));
             return;
         }
-        //回调正确的地方去调presenter的注册
-        showLoadingDialog(getString(R.string.user_registering), false, false);
+        //短信回调的地方去调修改密码的接口
+        showLoadingDialog(getString(R.string.com_committing), false, false);
         SMSSDK.submitVerificationCode("86", editUsername.getText().toString(), editVerifyCode.getText().toString());
     }
 
@@ -189,8 +181,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
 
     @Override
     public void submitSuccess() {
-        //短信验证成功,去注册
-        presenter.register(editUsername.getText().toString(), editPassword.getText().toString(), editVerifyCode.getText().toString());
+        //短信验证成功,去修改密码
+        presenter.modifyPwd(editUsername.getText().toString(), editPassword.getText().toString());
     }
 
     @Override
@@ -201,36 +193,15 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
     }
 
     @Override
-    public void registerSuccess(String result) {
+    public void modifySuccess(String result) {
         dismissLoadingDialog();
         ToastUtil.show(result);
-        //注册成功，自动去登录
-        showLoadingDialog(getString(R.string.user_logging), false, false);
-        presenter.login(editUsername.getText().toString(), editPassword.getText().toString());
-    }
-
-    @Override
-    public void registerFail(String errMsg) {
-        dismissLoadingDialog();
-        ToastUtil.show(errMsg);
-    }
-
-    @Override
-    public void loginSuccess(UserModel result) {
-        dismissLoadingDialog();
-        //登录成功，跳转主界面
-        MyApplication.getInstance().setUser(result);
-        MyApplication.getInstance().setLogin(true);
-        //通知我的界面刷新数据,不传任何数据
-        RxBus.get().post(RxBusAction.Login, "");
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        //关闭此界面，现只有登录界面跳转过来，关闭就回到登录界面去登录
         finish();
     }
 
     @Override
-    public void loginFail(String errMsg) {
+    public void modifyFail(String errMsg) {
         dismissLoadingDialog();
         ToastUtil.show(errMsg);
     }
@@ -239,7 +210,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
     protected void onDestroy() {
         presenter.stopTimer();
         SMSSDK.unregisterAllEventHandler();
-        RxBus.get().unregister(this);
         super.onDestroy();
     }
 }

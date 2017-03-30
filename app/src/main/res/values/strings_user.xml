@@ -16,5 +16,9 @@
     <string name="user_second_placeholder">%1$d秒</string>
     <string name="user_registering">正在注册</string>
     <string name="user_logging">正在登录</string>
-    <string name="user_register_success_and_login">注册成功，正在自动登录</string>
+    <string name="user_get_back_password">找回密码</string>
+    <string name="user_register_phone_number">注册的手机号/用户名</string>
+    <string name="user_new_password">新的密码(6&#8211;10位数字或字母)</string>
+    <string name="user_logout">退出登录</string>
+    <string name="user_logging_off">正在退出登录</string>
 </resources>

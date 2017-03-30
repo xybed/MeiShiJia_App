@@ -21,7 +21,7 @@ public class RegisterPresenter implements RegisterViewModel.RegisterListener, Ti
     public RegisterPresenter(RegisterView view){
         this.view = view;
         viewModel = new RegisterViewModel(this);
-        timerUtil = new TimerUtil(10, 10, this);
+        timerUtil = new TimerUtil(60, 60, this);
     }
 
     public void register(String username, String password, String verifyCode){

@@ -16,4 +16,8 @@ public class HttpUrl {
     public static final String Register = "user/register";
     //登录
     public static final String Login = "user/login";
+    //退出登录
+    public static final String Logout = "user/logout";
+    //修改密码
+    public static final String ModifyPwd = "user/modifyPwd";
 }

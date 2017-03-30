@@ -65,11 +65,11 @@ public class HttpRetrofit {
         //添加必要请求参数
         params.put("ver", BuildConfig.DEVELOP_VERSION);
         params.put("platform", "android");
-//        if(MyApplication.getInstance().isLogin()){
-//            params.put("token", MyApplication.getInstance().getUser().getToken());
-//        }else{
-//            params.put("token", "");
-//        }
+        if(MyApplication.getInstance().isLogin()){
+            params.put("token", MyApplication.getInstance().getUser().getToken());
+        }else{
+            params.put("token", "");
+        }
         params.put("sign", MD5Util.createParamSign(params.urlParams, HttpUrl.TOKEN_KEY));
         url = (url.startsWith("http") ? "" : HttpUrl.BASE_API_URL) + url;
         MyLogUtil.e("http_请求url", url + (url.contains("?") ? "" : "?") + params);
@@ -90,6 +90,7 @@ public class HttpRetrofit {
                 }else if(e instanceof JsonSyntaxException){
                     retroResListener.onFailure("json格式不符");
                 }else if("未登录".equals(e.getMessage())){
+                    retroResListener.onFailure(e.getMessage());
                     goLogin();
                 }else{
                     retroResListener.onFailure(e.getMessage());
@@ -127,7 +128,8 @@ public class HttpRetrofit {
                 }else if(e instanceof JsonSyntaxException){
                     retroResListener.onFailure("json格式不符");
                 }else if("未登录".equals(e.getMessage())){
-//                    goLogin();
+                    retroResListener.onFailure(e.getMessage());
+                    goLogin();
                 }else{
                     retroResListener.onFailure(e.getMessage());
                 }
@@ -154,8 +156,10 @@ public class HttpRetrofit {
     }
 
     private void goLogin(){
+        MyApplication.getInstance().setUser(null);
+        MyApplication.getInstance().setLogin(false);
         Intent intent = new Intent(context, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }
 }

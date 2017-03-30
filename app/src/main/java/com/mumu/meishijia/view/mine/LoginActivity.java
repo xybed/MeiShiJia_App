@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            setRegisterButtonState();
+            setLoginButtonState();
         }
 
         @Override
@@ -79,7 +79,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
     /**
      * 设置登录按钮状态
      */
-    private void setRegisterButtonState(){
+    private void setLoginButtonState(){
         if(!StringUtil.isEmpty(editUsername.getText().toString())
                 && !StringUtil.isEmpty(editPassword.getText().toString())){
             btnLogin.setBackgroundResource(R.drawable.selector_rect_theme_color);
@@ -108,6 +108,8 @@ public class LoginActivity extends BaseActivity implements LoginView{
                 startActivity(intent);
                 break;
             case R.id.txt_forget_password:
+                intent = new Intent(this, ForgetPwdActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -150,7 +152,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         MyApplication.getInstance().setUser(result);
         MyApplication.getInstance().setLogin(true);
         //通知我的界面刷新数据
-        RxBus.get().post(RxBusAction.Login, result);
+        RxBus.get().post(RxBusAction.Login, "");
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
