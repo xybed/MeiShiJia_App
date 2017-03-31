@@ -23,4 +23,6 @@ public interface UserService {
     Observable<BaseModel<String>> logout(@QueryMap Map<String, String> map);
     @POST(HttpUrl.ModifyPwd)
     Observable<BaseModel<String>> modifyPwd(@QueryMap Map<String, String> map);
+    @POST(HttpUrl.ModifyUserInfo)
+    Observable<BaseModel<String>> modifyUserInfo(@QueryMap Map<String, String> map);
 }

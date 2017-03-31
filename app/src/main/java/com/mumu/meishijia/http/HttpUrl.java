@@ -20,4 +20,6 @@ public class HttpUrl {
     public static final String Logout = "user/logout";
     //修改密码
     public static final String ModifyPwd = "user/modifyPwd";
+    //修改个人信息
+    public static final String ModifyUserInfo = "user/modifyUserInfo";
 }

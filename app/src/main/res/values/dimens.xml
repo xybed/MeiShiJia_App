@@ -46,4 +46,6 @@
 
     <!--头像长宽-->
     <dimen name="avatar_img_size">78dp</dimen>
+    <!--资料界面图片大小-->
+    <dimen name="user_msg_img_size">16dp</dimen>
 </resources>

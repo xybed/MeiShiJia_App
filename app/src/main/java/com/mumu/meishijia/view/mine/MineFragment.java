@@ -58,8 +58,8 @@ public class MineFragment extends BaseFragment {
     private void checkLoginRefreshUI(){
         if (MyApplication.getInstance().isLogin()) {
             Glide.with(this).load(MyApplication.getInstance().getUser().getAvatar())
-                    .placeholder(R.drawable.ic_launcher)
-                    .error(R.drawable.ic_launcher)
+                    .placeholder(R.drawable.icon_default_avatar)
+                    .error(R.drawable.icon_default_avatar)
                     .transform(new GlideCircleTransform(getActivity()))
                     .into(imgAvatar);
             txtUser.setText(MyApplication.getInstance().getUser().getNickname());
@@ -76,7 +76,11 @@ public class MineFragment extends BaseFragment {
         Intent intent;
         switch (view.getId()) {
             case R.id.llay_top_img:
-                intent = new Intent(getActivity(), LoginActivity.class);
+                if(MyApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(), UserInfoActivity.class);
+                }else {
+                    intent = new Intent(getActivity(), LoginActivity.class);
+                }
                 startActivity(intent);
                 break;
             case R.id.llay_setting:
