@@ -53,7 +53,7 @@ public class SettingActivity extends BaseActivity implements SettingView{
         MyApplication.getInstance().setLogin(false);
         //清空用户信息
         CacheJsonMgr.getInstance(this).deleteJson(UserModel.class.getSimpleName());
-        RxBus.get().post(RxBusAction.Login, "");
+        RxBus.get().post(RxBusAction.MineUserData, "");
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

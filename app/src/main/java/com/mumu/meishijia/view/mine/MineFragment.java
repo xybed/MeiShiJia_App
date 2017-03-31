@@ -18,7 +18,6 @@ import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constacts.RxBusAction;
-import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.view.BaseFragment;
 
 import butterknife.BindView;
@@ -93,7 +92,7 @@ public class MineFragment extends BaseFragment {
     @Subscribe(
         thread = EventThread.MAIN_THREAD,
         tags = {
-                @Tag(RxBusAction.Login)
+                @Tag(RxBusAction.MineUserData)
         }
     )
     public void rbRefreshTop(String s){

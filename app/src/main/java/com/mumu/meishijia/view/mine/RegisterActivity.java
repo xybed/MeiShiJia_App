@@ -2,7 +2,6 @@ package com.mumu.meishijia.view.mine;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -222,7 +221,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
         MyApplication.getInstance().setUser(result);
         MyApplication.getInstance().setLogin(true);
         //通知我的界面刷新数据,不传任何数据
-        RxBus.get().post(RxBusAction.Login, "");
+        RxBus.get().post(RxBusAction.MineUserData, "");
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

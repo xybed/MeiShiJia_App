@@ -4,6 +4,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.mumu.meishijia.model.mine.UserModel;
 
+import lib.baidu.MyLocation;
 import lib.cache.CacheJsonMgr;
 import lib.crash.MyCrashHandler;
 

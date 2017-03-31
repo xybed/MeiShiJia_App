@@ -32,6 +32,19 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <!-- 百度locDemo中拷的权限,去除重复权限 -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!-- 百度naviDemo中拷的权限,去除了和loc中重复的权限 -->
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+    <uses-permission android:name="android.permission.ACCES_MOCK_LOCATION" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <!-- 来电消音 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:name=".MyApplication"
@@ -100,6 +113,21 @@
         <!-- android:exported="true" -->
         <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
         <!-- ShareSDK end -->
+
+        <!-- 百度地图begin -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="xM32ClrCQCoP5b8AakKtDiGN59pQyiRt" />
+        <!-- 百度地图end -->
 
         <activity
             android:name=".view.MainActivity"

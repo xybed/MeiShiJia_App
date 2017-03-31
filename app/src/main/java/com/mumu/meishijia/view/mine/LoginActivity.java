@@ -152,7 +152,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         MyApplication.getInstance().setUser(result);
         MyApplication.getInstance().setLogin(true);
         //通知我的界面刷新数据
-        RxBus.get().post(RxBusAction.Login, "");
+        RxBus.get().post(RxBusAction.MineUserData, "");
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

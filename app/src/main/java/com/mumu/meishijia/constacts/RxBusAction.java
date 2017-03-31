@@ -6,5 +6,5 @@ package com.mumu.meishijia.constacts;
  */
 public class RxBusAction {
     //注册、登录成功时，跳转主界面，需要刷新数据
-    public static final String Login = "rxBusLogin";
+    public static final String MineUserData = "rxBusMineUserData";
 }

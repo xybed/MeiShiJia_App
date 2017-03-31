@@ -12,8 +12,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
+import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.constacts.RxBusAction;
+import com.mumu.meishijia.model.LocationModel;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.UserInfoPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -21,6 +24,7 @@ import com.mumu.meishijia.view.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import lib.baidu.MyLocation;
 import lib.cache.CacheJsonMgr;
 import lib.glide.GlideCircleTransform;
 import lib.utils.DatePickUtil;
@@ -57,6 +61,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         ButterKnife.bind(this);
         initUI();
         presenter = new UserInfoPresenter(this);
+        RxBus.get().register(this);
     }
 
     private void initUI(){
@@ -187,6 +192,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         userModel.setCity(editCity.getText().toString());
         String jsonStr = JSON.toJSONString(userModel);
         cacheJsonMgr.saveJson(jsonStr, UserModel.class.getSimpleName());
+        RxBus.get().post(RxBusAction.MineUserData, "");
         finish();
     }
 
@@ -194,5 +200,11 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
     public void modifyFail(String errMsg) {
         dismissLoadingDialog();
         ToastUtil.show(errMsg);
+    }
+
+    @Override
+    protected void onDestroy() {
+        RxBus.get().unregister(this);
+        super.onDestroy();
     }
 }

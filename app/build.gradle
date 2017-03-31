@@ -5,6 +5,14 @@ def releaseTime() {
 }
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MeiShiJia'
+            keyPassword 'MeiShiJia'
+            storeFile file('../RealMadrid.keystore')
+            storePassword 'RealMadrid'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
@@ -18,9 +26,10 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             shrinkResources true
             zipAlignEnabled true
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
@@ -31,6 +40,7 @@ android {
         debug {
             minifyEnabled false
             shrinkResources false
+            signingConfig signingConfigs.config
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
             buildConfigField 'String','Base_Api_Url','"http://192.168.0.101:8080/meishijia/"'
@@ -73,6 +83,10 @@ dependencies {
     compile fileTree(include: ['ShareSDK*.jar'], dir: 'libs')
     //mob的短信sdk 2.1.3
     compile name: 'SMSSDK-2.1.3', ext: 'aar'
+    //百度地图定位、地图、导航等，版本各不同一
+    compile files('libs/BaiduLBS_Android.jar')
+    compile files('libs/httpmime-4.1.2.jar')
+    compile files('libs/IndoorscapeAlbumPlugin.jar')
     //用于解决Dex方法数超出限制的问题
     compile 'com.android.support:multidex:1.0.1'
     //兼容4.4沉浸式状态栏
