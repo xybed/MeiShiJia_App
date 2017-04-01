@@ -13,4 +13,29 @@
     <string name="com_setting">设置</string>
     <string name="com_save">保存</string>
     <string name="com_cancel">取消</string>
+    <string name="com_complete">完成</string>
+    <string name="com_in_region">所在地</string>
+    <string name="com_whole_country">全国</string>
+    <string name="com_gps">GPS定位</string>
+    <string name="com_select_city">选择城市</string>
+    <string name="com_select_province">选择省份</string>
+    <string name="com_pls_select_province">请先选择省份</string>
+    <string name="com_hot_city">热门城市</string>
+    <string-array name="com_hot_city_array">
+        <item>上海市</item>
+        <item>北京市</item>
+        <item>广州市</item>
+        <item>深圳市</item>
+        <item>厦门市</item>
+        <item>福州市</item>
+        <item>成都市</item>
+        <item>重庆市</item>
+        <item>天津市</item>
+        <item>杭州市</item>
+        <item>南京市</item>
+        <item>西安市</item>
+        <item>青岛市</item>
+        <item>沈阳市</item>
+        <item>哈尔滨市</item>
+    </string-array>
 </resources>

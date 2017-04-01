@@ -114,6 +114,7 @@
         <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
         <!-- ShareSDK end -->
 
+
         <!-- 百度地图begin -->
         <service
             android:name="com.baidu.location.f"
@@ -152,12 +153,23 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
+            android:name=".view.mine.ForgetPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".view.mine.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.mine.UserInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
             android:name=".view.food.RecipeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".view.mine.ForgetPwdActivity" />
-        <activity android:name=".view.mine.SettingActivity" />
-        <activity android:name=".view.mine.UserInfoActivity"></activity>
+        <activity
+            android:name=".view.SelectCityActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

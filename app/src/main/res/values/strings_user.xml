@@ -31,7 +31,7 @@
     <string name="user_email">email</string>
     <string name="user_pls_input_email">请输入email</string>
     <string name="user_city">城市</string>
-    <string name="user_pls_input_city">请输入城市</string>
+    <string name="user_pls_select_city">请选择城市</string>
     <string name="user_sex_unknown">保密</string>
     <string name="user_male">男</string>
     <string name="user_female">女</string>

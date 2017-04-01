@@ -20,6 +20,7 @@ import com.mumu.meishijia.model.LocationModel;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.UserInfoPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+import com.mumu.meishijia.view.SelectCityActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,8 +47,8 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
     TextView txtBirthday;
     @BindView(R.id.edit_email)
     EditText editEmail;
-    @BindView(R.id.edit_city)
-    EditText editCity;
+    @BindView(R.id.txt_city)
+    TextView txtCity;
 
     private UserInfoPresenter presenter;
 
@@ -100,11 +101,11 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
             editEmail.setText(user.getEmail());
         }
         if(!TextUtils.isEmpty(user.getCity())){
-            editCity.setText(user.getCity());
+            txtCity.setText(user.getCity());
         }
     }
 
-    @OnClick({R.id.btn_left, R.id.txt_save, R.id.llay_sex, R.id.llay_birthday})
+    @OnClick({R.id.btn_left, R.id.txt_save, R.id.llay_sex, R.id.llay_birthday, R.id.llay_city})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_left:
@@ -118,6 +119,9 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 break;
             case R.id.llay_birthday:
                 changeBirthday();
+                break;
+            case R.id.llay_city:
+                startActivity(new Intent(this, SelectCityActivity.class));
                 break;
         }
     }
@@ -175,7 +179,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         showLoadingDialog(getString(R.string.com_committing));
         presenter.modifyUserInfo(MyApplication.getInstance().getUser().getId()+"", editNickname.getText().toString(),
                 editRealName.getText().toString(), sexCode, txtBirthday.getText().toString(),
-                editEmail.getText().toString(), editCity.getText().toString());
+                editEmail.getText().toString(), txtCity.getText().toString());
     }
 
     @Override
@@ -189,7 +193,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         userModel.setSex(NumberUtil.parseInt(sexCode, 0));
         userModel.setBirthday(txtBirthday.getText().toString());
         userModel.setEmail(editEmail.getText().toString());
-        userModel.setCity(editCity.getText().toString());
+        userModel.setCity(txtCity.getText().toString());
         String jsonStr = JSON.toJSONString(userModel);
         cacheJsonMgr.saveJson(jsonStr, UserModel.class.getSimpleName());
         RxBus.get().post(RxBusAction.MineUserData, "");

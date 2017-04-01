@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_bg_color"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/theme_height_a"
+        android:background="@color/title_bar_bg_color">
+        <ImageView
+            android:id="@+id/btn_left"
+            android:layout_width="@dimen/theme_height_a"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/bar_back_btn"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/com_in_region"
+            android:textColor="@color/title_bar_text_center_color"
+            android:textSize="@dimen/title_bar_text_center_size"/>
+
+        <TextView
+            android:id="@+id/txt_whole_country"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/theme_margin_ten"
+            android:layout_marginRight="@dimen/theme_margin_ten"
+            android:text="@string/com_whole_country"
+            android:gravity="center"
+            android:textColor="@color/title_bar_text_right_color"
+            android:textSize="@dimen/title_bar_text_right_size"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llay_gps"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/theme_height_c"
+        android:layout_marginLeft="@dimen/theme_margin_ten"
+        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:layout_marginTop="@dimen/theme_margin_fifteen"
+        android:paddingLeft="@dimen/theme_padding_fifteen"
+        android:paddingRight="@dimen/theme_padding_fifteen"
+        android:background="@drawable/selector_rect_white_border_gray_h"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_gps"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/theme_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/com_gps"
+            android:textColor="@color/theme_color" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/theme_height_c"
+        android:layout_marginLeft="@dimen/theme_margin_ten"
+        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:gravity="center_vertical"
+        android:text="@string/com_select_city"
+        android:textColor="@color/theme_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/theme_height_c"
+        android:layout_marginLeft="@dimen/theme_margin_ten"
+        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/llay_province"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_rect_white_border_gray_h"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_province"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/com_select_province"
+                android:textColor="@color/theme_color" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/icon_arrow_down"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llay_city"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_rect_white_border_gray_h"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_city"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/com_select_city"
+                android:textColor="@color/theme_color" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/theme_margin_fifteen"
+                android:layout_marginRight="@dimen/theme_margin_fifteen"
+                android:src="@drawable/icon_arrow_down"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/theme_height_c"
+        android:layout_marginLeft="@dimen/theme_margin_ten"
+        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:gravity="center_vertical"
+        android:text="@string/com_hot_city"
+        android:textColor="@color/theme_color" />
+
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/theme_margin_ten"
+        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:cacheColorHint="#00000000"
+        android:horizontalSpacing="10dp"
+        android:listSelector="@drawable/selector_rect_white_border_gray_h"
+        android:numColumns="3"
+        android:verticalSpacing="10dp" />
+
+</LinearLayout>
