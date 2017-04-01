@@ -17,7 +17,7 @@ public class SelectCityAdapter extends AbstractWheelTextAdapter {
 	private List<RegionModel> list;
 	
 	public SelectCityAdapter(Context context, List<RegionModel> list) {
-		super(context, R.layout.city_holo_layout, NO_RESOURCE);
+		super(context, R.layout.layout_city_holo, NO_RESOURCE);
 		this.list = list;
 		setItemTextResource(R.id.city_name);
 	}

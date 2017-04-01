@@ -38,4 +38,10 @@
         <item>沈阳市</item>
         <item>哈尔滨市</item>
     </string-array>
+    <string name="com_open_voice_permission">您需要开启语音权限,并重启应用</string>
+    <string name="com_open_photograph_permission">您需要开启照相权限,并重启应用</string>
+    <string name="com_open_location_permission">您需要开启定位权限,并重启应用</string>
+    <string name="com_open_read_phone_state_permission">您需要开启获取手机状态权限,并重启应用</string>
+    <string name="com_open_write_external_storage_permission">您需要开启读取内存权限,并重启应用</string>
+    <string name="com_go_open">去开启</string>
 </resources>

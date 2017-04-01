@@ -22,6 +22,8 @@
     <string name="user_logout">退出登录</string>
     <string name="user_logging_off">正在退出登录</string>
     <string name="user_user_info">个人资料</string>
+    <string name="user_take_photo">拍照</string>
+    <string name="user_select_photo">从手机相册中选择</string>
     <string name="user_nickname">昵称</string>
     <string name="user_pls_input_nickname">请输入昵称</string>
     <string name="user_real_name">真实姓名</string>
@@ -42,4 +44,6 @@
     </string-array>
     <string name="user_illegal_birthday">请选择小于当前日期的出生日期</string>
     <string name="user_nickname_tip">昵称不能为空</string>
+    <string name="user_permission_apply">权限申请</string>
+    <string name="user_permission_tip_text">请在设置-应用-美食佳-权限中开启相关权限。</string>
 </resources>

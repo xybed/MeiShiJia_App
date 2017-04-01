@@ -2,6 +2,7 @@ package com.mumu.meishijia.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import com.mumu.meishijia.MyApplication;
+import com.mumu.meishijia.R;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
+import lib.baidu.MyLocation;
+import lib.utils.MyLogUtil;
 import lib.utils.ToastUtil;
 import lib.widget.LoadingDialog;
 
@@ -121,5 +126,98 @@ public class BaseActivity extends AppCompatActivity implements BaseView{
             InputMethodManager inputmanger = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    /**
+     * Manifest.permission.READ_PHONE_STATE
+     * Manifest.permission.WRITE_EXTERNAL_STORAGE
+     * Manifest.permission.ACCESS_FINE_LOCATION
+     * Manifest.permission.CAMERA
+     * Manifest.permission.RECORD_AUDIO
+     * Manifest.permission.READ_PHONE_STATE
+     * Manifest.permission.WRITE_EXTERNAL_STORAGE
+     * 权限检查
+     */
+    protected final static int REQ_CAMERA_PMS = 0x001;
+    protected final static int REQ_RECORD_PMS = 0x002;
+    protected final static int REQ_LOCATION_PMS = 0x003;
+    protected final static int REQ_READ_PHONE_STATE_PMS = 0x004;
+    protected final static int REQ_WRITE_EXTERNAL_STORAGE_PMS = 0x005;
+
+    /**
+     * 查看是否获取到了对应权限
+     * ---如果没有，就去申请权限，并返回false
+     * ---如果获取到了，就返回true
+     * @param reqCode 请求code
+     * @param permission 权限
+     */
+    public boolean permissionIsGet(int reqCode, String permission){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{permission}, reqCode);
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    /**
+     * 申请权限后的回调
+     * 按代码逻辑，check的时候传的是String，在request权限的时候也只有一个String，在这里的两个数组内的元素应该都是一个，注释更改下代码，之后再看看
+     * @param requestCode requestCode
+     * @param permissions permissions
+     * @param grantResults grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        MyLogUtil.e("permission", "权限回调");
+        switch (requestCode) {
+            case REQ_RECORD_PMS:
+                if (grantResults != null && grantResults.length != 0)
+                    if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                        ToastUtil.show(getString(R.string.com_open_voice_permission));
+                    }
+                break;
+            case REQ_CAMERA_PMS:
+                if (grantResults != null && grantResults.length != 0)
+                    if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                        ToastUtil.show(getString(R.string.com_open_photograph_permission));
+                    }
+                break;
+            case REQ_LOCATION_PMS:
+                if (grantResults != null && grantResults.length != 0)
+                    //&& grantResults[1] != PackageManager.PERMISSION_GRANTED
+                    if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                        ToastUtil.show(getString(R.string.com_open_location_permission));
+                    }else{
+                        permissionLocGot();
+                    }
+                break;
+            case REQ_READ_PHONE_STATE_PMS:
+                if (grantResults != null && grantResults.length != 0)
+                    //&& grantResults[1] != PackageManager.PERMISSION_GRANTED
+                    if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                        ToastUtil.show(getString(R.string.com_open_read_phone_state_permission));
+                    }else{
+                    }
+                break;
+            case REQ_WRITE_EXTERNAL_STORAGE_PMS:
+                if (grantResults != null && grantResults.length != 0)
+                    //&& grantResults[1] != PackageManager.PERMISSION_GRANTED
+                    if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                        ToastUtil.show(getString(R.string.com_open_write_external_storage_permission));
+                    }else{
+                    }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    /**
+     * 定位权限获取到时候的处理
+     */
+    protected void permissionLocGot(){
+        MyLogUtil.e("permission", "获取到定位权限");
+        MyLocation.getInstance().requestLocation();
     }
 }

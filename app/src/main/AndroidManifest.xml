@@ -131,17 +131,21 @@
         <!-- 百度地图end -->
 
         <activity
-            android:name=".view.MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:name=".view.SplashActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
             android:name=".view.mine.LoginActivity"
             android:launchMode="singleTask"
@@ -155,21 +159,21 @@
         <activity
             android:name=".view.mine.ForgetPwdActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".view.mine.SettingActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.mine.UserInfoActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".view.food.RecipeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".view.SelectCityActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

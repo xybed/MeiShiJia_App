@@ -2,6 +2,7 @@ package com.mumu.meishijia.view.mine;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.mumu.meishijia.presenter.mine.UserInfoPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.SelectCityActivity;
 
+import java.io.ByteArrayOutputStream;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,6 +33,8 @@ import lib.cache.CacheJsonMgr;
 import lib.glide.GlideCircleTransform;
 import lib.utils.DatePickUtil;
 import lib.utils.NumberUtil;
+import lib.utils.PhotoUtil;
+import lib.utils.StreamUtil;
 import lib.utils.ToastUtil;
 import lib.widget.ActionSheet;
 
@@ -105,7 +110,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         }
     }
 
-    @OnClick({R.id.btn_left, R.id.txt_save, R.id.llay_sex, R.id.llay_birthday, R.id.llay_city})
+    @OnClick({R.id.btn_left, R.id.txt_save, R.id.img_avatar, R.id.llay_sex, R.id.llay_birthday, R.id.llay_city})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_left:
@@ -113,6 +118,9 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 break;
             case R.id.txt_save:
                 modifyUserInfo();
+                break;
+            case R.id.img_avatar:
+                changeAvatar();
                 break;
             case R.id.llay_sex:
                 changeSex();
@@ -124,6 +132,26 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 startActivity(new Intent(this, SelectCityActivity.class));
                 break;
         }
+    }
+
+    private void changeAvatar(){
+        ActionSheet.createBuilder(this)
+                .setCancelableOnTouchOutside(true)
+                .setCancelButtonTitle(R.string.com_cancel)
+                .setOtherButtonTitles(getString(R.string.user_take_photo), getString(R.string.user_select_photo))
+                .setListener(new ActionSheet.ActionSheetListener() {
+                    @Override
+                    public void onOtherButtonClick(int index) {
+                        switch (index){
+                            case 0:
+                                PhotoUtil.takePhoto(UserInfoActivity.this);
+                                break;
+                            case 1:
+                                PhotoUtil.selectPhoto(UserInfoActivity.this);
+                                break;
+                        }
+                    }
+                }).show();
     }
 
     private void changeSex(){
@@ -180,6 +208,24 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         presenter.modifyUserInfo(MyApplication.getInstance().getUser().getId()+"", editNickname.getText().toString(),
                 editRealName.getText().toString(), sexCode, txtBirthday.getText().toString(),
                 editEmail.getText().toString(), txtCity.getText().toString());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        PhotoUtil.onActivityResult(this, requestCode, data, new PhotoUtil.PhotoResultListener() {
+            @Override
+            public void photoResultSuccess(String path) {
+                Glide.with(UserInfoActivity.this).load(StreamUtil.inputStream2Byte(StreamUtil.bitmap2InputStream(PhotoUtil.file2Bitmap(path))))
+                        .transform(new GlideCircleTransform(UserInfoActivity.this))
+                        .into(imgAvatar);
+            }
+
+            @Override
+            public void photoResultFail(String errMsg) {
+                ToastUtil.show(errMsg);
+            }
+        });
     }
 
     @Override
