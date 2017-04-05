@@ -79,23 +79,13 @@ public class FileUtil {
         File dirFile = null;
         dirFile = new File(path);
         if (!dirFile.exists()) {
-            boolean is = dirFile.mkdirs();
-            if(!is){
-                MyLogUtil.e("file", "路径创建不成功");
-            }else {
-                MyLogUtil.e("file", "cnmb");
-            }
+            dirFile.mkdirs();
         }
 
         file = new File(path, fileName);
         if (file == null || !file.exists()) {
             try {
-                boolean isSuccess = file.createNewFile();
-                if(!isSuccess){
-                    MyLogUtil.e("file", "文件创建不成功");
-                }else {
-                    MyLogUtil.e("file", "cnmb");
-                }
+                file.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -8,4 +8,6 @@ package com.mumu.meishijia.view.mine;
 public interface UserInfoView {
     void modifySuccess(String result);
     void modifyFail(String errMsg);
+    void modifyAvatarSuccess(String result);
+    void modifyAvatarFail(String errMsg);
 }

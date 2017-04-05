@@ -22,4 +22,6 @@ public class HttpUrl {
     public static final String ModifyPwd = "user/modifyPwd";
     //修改个人信息
     public static final String ModifyUserInfo = "user/modifyUserInfo";
+    //修改头像
+    public static final String ModifyAvatar = "user/modifyAvatar";
 }

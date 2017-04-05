@@ -1,17 +1,18 @@
 package com.mumu.meishijia.view;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.SelectCityGridAdapter;
+import com.mumu.meishijia.model.LocationModel;
 import com.mumu.meishijia.model.RegionModel;
+import com.mumu.meishijia.view.mine.UserInfoActivity;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import lib.baidu.MyLocation;
 import lib.utils.PullParseUtil;
 import lib.utils.ToastUtil;
 import lib.widget.FrameProgressLayout;
@@ -28,8 +30,8 @@ import lib.widget.SelectCityDialog;
 
 public class SelectCityActivity extends BaseActivity {
 
-    @BindView(R.id.frame_progress)
-    FrameProgressLayout frameProgress;
+    @BindView(R.id.txt_whole_country)
+    TextView txtWholeCountry;
     @BindView(R.id.txt_gps)
     TextView txtGps;
     @BindView(R.id.txt_province)
@@ -50,6 +52,7 @@ public class SelectCityActivity extends BaseActivity {
 
         ButterKnife.bind(this);
         initUI();
+        getPermission();
         provinceList = getCityList("0");
     }
 
@@ -57,6 +60,20 @@ public class SelectCityActivity extends BaseActivity {
         adapter = new SelectCityGridAdapter(this);
         gridView.setAdapter(adapter);
         adapter.setData(Arrays.asList(getResources().getStringArray(R.array.com_hot_city_array)));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String city = (String) adapter.getItem(position);
+                setUserInfoCity(city);
+            }
+        });
+    }
+
+    private void getPermission(){
+        if(permissionIsGet(REQ_LOCATION_PMS, Manifest.permission.ACCESS_FINE_LOCATION)){
+            LocationModel locationModel = MyLocation.getInstance().getLocationData();
+            txtGps.setText(locationModel.getCity());
+        }
     }
 
     /**
@@ -82,8 +99,10 @@ public class SelectCityActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.txt_whole_country:
+                setUserInfoCity(txtWholeCountry.getText().toString());
                 break;
             case R.id.llay_gps:
+                setUserInfoCity(txtGps.getText().toString());
                 break;
             case R.id.llay_province:
                 if(provinceList == null || provinceList.size() == 0)
@@ -109,6 +128,7 @@ public class SelectCityActivity extends BaseActivity {
                     @Override
                     public void backData(View v, RegionModel object) {
                         txtCity.setText(object.getName());
+                        setUserInfoCity(object.getName());
                     }
                 });
                 cityDialog.showDialog(getResources().getString(R.string.com_select_city));
@@ -116,5 +136,10 @@ public class SelectCityActivity extends BaseActivity {
         }
     }
 
-
+    private void setUserInfoCity(String city){
+        Intent intent = new Intent();
+        intent.putExtra(UserInfoActivity.RESULT_CITY, city);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }

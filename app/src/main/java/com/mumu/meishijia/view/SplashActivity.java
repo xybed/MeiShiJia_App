@@ -1,19 +1,38 @@
 package com.mumu.meishijia.view;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.mumu.meishijia.BuildConfig;
 import com.mumu.meishijia.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import lib.baidu.MyLocation;
-import lib.utils.ToastUtil;
 import lib.widget.CenterInDialog;
 
 public class SplashActivity extends BaseActivity {
+
+    private int delay = 3 * 1000;
+    private Timer timer;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            timer.cancel();
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            finish();
+        }
+    };
 
     private CenterInDialog dialog;
     private boolean isLoc = true;
@@ -29,19 +48,33 @@ public class SplashActivity extends BaseActivity {
         initPermission();
     }
 
-    private void initPermission(){
+    private void initPermission() {
         /*
         1.定位权限
         2.存储权限
         3.相机权限
         权限一个一个去请求用户获得
          */
-        if(permissionIsGet(REQ_LOCATION_PMS, Manifest.permission.ACCESS_FINE_LOCATION)){
+        if (permissionIsGet(REQ_LOCATION_PMS, Manifest.permission.ACCESS_FINE_LOCATION)) {
             MyLocation.getInstance().requestLocation();
-            if(permissionIsGet(REQ_WRITE_EXTERNAL_STORAGE_PMS, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                permissionIsGet(REQ_CAMERA_PMS, Manifest.permission.CAMERA);
+            if (permissionIsGet(REQ_WRITE_EXTERNAL_STORAGE_PMS, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                if(permissionIsGet(REQ_CAMERA_PMS, Manifest.permission.CAMERA)){
+                    goMain();
+                }
             }
         }
+    }
+
+    private void goMain(){
+        if(BuildConfig.DEBUG)
+            delay = 1500;
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.sendEmptyMessage(0);
+            }
+        }, delay);
     }
 
     @Override
@@ -51,10 +84,10 @@ public class SplashActivity extends BaseActivity {
                 if (grantResults != null && grantResults.length != 0)
                     if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                         isLoc = false;
-                    }else{
+                    } else {
                         MyLocation.getInstance().requestLocation();
                     }
-                if(permissionIsGet(REQ_WRITE_EXTERNAL_STORAGE_PMS, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                if (permissionIsGet(REQ_WRITE_EXTERNAL_STORAGE_PMS, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     permissionIsGet(REQ_CAMERA_PMS, Manifest.permission.CAMERA);
                 }
                 break;
@@ -78,23 +111,24 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
-    private void showDialog(){
+    private void showDialog() {
         View view = View.inflate(this, R.layout.dialog_permission_tip, null);
         TextView textView = (TextView) view.findViewById(R.id.txt_permission_tip);
         StringBuilder builder = new StringBuilder();
-        if(!isLoc && !isWri && !isCam){
+        if (!isLoc && !isWri && !isCam) {
             builder.append("定位权限、存储权限和相机权限");
-        }else if(!isLoc && !isWri){
+        } else if (!isLoc && !isWri) {
             builder.append("定位权限和存储权限");
-        }else if(!isLoc && !isCam){
+        } else if (!isLoc && !isCam) {
             builder.append("定位权限和相机权限");
-        }else if(!isLoc){
+        } else if (!isLoc) {
             builder.append("定位权限");
-        }else if(!isWri){
+        } else if (!isWri) {
             builder.append("存储权限");
-        }else if(!isCam){
+        } else if (!isCam) {
             builder.append("相机权限");
-        }else {
+        } else {
+            goMain();
             return;
         }
         textView.setText("使用美食佳之前，需要开启" + builder.toString() + "，已确保帐号登录安全和信息安全。");
@@ -102,11 +136,12 @@ public class SplashActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(dialog != null)
+                if (dialog != null)
                     dialog.dismiss();
             }
         });
         dialog = new CenterInDialog(this, view, false, false);
         dialog.show();
     }
+
 }

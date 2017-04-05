@@ -58,8 +58,6 @@ public class MD5Util {
             }
         }
         builder.append(tokenKey);
-        MyLogUtil.e("http_加密字符串", builder.toString());
-        MyLogUtil.e("http_sign", MD5(builder.toString()));
         return MD5(builder.toString());
     }
 }

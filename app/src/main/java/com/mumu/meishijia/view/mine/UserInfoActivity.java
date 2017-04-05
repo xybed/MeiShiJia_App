@@ -1,7 +1,9 @@
 package com.mumu.meishijia.view.mine;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +26,7 @@ import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.SelectCityActivity;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +42,8 @@ import lib.utils.ToastUtil;
 import lib.widget.ActionSheet;
 
 public class UserInfoActivity extends BaseActivity implements UserInfoView {
+    public static final int REQ_CITY = 1;
+    public static final String RESULT_CITY = "result_city";
 
     @BindView(R.id.img_avatar)
     ImageView imgAvatar;
@@ -120,7 +125,9 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 modifyUserInfo();
                 break;
             case R.id.img_avatar:
-                changeAvatar();
+                if(permissionIsGet(REQ_CAMERA_PMS, Manifest.permission.CAMERA)){
+                    changeAvatar();
+                }
                 break;
             case R.id.llay_sex:
                 changeSex();
@@ -129,7 +136,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 changeBirthday();
                 break;
             case R.id.llay_city:
-                startActivity(new Intent(this, SelectCityActivity.class));
+                startActivityForResult(new Intent(this, SelectCityActivity.class), REQ_CITY);
                 break;
         }
     }
@@ -211,14 +218,42 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode){
+            case REQ_CAMERA_PMS:
+                if (grantResults != null && grantResults.length != 0)
+                    if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                        ToastUtil.show(getString(R.string.com_open_photograph_permission));
+                    }else {
+                        changeAvatar();
+                    }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode != RESULT_OK)
+            return;
+        //选择城市回调的结果
+        if(requestCode == REQ_CITY){
+            txtCity.setText(data.getStringExtra(RESULT_CITY));
+            return;
+        }
+        //选择图片返回
         PhotoUtil.onActivityResult(this, requestCode, data, new PhotoUtil.PhotoResultListener() {
             @Override
             public void photoResultSuccess(String path) {
-                Glide.with(UserInfoActivity.this).load(StreamUtil.inputStream2Byte(StreamUtil.bitmap2InputStream(PhotoUtil.file2Bitmap(path))))
+                Bitmap bitmap = PhotoUtil.file2Bitmap(path);
+                InputStream is = StreamUtil.bitmap2InputStream(bitmap);
+                Glide.with(UserInfoActivity.this).load(StreamUtil.inputStream2Byte(is))
                         .transform(new GlideCircleTransform(UserInfoActivity.this))
                         .into(imgAvatar);
+                showLoadingDialog(getString(R.string.user_upload_avatar), false, false);
+                presenter.modifyAvatar(path);
             }
 
             @Override
@@ -248,6 +283,25 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
 
     @Override
     public void modifyFail(String errMsg) {
+        dismissLoadingDialog();
+        ToastUtil.show(errMsg);
+    }
+
+    @Override
+    public void modifyAvatarSuccess(String result) {
+        dismissLoadingDialog();
+        //更改本地的userModel数据
+        CacheJsonMgr cacheJsonMgr = CacheJsonMgr.getInstance(this);
+        UserModel userModel = MyApplication.getInstance().getUser();
+        userModel.setAvatar(result);
+        String jsonStr = JSON.toJSONString(userModel);
+        cacheJsonMgr.saveJson(jsonStr, UserModel.class.getSimpleName());
+        RxBus.get().post(RxBusAction.MineUserData, "");
+        ToastUtil.show(R.string.com_upload_success);
+    }
+
+    @Override
+    public void modifyAvatarFail(String errMsg) {
         dismissLoadingDialog();
         ToastUtil.show(errMsg);
     }

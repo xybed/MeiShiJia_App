@@ -23,8 +23,8 @@ public class HttpRequestParams implements Serializable {
     protected boolean useJsonStreamer;
     protected boolean autoCloseInputStreams;
     public final ConcurrentHashMap<String, String> urlParams = new ConcurrentHashMap<String, String>();
-    protected final ConcurrentHashMap<String, StreamWrapper> streamParams = new ConcurrentHashMap<String, StreamWrapper>();
-    protected final ConcurrentHashMap<String, FileWrapper> fileParams = new ConcurrentHashMap<String, FileWrapper>();
+    public final ConcurrentHashMap<String, StreamWrapper> streamParams = new ConcurrentHashMap<String, StreamWrapper>();
+    public final ConcurrentHashMap<String, FileWrapper> fileParams = new ConcurrentHashMap<String, FileWrapper>();
 //    protected String contentEncoding = HTTP.UTF_8;
 
     /**

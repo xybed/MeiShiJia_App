@@ -12,13 +12,17 @@ import com.mumu.meishijia.model.BaseModel;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.view.mine.LoginActivity;
 
+import java.io.File;
 import java.net.SocketTimeoutException;
 import java.util.List;
 
 import lib.cache.CacheJsonMgr;
 import lib.utils.MD5Util;
 import lib.utils.MyLogUtil;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -164,5 +168,16 @@ public class HttpRetrofit {
         Intent intent = new Intent(context, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
+    }
+
+    /**
+     * 构建上传图片的multipart，网上摘录方法
+     * @param filePath 图片路径
+     * @return part
+     */
+    public MultipartBody.Part createImageMultipart(String filePath){
+        File file = new File(filePath);
+        RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        return MultipartBody.Part.createFormData("img_file", file.getName(), imageBody);
     }
 }
