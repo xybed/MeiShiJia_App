@@ -19,6 +19,7 @@ import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constacts.RxBusAction;
 import com.mumu.meishijia.view.BaseFragment;
+import com.mumu.meishijia.view.im.ContactsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,13 +71,23 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.llay_top_img, R.id.llay_setting})
+    @OnClick({R.id.llay_top_img, R.id.llay_chat, R.id.llay_contacts, R.id.llay_setting})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
             case R.id.llay_top_img:
                 if(MyApplication.getInstance().isLogin()){
                     intent = new Intent(getActivity(), UserInfoActivity.class);
+                }else {
+                    intent = new Intent(getActivity(), LoginActivity.class);
+                }
+                startActivity(intent);
+                break;
+            case R.id.llay_chat:
+                break;
+            case R.id.llay_contacts:
+                if(MyApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(), ContactsActivity.class);
                 }else {
                     intent = new Intent(getActivity(), LoginActivity.class);
                 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="im_chat">消息</string>
+    <string name="im_contacts">联系人</string>
+    <string name="im_communication_list">通讯录</string>
+    <string name="im_new_friend">新的朋友</string>
+</resources>

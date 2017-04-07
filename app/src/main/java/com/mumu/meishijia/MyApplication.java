@@ -4,9 +4,11 @@ import android.support.multidex.MultiDexApplication;
 
 import com.mumu.meishijia.model.mine.UserModel;
 
+import io.realm.Realm;
 import lib.baidu.MyLocation;
 import lib.cache.CacheJsonMgr;
 import lib.crash.MyCrashHandler;
+import lib.realm.MyRealm;
 
 /**
  * MyApplication
@@ -25,6 +27,7 @@ public class MyApplication extends MultiDexApplication {
 
         MyCrashHandler.getInstance().init(this);
         initUserLoginInfo();
+        initRealm();
     }
 
     /**
@@ -37,6 +40,14 @@ public class MyApplication extends MultiDexApplication {
             setUser((UserModel) object);
             setLogin(true);
         }
+    }
+
+    /**
+     * 初始化realm，realm配置，创建表
+     */
+    private void initRealm(){
+        Realm.init(this);
+        MyRealm.getInstance().init();
     }
 
     public static MyApplication getInstance(){

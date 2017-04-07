@@ -46,4 +46,6 @@
     <color name="theme_color_black_b">#aa212d3d</color>
     <!--主题绿色，abc..不代表等级-->
     <color name="theme_color_green_a">#ffadff2f</color>
+    <!--主题红色，abc..不代表等级-->
+    <color name="theme_color_red_a">#fff8361b</color>
 </resources>

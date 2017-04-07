@@ -37,6 +37,51 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llay_chat"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/theme_height_a"
+                android:background="@drawable/selector_bg_white_gray_h"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="@dimen/theme_margin_fifteen"
+                    android:layout_marginRight="@dimen/theme_margin_fifteen"
+                    android:src="@drawable/icon_chat"
+                    android:contentDescription="@null"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/im_chat"
+                    android:textColor="@color/theme_color_black_a"
+                    android:textSize="@dimen/theme_text_size_fourteen"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llay_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/theme_height_a"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/selector_bg_white_gray_h"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="@dimen/theme_margin_fifteen"
+                    android:layout_marginRight="@dimen/theme_margin_fifteen"
+                    android:src="@drawable/icon_contacts"
+                    android:contentDescription="@null"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/im_contacts"
+                    android:textColor="@color/theme_color_black_a"
+                    android:textSize="@dimen/theme_text_size_fourteen"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/llay_setting"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/theme_height_a"
