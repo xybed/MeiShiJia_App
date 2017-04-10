@@ -22,7 +22,7 @@ public class RecipeViewModel {
     public void getRecipe(){
         HttpRequestParams params = new HttpRequestParams();
         HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-        httpRetrofit.getList(httpRetrofit.getApiService(RecipeService.class, HttpUrl.Get_Recipe, params).getRecipe(params.urlParams), "", new RetroResListener<List<RecipeSubModel>>() {
+        httpRetrofit.getList(httpRetrofit.getApiService(RecipeService.class, HttpUrl.GetRecipe, params).getRecipe(params.urlParams), "", new RetroResListener<List<RecipeSubModel>>() {
             @Override
             protected void onSuccess(List<RecipeSubModel> result) {
                 if(listener != null)

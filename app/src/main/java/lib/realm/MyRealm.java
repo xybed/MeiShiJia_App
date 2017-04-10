@@ -18,7 +18,7 @@ public class MyRealm {
     private MyRealm(){}
 
     public static MyRealm getInstance(){
-        if(myRealm != null)
+        if(myRealm == null)
             myRealm = new MyRealm();
         return myRealm;
     }
@@ -28,10 +28,6 @@ public class MyRealm {
                 .name("myrealm.realm")
                 .schemaVersion(version)
                 .build();
-        Realm realm = Realm.getInstance(myConfig);
-        realm.beginTransaction();
-        realm.createObject(ContactsRealmModel.class);
-        realm.commitTransaction();
     }
 
     public RealmConfiguration getMyConfig() {

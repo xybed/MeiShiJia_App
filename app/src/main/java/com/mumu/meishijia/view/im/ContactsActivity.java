@@ -8,14 +8,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.adapter.im.ContactsAdapter;
+import com.mumu.meishijia.model.im.ContactsRealmModel;
+import com.mumu.meishijia.presenter.im.ContactsPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import lib.utils.ToastUtil;
 import lib.widget.LetterSide;
 
-public class ContactsActivity extends BaseActivity {
+public class ContactsActivity extends BaseActivity implements ContactsView{
 
     @BindView(R.id.list_view)
     ListView listView;
@@ -24,6 +31,11 @@ public class ContactsActivity extends BaseActivity {
     @BindView(R.id.letter_side)
     LetterSide letterSide;
 
+    private ContactsPresenter presenter;
+
+    private ContactsAdapter adapter;
+    private List<ContactsRealmModel> contactsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +43,8 @@ public class ContactsActivity extends BaseActivity {
 
         ButterKnife.bind(this);
         initUI();
+        presenter = new ContactsPresenter(this);
+        getContacts();
     }
 
     private void initUI(){
@@ -45,6 +59,14 @@ public class ContactsActivity extends BaseActivity {
             }
         });
         listView.addHeaderView(headerView);
+        contactsList = new ArrayList<>();
+        adapter = new ContactsAdapter(this, contactsList);
+        listView.setAdapter(adapter);
+    }
+
+    private void getContacts(){
+        showLoadingDialog(getString(R.string.com_wait));
+        presenter.getContacts();
     }
 
     @OnClick({R.id.btn_left, R.id.btn_add})
@@ -56,5 +78,20 @@ public class ContactsActivity extends BaseActivity {
             case R.id.btn_add:
                 break;
         }
+    }
+
+    @Override
+    public void getContactsSuccess(List<ContactsRealmModel> contactsList) {
+        dismissLoadingDialog();
+        this.contactsList = contactsList;
+        if(contactsList == null || contactsList.size() <= 0)
+            return;
+        adapter.setData(contactsList);
+    }
+
+    @Override
+    public void getContactsFail(String errMsg) {
+        dismissLoadingDialog();
+        ToastUtil.show(errMsg);
     }
 }
