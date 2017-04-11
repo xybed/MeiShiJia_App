@@ -46,6 +46,7 @@
     <dimen name="theme_height_a">44dp</dimen>
     <dimen name="theme_height_b">50dp</dimen>
     <dimen name="theme_height_c">48dp</dimen>
+    <dimen name="theme_height_d">40dp</dimen>
 
     <!--头像长宽-->
     <dimen name="avatar_img_size">78dp</dimen>

@@ -38,6 +38,23 @@
         <item>沈阳市</item>
         <item>哈尔滨市</item>
     </string-array>
+    <string-array name="com_hot_city_province_array">
+        <item>上海</item>
+        <item>北京</item>
+        <item>广东省</item>
+        <item>广东省</item>
+        <item>福建省</item>
+        <item>福建省</item>
+        <item>四川省</item>
+        <item>重庆</item>
+        <item>天津</item>
+        <item>浙江省</item>
+        <item>江苏省</item>
+        <item>陕西省</item>
+        <item>山东省</item>
+        <item>辽宁省</item>
+        <item>黑龙江省</item>
+    </string-array>
     <string name="com_open_voice_permission">您需要开启语音权限,并重启应用</string>
     <string name="com_open_photograph_permission">您需要开启照相权限,并重启应用</string>
     <string name="com_open_location_permission">您需要开启定位权限,并重启应用</string>

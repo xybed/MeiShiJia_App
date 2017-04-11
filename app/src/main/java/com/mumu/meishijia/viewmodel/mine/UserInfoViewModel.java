@@ -28,7 +28,7 @@ public class UserInfoViewModel {
     }
 
     public void modifyUserInfo(String id, String nickname, String realName,
-                               String sex, String birthday, String email, String city){
+                               String sex, String birthday, String email, String province, String city, String signature){
         HttpRequestParams params = new HttpRequestParams();
         params.put("id", id);
         params.put("nickname", nickname);
@@ -36,7 +36,9 @@ public class UserInfoViewModel {
         params.put("sex", sex);
         params.put("birthday", birthday);
         params.put("email", email);
+        params.put("province", province);
         params.put("city", city);
+        params.put("signature", signature);
         HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
         httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.ModifyUserInfo, params).modifyUserInfo(params.urlParams), "", new RetroResListener<String>() {
             @Override

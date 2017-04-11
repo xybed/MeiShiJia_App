@@ -102,7 +102,7 @@
                         android:textSize="@dimen/theme_text_size_fourteen" />
                 </LinearLayout>
 
-                <include layout="@layout/layout_split_line_gray" />
+                <include layout="@layout/layout_split_line_gray_b" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                         android:textSize="@dimen/theme_text_size_fourteen" />
                 </LinearLayout>
 
-                <include layout="@layout/layout_split_line_gray" />
+                <include layout="@layout/layout_split_line_gray_b" />
 
                 <LinearLayout
                     android:id="@+id/llay_sex"
@@ -190,7 +190,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <include layout="@layout/layout_split_line_gray" />
+                <include layout="@layout/layout_split_line_gray_b" />
 
                 <LinearLayout
                     android:id="@+id/llay_birthday"
@@ -239,7 +239,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <include layout="@layout/layout_split_line_gray" />
+                <include layout="@layout/layout_split_line_gray_b" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -280,7 +280,7 @@
                         android:textSize="@dimen/theme_text_size_fourteen" />
                 </LinearLayout>
 
-                <include layout="@layout/layout_split_line_gray" />
+                <include layout="@layout/layout_split_line_gray_b" />
 
                 <LinearLayout
                     android:id="@+id/llay_city"
@@ -328,6 +328,46 @@
                             android:src="@drawable/icon_arrow_right"
                             android:contentDescription="@null"/>
                     </LinearLayout>
+                </LinearLayout>
+
+                <include layout="@layout/layout_split_line_gray_b" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/theme_height_a"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/user_msg_img_size"
+                        android:layout_height="@dimen/user_msg_img_size"
+                        android:layout_marginLeft="@dimen/theme_margin_ten"
+                        android:layout_marginRight="@dimen/theme_margin_ten"
+                        android:src="@drawable/icon_signature"
+                        android:contentDescription="@null"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/user_signature"
+                        android:textColor="@color/theme_color_gray_c"
+                        android:textSize="@dimen/theme_text_size_fourteen" />
+
+                    <EditText
+                        android:id="@+id/edit_signature"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:gravity="end|center_vertical"
+                        android:hint="@string/user_pls_input_signature"
+                        android:maxLength="30"
+                        android:paddingLeft="@dimen/theme_padding_twenty_five"
+                        android:paddingRight="@dimen/theme_padding_twenty_five"
+                        android:singleLine="true"
+                        android:textColor="@color/theme_color_gray_c"
+                        android:textColorHint="@color/theme_color_gray_b"
+                        android:textSize="@dimen/theme_text_size_fourteen" />
                 </LinearLayout>
             </LinearLayout>
 

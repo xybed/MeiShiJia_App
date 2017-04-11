@@ -28,4 +28,6 @@ public class HttpUrl {
 
     //获取联系人
     public static final String GetContacts = "im/contacts";
+    //获取联系人详细信息
+    public static final String GetContactsDetail = "im/contactsDetail";
 }

@@ -2,6 +2,7 @@ package com.mumu.meishijia.api.im;
 
 import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.model.BaseModel;
+import com.mumu.meishijia.model.im.ContactsDetailModel;
 import com.mumu.meishijia.model.im.ContactsModel;
 
 import java.util.List;
@@ -19,4 +20,6 @@ import rx.Observable;
 public interface ImService {
     @GET(HttpUrl.GetContacts)
     Observable<BaseModel<List<ContactsModel>>> getContacts(@QueryMap Map<String, String> map);
+    @GET(HttpUrl.GetContactsDetail)
+    Observable<BaseModel<ContactsDetailModel>> getContactsDetail(@QueryMap Map<String, String> map);
 }

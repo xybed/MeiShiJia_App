@@ -14,8 +14,10 @@ public class UserModel {
     private int sex;
     private String birthday;
     private String email;
+    private String province;
     private String city;
     private String address;
+    private String signature;
     private int principle_id;
     private String token;
 
@@ -91,6 +93,14 @@ public class UserModel {
         this.email = email;
     }
 
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
     public String getCity() {
         return city;
     }
@@ -105,6 +115,14 @@ public class UserModel {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 
     public int getPrinciple_id() {

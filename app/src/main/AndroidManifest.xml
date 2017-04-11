@@ -174,7 +174,8 @@
         <activity
             android:name=".view.SelectCityActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.im.ContactsActivity"></activity>
+        <activity android:name=".view.im.ContactsActivity" />
+        <activity android:name=".view.im.ContactsDetailActivity"></activity>
     </application>
 
 </manifest>

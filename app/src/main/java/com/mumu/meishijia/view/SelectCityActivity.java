@@ -44,6 +44,7 @@ public class SelectCityActivity extends BaseActivity {
     private SelectCityGridAdapter adapter;
     private List<RegionModel> provinceList;
     private List<RegionModel> cityList;
+    private String gpsProvince;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,8 @@ public class SelectCityActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String city = (String) adapter.getItem(position);
-                setUserInfoCity(city);
+                List<String> provinceList = Arrays.asList(getResources().getStringArray(R.array.com_hot_city_province_array));
+                setUserInfoCity(provinceList.get(position), city);
             }
         });
     }
@@ -73,6 +75,7 @@ public class SelectCityActivity extends BaseActivity {
         if(permissionIsGet(REQ_LOCATION_PMS, Manifest.permission.ACCESS_FINE_LOCATION)){
             LocationModel locationModel = MyLocation.getInstance().getLocationData();
             txtGps.setText(locationModel.getCity());
+            gpsProvince = locationModel.getProvince();
         }
     }
 
@@ -99,10 +102,10 @@ public class SelectCityActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.txt_whole_country:
-                setUserInfoCity(txtWholeCountry.getText().toString());
+                setUserInfoCity(txtWholeCountry.getText().toString(), txtWholeCountry.getText().toString());
                 break;
             case R.id.llay_gps:
-                setUserInfoCity(txtGps.getText().toString());
+                setUserInfoCity(gpsProvince, txtGps.getText().toString());
                 break;
             case R.id.llay_province:
                 if(provinceList == null || provinceList.size() == 0)
@@ -128,7 +131,7 @@ public class SelectCityActivity extends BaseActivity {
                     @Override
                     public void backData(View v, RegionModel object) {
                         txtCity.setText(object.getName());
-                        setUserInfoCity(object.getName());
+                        setUserInfoCity(txtProvince.getText().toString(), object.getName());
                     }
                 });
                 cityDialog.showDialog(getResources().getString(R.string.com_select_city));
@@ -136,8 +139,9 @@ public class SelectCityActivity extends BaseActivity {
         }
     }
 
-    private void setUserInfoCity(String city){
+    private void setUserInfoCity(String province, String city){
         Intent intent = new Intent();
+        intent.putExtra(UserInfoActivity.RESULT_PROVINCE, province);
         intent.putExtra(UserInfoActivity.RESULT_CITY, city);
         setResult(RESULT_OK, intent);
         finish();

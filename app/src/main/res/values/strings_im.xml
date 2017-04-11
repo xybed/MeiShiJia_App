@@ -4,4 +4,12 @@
     <string name="im_contacts">联系人</string>
     <string name="im_communication_list">通讯录</string>
     <string name="im_new_friend">新的朋友</string>
+    <string name="im_detail_info">详细资料</string>
+    <string name="im_set_remark">设置备注名</string>
+    <string name="im_region">地区</string>
+    <string name="im_signature">个性签名</string>
+    <string name="im_send_message">发消息</string>
+    <string name="im_no_contacts_detail">暂无联系人资料</string>
+    <string name="im_username_placeholder">美食号：%1$s</string>
+    <string name="im_nick_name_placeholder">昵称：%1$s</string>
 </resources>

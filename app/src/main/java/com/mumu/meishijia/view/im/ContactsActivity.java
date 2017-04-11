@@ -1,8 +1,10 @@
 package com.mumu.meishijia.view.im;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import lib.utils.MyLogUtil;
 import lib.utils.ToastUtil;
 import lib.widget.LetterSide;
 
@@ -62,6 +65,16 @@ public class ContactsActivity extends BaseActivity implements ContactsView{
         contactsList = new ArrayList<>();
         adapter = new ContactsAdapter(this, contactsList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //因为有headerview，所以这里的position从1开始
+                ContactsRealmModel model = (ContactsRealmModel) adapter.getItem(position-1);
+                Intent intent = new Intent(ContactsActivity.this, ContactsDetailActivity.class);
+                intent.putExtra(ContactsDetailActivity.FRIEND_ID, model.getFriendId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void getContacts(){

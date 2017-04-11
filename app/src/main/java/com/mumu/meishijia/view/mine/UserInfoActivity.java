@@ -43,6 +43,7 @@ import lib.widget.ActionSheet;
 
 public class UserInfoActivity extends BaseActivity implements UserInfoView {
     public static final int REQ_CITY = 1;
+    public static final String RESULT_PROVINCE = "result_province";
     public static final String RESULT_CITY = "result_city";
 
     @BindView(R.id.img_avatar)
@@ -59,10 +60,14 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
     EditText editEmail;
     @BindView(R.id.txt_city)
     TextView txtCity;
+    @BindView(R.id.edit_signature)
+    EditText editSignature;
 
     private UserInfoPresenter presenter;
 
     private String sexCode;
+    private String province;
+    private String city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,8 +115,13 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         if(!TextUtils.isEmpty(user.getEmail())){
             editEmail.setText(user.getEmail());
         }
-        if(!TextUtils.isEmpty(user.getCity())){
-            txtCity.setText(user.getCity());
+        if(!TextUtils.isEmpty(user.getProvince()) && !TextUtils.isEmpty(user.getCity())){
+            province = user.getProvince();
+            city = user.getCity();
+            txtCity.setText(province + "  " + city);
+        }
+        if(!TextUtils.isEmpty(user.getSignature())){
+            editSignature.setText(user.getSignature());
         }
     }
 
@@ -214,7 +224,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         showLoadingDialog(getString(R.string.com_committing));
         presenter.modifyUserInfo(MyApplication.getInstance().getUser().getId()+"", editNickname.getText().toString(),
                 editRealName.getText().toString(), sexCode, txtBirthday.getText().toString(),
-                editEmail.getText().toString(), txtCity.getText().toString());
+                editEmail.getText().toString(), province, city, editSignature.getText().toString());
     }
 
     @Override
@@ -240,7 +250,9 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
             return;
         //选择城市回调的结果
         if(requestCode == REQ_CITY){
-            txtCity.setText(data.getStringExtra(RESULT_CITY));
+            province = data.getStringExtra(RESULT_PROVINCE);
+            city = data.getStringExtra(RESULT_CITY);
+            txtCity.setText(province + "  " + city);
             return;
         }
         //选择图片返回
@@ -274,7 +286,9 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         userModel.setSex(NumberUtil.parseInt(sexCode, 0));
         userModel.setBirthday(txtBirthday.getText().toString());
         userModel.setEmail(editEmail.getText().toString());
-        userModel.setCity(txtCity.getText().toString());
+        userModel.setProvince(province);
+        userModel.setCity(city);
+        userModel.setSignature(editSignature.getText().toString());
         String jsonStr = JSON.toJSONString(userModel);
         cacheJsonMgr.saveJson(jsonStr, UserModel.class.getSimpleName());
         RxBus.get().post(RxBusAction.MineUserData, "");

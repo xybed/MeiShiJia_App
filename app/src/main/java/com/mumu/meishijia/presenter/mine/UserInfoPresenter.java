@@ -21,8 +21,8 @@ public class UserInfoPresenter implements UserInfoViewModel.UserInfoListener{
     }
 
     public void modifyUserInfo(String id, String nickname, String realName,
-                               String sex, String birthday, String email, String city){
-        viewModel.modifyUserInfo(id, nickname, realName, sex, birthday, email, city);
+                               String sex, String birthday, String email, String province, String city, String signature){
+        viewModel.modifyUserInfo(id, nickname, realName, sex, birthday, email, province, city, signature);
     }
 
     public void modifyAvatar(String filePath){
