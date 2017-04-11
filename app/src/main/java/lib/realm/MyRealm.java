@@ -1,9 +1,14 @@
 package lib.realm;
 
-import com.mumu.meishijia.model.im.ContactsRealmModel;
+import com.baidu.platform.comapi.map.K;
 
-import io.realm.Realm;
+import java.security.SecureRandom;
+
+import io.realm.DynamicRealm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmMigration;
+import io.realm.RealmSchema;
+import lib.utils.MD5Util;
 
 /**
  * realm的配置类
@@ -14,6 +19,7 @@ public class MyRealm {
     private static MyRealm myRealm;
     private RealmConfiguration myConfig;
     private long version = 1;
+    private String KEY = "meishijia";
 
     private MyRealm(){}
 
@@ -24,9 +30,26 @@ public class MyRealm {
     }
 
     public void init(){
+        /*
+        当版本变更时，realm会抛出异常RealmMigrationNeededException，
+        此时会执行migration里的代码来处理异常，在realm的配置中需配置migration
+         */
+        RealmMigration migration = new RealmMigration() {
+            @Override
+            public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {
+//                RealmSchema schema = realm.getSchema();
+//                if(oldVersion == 1){
+//                    schema.get("ContactsRealmModel")
+//                            .addField("principle_id", int.class);
+//                    oldVersion++;
+//                }
+            }
+        };
         myConfig = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
+                .encryptionKey((MD5Util.MD5(KEY)+MD5Util.MD5(KEY)).getBytes())//这里的密钥需要是64位的byte[]
                 .schemaVersion(version)
+                .migration(migration)
                 .build();
     }
 

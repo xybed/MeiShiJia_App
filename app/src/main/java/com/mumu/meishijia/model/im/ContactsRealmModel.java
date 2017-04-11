@@ -14,6 +14,7 @@ public class ContactsRealmModel extends RealmObject{
     private String remark;//对好友的备注，默认为好友的昵称
     private String avatar;
     private String sort_letter;//字母排序
+    private int principle_id;
 
     public int getUserId() {
         return userId;
@@ -53,5 +54,13 @@ public class ContactsRealmModel extends RealmObject{
 
     public void setSort_letter(String sort_letter) {
         this.sort_letter = sort_letter;
+    }
+
+    public int getPrinciple_id() {
+        return principle_id;
+    }
+
+    public void setPrinciple_id(int principle_id) {
+        this.principle_id = principle_id;
     }
 }

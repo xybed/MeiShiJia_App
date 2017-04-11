@@ -10,6 +10,7 @@ public class ContactsModel {
     private String avatar;
     private String remark;//对好友的备注
     private String sort_letter;//字母排序
+    private int principle_id;
 
     public int getFriend_id() {
         return friend_id;
@@ -41,5 +42,13 @@ public class ContactsModel {
 
     public void setSort_letter(String sort_letter) {
         this.sort_letter = sort_letter;
+    }
+
+    public int getPrinciple_id() {
+        return principle_id;
+    }
+
+    public void setPrinciple_id(int principle_id) {
+        this.principle_id = principle_id;
     }
 }
