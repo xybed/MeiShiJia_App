@@ -26,7 +26,7 @@ public class ContactsPresenter implements ContactsViewModel.ContactsListener{
     public ContactsPresenter(ContactsView view){
         this.view = view;
         viewModel = new ContactsViewModel(this);
-        realm = MyRealm.getInstance().getRealm();
+        realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
     }
 
     public void getContacts(){
@@ -49,8 +49,8 @@ public class ContactsPresenter implements ContactsViewModel.ContactsListener{
         ContactsRealmModel realmModel;
         for(ContactsModel model : result){
             realmModel = new ContactsRealmModel();
-            realmModel.setUserId(MyApplication.getInstance().getUser().getId());
-            realmModel.setFriendId(model.getFriend_id());
+            realmModel.setUser_id(MyApplication.getInstance().getUser().getId());
+            realmModel.setFriend_id(model.getFriend_id());
             realmModel.setAvatar(model.getAvatar());
             realmModel.setRemark(model.getRemark());
             realmModel.setSort_letter(model.getSort_letter());

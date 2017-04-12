@@ -139,7 +139,7 @@ public class FileUtil {
         }
     }
 
-    public static void delectFile(File file){
+    public static void deleteFile(File file){
         if (file.exists()) {
             file.delete();
         }

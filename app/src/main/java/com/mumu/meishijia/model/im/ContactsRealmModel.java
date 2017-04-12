@@ -1,7 +1,6 @@
 package com.mumu.meishijia.model.im;
 
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 /**
  * 联系人的realm
@@ -9,27 +8,27 @@ import io.realm.annotations.PrimaryKey;
  */
 
 public class ContactsRealmModel extends RealmObject{
-    private int userId;//用户在后台的id
-    private int friendId;//好友在后台的id
+    private int user_id;//用户在后台的id
+    private int friend_id;//好友在后台的id
     private String remark;//对好友的备注，默认为好友的昵称
     private String avatar;
     private String sort_letter;//字母排序
     private int principle_id;
 
-    public int getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public int getFriendId() {
-        return friendId;
+    public int getFriend_id() {
+        return friend_id;
     }
 
-    public void setFriendId(int friendId) {
-        this.friendId = friendId;
+    public void setFriend_id(int friend_id) {
+        this.friend_id = friend_id;
     }
 
     public String getRemark() {

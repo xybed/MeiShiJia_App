@@ -25,12 +25,12 @@ public class ContactsViewModel {
 
     public ContactsViewModel(ContactsListener listener){
         this.listener = listener;
-        realm = MyRealm.getInstance().getRealm();
+        realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
     }
 
     public void getContacts(){
         int userId = MyApplication.getInstance().getUser().getId();
-        RealmResults<ContactsRealmModel> contactsRealmList = realm.where(ContactsRealmModel.class).equalTo("userId", userId).findAll();
+        RealmResults<ContactsRealmModel> contactsRealmList = realm.where(ContactsRealmModel.class).equalTo("user_id", userId).findAll();
         if(contactsRealmList == null || contactsRealmList.size() <= 0){
             HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
             HttpRequestParams params = new HttpRequestParams();

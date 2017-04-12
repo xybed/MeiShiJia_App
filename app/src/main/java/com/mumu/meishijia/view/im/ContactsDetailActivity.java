@@ -8,8 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.constacts.RxBusAction;
 import com.mumu.meishijia.model.im.ContactsDetailModel;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.presenter.im.ContactsDetailPresenter;
@@ -57,9 +59,10 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         setContentView(R.layout.activity_contacts_detail);
 
         presenter = new ContactsDetailPresenter(this);
-        realm = MyRealm.getInstance().getRealm();
         initUI();
         presenter.getContactsDetail(friendId);
+        realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        RxBus.get().register(this);
     }
 
     private void initUI(){
@@ -75,6 +78,13 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         });
     }
 
+    /**
+     * 刷新联系人界面的联系人列表
+     */
+    private void refreshContactsList(){
+        RxBus.get().post(RxBusAction.ContactsList, "");
+    }
+
     @OnClick({R.id.btn_left, R.id.txt_set_remark, R.id.btn_send_msg})
     public void onClick(View view) {
         Intent intent;
@@ -84,6 +94,8 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
                 break;
             case R.id.txt_set_remark:
                 intent = new Intent(this, ModifyRemarkActivity.class);
+                intent.putExtra(ModifyRemarkActivity.FRIEND_ID, friendId);
+                intent.putExtra(ModifyRemarkActivity.REMARK, txtRemark.getText().toString());
                 startActivityForResult(intent, REQ_MODIFY_REMARK);
                 break;
             case R.id.btn_send_msg:
@@ -141,12 +153,13 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         //修改本地数据库
         ContactsRealmModel contactsRealmModel = realm.where(ContactsRealmModel.class)
                 .equalTo("user_id", MyApplication.getInstance().getUser().getId()).equalTo("friend_id", friendId).findFirst();
-        contactsRealmModel.setAvatar(result.getAvatar());
         realm.beginTransaction();
+        //好友可能主动改的数据有头像、昵称、地区、个性签名，但影响联系人表的只有头像这个字段
+        contactsRealmModel.setAvatar(result.getAvatar());
         realm.insertOrUpdate(contactsRealmModel);
         realm.commitTransaction();
-        //TODO 刷新联系人列表
-
+        //刷新联系人列表
+        refreshContactsList();
     }
 
     @Override
@@ -160,18 +173,26 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         if(resultCode != RESULT_OK)
             return;
         if(requestCode == REQ_MODIFY_REMARK){
+            //修改备注名后的返回
             String remark = data.getStringExtra(RESULT_REMARK);
             txtRemark.setText(remark);
             //修改本地数据库
             ContactsRealmModel contactsRealmModel = realm.where(ContactsRealmModel.class)
                     .equalTo("user_id", MyApplication.getInstance().getUser().getId()).equalTo("friend_id", friendId).findFirst();
+            realm.beginTransaction();
             contactsRealmModel.setRemark(remark);
-            realm.commitTransaction();
             realm.insertOrUpdate(contactsRealmModel);
             realm.commitTransaction();
-            //TODO 刷新联系人列表
+            //刷新联系人列表
+            refreshContactsList();
             return;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        RxBus.get().unregister(this);
+        super.onDestroy();
     }
 }

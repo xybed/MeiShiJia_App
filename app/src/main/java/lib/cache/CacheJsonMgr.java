@@ -4,13 +4,9 @@ import android.content.Context;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.Feature;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.util.List;
 
 import lib.utils.FileUtil;
 
@@ -71,6 +67,6 @@ public class CacheJsonMgr {
             return;
         }
         File file = FileUtil.createFile(dirPath, fileName);
-        FileUtil.delectFile(file);
+        FileUtil.deleteFile(file);
     }
 }

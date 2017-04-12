@@ -18,6 +18,7 @@ import lib.utils.ToastUtil;
 
 public class ModifyRemarkActivity extends BaseActivity implements ModifyRemarkView {
     public static final String FRIEND_ID = "friend_id";
+    public static final String REMARK = "remark";
 
     @BindView(R.id.edit_remark)
     EditText editRemark;
@@ -25,6 +26,7 @@ public class ModifyRemarkActivity extends BaseActivity implements ModifyRemarkVi
     private ModifyRemarkPresenter presenter;
 
     private int friendId;
+    private String remark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,10 @@ public class ModifyRemarkActivity extends BaseActivity implements ModifyRemarkVi
         ButterKnife.bind(this);
         Intent intent = getIntent();
         friendId = intent.getIntExtra(FRIEND_ID, 0);
+        remark = intent.getStringExtra(REMARK);
+        if(!TextUtils.isEmpty(remark)){
+            editRemark.setText(remark);
+        }
     }
 
     @OnClick({R.id.btn_left, R.id.txt_complete})

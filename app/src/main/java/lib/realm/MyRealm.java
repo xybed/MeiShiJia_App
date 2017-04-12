@@ -13,7 +13,7 @@ import lib.utils.MD5Util;
 
 public class MyRealm {
     private static MyRealm myRealm;
-    private Realm realm;
+    private RealmConfiguration myConfig;
     private long version = 1;
     private String KEY = "meishijia";
 
@@ -41,16 +41,15 @@ public class MyRealm {
 //                }
             }
         };
-        RealmConfiguration myConfig = new RealmConfiguration.Builder()
+        myConfig = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
                 .encryptionKey((MD5Util.MD5(KEY)+MD5Util.MD5(KEY)).getBytes())//这里的密钥需要是64位的byte[]
                 .schemaVersion(version)
                 .migration(migration)
                 .build();
-        realm = Realm.getInstance(myConfig);
     }
 
-    public Realm getRealm() {
-        return realm;
+    public RealmConfiguration getMyConfig(){
+        return myConfig;
     }
 }
