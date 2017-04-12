@@ -179,7 +179,8 @@
         <activity
             android:name=".view.im.ContactsDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.im.ModifyRemarkActivity"></activity>
+        <activity android:name=".view.im.ModifyRemarkActivity" />
+        <activity android:name=".view.im.ConversationActivity"></activity>
     </application>
 
 </manifest>

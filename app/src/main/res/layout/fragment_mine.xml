@@ -58,11 +58,12 @@
                     android:textSize="@dimen/theme_text_size_fourteen"/>
             </LinearLayout>
 
+            <include layout="@layout/layout_split_line_gray_e"/>
+
             <LinearLayout
                 android:id="@+id/llay_contacts"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/theme_height_a"
-                android:layout_marginTop="0.5dp"
                 android:background="@drawable/selector_bg_white_gray_h"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">

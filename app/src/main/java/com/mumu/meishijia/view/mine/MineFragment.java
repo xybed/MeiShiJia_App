@@ -20,6 +20,7 @@ import com.mumu.meishijia.R;
 import com.mumu.meishijia.constacts.RxBusAction;
 import com.mumu.meishijia.view.BaseFragment;
 import com.mumu.meishijia.view.im.ContactsActivity;
+import com.mumu.meishijia.view.im.ConversationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,6 +85,12 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.llay_chat:
+                if(MyApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(), ConversationActivity.class);
+                }else {
+                    intent = new Intent(getActivity(), LoginActivity.class);
+                }
+                startActivity(intent);
                 break;
             case R.id.llay_contacts:
                 if(MyApplication.getInstance().isLogin()){

@@ -34,15 +34,6 @@
                 android:padding="20dp"
                 android:src="@drawable/icon_im_ask"
                 android:contentDescription="@null"/>
-
-            <ImageView
-                android:id="@+id/img_delete"
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:background="@color/theme_color_red_a"
-                android:padding="20dp"
-                android:src="@drawable/icon_delete"
-                android:contentDescription="@null"/>
         </LinearLayout>
 
         <LinearLayout
@@ -64,7 +55,8 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="10dp"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null"/>
 
                 <TextView
                     android:id="@+id/txt_name"

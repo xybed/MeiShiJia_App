@@ -2,6 +2,6 @@
 <ImageView
     android:layout_width="match_parent"
     android:layout_height="0.5dp"
-    android:background="@color/theme_color_gray_b"
+    android:background="@color/theme_color_gray_e"
     android:contentDescription="@null"
     xmlns:android="http://schemas.android.com/apk/res/android"/>
