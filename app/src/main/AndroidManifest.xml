@@ -147,6 +147,9 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
+            android:name=".view.SelectCityActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".view.mine.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
@@ -169,13 +172,14 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".view.food.RecipeActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".view.SelectCityActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.im.ContactsActivity" />
-        <activity android:name=".view.im.ContactsDetailActivity"></activity>
+        <activity
+            android:name=".view.im.ContactsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.im.ContactsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.im.ModifyRemarkActivity"></activity>
     </application>
 
 </manifest>

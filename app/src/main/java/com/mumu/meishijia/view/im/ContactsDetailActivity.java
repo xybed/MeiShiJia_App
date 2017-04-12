@@ -8,20 +8,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.model.im.ContactsDetailModel;
+import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.presenter.im.ContactsDetailPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
 import lib.glide.GlideCircleTransform;
+import lib.realm.MyRealm;
 import lib.utils.ToastUtil;
 import lib.widget.FrameProgressLayout;
 
 public class ContactsDetailActivity extends BaseActivity implements ContactsDetailView{
     public static final String FRIEND_ID = "friend_id";
+    public static final int REQ_MODIFY_REMARK = 0;
+    public static final String RESULT_REMARK = "result_remark";
 
     @BindView(R.id.frame_progress)
     FrameProgressLayout frameProgress;
@@ -43,6 +49,7 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
     private ContactsDetailPresenter presenter;
 
     private int friendId;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,7 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         setContentView(R.layout.activity_contacts_detail);
 
         presenter = new ContactsDetailPresenter(this);
+        realm = MyRealm.getInstance().getRealm();
         initUI();
         presenter.getContactsDetail(friendId);
     }
@@ -69,11 +77,14 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
 
     @OnClick({R.id.btn_left, R.id.txt_set_remark, R.id.btn_send_msg})
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.btn_left:
                 finish();
                 break;
             case R.id.txt_set_remark:
+                intent = new Intent(this, ModifyRemarkActivity.class);
+                startActivityForResult(intent, REQ_MODIFY_REMARK);
                 break;
             case R.id.btn_send_msg:
                 break;
@@ -127,11 +138,40 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         }else {
             txtSignature.setVisibility(View.GONE);
         }
+        //修改本地数据库
+        ContactsRealmModel contactsRealmModel = realm.where(ContactsRealmModel.class)
+                .equalTo("user_id", MyApplication.getInstance().getUser().getId()).equalTo("friend_id", friendId).findFirst();
+        contactsRealmModel.setAvatar(result.getAvatar());
+        realm.beginTransaction();
+        realm.insertOrUpdate(contactsRealmModel);
+        realm.commitTransaction();
+        //TODO 刷新联系人列表
+
     }
 
     @Override
     public void getFail(String errMsg) {
         frameProgress.loadFail();
         ToastUtil.show(errMsg);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode != RESULT_OK)
+            return;
+        if(requestCode == REQ_MODIFY_REMARK){
+            String remark = data.getStringExtra(RESULT_REMARK);
+            txtRemark.setText(remark);
+            //修改本地数据库
+            ContactsRealmModel contactsRealmModel = realm.where(ContactsRealmModel.class)
+                    .equalTo("user_id", MyApplication.getInstance().getUser().getId()).equalTo("friend_id", friendId).findFirst();
+            contactsRealmModel.setRemark(remark);
+            realm.commitTransaction();
+            realm.insertOrUpdate(contactsRealmModel);
+            realm.commitTransaction();
+            //TODO 刷新联系人列表
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

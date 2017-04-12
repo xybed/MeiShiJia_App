@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 
@@ -22,4 +23,6 @@ public interface ImService {
     Observable<BaseModel<List<ContactsModel>>> getContacts(@QueryMap Map<String, String> map);
     @GET(HttpUrl.GetContactsDetail)
     Observable<BaseModel<ContactsDetailModel>> getContactsDetail(@QueryMap Map<String, String> map);
+    @POST(HttpUrl.ModifyRemark)
+    Observable<BaseModel<String>> modifyRemark(@QueryMap Map<String, String> map);
 }

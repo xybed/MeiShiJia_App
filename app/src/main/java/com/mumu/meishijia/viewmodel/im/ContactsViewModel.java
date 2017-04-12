@@ -25,15 +25,16 @@ public class ContactsViewModel {
 
     public ContactsViewModel(ContactsListener listener){
         this.listener = listener;
-        realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        realm = MyRealm.getInstance().getRealm();
     }
 
     public void getContacts(){
-        RealmResults<ContactsRealmModel> contactsRealmList = realm.where(ContactsRealmModel.class).findAll();
+        int userId = MyApplication.getInstance().getUser().getId();
+        RealmResults<ContactsRealmModel> contactsRealmList = realm.where(ContactsRealmModel.class).equalTo("userId", userId).findAll();
         if(contactsRealmList == null || contactsRealmList.size() <= 0){
             HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
             HttpRequestParams params = new HttpRequestParams();
-            params.put("id", MyApplication.getInstance().getUser().getId());
+            params.put("id", userId);
             httpRetrofit.getList(httpRetrofit.getApiService(ImService.class, HttpUrl.GetContacts, params).getContacts(params.urlParams), "", new RetroResListener<List<ContactsModel>>() {
                 @Override
                 protected void onSuccess(List<ContactsModel> result) {

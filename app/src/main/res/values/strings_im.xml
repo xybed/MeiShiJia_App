@@ -12,4 +12,7 @@
     <string name="im_no_contacts_detail">暂无联系人资料</string>
     <string name="im_username_placeholder">美食号：%1$s</string>
     <string name="im_nick_name_placeholder">昵称：%1$s</string>
+    <string name="im_remark_info">备注信息</string>
+    <string name="im_remark">备注名</string>
+    <string name="im_input_remark">请输入备注名</string>
 </resources>

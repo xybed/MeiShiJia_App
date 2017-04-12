@@ -30,4 +30,6 @@ public class HttpUrl {
     public static final String GetContacts = "im/contacts";
     //获取联系人详细信息
     public static final String GetContactsDetail = "im/contactsDetail";
+    //修改联系人的备注名
+    public static final String ModifyRemark = "im/modifyRemark";
 }

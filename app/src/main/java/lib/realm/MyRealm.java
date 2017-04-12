@@ -1,13 +1,9 @@
 package lib.realm;
 
-import com.baidu.platform.comapi.map.K;
-
-import java.security.SecureRandom;
-
 import io.realm.DynamicRealm;
+import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmMigration;
-import io.realm.RealmSchema;
 import lib.utils.MD5Util;
 
 /**
@@ -17,7 +13,7 @@ import lib.utils.MD5Util;
 
 public class MyRealm {
     private static MyRealm myRealm;
-    private RealmConfiguration myConfig;
+    private Realm realm;
     private long version = 1;
     private String KEY = "meishijia";
 
@@ -45,16 +41,16 @@ public class MyRealm {
 //                }
             }
         };
-        myConfig = new RealmConfiguration.Builder()
+        RealmConfiguration myConfig = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
                 .encryptionKey((MD5Util.MD5(KEY)+MD5Util.MD5(KEY)).getBytes())//这里的密钥需要是64位的byte[]
                 .schemaVersion(version)
                 .migration(migration)
                 .build();
+        realm = Realm.getInstance(myConfig);
     }
 
-    public RealmConfiguration getMyConfig() {
-        return myConfig;
+    public Realm getRealm() {
+        return realm;
     }
-
 }

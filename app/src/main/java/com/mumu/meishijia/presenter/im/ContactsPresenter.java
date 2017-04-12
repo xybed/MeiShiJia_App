@@ -26,7 +26,7 @@ public class ContactsPresenter implements ContactsViewModel.ContactsListener{
     public ContactsPresenter(ContactsView view){
         this.view = view;
         viewModel = new ContactsViewModel(this);
-        realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        realm = MyRealm.getInstance().getRealm();
     }
 
     public void getContacts(){
