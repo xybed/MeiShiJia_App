@@ -99,6 +99,8 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
                 startActivityForResult(intent, REQ_MODIFY_REMARK);
                 break;
             case R.id.btn_send_msg:
+                intent = new Intent(this, ChatActivity.class);
+                startActivity(intent);
                 break;
         }
     }

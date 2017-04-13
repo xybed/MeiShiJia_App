@@ -179,8 +179,18 @@
         <activity
             android:name=".view.im.ContactsDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.im.ModifyRemarkActivity" />
-        <activity android:name=".view.im.ConversationActivity"></activity>
+        <activity
+            android:name=".view.im.ModifyRemarkActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".view.im.ConversationActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.im.ChatActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
     </application>
 
 </manifest>

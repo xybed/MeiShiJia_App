@@ -12,4 +12,16 @@
             <enum name="pull_out" value="1" />
         </attr>
     </declare-styleable>
+
+    <!--PagerIndicator的自定义属性-->
+    <declare-styleable name="PagerIndicator">
+        <!--选中颜色-->
+        <attr name="selectColor" format="color"/>
+        <!--未选中颜色-->
+        <attr name="unselectColor" format="color"/>
+        <!--半径-->
+        <attr name="radius" format="dimension"/>
+        <!--间距-->
+        <attr name="gap" format="dimension"/>
+    </declare-styleable>
 </resources>
