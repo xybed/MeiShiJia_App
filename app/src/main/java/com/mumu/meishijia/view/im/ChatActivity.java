@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.adapter.im.ChatAdapter;
 import com.mumu.meishijia.adapter.im.ImPagerAdapter;
 import com.mumu.meishijia.view.BaseActivity;
 
@@ -62,11 +63,14 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
     @BindView(R.id.pager_indicator)
     PagerIndicator pagerIndicator;
 
+    //加号部分的viewPager的adapter
     private ImPagerAdapter pagerAdapter;
     //点击加号出现的布局，有两部分，设置成成员变量，方便设置监听
     private View view1;
     private View view2;
     private WebSocketClient webSocket;
+
+    private ChatAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +91,9 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
         pagerAdapter = new ImPagerAdapter(this, viewList);
         viewPager.setAdapter(pagerAdapter);
         pagerIndicator.setNumber(viewList.size());
+
+        adapter = new ChatAdapter(this);
+        listView.setAdapter(adapter);
     }
 
     private void initListener(){
