@@ -1,4 +1,4 @@
-package com.mumu.meishijia.constacts;
+package com.mumu.meishijia.constant;
 
 /**
  * RxBus的tag
@@ -9,4 +9,6 @@ public class RxBusAction {
     public static final String MineUserData = "rxBusMineUserData";
     //查看联系人资料、修改备注名之后，需要刷新联系人列表
     public static final String ContactsList = "rxContactsList";
+    //接收到新消息、刷新聊天界面
+    public static final String ChatList = "rxChatList";
 }

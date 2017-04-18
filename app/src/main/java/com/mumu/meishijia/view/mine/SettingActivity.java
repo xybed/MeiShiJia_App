@@ -7,7 +7,7 @@ import android.view.View;
 import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
-import com.mumu.meishijia.constacts.RxBusAction;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.SettingPresenter;
 import com.mumu.meishijia.view.BaseActivity;

@@ -14,7 +14,7 @@ import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ContactsAdapter;
-import com.mumu.meishijia.constacts.RxBusAction;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.presenter.im.ContactsPresenter;
 import com.mumu.meishijia.view.BaseActivity;

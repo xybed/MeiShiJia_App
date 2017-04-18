@@ -30,22 +30,28 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/theme_margin_ten"
         android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/img_friend_avatar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="@dimen/theme_margin_ten"
-            android:layout_marginRight="@dimen/theme_margin_ten"
-            android:src="@drawable/icon_default_avatar"
-            android:contentDescription="@null"/>
-        <RelativeLayout
-            android:id="@+id/rlay_left_message"
+        <LinearLayout
+            android:id="@+id/llay_left_panel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/im_left_message_pannel"
-            android:clickable="true"
-            android:longClickable="true"/>
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img_friend_avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/theme_margin_ten"
+                android:layout_marginRight="@dimen/theme_margin_ten"
+                android:src="@drawable/icon_default_avatar"
+                android:contentDescription="@null"/>
+            <RelativeLayout
+                android:id="@+id/rlay_left_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/im_left_message_panel"
+                android:clickable="true"
+                android:longClickable="true"/>
+        </LinearLayout>
         <RelativeLayout
+            android:id="@+id/rlay_right_panel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -62,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/img_avatar"
-                android:background="@drawable/im_right_message_pannel"
+                android:background="@drawable/im_right_message_panel"
                 android:clickable="true"
                 android:longClickable="true"/>
             <RelativeLayout
@@ -74,7 +80,8 @@
                 <ProgressBar
                     android:id="@+id/progress_send"
                     android:layout_width="25dp"
-                    android:layout_height="25dp" />
+                    android:layout_height="25dp"
+                    android:visibility="gone"/>
                 <ImageView
                     android:id="@+id/img_error"
                     android:layout_width="25dp"

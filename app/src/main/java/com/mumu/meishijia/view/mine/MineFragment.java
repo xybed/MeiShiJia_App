@@ -17,7 +17,7 @@ import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
-import com.mumu.meishijia.constacts.RxBusAction;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.view.BaseFragment;
 import com.mumu.meishijia.view.im.ContactsActivity;
 import com.mumu.meishijia.view.im.ConversationActivity;

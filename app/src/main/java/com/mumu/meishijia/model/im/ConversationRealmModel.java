@@ -12,7 +12,7 @@ public class ConversationRealmModel extends RealmObject {
     private int conversation_id;//会话的id，单聊可以是friend_id，群聊可以是group_id
     private String avatar;
     private String remark;
-    private String time;//最新消息的时间
+    private long time;//最新消息的时间
     private String content;//最新消息
     private int unread_msg;
     private int principle_id;
@@ -49,11 +49,11 @@ public class ConversationRealmModel extends RealmObject {
         this.remark = remark;
     }
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 

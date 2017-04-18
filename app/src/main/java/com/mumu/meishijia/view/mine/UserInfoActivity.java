@@ -18,20 +18,17 @@ import com.bumptech.glide.Glide;
 import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
-import com.mumu.meishijia.constacts.RxBusAction;
-import com.mumu.meishijia.model.LocationModel;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.UserInfoPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.SelectCityActivity;
 
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import lib.baidu.MyLocation;
 import lib.cache.CacheJsonMgr;
 import lib.glide.GlideCircleTransform;
 import lib.utils.DatePickUtil;

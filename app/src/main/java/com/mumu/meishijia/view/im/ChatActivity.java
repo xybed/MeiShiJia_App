@@ -1,7 +1,6 @@
 package com.mumu.meishijia.view.im;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
@@ -12,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -22,6 +20,10 @@ import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ChatAdapter;
 import com.mumu.meishijia.adapter.im.ImPagerAdapter;
+import com.mumu.meishijia.im.model.BaseMessage;
+import com.mumu.meishijia.im.model.MessageFactory;
+import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.presenter.im.ChatPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 
 import org.java_websocket.client.WebSocketClient;
@@ -32,11 +34,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Optional;
 import lib.utils.ToastUtil;
 import lib.widget.PagerIndicator;
 
-public class ChatActivity extends BaseActivity implements View.OnClickListener{
+public class ChatActivity extends BaseActivity implements ChatView,View.OnClickListener{
 
     @BindView(R.id.txt_remark)
     TextView txtRemark;
@@ -63,6 +64,8 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
     @BindView(R.id.pager_indicator)
     PagerIndicator pagerIndicator;
 
+    private ChatPresenter presenter;
+
     //加号部分的viewPager的adapter
     private ImPagerAdapter pagerAdapter;
     //点击加号出现的布局，有两部分，设置成成员变量，方便设置监听
@@ -79,6 +82,8 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
 
         initUI();
         initListener();
+        presenter = new ChatPresenter(this);
+        presenter.getMessage();
     }
 
     private void initUI(){
@@ -216,4 +221,12 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
+    @Override
+    public void getMessageSuccess(List<ChatRealmModel> messageList) {
+        List<BaseMessage> datas = new ArrayList<>();
+        for(ChatRealmModel message : messageList){
+            datas.add(MessageFactory.productMessage(message));
+        }
+        adapter.setData(datas);
+    }
 }

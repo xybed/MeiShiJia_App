@@ -15,6 +15,7 @@ import com.mumu.meishijia.model.im.ConversationRealmModel;
 import java.util.List;
 
 import lib.swipelayout.BaseSwipeAdapter;
+import lib.utils.DateUtil;
 import lib.utils.ToastUtil;
 
 /**
@@ -60,11 +61,7 @@ public class ConversationAdapter extends BaseSwipeAdapter {
         }else {
             holder.txtRemark.setText("");
         }
-        if(!TextUtils.isEmpty(model.getTime())){
-            holder.txtTime.setText(model.getTime());
-        }else {
-            holder.txtTime.setText("");
-        }
+        holder.txtTime.setText(DateUtil.getChatTimeStr(model.getTime()));
         if(!TextUtils.isEmpty(model.getContent())){
             holder.txtMsgContent.setText(model.getContent());
         }else {

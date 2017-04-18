@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
-import com.mumu.meishijia.constacts.RxBusAction;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.im.ContactsDetailModel;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.presenter.im.ContactsDetailPresenter;

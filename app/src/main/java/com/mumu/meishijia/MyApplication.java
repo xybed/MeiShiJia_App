@@ -2,6 +2,7 @@ package com.mumu.meishijia;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.mumu.meishijia.im.IMUtil;
 import com.mumu.meishijia.model.mine.UserModel;
 
 import org.java_websocket.client.WebSocketClient;
@@ -72,6 +73,7 @@ public class MyApplication extends MultiDexApplication {
             public void onMessage(String message) {
                 MyLogUtil.e("webSocket", "onMessage回调");
                 MyLogUtil.e("webSocket", message);
+
             }
 
             @Override

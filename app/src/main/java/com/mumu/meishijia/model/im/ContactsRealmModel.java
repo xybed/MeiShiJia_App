@@ -13,7 +13,7 @@ public class ContactsRealmModel extends RealmObject{
     private String remark;//对好友的备注，默认为好友的昵称
     private String avatar;
     private String sort_letter;//字母排序
-    private int principle_id;
+    private int principle_id;//好友的pid
 
     public int getUser_id() {
         return user_id;
