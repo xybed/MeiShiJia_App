@@ -15,7 +15,7 @@ public class ConversationRealmModel extends RealmObject {
     private long time;//最新消息的时间
     private String content;//最新消息
     private int unread_msg;
-    private int principle_id;
+    private int principal_id;
 
     public int getUser_id() {
         return user_id;
@@ -73,11 +73,11 @@ public class ConversationRealmModel extends RealmObject {
         this.unread_msg = unread_msg;
     }
 
-    public int getPrinciple_id() {
-        return principle_id;
+    public int getPrincipal_id() {
+        return principal_id;
     }
 
-    public void setPrinciple_id(int principle_id) {
-        this.principle_id = principle_id;
+    public void setPrincipal_id(int principal_id) {
+        this.principal_id = principal_id;
     }
 }

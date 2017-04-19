@@ -54,7 +54,7 @@ public class ContactsPresenter implements ContactsViewModel.ContactsListener{
             realmModel.setAvatar(model.getAvatar());
             realmModel.setRemark(model.getRemark());
             realmModel.setSort_letter(model.getSort_letter());
-            realmModel.setPrinciple_id(model.getPrinciple_id());
+            realmModel.setPrincipal_id(model.getPrincipal_id());
             realmModel.setIs_friend(1);
             contactsList.add(realmModel);
         }

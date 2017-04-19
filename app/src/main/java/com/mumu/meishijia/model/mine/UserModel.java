@@ -18,7 +18,7 @@ public class UserModel {
     private String city;
     private String address;
     private String signature;
-    private int principle_id;
+    private int principal_id;
     private String token;
 
     public int getId() {
@@ -125,12 +125,12 @@ public class UserModel {
         this.signature = signature;
     }
 
-    public int getPrinciple_id() {
-        return principle_id;
+    public int getPrincipal_id() {
+        return principal_id;
     }
 
-    public void setPrinciple_id(int principle_id) {
-        this.principle_id = principle_id;
+    public void setPrincipal_id(int principal_id) {
+        this.principal_id = principal_id;
     }
 
     public String getToken() {

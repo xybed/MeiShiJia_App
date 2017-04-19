@@ -47,7 +47,7 @@ import lib.widget.PagerIndicator;
 
 public class ChatActivity extends BaseActivity implements ChatView,View.OnClickListener{
     public static final String FRIEND_ID = "friend_id";
-    public static final String PRINCIPLE_ID = "principle_id";
+    public static final String PRINCIPAL_ID = "principal_id";
 
     @BindView(R.id.txt_remark)
     TextView txtRemark;
@@ -77,7 +77,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
     private ChatPresenter presenter;
 
     private int friend_id;
-    private int principle_id;
+    private int principal_id;
     //加号部分的viewPager的adapter
     private ImPagerAdapter pagerAdapter;
     //点击加号出现的布局，有两部分，设置成成员变量，方便设置监听
@@ -96,7 +96,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         initListener();
         Intent intent = getIntent();
         friend_id = intent.getIntExtra(FRIEND_ID, 0);
-        principle_id = intent.getIntExtra(PRINCIPLE_ID, 0);
+        principal_id = intent.getIntExtra(PRINCIPAL_ID, 0);
         webSocket = MyApplication.getInstance().getWebSocket();
         presenter = new ChatPresenter(this);
         presenter.getMessage();
@@ -243,8 +243,8 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         MsgContentModel msgContent = new MsgContentModel();
         msgContent.setText(editMsg.getText().toString());
         MsgDataModel msgData = new MsgDataModel();
-        msgData.setFrom_id(MyApplication.getInstance().getUser().getPrinciple_id());
-        msgData.setTo_id(principle_id);
+        msgData.setFrom_id(MyApplication.getInstance().getUser().getPrincipal_id());
+        msgData.setTo_id(principal_id);
         long time = System.currentTimeMillis();
         msgData.setTime(time);
         msgData.setMsg_content(JSON.toJSONString(msgContent));
@@ -258,9 +258,9 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         //存数据库
         ChatRealmModel chatRealmModel = new ChatRealmModel();
         chatRealmModel.setUser_id(MyApplication.getInstance().getUser().getId());
-        chatRealmModel.setConversation_id(principle_id);
-        chatRealmModel.setFrom_id(MyApplication.getInstance().getUser().getPrinciple_id());
-        chatRealmModel.setTo_id(principle_id);
+        chatRealmModel.setConversation_id(principal_id);
+        chatRealmModel.setFrom_id(MyApplication.getInstance().getUser().getPrincipal_id());
+        chatRealmModel.setTo_id(principal_id);
         chatRealmModel.setTime(time);
         chatRealmModel.setMsg_type(IMConstant.MSG_TYPE_TEXT);
         chatRealmModel.setMsg_status(IMConstant.MSG_STATUS_SEND);

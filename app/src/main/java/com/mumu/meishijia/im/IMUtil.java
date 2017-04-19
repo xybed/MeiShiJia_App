@@ -70,7 +70,7 @@ public class IMUtil {
                 conversationRealmModel.setContent("[系统消息]");
                 break;
         }
-        conversationRealmModel.setPrinciple_id(jsonModel.getConversation_id());
+        conversationRealmModel.setPrincipal_id(jsonModel.getConversation_id());
 
         saveConversation(conversationRealmModel);
 

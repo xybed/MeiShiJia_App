@@ -13,7 +13,7 @@ public class ContactsRealmModel extends RealmObject{
     private String remark;//对好友的备注，默认为好友的昵称
     private String avatar;
     private String sort_letter;//字母排序
-    private int principle_id;//好友的pid
+    private int principal_id;//好友的pid
     private int is_friend;//是否为好友，有些陌生人的数据也存到此表，0不是，1是
 
     public int getUser_id() {
@@ -56,12 +56,12 @@ public class ContactsRealmModel extends RealmObject{
         this.sort_letter = sort_letter;
     }
 
-    public int getPrinciple_id() {
-        return principle_id;
+    public int getPrincipal_id() {
+        return principal_id;
     }
 
-    public void setPrinciple_id(int principle_id) {
-        this.principle_id = principle_id;
+    public void setPrincipal_id(int principal_id) {
+        this.principal_id = principal_id;
     }
 
     public int getIs_friend() {

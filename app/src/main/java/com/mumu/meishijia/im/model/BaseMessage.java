@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.adapter.im.ChatAdapter;
@@ -64,7 +63,7 @@ public abstract class BaseMessage {
     }
 
     private boolean isSelf(){
-        return message.getFrom_id() == MyApplication.getInstance().getUser().getPrinciple_id();
+        return message.getFrom_id() == MyApplication.getInstance().getUser().getPrincipal_id();
     }
 
     protected void showStatus(ChatAdapter.Holder holder){
