@@ -28,6 +28,7 @@ import lib.widget.FrameProgressLayout;
 
 public class ContactsDetailActivity extends BaseActivity implements ContactsDetailView{
     public static final String FRIEND_ID = "friend_id";
+    public static final String PRINCIPLE_ID = "principle_id";
     public static final int REQ_MODIFY_REMARK = 0;
     public static final String RESULT_REMARK = "result_remark";
 
@@ -51,6 +52,7 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
     private ContactsDetailPresenter presenter;
 
     private int friendId;
+    private int principleId;
     private Realm realm;
 
     @Override
@@ -69,6 +71,7 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         ButterKnife.bind(this);
         Intent intent = getIntent();
         friendId = intent.getIntExtra(FRIEND_ID, 0);
+        principleId = intent.getIntExtra(PRINCIPLE_ID, 0);
         frameProgress.show();
         frameProgress.setOnClickRefreshListener(new FrameProgressLayout.OnClickRefreshListener() {
             @Override
@@ -100,6 +103,8 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
                 break;
             case R.id.btn_send_msg:
                 intent = new Intent(this, ChatActivity.class);
+                intent.putExtra(ChatActivity.FRIEND_ID, friendId);
+                intent.putExtra(ChatActivity.PRINCIPLE_ID, principleId);
                 startActivity(intent);
                 break;
         }

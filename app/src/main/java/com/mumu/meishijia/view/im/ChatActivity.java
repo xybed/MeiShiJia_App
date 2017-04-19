@@ -1,5 +1,6 @@
 package com.mumu.meishijia.view.im;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,12 +17,17 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ChatAdapter;
 import com.mumu.meishijia.adapter.im.ImPagerAdapter;
+import com.mumu.meishijia.im.IMConstant;
 import com.mumu.meishijia.im.model.BaseMessage;
 import com.mumu.meishijia.im.model.MessageFactory;
+import com.mumu.meishijia.im.model.MsgContentModel;
+import com.mumu.meishijia.im.model.MsgDataModel;
+import com.mumu.meishijia.im.model.MsgJsonModel;
 import com.mumu.meishijia.model.im.ChatRealmModel;
 import com.mumu.meishijia.presenter.im.ChatPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -34,10 +40,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
+import lib.realm.MyRealm;
 import lib.utils.ToastUtil;
 import lib.widget.PagerIndicator;
 
 public class ChatActivity extends BaseActivity implements ChatView,View.OnClickListener{
+    public static final String FRIEND_ID = "friend_id";
+    public static final String PRINCIPLE_ID = "principle_id";
 
     @BindView(R.id.txt_remark)
     TextView txtRemark;
@@ -66,6 +76,8 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
 
     private ChatPresenter presenter;
 
+    private int friend_id;
+    private int principle_id;
     //加号部分的viewPager的adapter
     private ImPagerAdapter pagerAdapter;
     //点击加号出现的布局，有两部分，设置成成员变量，方便设置监听
@@ -82,6 +94,10 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
 
         initUI();
         initListener();
+        Intent intent = getIntent();
+        friend_id = intent.getIntExtra(FRIEND_ID, 0);
+        principle_id = intent.getIntExtra(PRINCIPLE_ID, 0);
+        webSocket = MyApplication.getInstance().getWebSocket();
         presenter = new ChatPresenter(this);
         presenter.getMessage();
     }
@@ -187,8 +203,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
                 llayMore.setVisibility(View.VISIBLE);
                 break;
             case R.id.btn_send_msg:
-                webSocket = MyApplication.getInstance().getWebSocket();
-                webSocket.send(editMsg.getText().toString());
+                sendMessage();
                 break;
             //以下的资源id为more中的功能，所以在onclick注释中没有加入这些id，而通过手动设置onClick
             case R.id.llay_album:
@@ -219,6 +234,52 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
                 ToastUtil.show("我的收藏");
                 break;
         }
+    }
+
+    /**
+     * 发送文本消息，构建json
+     */
+    private void sendMessage(){
+        MsgContentModel msgContent = new MsgContentModel();
+        msgContent.setText(editMsg.getText().toString());
+        MsgDataModel msgData = new MsgDataModel();
+        msgData.setFrom_id(MyApplication.getInstance().getUser().getPrinciple_id());
+        msgData.setTo_id(principle_id);
+        long time = System.currentTimeMillis();
+        msgData.setTime(time);
+        msgData.setMsg_content(JSON.toJSONString(msgContent));
+        //其他未设置的msgData字段，交由后台设置
+        MsgJsonModel msgJson = new MsgJsonModel();
+        msgJson.setMsg_type(IMConstant.MSG_TYPE_TEXT);
+        msgJson.setData(msgData);
+        //其他未设置的msgJson字段，交由后台设置
+        //先存数据库，再发送
+
+        //存数据库
+        ChatRealmModel chatRealmModel = new ChatRealmModel();
+        chatRealmModel.setUser_id(MyApplication.getInstance().getUser().getId());
+        chatRealmModel.setConversation_id(principle_id);
+        chatRealmModel.setFrom_id(MyApplication.getInstance().getUser().getPrinciple_id());
+        chatRealmModel.setTo_id(principle_id);
+        chatRealmModel.setTime(time);
+        chatRealmModel.setMsg_type(IMConstant.MSG_TYPE_TEXT);
+        chatRealmModel.setMsg_status(IMConstant.MSG_STATUS_SEND);
+        chatRealmModel.setMsg_content(JSON.toJSONString(msgContent));
+        chatRealmModel.setSystem_attach(1);
+
+        saveMessage(chatRealmModel);
+        //刷新界面
+        List<BaseMessage> datas = new ArrayList<>();
+        datas.add(MessageFactory.productMessage(chatRealmModel));
+        adapter.addData(datas);
+        webSocket.send(JSON.toJSONString(msgJson));
+    }
+
+    private void saveMessage(ChatRealmModel chatRealmModel){
+        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        realm.beginTransaction();
+        realm.insert(chatRealmModel);
+        realm.commitTransaction();
     }
 
     @Override

@@ -11,6 +11,8 @@ import org.java_websocket.drafts.Draft_17;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 import io.realm.Realm;
 import lib.cache.CacheJsonMgr;
@@ -61,36 +63,38 @@ public class MyApplication extends MultiDexApplication {
     }
 
     public void setWebSocketConnect(){
-        URI uri = URI.create(BuildConfig.Base_Socket_Url);
-        //这里传Draft_17貌似跟后台使用tomcat的版本有关，默认是Draft_10，使用10连不上，17可以
-        webSocketClient = new WebSocketClient(uri, new Draft_17()) {
-            @Override
-            public void onOpen(ServerHandshake handshakedata) {
-                MyLogUtil.e("webSocket", "onOpen回调");
-            }
+        if(isLogin()){
+            URI uri = URI.create(BuildConfig.Base_Socket_Url + "/" + getUser().getId());
+            //这里传Draft_17貌似跟后台使用tomcat的版本有关，默认是Draft_10，使用10连不上，17可以
+            webSocketClient = new WebSocketClient(uri, new Draft_17()) {
+                @Override
+                public void onOpen(ServerHandshake handshakedata) {
+                    MyLogUtil.e("webSocket", "onOpen回调");
+                }
 
-            @Override
-            public void onMessage(String message) {
-                MyLogUtil.e("webSocket", "onMessage回调");
-                MyLogUtil.e("webSocket", message);
+                @Override
+                public void onMessage(String message) {
+                    MyLogUtil.e("webSocket", "onMessage回调");
+                    MyLogUtil.e("webSocket", message);
 
-            }
+                }
 
-            @Override
-            public void onClose(int code, String reason, boolean remote) {
-                //连接断开，remote判定是客户端断开还是服务端断开
-                MyLogUtil.e("webSocket", "onClose回调");
-                MyLogUtil.e("webSocket", reason);
-                MyLogUtil.e("webSocket", code+"");
-            }
+                @Override
+                public void onClose(int code, String reason, boolean remote) {
+                    //连接断开，remote判定是客户端断开还是服务端断开
+                    MyLogUtil.e("webSocket", "onClose回调");
+                    MyLogUtil.e("webSocket", reason);
+                    MyLogUtil.e("webSocket", code+"");
+                }
 
-            @Override
-            public void onError(Exception ex) {
-                MyLogUtil.e("webSocket", "onError回调");
-                ex.printStackTrace();
-            }
-        };
-        webSocketClient.connect();
+                @Override
+                public void onError(Exception ex) {
+                    MyLogUtil.e("webSocket", "onError回调");
+                    ex.printStackTrace();
+                }
+            };
+            webSocketClient.connect();
+        }
     }
 
     public WebSocketClient getWebSocket(){

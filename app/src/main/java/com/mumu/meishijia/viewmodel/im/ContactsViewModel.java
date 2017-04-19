@@ -30,7 +30,7 @@ public class ContactsViewModel {
 
     public void getContacts(){
         int userId = MyApplication.getInstance().getUser().getId();
-        RealmResults<ContactsRealmModel> contactsRealmList = realm.where(ContactsRealmModel.class).equalTo("user_id", userId).findAll();
+        RealmResults<ContactsRealmModel> contactsRealmList = realm.where(ContactsRealmModel.class).equalTo("user_id", userId).equalTo("is_friend", 1).findAll();
         if(contactsRealmList == null || contactsRealmList.size() <= 0){
             HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
             HttpRequestParams params = new HttpRequestParams();

@@ -151,6 +151,8 @@ public class LoginActivity extends BaseActivity implements LoginView{
         //登录成功，跳转主界面
         MyApplication.getInstance().setUser(result);
         MyApplication.getInstance().setLogin(true);
+        //连接socket
+        MyApplication.getInstance().setWebSocketConnect();
         //通知我的界面刷新数据
         RxBus.get().post(RxBusAction.MineUserData, "");
         Intent intent = new Intent(this, MainActivity.class);

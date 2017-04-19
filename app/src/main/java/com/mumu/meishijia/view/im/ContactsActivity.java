@@ -80,6 +80,7 @@ public class ContactsActivity extends BaseActivity implements ContactsView{
                 ContactsRealmModel model = (ContactsRealmModel) adapter.getItem(position-1);
                 Intent intent = new Intent(ContactsActivity.this, ContactsDetailActivity.class);
                 intent.putExtra(ContactsDetailActivity.FRIEND_ID, model.getFriend_id());
+                intent.putExtra(ContactsDetailActivity.PRINCIPLE_ID, model.getPrinciple_id());
                 startActivity(intent);
             }
         });

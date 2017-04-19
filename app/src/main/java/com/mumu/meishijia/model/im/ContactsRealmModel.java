@@ -14,6 +14,7 @@ public class ContactsRealmModel extends RealmObject{
     private String avatar;
     private String sort_letter;//字母排序
     private int principle_id;//好友的pid
+    private int is_friend;//是否为好友，有些陌生人的数据也存到此表，0不是，1是
 
     public int getUser_id() {
         return user_id;
@@ -61,5 +62,13 @@ public class ContactsRealmModel extends RealmObject{
 
     public void setPrinciple_id(int principle_id) {
         this.principle_id = principle_id;
+    }
+
+    public int getIs_friend() {
+        return is_friend;
+    }
+
+    public void setIs_friend(int is_friend) {
+        this.is_friend = is_friend;
     }
 }
