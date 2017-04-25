@@ -64,7 +64,7 @@ public class MyApplication extends MultiDexApplication {
 
     public void setWebSocketConnect(){
         if(isLogin()){
-            URI uri = URI.create(BuildConfig.Base_Socket_Url + "/" + getUser().getId());
+            URI uri = URI.create(BuildConfig.Base_Socket_Url + "/" + getUser().getPrincipal_id());
             //这里传Draft_17貌似跟后台使用tomcat的版本有关，默认是Draft_10，使用10连不上，17可以
             webSocketClient = new WebSocketClient(uri, new Draft_17()) {
                 @Override
@@ -76,7 +76,7 @@ public class MyApplication extends MultiDexApplication {
                 public void onMessage(String message) {
                     MyLogUtil.e("webSocket", "onMessage回调");
                     MyLogUtil.e("webSocket", message);
-
+                    IMUtil.receiveNewMessage(message);
                 }
 
                 @Override
@@ -99,6 +99,11 @@ public class MyApplication extends MultiDexApplication {
 
     public WebSocketClient getWebSocket(){
         return webSocketClient;
+    }
+
+    public void closeWebSocket(){
+        if(webSocketClient != null)
+            webSocketClient.close();
     }
 
     public static MyApplication getInstance(){

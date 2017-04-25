@@ -16,6 +16,7 @@ import com.mumu.meishijia.view.MainActivity;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lib.cache.CacheJsonMgr;
+import lib.utils.MyLogUtil;
 import lib.utils.ToastUtil;
 
 public class SettingActivity extends BaseActivity implements SettingView{
@@ -51,6 +52,8 @@ public class SettingActivity extends BaseActivity implements SettingView{
         //退出登录
         MyApplication.getInstance().setUser(null);
         MyApplication.getInstance().setLogin(false);
+        //关闭socket的连接
+        MyApplication.getInstance().closeWebSocket();
         //清空用户信息
         CacheJsonMgr.getInstance(this).deleteJson(UserModel.class.getSimpleName());
         RxBus.get().post(RxBusAction.MineUserData, "");

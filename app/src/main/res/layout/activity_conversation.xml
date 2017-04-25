@@ -28,6 +28,12 @@
             android:textSize="@dimen/title_bar_text_center_size"/>
     </RelativeLayout>
 
+    <lib.widget.FrameProgressLayout
+        android:id="@+id/frame_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"

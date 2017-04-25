@@ -9,13 +9,14 @@ import io.realm.RealmObject;
 
 public class ConversationRealmModel extends RealmObject {
     private int user_id;
-    private int conversation_id;//会话的id，单聊可以是friend_id，群聊可以是group_id
+    private int conversation_id;//会话的id，单聊可以是principal_id，群聊可以是group_id
     private String avatar;
     private String remark;
     private long time;//最新消息的时间
     private String content;//最新消息
     private int unread_msg;
     private int principal_id;
+    private int friend_id;
 
     public int getUser_id() {
         return user_id;
@@ -79,5 +80,13 @@ public class ConversationRealmModel extends RealmObject {
 
     public void setPrincipal_id(int principal_id) {
         this.principal_id = principal_id;
+    }
+
+    public int getFriend_id() {
+        return friend_id;
+    }
+
+    public void setFriend_id(int friend_id) {
+        this.friend_id = friend_id;
     }
 }

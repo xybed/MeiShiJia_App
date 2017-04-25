@@ -14,7 +14,7 @@ public class MsgDataModel {
     //为了方便取聊天对象的数据的机制，加上的数据
     private String avatar;
     private String remark;
-    private String friend_id;
+    private int friend_id;
 
     public int getFrom_id() {
         return from_id;
@@ -72,11 +72,11 @@ public class MsgDataModel {
         this.remark = remark;
     }
 
-    public String getFriend_id() {
+    public int getFriend_id() {
         return friend_id;
     }
 
-    public void setFriend_id(String friend_id) {
+    public void setFriend_id(int friend_id) {
         this.friend_id = friend_id;
     }
 }

@@ -18,10 +18,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hwangjr.rxbus.annotation.Tag;
+import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ChatAdapter;
 import com.mumu.meishijia.adapter.im.ImPagerAdapter;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.im.IMConstant;
 import com.mumu.meishijia.im.model.BaseMessage;
 import com.mumu.meishijia.im.model.MessageFactory;
@@ -94,6 +99,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
 
         initUI();
         initListener();
+        RxBus.get().register(this);
         Intent intent = getIntent();
         friend_id = intent.getIntExtra(FRIEND_ID, 0);
         principal_id = intent.getIntExtra(PRINCIPAL_ID, 0);
@@ -289,5 +295,23 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
             datas.add(MessageFactory.productMessage(message));
         }
         adapter.setData(datas);
+    }
+
+    @Subscribe(
+            thread = EventThread.MAIN_THREAD,
+            tags = {
+                    @Tag(RxBusAction.ChatList)
+            }
+    )
+    public void rbRefreshChatList(ChatRealmModel chatRealmModel){
+        List<BaseMessage> messageList = new ArrayList<>();
+        messageList.add(MessageFactory.productMessage(chatRealmModel));
+        adapter.addData(messageList);
+    }
+
+    @Override
+    protected void onDestroy() {
+        RxBus.get().unregister(this);
+        super.onDestroy();
     }
 }

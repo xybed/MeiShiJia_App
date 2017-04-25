@@ -5,10 +5,15 @@ import com.alibaba.fastjson.parser.Feature;
 import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.constant.RxBusAction;
+import com.mumu.meishijia.im.model.BaseMessage;
+import com.mumu.meishijia.im.model.MessageFactory;
 import com.mumu.meishijia.im.model.MsgContentModel;
 import com.mumu.meishijia.im.model.MsgJsonModel;
 import com.mumu.meishijia.model.im.ChatRealmModel;
 import com.mumu.meishijia.model.im.ConversationRealmModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.realm.Realm;
 import lib.realm.MyRealm;
@@ -75,6 +80,7 @@ public class IMUtil {
         saveConversation(conversationRealmModel);
 
         refreshChat(chatRealmModel);
+        refreshConversation();
     }
 
     private static void saveMsg(ChatRealmModel chatRealmModel){
@@ -101,5 +107,9 @@ public class IMUtil {
 
     private static void refreshChat(ChatRealmModel chatRealmModel){
         RxBus.get().post(RxBusAction.ChatList, chatRealmModel);
+    }
+
+    private static void refreshConversation(){
+        RxBus.get().post(RxBusAction.ConversationList, "");
     }
 }
