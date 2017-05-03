@@ -18,6 +18,7 @@ import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
+import com.mumu.meishijia.model.im.ConversationRealmModel;
 import com.mumu.meishijia.view.BaseFragment;
 import com.mumu.meishijia.view.im.ContactsActivity;
 import com.mumu.meishijia.view.im.ConversationActivity;
@@ -25,7 +26,10 @@ import com.mumu.meishijia.view.im.ConversationActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
+import io.realm.RealmResults;
 import lib.glide.GlideCircleTransform;
+import lib.realm.MyRealm;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +41,8 @@ public class MineFragment extends BaseFragment {
     ImageView imgAvatar;
     @BindView(R.id.txt_user)
     TextView txtUser;
+    @BindView(R.id.txt_msg_unread)
+    TextView txtMsgUnread;
 
     public MineFragment() {
         // Required empty public constructor
@@ -64,11 +70,32 @@ public class MineFragment extends BaseFragment {
                     .transform(new GlideCircleTransform(getActivity()))
                     .into(imgAvatar);
             txtUser.setText(MyApplication.getInstance().getUser().getNickname());
+            refreshUnreadMsg();
         } else {
             Glide.with(this).load(R.drawable.icon_default_avatar)
                     .transform(new GlideCircleTransform(getActivity()))
                     .into(imgAvatar);
             txtUser.setText(getString(R.string.user_login));
+            txtMsgUnread.setText("");
+            txtMsgUnread.setVisibility(View.GONE);
+        }
+    }
+
+    private void refreshUnreadMsg(){
+        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        RealmResults<ConversationRealmModel> conversationList = realm.where(ConversationRealmModel.class).findAll();
+        int unread = 0;
+        for(ConversationRealmModel conversation : conversationList){
+            unread += conversation.getUnread_msg();
+        }
+        if(unread <= 0){
+            txtMsgUnread.setVisibility(View.GONE);
+        }else if(unread > 0 && unread <= 99){
+            txtMsgUnread.setVisibility(View.VISIBLE);
+            txtMsgUnread.setText(unread+"");
+        }else {
+            txtMsgUnread.setVisibility(View.VISIBLE);
+            txtMsgUnread.setText("99");
         }
     }
 

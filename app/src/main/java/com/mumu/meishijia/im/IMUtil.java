@@ -34,6 +34,12 @@ public class IMUtil {
     public static void receiveNewMessage(String message){
         MsgJsonModel jsonModel = JSON.parseObject(message, MsgJsonModel.class, Feature.IgnoreNotMatch, Feature.InitStringFieldAsEmpty);
 
+        //如果是自己发的消息，那就是要改变消息的状态
+        if(jsonModel.getData().getFrom_id() == MyApplication.getInstance().getUser().getPrincipal_id()){
+            updateMsgStatus(jsonModel);
+            refreshChat();
+            return;
+        }
         ChatRealmModel chatRealmModel = new ChatRealmModel();
         chatRealmModel.setUser_id(MyApplication.getInstance().getUser().getId());
         chatRealmModel.setConversation_id(jsonModel.getConversation_id());
@@ -69,7 +75,7 @@ public class IMUtil {
                 conversationRealmModel.setContent("[图片]");
                 break;
             case IMConstant.MSG_TYPE_VOICE:
-                conversationRealmModel.setContent("[语言]");
+                conversationRealmModel.setContent("[语音]");
                 break;
             case IMConstant.MSG_TYPE_TIP:
                 conversationRealmModel.setContent("[系统消息]");
@@ -79,8 +85,23 @@ public class IMUtil {
 
         saveConversation(conversationRealmModel);
 
-        refreshChat(chatRealmModel);
+        refreshChat();
         refreshConversation();
+    }
+
+    private static void updateMsgStatus(final MsgJsonModel model){
+        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                ChatRealmModel chatRealmModel = realm.where(ChatRealmModel.class)
+                        .equalTo("user_id", MyApplication.getInstance().getUser().getId())
+                        .equalTo("conversation_id", model.getConversation_id())
+                        .equalTo("msg_id", model.getMsg_id())
+                        .findFirst();
+                chatRealmModel.setMsg_status(IMConstant.MSG_STATUS_SUCCESS);
+            }
+        });
     }
 
     private static void saveMsg(ChatRealmModel chatRealmModel){
@@ -105,8 +126,8 @@ public class IMUtil {
         realm.commitTransaction();
     }
 
-    private static void refreshChat(ChatRealmModel chatRealmModel){
-        RxBus.get().post(RxBusAction.ChatList, chatRealmModel);
+    private static void refreshChat(){
+        RxBus.get().post(RxBusAction.ChatList, "");
     }
 
     private static void refreshConversation(){

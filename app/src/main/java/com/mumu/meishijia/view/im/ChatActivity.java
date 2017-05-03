@@ -47,6 +47,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
 import lib.realm.MyRealm;
+import lib.utils.MyLogUtil;
 import lib.utils.ToastUtil;
 import lib.widget.PagerIndicator;
 
@@ -258,6 +259,8 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         MsgJsonModel msgJson = new MsgJsonModel();
         msgJson.setMsg_type(IMConstant.MSG_TYPE_TEXT);
         msgJson.setData(msgData);
+        msgJson.setConversation_id(principal_id);
+        msgJson.setMsg_id(System.currentTimeMillis());
         //其他未设置的msgJson字段，交由后台设置
         //先存数据库，再发送
 
@@ -272,9 +275,11 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         chatRealmModel.setMsg_status(IMConstant.MSG_STATUS_SEND);
         chatRealmModel.setMsg_content(JSON.toJSONString(msgContent));
         chatRealmModel.setSystem_attach(1);
+        chatRealmModel.setMsg_id(msgJson.getMsg_id());
 
         saveMessage(chatRealmModel);
         //刷新界面
+        editMsg.setText("");
         List<BaseMessage> datas = new ArrayList<>();
         datas.add(MessageFactory.productMessage(chatRealmModel));
         adapter.addData(datas);
@@ -303,10 +308,9 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
                     @Tag(RxBusAction.ChatList)
             }
     )
-    public void rbRefreshChatList(ChatRealmModel chatRealmModel){
-        List<BaseMessage> messageList = new ArrayList<>();
-        messageList.add(MessageFactory.productMessage(chatRealmModel));
-        adapter.addData(messageList);
+    public void rbRefreshChatList(String s){
+        MyLogUtil.e("chat", "刷新消息列表");
+        presenter.getMessage();
     }
 
     @Override

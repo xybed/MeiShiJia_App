@@ -124,10 +124,7 @@ public class ContactsActivity extends BaseActivity implements ContactsView{
         }
     )
     public void rbRefreshContactsList(String s){
-        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
-        RealmResults<ContactsRealmModel> contactsList = realm.where(ContactsRealmModel.class).findAll();
-        this.contactsList = contactsList;
-        adapter.setData(contactsList);
+        presenter.getContacts();
     }
 
     @Override

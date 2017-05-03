@@ -8,7 +8,7 @@ package com.mumu.meishijia.im.model;
 public class MsgJsonModel {
     private int msg_type;
     private MsgDataModel data;
-    private int msg_id;//后台存储的每一条消息的id
+    private long msg_id;//前端存储的消息id，用来区分标志消息状态，会一起传递到后台，但和后台的msg_id不同，后台还要改变这个字段
     private int conversation_id;
 
     public int getMsg_type() {
@@ -27,11 +27,11 @@ public class MsgJsonModel {
         this.data = data;
     }
 
-    public int getMsg_id() {
+    public long getMsg_id() {
         return msg_id;
     }
 
-    public void setMsg_id(int msg_id) {
+    public void setMsg_id(long msg_id) {
         this.msg_id = msg_id;
     }
 

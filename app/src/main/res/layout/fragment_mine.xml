@@ -56,6 +56,23 @@
                     android:text="@string/im_chat"
                     android:textColor="@color/theme_color_black_a"
                     android:textSize="@dimen/theme_text_size_fourteen"/>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/theme_padding_ten"
+                    android:paddingRight="@dimen/theme_padding_ten"
+                    android:gravity="right|center_vertical">
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/txt_msg_unread"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:background="@drawable/shape_circle_red"
+                        android:gravity="center"
+                        android:textSize="@dimen/theme_text_size_twelve"
+                        android:textColor="@color/theme_color_white"/>
+                </RelativeLayout>
             </LinearLayout>
 
             <include layout="@layout/layout_split_line_gray_e"/>

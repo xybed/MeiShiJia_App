@@ -47,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/im_left_message_panel"
+                android:gravity="center"
                 android:clickable="true"
                 android:longClickable="true"/>
         </LinearLayout>
@@ -69,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/img_avatar"
                 android:background="@drawable/im_right_message_panel"
+                android:gravity="center"
                 android:clickable="true"
                 android:longClickable="true"/>
             <RelativeLayout

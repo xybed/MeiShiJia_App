@@ -64,7 +64,7 @@ public class MyApplication extends MultiDexApplication {
 
     public void setWebSocketConnect(){
         if(isLogin()){
-            URI uri = URI.create(BuildConfig.Base_Socket_Url + "/" + getUser().getPrincipal_id());
+            URI uri = URI.create(BuildConfig.Base_Socket_Url + "?principal_id=" + getUser().getPrincipal_id());
             //这里传Draft_17貌似跟后台使用tomcat的版本有关，默认是Draft_10，使用10连不上，17可以
             webSocketClient = new WebSocketClient(uri, new Draft_17()) {
                 @Override
@@ -83,6 +83,7 @@ public class MyApplication extends MultiDexApplication {
                 public void onClose(int code, String reason, boolean remote) {
                     //连接断开，remote判定是客户端断开还是服务端断开
                     MyLogUtil.e("webSocket", "onClose回调");
+                    MyLogUtil.e("webSocket", remote ? "server" : "app");
                     MyLogUtil.e("webSocket", reason);
                     MyLogUtil.e("webSocket", code+"");
                 }
@@ -90,6 +91,7 @@ public class MyApplication extends MultiDexApplication {
                 @Override
                 public void onError(Exception ex) {
                     MyLogUtil.e("webSocket", "onError回调");
+                    MyLogUtil.e("webSocket", ex.getMessage());
                     ex.printStackTrace();
                 }
             };
@@ -121,4 +123,5 @@ public class MyApplication extends MultiDexApplication {
     public void setLogin(boolean login) {
         isLogin = login;
     }
+
 }

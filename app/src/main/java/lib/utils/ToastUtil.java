@@ -21,7 +21,7 @@ public class ToastUtil {
 	public static void show(CharSequence text) {
 		if("".equals(text.toString().trim()))
 			return;
-		show(text, Toast.LENGTH_LONG);
+		show(text, Toast.LENGTH_SHORT);
 	}
 
 	public static void show(CharSequence text, int duration) {
@@ -38,7 +38,7 @@ public class ToastUtil {
 	}
 
 	public static void show(int resId) {
-		show(resId, Toast.LENGTH_LONG);
+		show(resId, Toast.LENGTH_SHORT);
 	}
 
 	public static void show(int resId, int duration) {
