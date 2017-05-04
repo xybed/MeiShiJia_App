@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.parser.Feature;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
@@ -34,6 +35,8 @@ import com.mumu.meishijia.im.model.MsgContentModel;
 import com.mumu.meishijia.im.model.MsgDataModel;
 import com.mumu.meishijia.im.model.MsgJsonModel;
 import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.model.im.ContactsRealmModel;
+import com.mumu.meishijia.model.im.ConversationRealmModel;
 import com.mumu.meishijia.presenter.im.ChatPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 
@@ -278,6 +281,8 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         chatRealmModel.setMsg_id(msgJson.getMsg_id());
 
         saveMessage(chatRealmModel);
+        updateConversation(chatRealmModel);
+        refreshConversation();
         //刷新界面
         editMsg.setText("");
         List<BaseMessage> datas = new ArrayList<>();
@@ -291,6 +296,67 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         realm.beginTransaction();
         realm.insert(chatRealmModel);
         realm.commitTransaction();
+    }
+
+    private void updateConversation(ChatRealmModel chatRealmModel){
+        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        ConversationRealmModel conversation = realm.where(ConversationRealmModel.class)
+                .equalTo("user_id", MyApplication.getInstance().getUser().getId())
+                .equalTo("conversation_id", principal_id)
+                .findFirst();
+        ContactsRealmModel contact = realm.where(ContactsRealmModel.class)
+                .equalTo("user_id", MyApplication.getInstance().getUser().getId())
+                .equalTo("friend_id", friend_id)
+                .findFirst();
+        if(conversation == null){
+            conversation = new ConversationRealmModel();
+            conversation.setUser_id(MyApplication.getInstance().getUser().getId());
+            conversation.setAvatar(contact.getAvatar());
+            conversation.setRemark(contact.getRemark());
+            conversation.setTime(chatRealmModel.getTime());
+            switch (chatRealmModel.getMsg_type()){
+                case IMConstant.MSG_TYPE_TEXT:
+                    conversation.setContent(editMsg.getText().toString());
+                    break;
+                case IMConstant.MSG_TYPE_PICTURE:
+                    conversation.setContent("[图片]");
+                    break;
+                case IMConstant.MSG_TYPE_VOICE:
+                    conversation.setContent("[语音]");
+                    break;
+                case IMConstant.MSG_TYPE_TIP:
+                    conversation.setContent("[系统消息]");
+                    break;
+            }
+            conversation.setPrincipal_id(principal_id);
+            conversation.setFriend_id(friend_id);
+            realm.beginTransaction();
+            realm.insertOrUpdate(conversation);
+            realm.commitTransaction();
+        }else {
+            realm.beginTransaction();
+            //要更新时间、未读数、消息内容
+            conversation.setTime(chatRealmModel.getTime());
+            switch (chatRealmModel.getMsg_type()){
+                case IMConstant.MSG_TYPE_TEXT:
+                    conversation.setContent(editMsg.getText().toString());
+                    break;
+                case IMConstant.MSG_TYPE_PICTURE:
+                    conversation.setContent("[图片]");
+                    break;
+                case IMConstant.MSG_TYPE_VOICE:
+                    conversation.setContent("[语音]");
+                    break;
+                case IMConstant.MSG_TYPE_TIP:
+                    conversation.setContent("[系统消息]");
+                    break;
+            }
+            realm.commitTransaction();
+        }
+    }
+
+    private void refreshConversation(){
+        RxBus.get().post(RxBusAction.ConversationList, "");
     }
 
     @Override

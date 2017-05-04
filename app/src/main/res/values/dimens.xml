@@ -12,6 +12,7 @@
     <dimen name="theme_text_size_fourteen">14sp</dimen>
     <dimen name="theme_text_size_fifteen">15sp</dimen>
     <dimen name="theme_text_size_sixteen">16sp</dimen>
+    <dimen name="theme_text_size_seventeen">17sp</dimen>
     <dimen name="theme_text_size_eighteen">18sp</dimen>
     <dimen name="theme_text_size_twenty_five">25sp</dimen>
 
@@ -52,4 +53,6 @@
     <dimen name="avatar_img_size">78dp</dimen>
     <!--资料界面图片大小-->
     <dimen name="user_msg_img_size">16dp</dimen>
+    <!--消息未读数小红点的长宽-->
+    <dimen name="unread_red_dot_size">16dp</dimen>
 </resources>

@@ -13,12 +13,12 @@ public class DateUtil {
 
     /**
      * 时间转化为聊天界面显示字符串，专用于im
-     * @param timeStamp 单位为秒
+     * @param timeStamp 单位为毫秒
      */
     public static String getChatTimeStr(long timeStamp) {
         if (timeStamp == 0) return "";
         Calendar inputTime = Calendar.getInstance();
-        inputTime.setTimeInMillis(timeStamp * 1000);
+        inputTime.setTimeInMillis(timeStamp);
         Date currenTimeZone = inputTime.getTime();
         Calendar calendar = Calendar.getInstance();
         if (calendar.before(inputTime)) {

@@ -66,8 +66,8 @@
                     <TextView
                         android:visibility="gone"
                         android:id="@+id/txt_msg_unread"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="@dimen/unread_red_dot_size"
+                        android:layout_height="@dimen/unread_red_dot_size"
                         android:background="@drawable/shape_circle_red"
                         android:gravity="center"
                         android:textSize="@dimen/theme_text_size_twelve"

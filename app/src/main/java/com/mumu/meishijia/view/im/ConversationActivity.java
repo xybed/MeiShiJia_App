@@ -1,6 +1,9 @@
 package com.mumu.meishijia.view.im;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.hwangjr.rxbus.RxBus;
@@ -51,6 +54,16 @@ public class ConversationActivity extends BaseActivity implements ConversationVi
         conversationList = new ArrayList<>();
         adapter = new ConversationAdapter(this, conversationList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ConversationRealmModel conversation = (ConversationRealmModel) adapter.getItem(position);
+                Intent intent = new Intent(ConversationActivity.this, ChatActivity.class);
+                intent.putExtra(ChatActivity.PRINCIPAL_ID, conversation.getConversation_id());
+                intent.putExtra(ChatActivity.FRIEND_ID, conversation.getFriend_id());
+                startActivity(intent);
+            }
+        });
     }
 
     @OnClick(R.id.btn_left)
