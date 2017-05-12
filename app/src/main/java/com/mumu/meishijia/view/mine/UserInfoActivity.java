@@ -89,9 +89,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 .transform(new GlideCircleTransform(this))
                 .into(imgAvatar);
         editNickname.setText(user.getNickname());
-        if(!TextUtils.isEmpty(user.getReal_name())){
-            editRealName.setText(user.getReal_name());
-        }
+        editRealName.setText(user.getReal_name());
         switch (user.getSex()){
             case 0:
                 txtSex.setText(getString(R.string.user_sex_unknown));
@@ -106,20 +104,14 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 sexCode = "2";
                 break;
         }
-        if(!TextUtils.isEmpty(user.getBirthday())){
-            txtBirthday.setText(user.getBirthday());
-        }
-        if(!TextUtils.isEmpty(user.getEmail())){
-            editEmail.setText(user.getEmail());
-        }
+        txtBirthday.setText(user.getBirthday());
+        editEmail.setText(user.getEmail());
         if(!TextUtils.isEmpty(user.getProvince()) && !TextUtils.isEmpty(user.getCity())){
             province = user.getProvince();
             city = user.getCity();
             txtCity.setText(province + "  " + city);
         }
-        if(!TextUtils.isEmpty(user.getSignature())){
-            editSignature.setText(user.getSignature());
-        }
+        editSignature.setText(user.getSignature());
     }
 
     @OnClick({R.id.btn_left, R.id.txt_save, R.id.img_avatar, R.id.llay_sex, R.id.llay_birthday, R.id.llay_city})
