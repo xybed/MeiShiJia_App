@@ -24,6 +24,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
+import lib.realm.MyRealm;
 import lib.widget.FrameProgressLayout;
 
 public class ConversationActivity extends BaseActivity implements ConversationView {
@@ -58,6 +60,12 @@ public class ConversationActivity extends BaseActivity implements ConversationVi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ConversationRealmModel conversation = (ConversationRealmModel) adapter.getItem(position);
+                Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+                realm.beginTransaction();
+                conversation.setUnread_msg(0);
+                realm.commitTransaction();
+                rbRefreshConversationList("刷新消息未读，重新设置未读数");
+
                 Intent intent = new Intent(ConversationActivity.this, ChatActivity.class);
                 intent.putExtra(ChatActivity.PRINCIPAL_ID, conversation.getConversation_id());
                 intent.putExtra(ChatActivity.FRIEND_ID, conversation.getFriend_id());

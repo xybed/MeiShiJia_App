@@ -99,7 +99,7 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.llay_top_img, R.id.llay_chat, R.id.llay_contacts, R.id.llay_setting})
+    @OnClick({R.id.llay_top_img, R.id.llay_conversation, R.id.llay_contacts, R.id.llay_setting})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -111,7 +111,7 @@ public class MineFragment extends BaseFragment {
                 }
                 startActivity(intent);
                 break;
-            case R.id.llay_chat:
+            case R.id.llay_conversation:
                 if(MyApplication.getInstance().isLogin()){
                     intent = new Intent(getActivity(), ConversationActivity.class);
                 }else {
@@ -142,6 +142,16 @@ public class MineFragment extends BaseFragment {
     )
     public void rbRefreshTop(String s){
         checkLoginRefreshUI();
+    }
+
+    @Subscribe(
+        thread = EventThread.MAIN_THREAD,
+        tags = {
+                @Tag(RxBusAction.MineUnreadMsg)
+        }
+    )
+    public void rbRefreshUnreadMsg(String s){
+        refreshUnreadMsg();
     }
 
     @Override

@@ -21,8 +21,8 @@ public class ChatPresenter implements ChatViewModel.ChatListener{
         viewModel = new ChatViewModel(this);
     }
 
-    public void getMessage(){
-        viewModel.getMessage();
+    public void getMessage(int conversationId){
+        viewModel.getMessage(conversationId);
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.mumu.meishijia.im.model.MessageFactory;
 import com.mumu.meishijia.im.model.MsgContentModel;
 import com.mumu.meishijia.im.model.MsgJsonModel;
 import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.model.im.ConversationRealmModel;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import lib.realm.MyRealm;
+import lib.utils.MyLogUtil;
 
 /**
  * 统一处理Im的工具
@@ -29,6 +31,10 @@ public class IMUtil {
      * 接收到新消息
      * 1.把json转成MsgJsonModel
      * 2.MsgJsonModel中的数据存入消息数据库，ChatRealmModel
+     * 3.查找之前有无此会话
+     * 4.有则消息未读数加1，无则插入一条会话记录，更新会话表
+     * 5.查找有无此联系人
+     * 6.有则不操作，无则插入一条联系人（非好友）记录
      * @param message 接收到的消息的json字符串
      */
     public static void receiveNewMessage(String message){
@@ -54,6 +60,59 @@ public class IMUtil {
         saveMsg(chatRealmModel);
 
         ConversationRealmModel conversationRealmModel = queryConversation(jsonModel.getConversation_id());
+        saveConversation(conversationRealmModel, jsonModel);
+
+        ContactsRealmModel contactsRealmModel = queryContacts(jsonModel.getData().getFriend_id());
+        if(contactsRealmModel == null){
+            contactsRealmModel = new ContactsRealmModel();
+            contactsRealmModel.setUser_id(MyApplication.getInstance().getUser().getId());
+            contactsRealmModel.setFriend_id(jsonModel.getData().getFriend_id());
+            contactsRealmModel.setRemark(jsonModel.getData().getRemark());
+            contactsRealmModel.setAvatar(jsonModel.getData().getAvatar());
+            contactsRealmModel.setSort_letter("");//这里不设置字母排序，因为不在好友之列，不需要字母排序
+            contactsRealmModel.setPrincipal_id(jsonModel.getConversation_id());
+            contactsRealmModel.setIs_friend(0);
+            saveContacts(contactsRealmModel);
+        }
+
+        refreshChat();
+        refreshConversation();
+        refreshMineUnreadMsg();
+    }
+
+    private static void updateMsgStatus(final MsgJsonModel model){
+        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                ChatRealmModel chatRealmModel = realm.where(ChatRealmModel.class)
+                        .equalTo("user_id", MyApplication.getInstance().getUser().getId())
+                        .equalTo("conversation_id", model.getConversation_id())
+                        .equalTo("msg_id", model.getMsg_id())
+                        .findFirst();
+                chatRealmModel.setMsg_status(IMConstant.MSG_STATUS_SUCCESS);
+            }
+        });
+    }
+
+    private static void saveMsg(ChatRealmModel chatRealmModel){
+        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        realm.beginTransaction();
+        realm.copyToRealm(chatRealmModel);
+        realm.commitTransaction();
+    }
+
+    private static ConversationRealmModel queryConversation(int conversationId){
+        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        return realm.where(ConversationRealmModel.class)
+                .equalTo("user_id", MyApplication.getInstance().getUser().getId())
+                .equalTo("conversation_id", conversationId)
+                .findFirst();
+    }
+
+    private static void saveConversation(ConversationRealmModel conversationRealmModel, MsgJsonModel jsonModel){
+        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
+        realm.beginTransaction();
         if(conversationRealmModel == null){
             //如果之前没有这个会话
             conversationRealmModel = new ConversationRealmModel();
@@ -82,47 +141,23 @@ public class IMUtil {
                 break;
         }
         conversationRealmModel.setPrincipal_id(jsonModel.getConversation_id());
-
-        saveConversation(conversationRealmModel);
-
-        refreshChat();
-        refreshConversation();
-    }
-
-    private static void updateMsgStatus(final MsgJsonModel model){
-        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                ChatRealmModel chatRealmModel = realm.where(ChatRealmModel.class)
-                        .equalTo("user_id", MyApplication.getInstance().getUser().getId())
-                        .equalTo("conversation_id", model.getConversation_id())
-                        .equalTo("msg_id", model.getMsg_id())
-                        .findFirst();
-                chatRealmModel.setMsg_status(IMConstant.MSG_STATUS_SUCCESS);
-            }
-        });
-    }
-
-    private static void saveMsg(ChatRealmModel chatRealmModel){
-        Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
-        realm.beginTransaction();
-        realm.copyToRealm(chatRealmModel);
+        conversationRealmModel.setFriend_id(jsonModel.getData().getFriend_id());
+        realm.insertOrUpdate(conversationRealmModel);
         realm.commitTransaction();
     }
 
-    private static ConversationRealmModel queryConversation(int conversation_id){
+    private static ContactsRealmModel queryContacts(int friendId){
         Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
-        return realm.where(ConversationRealmModel.class)
+        return realm.where(ContactsRealmModel.class)
                 .equalTo("user_id", MyApplication.getInstance().getUser().getId())
-                .equalTo("conversation_id", conversation_id)
+                .equalTo("friend_id", friendId)
                 .findFirst();
     }
 
-    private static void saveConversation(ConversationRealmModel conversationRealmModel){
+    private static void saveContacts(ContactsRealmModel contactsRealmModel){
         Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
         realm.beginTransaction();
-        realm.insertOrUpdate(conversationRealmModel);
+        realm.insert(contactsRealmModel);
         realm.commitTransaction();
     }
 
@@ -132,5 +167,9 @@ public class IMUtil {
 
     private static void refreshConversation(){
         RxBus.get().post(RxBusAction.ConversationList, "");
+    }
+
+    private static void refreshMineUnreadMsg(){
+        RxBus.get().post(RxBusAction.MineUnreadMsg, "");
     }
 }

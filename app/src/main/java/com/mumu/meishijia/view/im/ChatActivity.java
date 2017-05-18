@@ -109,7 +109,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         principal_id = intent.getIntExtra(PRINCIPAL_ID, 0);
         webSocket = MyApplication.getInstance().getWebSocket();
         presenter = new ChatPresenter(this);
-        presenter.getMessage();
+        presenter.getMessage(principal_id);
     }
 
     private void initUI(){
@@ -311,6 +311,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         if(conversation == null){
             conversation = new ConversationRealmModel();
             conversation.setUser_id(MyApplication.getInstance().getUser().getId());
+            conversation.setConversation_id(principal_id);
             conversation.setAvatar(contact.getAvatar());
             conversation.setRemark(contact.getRemark());
             conversation.setTime(chatRealmModel.getTime());
@@ -366,6 +367,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
             datas.add(MessageFactory.productMessage(message));
         }
         adapter.setData(datas);
+        listView.setSelection(listView.getCount());
     }
 
     @Subscribe(
@@ -376,7 +378,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
     )
     public void rbRefreshChatList(String s){
         MyLogUtil.e("chat", "刷新消息列表");
-        presenter.getMessage();
+        presenter.getMessage(principal_id);
     }
 
     @Override

@@ -44,7 +44,7 @@ public abstract class BaseMessage {
             Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
             ContactsRealmModel contact = realm.where(ContactsRealmModel.class)
                     .equalTo("user_id", user.getId())
-                    .equalTo("principle_id", message.getConversation_id())
+                    .equalTo("principal_id", message.getConversation_id())
                     .findFirst();
             Glide.with(context)
                 .load(contact.getAvatar())

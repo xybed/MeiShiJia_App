@@ -1,5 +1,6 @@
 package com.mumu.meishijia.viewmodel.im;
 
+import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.model.im.ChatRealmModel;
 
 import java.util.List;
@@ -19,9 +20,12 @@ public class ChatViewModel {
         this.listener = listener;
     }
 
-    public void getMessage(){
+    public void getMessage(int conversationId){
         Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
-        RealmResults<ChatRealmModel> messageList = realm.where(ChatRealmModel.class).findAllSorted("time");
+        RealmResults<ChatRealmModel> messageList = realm.where(ChatRealmModel.class)
+                .equalTo("user_id", MyApplication.getInstance().getUser().getId())
+                .equalTo("conversation_id", conversationId)
+                .findAllSorted("time");
         if(messageList != null && messageList.size() > 0 && listener != null)
             listener.getMessageSuccess(messageList);
     }
