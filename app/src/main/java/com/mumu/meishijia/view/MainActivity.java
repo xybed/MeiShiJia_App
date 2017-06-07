@@ -9,8 +9,8 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.view.food.FoodFragment;
+import com.mumu.meishijia.view.football.FootballFragment;
 import com.mumu.meishijia.view.mine.MineFragment;
-import com.mumu.meishijia.view.shop.ShopFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity {
 
     private Fragment content;
     private Fragment foodFragment;
-    private Fragment shopFragment;
+    private Fragment footballFragment;
     private Fragment mineFragment;
 
     private long firstTime;
@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity {
         bottomNavigationBar.setBarBackgroundColor(R.color.theme_color_white);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.icon_food_tab, "美食佳"))
-                .addItem(new BottomNavigationItem(R.drawable.icon_shop_tab, "商店"))
+                .addItem(new BottomNavigationItem(R.drawable.icon_shop_tab, "数据"))
                 .addItem(new BottomNavigationItem(R.drawable.icon_mine_tab, "我的"))
                 .setFirstSelectedPosition(0)
                 .initialise();
@@ -82,10 +82,10 @@ public class MainActivity extends BaseActivity {
         return foodFragment;
     }
 
-    private Fragment getShopFragment() {
-        if (shopFragment == null)
-            shopFragment = new ShopFragment();
-        return shopFragment;
+    private Fragment getFootballFragment() {
+        if (footballFragment == null)
+            footballFragment = new FootballFragment();
+        return footballFragment;
     }
 
     private Fragment getMineFragment() {
@@ -101,7 +101,7 @@ public class MainActivity extends BaseActivity {
                 transparencyStatusBar();
                 break;
             case 1:
-                switchFragment(content, getShopFragment());
+                switchFragment(content, getFootballFragment());
                 transparencyStatusBar(false);
                 break;
             case 2:

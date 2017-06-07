@@ -39,7 +39,7 @@ public class MyApplication extends MultiDexApplication {
         MyCrashHandler.getInstance().init(this);
         initUserLoginInfo();
         initRealm();
-        setWebSocketConnect();
+//        setWebSocketConnect();
     }
 
     /**
