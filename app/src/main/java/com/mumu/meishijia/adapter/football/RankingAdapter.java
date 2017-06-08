@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseMyAdapter;
-import com.mumu.meishijia.model.football.FootballRanking;
+import com.mumu.meishijia.model.football.RankingModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/6/7.
  */
 
-public class RankingAdapter extends BaseMyAdapter<FootballRanking> {
+public class RankingAdapter extends BaseMyAdapter<RankingModel> {
     public RankingAdapter(Context context) {
         super(context);
     }
@@ -40,23 +40,21 @@ public class RankingAdapter extends BaseMyAdapter<FootballRanking> {
         Holder holder = (Holder) mHolder;
         if(position == 0){
             holder.llayText.setVisibility(View.VISIBLE);
-            holder.llayItem.setVisibility(View.GONE);
         }else {
             holder.llayText.setVisibility(View.GONE);
-            holder.llayItem.setVisibility(View.VISIBLE);
-            FootballRanking data = datas.get(position-1);
-            holder.txtRanking.setText(data.getRanking()+"");
-            Glide.with(context).load(data.getLogo()).into(holder.imgLogo);
-            holder.txtName.setText(data.getName());
-            holder.txtPlays.setText(data.getPlays()+"");
-            holder.txtPoint.setText(data.getPoint()+"");
-            holder.txtWin.setText(data.getWin()+"");
-            holder.txtDraw.setText(data.getDraw()+"");
-            holder.txtLose.setText(data.getLose()+"");
-            holder.txtGoal.setText(data.getGoal()+"");
-            holder.txtConceded.setText(data.getConceded()+"");
-            holder.txtGoalDifference.setText(data.getGoal_difference()+"");
         }
+        RankingModel data = datas.get(position);
+        holder.txtRanking.setText(data.getRanking()+"");
+        Glide.with(context).load(data.getLogo()).into(holder.imgLogo);
+        holder.txtName.setText(data.getName());
+        holder.txtPlays.setText(data.getPlays()+"");
+        holder.txtPoint.setText(data.getPoint()+"");
+        holder.txtWin.setText(data.getWin()+"");
+        holder.txtDraw.setText(data.getDraw()+"");
+        holder.txtLose.setText(data.getLose()+"");
+        holder.txtGoal.setText(data.getGoal()+"");
+        holder.txtConceded.setText(data.getConceded()+"");
+        holder.txtGoalDifference.setText(data.getGoal_difference()+"");
     }
 
     class Holder {

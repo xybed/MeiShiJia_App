@@ -5,7 +5,8 @@ package com.mumu.meishijia.model.football;
  * Created by Administrator on 2017/6/7.
  */
 
-public class FootballRanking {
+public class RankingModel {
+    private int league_id;
     private int team_id;
     private int ranking;
     private String logo;
@@ -18,6 +19,14 @@ public class FootballRanking {
     private int goal;
     private int conceded;
     private int goal_difference;
+
+    public int getLeague_id() {
+        return league_id;
+    }
+
+    public void setLeague_id(int league_id) {
+        this.league_id = league_id;
+    }
 
     public int getTeam_id() {
         return team_id;

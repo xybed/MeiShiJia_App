@@ -32,4 +32,7 @@ public class HttpUrl {
     public static final String GetContactsDetail = "im/contactsDetail";
     //修改联系人的备注名
     public static final String ModifyRemark = "im/modifyRemark";
+
+    //获取联赛排名
+    public static final String GetRanking = "football/ranking";
 }

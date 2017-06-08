@@ -32,22 +32,27 @@ public class LeaguePagerAdapter extends FragmentPagerAdapter {
         laliga.setArguments(bundle);
 
         premierLeague = new RankingFragment();
+        bundle = new Bundle();
         bundle.putInt(RankingFragment.LEAGUE_TYPE, 2);
         premierLeague.setArguments(bundle);
 
         serieA = new RankingFragment();
+        bundle = new Bundle();
         bundle.putInt(RankingFragment.LEAGUE_TYPE, 3);
         serieA.setArguments(bundle);
 
         bundesliga = new RankingFragment();
+        bundle = new Bundle();
         bundle.putInt(RankingFragment.LEAGUE_TYPE, 4);
         bundesliga.setArguments(bundle);
 
         ligue = new RankingFragment();
+        bundle = new Bundle();
         bundle.putInt(RankingFragment.LEAGUE_TYPE, 5);
         ligue.setArguments(bundle);
 
         csl = new RankingFragment();
+        bundle = new Bundle();
         bundle.putInt(RankingFragment.LEAGUE_TYPE, 6);
         csl.setArguments(bundle);
     }

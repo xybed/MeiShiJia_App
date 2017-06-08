@@ -1,13 +1,16 @@
 package com.mumu.meishijia.view.football;
 
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.football.LeaguePagerAdapter;
@@ -42,6 +45,18 @@ public class FootballFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_football, container, false);
         initUI(view);
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        /*兼容4.4以上透明状态栏  start****/
+        //系统大于4.4
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.topMargin = getStatusBarHeight();
+            tabLayout.setLayoutParams(params);
+        }
     }
 
     private void initUI(View view){

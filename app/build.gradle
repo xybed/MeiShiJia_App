@@ -34,8 +34,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.0.106:8080/meishijia/"'
-            buildConfigField 'String', 'Base_Socket_Url', '"ws://192.168.0.106:8080/meishijia/chatServer"'
+            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.0.104:8080/meishijia/"'
+            buildConfigField 'String', 'Base_Socket_Url', '"ws://192.168.0.104:8080/meishijia/chatServer"'
             buildConfigField 'String', 'Time', "\"${releaseTime()}\""
         }
 
@@ -45,8 +45,8 @@ android {
             signingConfig signingConfigs.config
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.0.106:8080/meishijia/"'
-            buildConfigField 'String', 'Base_Socket_Url', '"ws://192.168.0.106:8080/meishijia/chatServer"'
+            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.0.104:8080/meishijia/"'
+            buildConfigField 'String', 'Base_Socket_Url', '"ws://192.168.0.104:8080/meishijia/chatServer"'
             buildConfigField 'String', 'Time', "\"${releaseTime()}\""
         }
     }
