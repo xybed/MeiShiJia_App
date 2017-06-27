@@ -34,8 +34,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.0.104:8080/meishijia/"'
-            buildConfigField 'String', 'Base_Socket_Url', '"ws://192.168.0.104:8080/meishijia/chatServer"'
+            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.1.14:8080/meishijia/"'
+            buildConfigField 'String', 'Base_Socket_Url', '"ws://192.168.1.14:8080/meishijia/chatServer"'
             buildConfigField 'String', 'Time', "\"${releaseTime()}\""
         }
 
@@ -45,8 +45,8 @@ android {
             signingConfig signingConfigs.config
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.0.104:8080/meishijia/"'
-            buildConfigField 'String', 'Base_Socket_Url', '"ws://192.168.0.104:8080/meishijia/chatServer"'
+            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.1.14:8080/meishijia/"'
+            buildConfigField 'String', 'Base_Socket_Url', '"ws://192.168.1.14:8080/meishijia/chatServer"'
             buildConfigField 'String', 'Time', "\"${releaseTime()}\""
         }
     }
@@ -87,29 +87,29 @@ dependencies {
     compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/httpmime-4.1.2.jar')
     compile files('libs/IndoorscapeAlbumPlugin.jar')
-    //用于解决Dex方法数超出限制的问题
-    //兼容4.4沉浸式状态栏
-    //butterknife 8.4.0
-    //底部tab栏库
-    //rxjava+retrofit+rxbus导的库
-    //阿里json解析的框架
-    //图片加载框架, glide 3.7.0
-    //java-webSocket库，github地址https://github.com/TooTallNate/Java-WebSocket
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:cardview-v7:24.2.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    //用于解决Dex方法数超出限制的问题
     compile 'com.android.support:multidex:1.0.1'
+    //兼容4.4沉浸式状态栏
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.4'
+    //butterknife 8.4.0
     compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    //底部tab栏库
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.3.0'
+    //rxjava+retrofit+rxbus导的库
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'com.hwangjr.rxbus:rxbus:1.0.5'
+    //阿里json解析的框架
     compile 'com.alibaba:fastjson:1.2.23'
+    //图片加载框架, glide 3.7.0
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    //java-webSocket库，github地址https://github.com/TooTallNate/Java-WebSocket
     compile 'org.java-websocket:Java-WebSocket:1.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }
