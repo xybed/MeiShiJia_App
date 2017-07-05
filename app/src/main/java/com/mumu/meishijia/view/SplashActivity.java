@@ -3,6 +3,7 @@ package com.mumu.meishijia.view;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,12 +14,12 @@ import android.widget.TextView;
 import com.mumu.meishijia.BuildConfig;
 import com.mumu.meishijia.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import lib.baidu.MyLocation;
+import lib.utils.MyLogUtil;
 import lib.widget.CenterInDialog;
 
 public class SplashActivity extends BaseActivity {
@@ -35,9 +36,8 @@ public class SplashActivity extends BaseActivity {
     };
 
     private CenterInDialog dialog;
-    private boolean isLoc = true;
-    private boolean isWri = true;
-    private boolean isCam = true;
+    private final int REQ_PERMISSION_GROUP = 0x001;
+    private int strIndex = 1;//用于权限提示的，表示第几个权限文字
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +53,21 @@ public class SplashActivity extends BaseActivity {
         1.定位权限
         2.存储权限
         3.相机权限
-        权限一个一个去请求用户获得
+        合成权限组去请求用户获得
          */
-        if (permissionIsGet(REQ_LOCATION_PMS, Manifest.permission.ACCESS_FINE_LOCATION)) {
-            MyLocation.getInstance().requestLocation();
-            if (permissionIsGet(REQ_WRITE_EXTERNAL_STORAGE_PMS, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                if(permissionIsGet(REQ_CAMERA_PMS, Manifest.permission.CAMERA)){
-                    goMain();
-                }
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            List<String> permissionList = new ArrayList<>();
+            if(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+            if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                permissionList.add(Manifest.permission.CAMERA);
+            }
+            if(permissionList.size() > 0){
+                requestPermissions(permissionList.toArray(new String[permissionList.size()]), REQ_PERMISSION_GROUP);
             }
         }
     }
@@ -80,54 +87,44 @@ public class SplashActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case REQ_LOCATION_PMS:
-                if (grantResults != null && grantResults.length != 0)
-                    if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                        isLoc = false;
-                    } else {
-                        MyLocation.getInstance().requestLocation();
-                    }
-                if (permissionIsGet(REQ_WRITE_EXTERNAL_STORAGE_PMS, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                    permissionIsGet(REQ_CAMERA_PMS, Manifest.permission.CAMERA);
+            case REQ_PERMISSION_GROUP:
+                MyLogUtil.e("grantLength", grantResults.length+"");
+                for(int grant : grantResults){
+                    MyLogUtil.e("grantResult", grant+"");
                 }
-                break;
-            case REQ_WRITE_EXTERNAL_STORAGE_PMS:
-                if (grantResults != null && grantResults.length != 0)
-                    if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                        isWri = false;
-                    }
-                permissionIsGet(REQ_CAMERA_PMS, Manifest.permission.CAMERA);
-                break;
-            case REQ_CAMERA_PMS:
-                if (grantResults != null && grantResults.length != 0)
-                    if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                        isCam = false;
-                    }
-                //最后一个权限获取完，弹窗
-                showDialog();
+                MyLogUtil.e("permissionLength", permissions.length+"");
+                for(String permission : permissions){
+                    MyLogUtil.e("permission", permission);
+                }
+                showDialog(permissions, grantResults);
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
-    private void showDialog() {
+    private void showDialog(String[] permissions, int[] grantResults) {
         View view = View.inflate(this, R.layout.dialog_permission_tip, null);
         TextView textView = (TextView) view.findViewById(R.id.txt_permission_tip);
         StringBuilder builder = new StringBuilder();
-        if (!isLoc && !isWri && !isCam) {
-            builder.append("定位权限、存储权限和相机权限");
-        } else if (!isLoc && !isWri) {
-            builder.append("定位权限和存储权限");
-        } else if (!isLoc && !isCam) {
-            builder.append("定位权限和相机权限");
-        } else if (!isLoc) {
-            builder.append("定位权限");
-        } else if (!isWri) {
-            builder.append("存储权限");
-        } else if (!isCam) {
-            builder.append("相机权限");
-        } else {
+        boolean canGoMain = true;
+        for(int i=0;i<grantResults.length;i++){
+            if(grantResults[i] == -1){
+                canGoMain = false;
+                switch (permissions[i]){
+                    case Manifest.permission.ACCESS_FINE_LOCATION:
+                        appendString(builder, "定位权限");
+                        break;
+                    case Manifest.permission.WRITE_EXTERNAL_STORAGE:
+                        appendString(builder, "存储权限");
+                        break;
+                    case Manifest.permission.CAMERA:
+                        appendString(builder, "相机权限");
+                        break;
+                }
+            }
+        }
+        if(canGoMain){
             goMain();
             return;
         }
@@ -144,4 +141,17 @@ public class SplashActivity extends BaseActivity {
         dialog.show();
     }
 
+    private void appendString(StringBuilder builder, String str){
+        switch (strIndex){
+            case 1:
+                builder.append(str);
+                break;
+            case 2:
+                builder.append("、").append(str);
+                break;
+            default:
+                builder.append("和").append(str);
+        }
+        strIndex++;
+    }
 }
