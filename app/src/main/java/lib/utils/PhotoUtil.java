@@ -206,7 +206,7 @@ public class PhotoUtil {
 
             //计算采样率
             while ((halfHeight / inSampleSize) > requestHeight
-                    && (halfWidth / width) > requestWidth){
+                    && (halfWidth / inSampleSize) > requestWidth){
                 inSampleSize *= 2;
             }
 
