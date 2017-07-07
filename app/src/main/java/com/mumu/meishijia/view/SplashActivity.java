@@ -68,7 +68,11 @@ public class SplashActivity extends BaseActivity {
             }
             if(permissionList.size() > 0){
                 requestPermissions(permissionList.toArray(new String[permissionList.size()]), REQ_PERMISSION_GROUP);
+            }else{
+                goMain();
             }
+        }else{
+            goMain();
         }
     }
 

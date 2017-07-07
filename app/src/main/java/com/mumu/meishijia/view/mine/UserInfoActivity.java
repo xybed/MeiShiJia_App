@@ -3,8 +3,10 @@ package com.mumu.meishijia.view.mine;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -23,8 +25,12 @@ import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.UserInfoPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.SelectCityActivity;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
 
 import java.io.InputStream;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +38,7 @@ import butterknife.OnClick;
 import lib.cache.CacheJsonMgr;
 import lib.glide.GlideCircleTransform;
 import lib.utils.DatePickUtil;
+import lib.utils.MyLogUtil;
 import lib.utils.NumberUtil;
 import lib.utils.PhotoUtil;
 import lib.utils.StreamUtil;
@@ -153,11 +160,25 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                                 PhotoUtil.takePhoto(UserInfoActivity.this);
                                 break;
                             case 1:
-                                PhotoUtil.selectPhoto(UserInfoActivity.this);
+//                                PhotoUtil.selectPhoto(UserInfoActivity.this);
+                                selectPhoto();
                                 break;
                         }
                     }
                 }).show();
+    }
+
+    private void selectPhoto(){
+        Matisse.from(UserInfoActivity.this)
+                .choose(MimeType.allOf())
+                .countable(true)
+                .maxSelectable(9)
+                .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.matisse_select_photo_size))
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                .thumbnailScale(0.85f)
+                .imageEngine(new GlideEngine())
+                .theme(R.style.Matisse_Dracula)
+                .forResult(21);
     }
 
     private void changeSex(){
@@ -262,6 +283,13 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 ToastUtil.show(errMsg);
             }
         });
+        if (requestCode == 21) {
+            List<Uri> mSelected;
+            mSelected = Matisse.obtainResult(data);
+            for(Uri uri : mSelected){
+                MyLogUtil.e("Matisse", "uri: " + uri.getPath());
+            }
+        }
     }
 
     @Override

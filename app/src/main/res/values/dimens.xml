@@ -55,4 +55,6 @@
     <dimen name="user_msg_img_size">16dp</dimen>
     <!--消息未读数小红点的长宽-->
     <dimen name="unread_red_dot_size">16dp</dimen>
+    <!--知乎框架图片选择时的图片尺寸-->
+    <dimen name="matisse_select_photo_size">120dp</dimen>
 </resources>

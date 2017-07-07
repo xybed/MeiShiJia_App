@@ -85,3 +85,40 @@
     public static *** d(...);
     public static *** v(...);
 }
+
+#butterknife 2016/5/31
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewBinder { *; }
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}
+
+#okhttp 2016/5/31
+-dontwarn com.squareup.okhttp.**
+-keep class com.squareup.okhttp.** { *;}
+-dontwarn okio.**
+
+#for 自己的model gson可能需要
+-keep class com.mumu.meishijia.model.** { *; }
+
+#systembartint
+-keep class com.readystatesoftware.systembartint.** { *; }
+
+#rx部分rxjava,rxandroid,retrofit2
+# Platform calls Class.forName on types which do not exist on Android to determine platform.
+-dontnote retrofit2.Platform
+# Platform used when running on RoboVM on iOS. Will not be used at runtime.
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+# Platform used when running on Java 8 VMs. Will not be used at runtime.
+-dontwarn retrofit2.Platform$Java8
+# Retain generic type information for use by reflection by converters and adapters.
+-keepattributes Signature
+# Retain declared checked exceptions for use by a Proxy instance.
+-keepattributes Exceptions
+
+#for 知乎的图片选择框架
+-dontwarn com.squareup.picasso.**
