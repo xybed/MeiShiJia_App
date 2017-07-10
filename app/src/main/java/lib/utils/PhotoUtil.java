@@ -3,6 +3,7 @@ package lib.utils;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
@@ -13,6 +14,11 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+
+import com.mumu.meishijia.R;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,10 +32,11 @@ public class PhotoUtil {
     //为了区分于经常用的1和2，就定义大一些
     private static final int PHOTO_CHOICE_REQUEST_CODE = 19;//选择图片
     private static final int PHOTO_TAKE_REQUEST_CODE = 20;//拍照
+    private static final int PHOTO_CHOICE_ZHIHU_REQUEST_CODE = 21;//知乎的图片选择
 
     /**
      * 调用系统的选择图片功能
-     * @param activity
+     * @param activity activity
      */
     public static void selectPhoto(Activity activity){
         Intent intent=new Intent(Intent.ACTION_PICK);
@@ -37,12 +44,30 @@ public class PhotoUtil {
         activity.startActivityForResult(intent, PHOTO_CHOICE_REQUEST_CODE);
     }
 
+    /**
+     * 调用知乎的图片选择库框架
+     * @param activity activity
+     * @param maxSelectable 最大选择照片数
+     */
+    public static void selectPhoto(Activity activity, int maxSelectable){
+        Matisse.from(activity)
+                .choose(MimeType.allOf())
+                .countable(true)
+                .maxSelectable(maxSelectable)
+                .gridExpectedSize(activity.getResources().getDimensionPixelSize(R.dimen.matisse_select_photo_size))
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                .thumbnailScale(0.85f)
+                .imageEngine(new GlideEngine())
+                .theme(R.style.Matisse_Dracula)
+                .forResult(PHOTO_CHOICE_ZHIHU_REQUEST_CODE);
+    }
+
     //静态的原因是为了防止Activity回来的时候被销毁
     public static File photoFile = null;
 
     /**
      * 调用系统的拍照功能
-     * @param activity
+     * @param activity activity
      */
     public static void takePhoto(Activity activity){
         //有相机app并且有sd卡
@@ -59,8 +84,8 @@ public class PhotoUtil {
 
     /**
      * 判断手机是否带有相机app
-     * @param activity
-     * @return
+     * @param activity activity
+     * @return 是否有相机
      */
     private static boolean hasCamera(Activity activity){
         PackageManager packageManager = activity.getPackageManager();
@@ -87,6 +112,18 @@ public class PhotoUtil {
             case PHOTO_TAKE_REQUEST_CODE:
                 if(photoResultListener != null)
                     photoResultListener.photoResultSuccess(photoFile.getPath());
+                break;
+            case PHOTO_CHOICE_ZHIHU_REQUEST_CODE://现只针对选择一张图片做处理
+                if(data == null){
+                    ToastUtil.show("选择图片文件出错");
+                    return;
+                }
+                List<Uri> selectedUri = Matisse.obtainResult(data);
+                if(selectedUri.get(0) == null){
+                    ToastUtil.show("选择图片文件出错");
+                    return;
+                }
+                selectPhotoResult(activity, selectedUri.get(0), photoResultListener);
                 break;
         }
     }

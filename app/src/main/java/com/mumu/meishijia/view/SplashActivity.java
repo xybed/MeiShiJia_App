@@ -36,7 +36,6 @@ public class SplashActivity extends BaseActivity {
     };
 
     private CenterInDialog dialog;
-    private final int REQ_PERMISSION_GROUP = 0x001;
     private int strIndex = 1;//用于权限提示的，表示第几个权限文字
 
     @Override

@@ -143,16 +143,19 @@ public class BaseActivity extends AppCompatActivity implements BaseView{
     protected final static int REQ_LOCATION_PMS = 0x003;
     protected final static int REQ_READ_PHONE_STATE_PMS = 0x004;
     protected final static int REQ_WRITE_EXTERNAL_STORAGE_PMS = 0x005;
+    protected final static int REQ_PERMISSION_GROUP = 0x006;//在欢迎界面用到的
+    protected final static int REQ_CAMERA_AND_STORAGE_PMS = 0x007;//拍照功能需要拍照权限和内存读取权限
 
     /**
      * 查看是否获取到了对应权限
      * ---如果没有，就去申请权限，并返回false
      * ---如果获取到了，就返回true
-     * @param reqCode 请求code
      * @param permission 权限
+     * @param reqCode 请求code
      */
-    public boolean permissionIsGet(int reqCode, String permission){
+    public boolean permissionIsGet(String permission, int reqCode){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+            //这一句需加在版本判断里，不然ide会飘红。。。
             requestPermissions(new String[]{permission}, reqCode);
             return false;
         }else {

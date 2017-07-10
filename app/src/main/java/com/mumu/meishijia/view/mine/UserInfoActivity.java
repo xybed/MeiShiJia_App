@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -131,9 +133,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 modifyUserInfo();
                 break;
             case R.id.img_avatar:
-                if(permissionIsGet(REQ_CAMERA_PMS, Manifest.permission.CAMERA)){
-                    changeAvatar();
-                }
+                changeAvatar();
                 break;
             case R.id.llay_sex:
                 changeSex();
@@ -157,28 +157,33 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                     public void onOtherButtonClick(int index) {
                         switch (index){
                             case 0:
-                                PhotoUtil.takePhoto(UserInfoActivity.this);
+                                //如果没获取到权限，到onRequestPermissionsResult中处理
+                                //拍照还需要内存读写权限
+                                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                                    List<String> permissionList = new ArrayList<String>();
+                                    if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                                        permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                                    }
+                                    if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                                        permissionList.add(Manifest.permission.CAMERA);
+                                    }
+                                    if(permissionList.size() > 0){
+                                        requestPermissions(permissionList.toArray(new String[permissionList.size()]), REQ_CAMERA_AND_STORAGE_PMS);
+                                    }else {
+                                        PhotoUtil.takePhoto(UserInfoActivity.this);
+                                    }
+                                }else {
+                                    PhotoUtil.takePhoto(UserInfoActivity.this);
+                                }
                                 break;
                             case 1:
-//                                PhotoUtil.selectPhoto(UserInfoActivity.this);
-                                selectPhoto();
+                                if(permissionIsGet(Manifest.permission.WRITE_EXTERNAL_STORAGE, REQ_WRITE_EXTERNAL_STORAGE_PMS)){
+                                    PhotoUtil.selectPhoto(UserInfoActivity.this, 1);
+                                }
                                 break;
                         }
                     }
                 }).show();
-    }
-
-    private void selectPhoto(){
-        Matisse.from(UserInfoActivity.this)
-                .choose(MimeType.allOf())
-                .countable(true)
-                .maxSelectable(9)
-                .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.matisse_select_photo_size))
-                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                .thumbnailScale(0.85f)
-                .imageEngine(new GlideEngine())
-                .theme(R.style.Matisse_Dracula)
-                .forResult(21);
     }
 
     private void changeSex(){
@@ -245,9 +250,16 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                     if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                         ToastUtil.show(getString(R.string.com_open_photograph_permission));
                     }else {
-                        changeAvatar();
+                        PhotoUtil.takePhoto(UserInfoActivity.this);
                     }
                 break;
+            case REQ_WRITE_EXTERNAL_STORAGE_PMS:
+                if(grantResults != null && grantResults.length != 0)
+                    if(grantResults[0] != PackageManager.PERMISSION_GRANTED){
+                        ToastUtil.show(getString(R.string.com_open_write_external_storage_permission));
+                    }else {
+                        PhotoUtil.selectPhoto(UserInfoActivity.this, 1);
+                    }
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }

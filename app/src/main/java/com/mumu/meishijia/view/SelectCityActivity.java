@@ -72,7 +72,7 @@ public class SelectCityActivity extends BaseActivity {
     }
 
     private void getPermission(){
-        if(permissionIsGet(REQ_LOCATION_PMS, Manifest.permission.ACCESS_FINE_LOCATION)){
+        if(permissionIsGet(Manifest.permission.ACCESS_FINE_LOCATION, REQ_LOCATION_PMS)){
             LocationModel locationModel = MyLocation.getInstance().getLocationData();
             txtGps.setText(locationModel.getCity());
             gpsProvince = locationModel.getProvince();
