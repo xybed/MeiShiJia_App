@@ -122,3 +122,11 @@
 
 #for 知乎的图片选择框架
 -dontwarn com.squareup.picasso.**
+
+#for 腾讯Im
+-keep class com.tencent.**{*;}
+-dontwarn com.tencent.**
+-keep class tencent.**{*;}
+-dontwarn tencent.**
+-keep class qalsdk.**{*;}
+-dontwarn qalsdk.**
