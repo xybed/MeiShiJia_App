@@ -3,9 +3,12 @@ package com.mumu.meishijia.tencent;
 import android.content.Context;
 
 import com.mumu.meishijia.MyApplication;
+import com.mumu.meishijia.model.mine.UserModel;
+import com.tencent.TIMCallBack;
 import com.tencent.TIMManager;
 import com.tencent.TIMMessage;
 import com.tencent.TIMMessageListener;
+import com.tencent.TIMUser;
 
 import java.util.List;
 
@@ -59,5 +62,50 @@ public class IMUtil {
         TIMManager.getInstance().addMessageListener(messageListener);
     }
 
+    /**
+     * 登录腾讯imSDK
+     */
+    public void loginIM(){
+        MyApplication myApplication = MyApplication.getInstance();
+        if(myApplication.isLogin()){
+            UserModel userModel = myApplication.getUser();
+            if(userModel == null)
+                return;
+
+            TIMUser timUser = new TIMUser();
+            timUser.setAccountType(IM_ACCOUNT_TYPE);
+            timUser.setAppIdAt3rd(String.valueOf(IM_SDK_APP_ID));
+            timUser.setIdentifier(String.valueOf(userModel.getPrincipal_id()));
+
+            TIMManager.getInstance().login(IM_SDK_APP_ID, timUser, userModel.getIm_usersig(), new TIMCallBack() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError(int code, String desc) {
+
+                }
+            });
+        }
+    }
+
+    /**
+     * 登出腾讯imSDK
+     */
+    public void logoutIM(){
+        TIMManager.getInstance().logout(new TIMCallBack() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(int code, String desc) {
+
+            }
+        });
+    }
 
 }

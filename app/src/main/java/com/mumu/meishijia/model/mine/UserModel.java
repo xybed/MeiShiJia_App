@@ -20,6 +20,7 @@ public class UserModel {
     private String signature;
     private int principal_id;
     private String token;
+    private String im_usersig;
 
     public int getId() {
         return id;
@@ -139,5 +140,13 @@ public class UserModel {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getIm_usersig() {
+        return im_usersig;
+    }
+
+    public void setIm_usersig(String im_usersig) {
+        this.im_usersig = im_usersig;
     }
 }
