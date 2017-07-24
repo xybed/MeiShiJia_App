@@ -18,7 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.parser.Feature;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
@@ -39,8 +38,6 @@ import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.model.im.ConversationRealmModel;
 import com.mumu.meishijia.presenter.im.ChatPresenter;
 import com.mumu.meishijia.view.BaseActivity;
-
-import org.java_websocket.client.WebSocketClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +89,6 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
     //点击加号出现的布局，有两部分，设置成成员变量，方便设置监听
     private View view1;
     private View view2;
-    private WebSocketClient webSocket;
 
     private ChatAdapter adapter;
 
@@ -107,7 +103,6 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         Intent intent = getIntent();
         friend_id = intent.getIntExtra(FRIEND_ID, 0);
         principal_id = intent.getIntExtra(PRINCIPAL_ID, 0);
-        webSocket = MyApplication.getInstance().getWebSocket();
         presenter = new ChatPresenter(this);
         presenter.getMessage(principal_id);
     }
@@ -288,7 +283,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         List<BaseMessage> datas = new ArrayList<>();
         datas.add(MessageFactory.productMessage(chatRealmModel));
         adapter.addData(datas);
-        webSocket.send(JSON.toJSONString(msgJson));
+        //TODO 用腾讯sdk发送消息
     }
 
     private void saveMessage(ChatRealmModel chatRealmModel){
