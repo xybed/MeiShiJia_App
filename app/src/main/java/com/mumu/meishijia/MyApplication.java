@@ -18,6 +18,7 @@ public class MyApplication extends MultiDexApplication {
 
     private UserModel user;
     private boolean isLogin;
+    private boolean isIMLogin;
 
     @Override
     public void onCreate() {
@@ -63,6 +64,12 @@ public class MyApplication extends MultiDexApplication {
     }
     public void setLogin(boolean login) {
         isLogin = login;
+    }
+    public boolean isIMLogin() {
+        return isIMLogin;
+    }
+    public void setIMLogin(boolean IMLogin) {
+        isIMLogin = IMLogin;
     }
 
 }

@@ -14,4 +14,7 @@ public interface IMConstant {
     int MSG_STATUS_SUCCESS = 1;
     int MSG_STATUS_FAIL = 0;
     int MSG_STATUS_SEND = 2;
+
+    int SYSTEM_ATTACH_YES = 1;
+    int SYSTEM_ATTACH_NO = 0;
 }
