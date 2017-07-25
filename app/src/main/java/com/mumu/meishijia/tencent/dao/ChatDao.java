@@ -1,6 +1,6 @@
 package com.mumu.meishijia.tencent.dao;
 
-import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 
 import io.realm.Realm;
 import lib.realm.MyRealm;

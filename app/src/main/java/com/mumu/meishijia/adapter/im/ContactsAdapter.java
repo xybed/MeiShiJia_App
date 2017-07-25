@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.model.im.ContactsModel;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
 
 import java.util.List;
@@ -26,9 +27,9 @@ import lib.utils.ToastUtil;
 public class ContactsAdapter extends BaseSwipeAdapter{
 
     private Context context;
-    private List<ContactsRealmModel> contactsList;
+    private List<ContactsModel> contactsList;
 
-    public ContactsAdapter(Context context, List<ContactsRealmModel> contactsList){
+    public ContactsAdapter(Context context, List<ContactsModel> contactsList){
         this.context = context;
         this.contactsList = contactsList;
     }
@@ -45,7 +46,7 @@ public class ContactsAdapter extends BaseSwipeAdapter{
 
     @Override
     public void fillValues(int position, View convertView) {
-        final ContactsRealmModel model = contactsList.get(position);
+        final ContactsModel model = contactsList.get(position);
         Holder holder = new Holder();
         holder.txtLetter = (TextView) convertView.findViewById(R.id.txt_letter);
         holder.swipeLayout = (SwipeLayout) convertView.findViewById(R.id.swipe_layout);
@@ -104,14 +105,14 @@ public class ContactsAdapter extends BaseSwipeAdapter{
      * 设置数据
      * @param list
      */
-    public void setData(List<ContactsRealmModel> list) {
+    public void setData(List<ContactsModel> list) {
         if (list == null){
             this.contactsList.clear();
             notifyDataSetChanged();
             return;
         }
         this.contactsList.clear();
-        for (ContactsRealmModel t : list) {
+        for (ContactsModel t : list) {
             this.contactsList.add(t);
         }
         notifyDataSetChanged();
@@ -121,7 +122,7 @@ public class ContactsAdapter extends BaseSwipeAdapter{
      * 增加数据
      * @param list
      */
-    public void addData(List<ContactsRealmModel> list){
+    public void addData(List<ContactsModel> list){
         if(list == null)
             return;
         this.contactsList.addAll(list);
@@ -132,7 +133,7 @@ public class ContactsAdapter extends BaseSwipeAdapter{
      * 获取数据
      * @return
      */
-    public List<ContactsRealmModel> getData() {
+    public List<ContactsModel> getData() {
         return this.contactsList;
     }
 

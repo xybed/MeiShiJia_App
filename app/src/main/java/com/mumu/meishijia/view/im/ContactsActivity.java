@@ -15,6 +15,7 @@ import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ContactsAdapter;
 import com.mumu.meishijia.constant.RxBusAction;
+import com.mumu.meishijia.model.im.ContactsModel;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.presenter.im.ContactsPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -43,7 +44,7 @@ public class ContactsActivity extends BaseActivity implements ContactsView{
     private ContactsPresenter presenter;
 
     private ContactsAdapter adapter;
-    private List<ContactsRealmModel> contactsList;
+    private List<ContactsModel> contactsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +104,7 @@ public class ContactsActivity extends BaseActivity implements ContactsView{
     }
 
     @Override
-    public void getContactsSuccess(List<ContactsRealmModel> contactsList) {
+    public void getContactsSuccess(List<ContactsModel> contactsList) {
         dismissLoadingDialog();
         this.contactsList = contactsList;
         if(contactsList == null || contactsList.size() <= 0)

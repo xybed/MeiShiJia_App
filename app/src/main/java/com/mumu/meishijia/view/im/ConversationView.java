@@ -1,6 +1,6 @@
 package com.mumu.meishijia.view.im;
 
-import com.mumu.meishijia.model.im.ConversationRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 
 import java.util.List;
 

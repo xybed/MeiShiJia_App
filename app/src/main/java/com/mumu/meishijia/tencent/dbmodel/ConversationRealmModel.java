@@ -1,4 +1,4 @@
-package com.mumu.meishijia.model.im;
+package com.mumu.meishijia.tencent.dbmodel;
 
 import io.realm.RealmObject;
 

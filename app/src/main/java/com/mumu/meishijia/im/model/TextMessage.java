@@ -9,7 +9,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.Feature;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ChatAdapter;
-import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 
 import lib.utils.DensityUtil;
 

@@ -1,6 +1,6 @@
 package com.mumu.meishijia.presenter.im;
 
-import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 import com.mumu.meishijia.view.im.ChatView;
 import com.mumu.meishijia.viewmodel.im.ChatViewModel;
 

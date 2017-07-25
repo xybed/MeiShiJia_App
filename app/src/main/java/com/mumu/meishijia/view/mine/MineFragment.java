@@ -18,7 +18,7 @@ import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.im.ConversationRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 import com.mumu.meishijia.view.BaseFragment;
 import com.mumu.meishijia.view.im.ContactsActivity;
 import com.mumu.meishijia.view.im.ConversationActivity;

@@ -1,7 +1,7 @@
 package com.mumu.meishijia.viewmodel.im;
 
 import com.mumu.meishijia.MyApplication;
-import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 
 import java.util.List;
 

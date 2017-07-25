@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
-import com.mumu.meishijia.model.im.ConversationRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 
 import java.util.List;
 

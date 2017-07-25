@@ -5,20 +5,14 @@ import com.alibaba.fastjson.parser.Feature;
 import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.im.model.BaseMessage;
-import com.mumu.meishijia.im.model.MessageFactory;
 import com.mumu.meishijia.im.model.MsgContentModel;
 import com.mumu.meishijia.im.model.MsgJsonModel;
-import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
-import com.mumu.meishijia.model.im.ConversationRealmModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 
 import io.realm.Realm;
 import lib.realm.MyRealm;
-import lib.utils.MyLogUtil;
 
 /**
  * 统一处理Im的工具

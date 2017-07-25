@@ -2,7 +2,7 @@ package com.mumu.meishijia.im.model;
 
 import com.alibaba.fastjson.JSON;
 import com.mumu.meishijia.im.IMConstant;
-import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 import com.tencent.TIMElem;
 import com.tencent.TIMElemType;
 import com.tencent.TIMMessage;

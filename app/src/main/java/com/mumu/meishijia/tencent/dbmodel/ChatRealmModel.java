@@ -1,4 +1,4 @@
-package com.mumu.meishijia.model.im;
+package com.mumu.meishijia.tencent.dbmodel;
 
 import io.realm.RealmObject;
 
@@ -17,8 +17,6 @@ public class ChatRealmModel extends RealmObject{
     private int msg_status;
     private String msg_content;
     private int system_attach;
-//    private long msg_id;//这个和后台的msg_id不同，这个只是用来区分本地数据库的不同消息id，用来回调设置消息的状态
-    private String msg_id;//改为用腾讯的sdk，所以就不用自己回调来设置消息状态，还是存一下腾讯提供的消息唯一标识
 
     public int getUser_id() {
         return user_id;
@@ -92,19 +90,4 @@ public class ChatRealmModel extends RealmObject{
         this.system_attach = system_attach;
     }
 
-//    public long getMsg_id() {
-//        return msg_id;
-//    }
-//
-//    public void setMsg_id(long msg_id) {
-//        this.msg_id = msg_id;
-//    }
-
-    public String getMsg_id() {
-        return msg_id;
-    }
-
-    public void setMsg_id(String msg_id) {
-        this.msg_id = msg_id;
-    }
 }

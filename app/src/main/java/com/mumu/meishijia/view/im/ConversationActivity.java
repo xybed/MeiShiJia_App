@@ -14,7 +14,7 @@ import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ConversationAdapter;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.im.ConversationRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 import com.mumu.meishijia.presenter.im.ConversationPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 

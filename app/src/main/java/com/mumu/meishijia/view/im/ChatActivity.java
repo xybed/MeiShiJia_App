@@ -33,11 +33,17 @@ import com.mumu.meishijia.im.model.MessageFactory;
 import com.mumu.meishijia.im.model.MsgContentModel;
 import com.mumu.meishijia.im.model.MsgDataModel;
 import com.mumu.meishijia.im.model.MsgJsonModel;
-import com.mumu.meishijia.model.im.ChatRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
-import com.mumu.meishijia.model.im.ConversationRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 import com.mumu.meishijia.presenter.im.ChatPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+import com.tencent.TIMConversation;
+import com.tencent.TIMConversationType;
+import com.tencent.TIMManager;
+import com.tencent.TIMMessage;
+import com.tencent.TIMTextElem;
+import com.tencent.TIMValueCallBack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +90,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
 
     private int friend_id;
     private int principal_id;
+    private TIMConversation conversation;
     //加号部分的viewPager的adapter
     private ImPagerAdapter pagerAdapter;
     //点击加号出现的布局，有两部分，设置成成员变量，方便设置监听
@@ -103,6 +110,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         Intent intent = getIntent();
         friend_id = intent.getIntExtra(FRIEND_ID, 0);
         principal_id = intent.getIntExtra(PRINCIPAL_ID, 0);
+        conversation = TIMManager.getInstance().getConversation(TIMConversationType.C2C, principal_id+"");
         presenter = new ChatPresenter(this);
         presenter.getMessage(principal_id);
     }
@@ -242,38 +250,29 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
     }
 
     /**
-     * 发送文本消息，构建json
+     * 发送文本消息，构建TIMTextElem
      */
     private void sendMessage(){
+        TIMMessage msg = new TIMMessage();
+        TIMTextElem elem = new TIMTextElem();
+        elem.setText(editMsg.getText().toString());
+        msg.addElement(elem);
+
         MsgContentModel msgContent = new MsgContentModel();
         msgContent.setText(editMsg.getText().toString());
-        MsgDataModel msgData = new MsgDataModel();
-        msgData.setFrom_id(MyApplication.getInstance().getUser().getPrincipal_id());
-        msgData.setTo_id(principal_id);
-        long time = System.currentTimeMillis();
-        msgData.setTime(time);
-        msgData.setMsg_content(JSON.toJSONString(msgContent));
-        //其他未设置的msgData字段，交由后台设置
-        MsgJsonModel msgJson = new MsgJsonModel();
-        msgJson.setMsg_type(IMConstant.MSG_TYPE_TEXT);
-        msgJson.setData(msgData);
-        msgJson.setConversation_id(principal_id);
-        msgJson.setMsg_id(System.currentTimeMillis());
-        //其他未设置的msgJson字段，交由后台设置
-        //先存数据库，再发送
 
+        //先存数据库，再发送
         //存数据库
         ChatRealmModel chatRealmModel = new ChatRealmModel();
         chatRealmModel.setUser_id(MyApplication.getInstance().getUser().getId());
         chatRealmModel.setConversation_id(principal_id);
         chatRealmModel.setFrom_id(MyApplication.getInstance().getUser().getPrincipal_id());
         chatRealmModel.setTo_id(principal_id);
-        chatRealmModel.setTime(time);
+        chatRealmModel.setTime(System.currentTimeMillis());
         chatRealmModel.setMsg_type(IMConstant.MSG_TYPE_TEXT);
         chatRealmModel.setMsg_status(IMConstant.MSG_STATUS_SEND);
         chatRealmModel.setMsg_content(JSON.toJSONString(msgContent));
         chatRealmModel.setSystem_attach(1);
-        chatRealmModel.setMsg_id(msgJson.getMsg_id());
 
         saveMessage(chatRealmModel);
         updateConversation(chatRealmModel);
@@ -283,7 +282,19 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         List<BaseMessage> datas = new ArrayList<>();
         datas.add(MessageFactory.productMessage(chatRealmModel));
         adapter.addData(datas);
-        //TODO 用腾讯sdk发送消息
+
+        //用腾讯sdk发送消息
+        conversation.sendMessage(msg, new TIMValueCallBack<TIMMessage>() {
+            @Override
+            public void onError(int code, String desc) {
+
+            }
+
+            @Override
+            public void onSuccess(TIMMessage timMessage) {
+
+            }
+        });
     }
 
     private void saveMessage(ChatRealmModel chatRealmModel){

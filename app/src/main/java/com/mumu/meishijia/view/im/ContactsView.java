@@ -1,6 +1,6 @@
 package com.mumu.meishijia.view.im;
 
-import com.mumu.meishijia.model.im.ContactsRealmModel;
+import com.mumu.meishijia.model.im.ContactsModel;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ import java.util.List;
  */
 
 public interface ContactsView {
-    void getContactsSuccess(List<ContactsRealmModel> contactsList);
+    void getContactsSuccess(List<ContactsModel> contactsList);
     void getContactsFail(String errMsg);
 }

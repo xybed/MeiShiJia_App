@@ -4,6 +4,7 @@ import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.model.BaseModel;
 import com.mumu.meishijia.model.im.ContactsDetailModel;
 import com.mumu.meishijia.model.im.ContactsModel;
+import com.mumu.meishijia.model.im.PrincipalModel;
 
 import java.util.List;
 import java.util.Map;
@@ -26,4 +27,6 @@ public interface ImService {
     Observable<BaseModel<ContactsDetailModel>> getContactsDetail(@QueryMap Map<String, String> map);
     @POST(HttpUrl.ModifyRemark)
     Observable<BaseModel<String>> modifyRemark(@Body Map<String, String> map);
+    @GET(HttpUrl.GetPrincipalInfo)
+    Observable<BaseModel<PrincipalModel>> getPrincipalInfo(@QueryMap Map<String, String> map);
 }

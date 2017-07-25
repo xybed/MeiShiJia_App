@@ -1,15 +1,32 @@
 package com.mumu.meishijia.tencent;
 
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 
+import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
+import com.mumu.meishijia.api.im.ImService;
+import com.mumu.meishijia.constant.RxBusAction;
+import com.mumu.meishijia.http.HttpRequestParams;
+import com.mumu.meishijia.http.HttpRetrofit;
+import com.mumu.meishijia.http.HttpUrl;
+import com.mumu.meishijia.http.RetroResListener;
 import com.mumu.meishijia.im.IMConstant;
 import com.mumu.meishijia.im.model.MessageFactory;
-import com.mumu.meishijia.model.im.ChatRealmModel;
-import com.mumu.meishijia.model.im.ContactsRealmModel;
+import com.mumu.meishijia.tencent.dao.ConversationDao;
+import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
+import com.mumu.meishijia.model.im.PrincipalModel;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.tencent.dao.ChatDao;
-import com.mumu.meishijia.tencent.dao.ContactsDao;
+import com.mumu.meishijia.tencent.dao.PrincipalDao;
+import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
+import com.mumu.meishijia.tencent.dbmodel.PrincipalRealmModel;
+import com.mumu.meishijia.view.im.ConversationActivity;
 import com.tencent.TIMCallBack;
 import com.tencent.TIMConversation;
 import com.tencent.TIMElem;
@@ -23,7 +40,10 @@ import com.tencent.TIMUserStatusListener;
 
 import java.util.List;
 
+import lib.utils.DateUtil;
+import lib.utils.MyLogUtil;
 import lib.utils.NumberUtil;
+import lib.utils.SystemUtil;
 
 /**
  * 腾讯im的统一处理类
@@ -37,6 +57,7 @@ public class IMUtil {
     private static IMUtil imUtil;
     private Context context;
     private TIMMessageListener messageListener;
+    private long notifyTime;//记录通知时间
 
     private IMUtil(Context context){
         this.context = context;
@@ -153,6 +174,8 @@ public class IMUtil {
      */
     private void saveMsg(List<TIMMessage> msgList){
         MyApplication myApplication = MyApplication.getInstance();
+        ChatRealmModel firstMsg;
+        int realUnReadMsgNum = 0;
         for(int i=0;i<msgList.size();i++){
             TIMMessage msg = msgList.get(i);
             //获取这条消息的会话
@@ -191,16 +214,94 @@ public class IMUtil {
             //在转换的时候已经设置过消息类型，所以这里不再设置
             chatRealmModel.setMsg_status(IMConstant.MSG_STATUS_SUCCESS);
             chatRealmModel.setSystem_attach(IMConstant.SYSTEM_ATTACH_YES);
-            chatRealmModel.setMsg_id(msg.getMsgId());
 
-            //存数据库
+            //消息存数据库
             ChatDao.insertMsg(chatRealmModel);
+            realUnReadMsgNum++;
+            firstMsg = chatRealmModel;
+            refreshChat();
 
             //查询通讯录中可有此发送者信息，如若没有，则网络请求
-            ContactsRealmModel contactsRealmModel = ContactsDao.queryContacts(NumberUtil.parseInt(conversation.getPeer(), 0));
+            PrincipalRealmModel principalRealmModel = PrincipalDao.queryPrincipalInfo(NumberUtil.parseInt(conversation.getPeer(), 0));
+            if(principalRealmModel == null){
+                requestPrincipalInfo(conversation.getPeer(), chatRealmModel);
+            }else {
+                //如果有，就插入或更新会话项
+                insertOrUpdateConversation(principalRealmModel, chatRealmModel);
+            }
         }
     }
 
+    private void insertOrUpdateConversation(PrincipalRealmModel principal, ChatRealmModel chat){
+        //查询数据库中是否有此会话
+        ConversationRealmModel conversationRealmModel = ConversationDao.queryConversation(principal.getPrincipal_id());
+        //插入或更新会话
+        ConversationDao.insertOrUpdateConversation(conversationRealmModel, principal.getPrincipal_id(), principal.getAvatar(), principal.getRemark(),
+                chat.getTime(), chat.getMsg_type(), chat.getMsg_content(), principal.getPrincipal_user_id());
+        refreshConversation();
+        refreshMineUnreadMsg();
+        notifyMsg("新消息", "新消息", ConversationActivity.class);
+    }
 
+    private void requestPrincipalInfo(final String principalId, final ChatRealmModel chat){
+        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
+        HttpRequestParams params = new HttpRequestParams();
+        params.put("id", MyApplication.getInstance().getUser().getId());
+        params.put("principal_id", principalId);
+        httpRetrofit.getModel(httpRetrofit.getApiService(ImService.class, HttpUrl.GetPrincipalInfo, params).getPrincipalInfo(params.urlParams), "", new RetroResListener<PrincipalModel>() {
+            @Override
+            protected void onSuccess(PrincipalModel result) {
+                //把PrincipalModel转为PrincipalRealmModel
+                PrincipalRealmModel principal = new PrincipalRealmModel();
+                principal.setUser_id(MyApplication.getInstance().getUser().getId());
+                principal.setPrincipal_user_id(result.getPrincipal_user_id());
+                principal.setRemark(result.getRemark());
+                principal.setAvatar(result.getAvatar());
+                principal.setPrincipal_id(result.getPrincipal_id());
+                insertOrUpdateConversation(principal, chat);
+            }
+
+            @Override
+            protected void onFailure(String errMsg) {
+                MyLogUtil.e("消息主体err", "请求"+principalId+"的主体信息失败");
+            }
+        });
+    }
+
+    private static void refreshChat(){
+        RxBus.get().post(RxBusAction.ChatList, "");
+    }
+
+    private static void refreshConversation(){
+        RxBus.get().post(RxBusAction.ConversationList, "");
+    }
+
+    private static void refreshMineUnreadMsg(){
+        RxBus.get().post(RxBusAction.MineUnreadMsg, "");
+    }
+
+    private void notifyMsg(String title, String content, Class clazz){
+        //发送通知栏消息
+        if (!SystemUtil.isFrontRunning(context, SystemUtil.getAppPackageName(context))) {
+            if ((System.currentTimeMillis() - notifyTime) < 3 * 1000)
+                return;
+            notifyTime = System.currentTimeMillis();
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
+            notificationManager.cancel(IM_SDK_APP_ID);
+            Intent mIntent = new Intent(context, clazz);
+            mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//看情况是否需要设置
+            mIntent.putExtra("isFromJPush", "1");
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, mIntent, 0);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+            builder.setContentTitle(title)
+                    .setContentText(content)
+                    .setTicker(content)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true);
+            notificationManager.notify(IM_SDK_APP_ID, builder.build());
+        }
+    }
 
 }
