@@ -1,4 +1,4 @@
-package com.mumu.meishijia.im;
+package com.mumu.meishijia.tencent;
 
 /**
  * im中的常量

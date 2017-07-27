@@ -3,8 +3,8 @@ package com.mumu.meishijia.tencent.dao;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.Feature;
 import com.mumu.meishijia.MyApplication;
-import com.mumu.meishijia.im.IMConstant;
-import com.mumu.meishijia.im.model.MsgContentModel;
+import com.mumu.meishijia.tencent.IMConstant;
+import com.mumu.meishijia.tencent.model.MsgContentModel;
 import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 
 import io.realm.Realm;

@@ -1,4 +1,4 @@
-package com.mumu.meishijia.im.model;
+package com.mumu.meishijia.tencent.model;
 
 import android.content.Context;
 import android.util.TypedValue;
@@ -10,6 +10,8 @@ import com.alibaba.fastjson.parser.Feature;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ChatAdapter;
 import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
+import com.mumu.meishijia.tencent.model.BaseMessage;
+import com.mumu.meishijia.tencent.model.MsgContentModel;
 
 import lib.utils.DensityUtil;
 
@@ -18,7 +20,7 @@ import lib.utils.DensityUtil;
  * Created by Administrator on 2017/4/17.
  */
 
-public class TextMessage extends BaseMessage{
+public class TextMessage extends BaseMessage {
 
     public TextMessage(ChatRealmModel message){
         this.message = message;

@@ -1,4 +1,4 @@
-package com.mumu.meishijia.im.model;
+package com.mumu.meishijia.tencent.model;
 
 import android.content.Context;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.adapter.im.ChatAdapter;
-import com.mumu.meishijia.im.IMConstant;
+import com.mumu.meishijia.tencent.IMConstant;
 import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.model.mine.UserModel;

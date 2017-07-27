@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseMyAdapter;
-import com.mumu.meishijia.im.model.BaseMessage;
+import com.mumu.meishijia.tencent.model.BaseMessage;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

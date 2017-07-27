@@ -1,4 +1,4 @@
-package com.mumu.meishijia.im.model;
+package com.mumu.meishijia.tencent.model;
 
 /**
  * 消息内容的model
