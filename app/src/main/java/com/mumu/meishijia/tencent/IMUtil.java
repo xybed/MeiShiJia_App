@@ -18,14 +18,15 @@ import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.http.RetroResListener;
 import com.mumu.meishijia.im.IMConstant;
 import com.mumu.meishijia.im.model.MessageFactory;
-import com.mumu.meishijia.tencent.dao.ConversationDao;
-import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 import com.mumu.meishijia.model.im.PrincipalModel;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.tencent.dao.ChatDao;
+import com.mumu.meishijia.tencent.dao.ConversationDao;
 import com.mumu.meishijia.tencent.dao.PrincipalDao;
+import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 import com.mumu.meishijia.tencent.dbmodel.PrincipalRealmModel;
+import com.mumu.meishijia.view.SplashActivity;
 import com.mumu.meishijia.view.im.ConversationActivity;
 import com.tencent.TIMCallBack;
 import com.tencent.TIMConversation;
@@ -34,13 +35,16 @@ import com.tencent.TIMElemType;
 import com.tencent.TIMManager;
 import com.tencent.TIMMessage;
 import com.tencent.TIMMessageListener;
+import com.tencent.TIMOfflinePushListener;
+import com.tencent.TIMOfflinePushNotification;
 import com.tencent.TIMTextElem;
 import com.tencent.TIMUser;
 import com.tencent.TIMUserStatusListener;
+import com.tencent.TIMValueCallBack;
+import com.tencent.qalsdk.sdk.MsfSdkUtils;
 
 import java.util.List;
 
-import lib.utils.DateUtil;
 import lib.utils.MyLogUtil;
 import lib.utils.NumberUtil;
 import lib.utils.SystemUtil;
@@ -79,6 +83,62 @@ public class IMUtil {
     }
 
     /**
+     * 这里的离线指的是应用在没有退出登录的情况下，被系统或者用户杀掉
+     * 在这种情况下，如果还想收到ImSDK的消息提醒，可以集成云通信离线推送。
+     */
+    public void addOfflineMsgListener(){
+        // 只能在主进程进行离线推送监听器注册
+        if(MsfSdkUtils.isMainProcess(context)) {
+            // 设置离线推送监听器
+            TIMManager.getInstance().setOfflinePushListener(new TIMOfflinePushListener() {
+                @Override
+                public void handleNotification(TIMOfflinePushNotification notification) {
+                    //当不在前台的时候通知
+                    //先取获取数据库中的消息主体信息
+                    if(!SystemUtil.isFrontRunning(context, SystemUtil.getAppPackageName(context))){
+                        PrincipalRealmModel principal = PrincipalDao.queryPrincipalInfo(NumberUtil.parseInt(notification.getConversationId(), 0));
+                        if(principal == null){
+                            notifyMsg("您有新的消息", notification.getContent(), SplashActivity.class);
+                        }else {
+                            notifyMsg(principal.getRemark(), notification.getContent(), SplashActivity.class);
+                        }
+                    }else {
+                        loadUnreadMessage();
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * 加载未读消息，在登录后，或打开app后，有未推送到的消息需要加载
+     */
+    private void loadUnreadMessage(){
+        MyApplication myApplication = MyApplication.getInstance();
+        if(myApplication.isLogin() && myApplication.isIMLogin()){
+            //获取sdk中本地保存的会话数
+            long conversationCount = TIMManager.getInstance().getConversationCount();
+            //遍历会话列表
+            for(long i = 0; i < conversationCount; ++i) {
+                //根据索引获取会话
+                TIMConversation conversation = TIMManager.getInstance().getConversationByIndex(i);
+                long msgNum = conversation.getUnreadMessageNum();
+                conversation.getMessage((int)msgNum, null, new TIMValueCallBack<List<TIMMessage>>() {
+                    @Override
+                    public void onError(int code, String desc) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(List<TIMMessage> timMessages) {
+                        saveMsg(timMessages);
+                    }
+                });
+            }
+        }
+    }
+
+    /**
      * 在多数情况下，用户需要感知新消息的通知，这时只需注册新消息通知回调 TIMMessageListener，
      * 在用户登录状态下，会拉取离线消息，
      * 为了不漏掉消息通知，需要在登录之前注册新消息通知。
@@ -108,7 +168,7 @@ public class IMUtil {
      * 登录腾讯imSDK
      */
     public void loginIM(){
-        MyApplication myApplication = MyApplication.getInstance();
+        final MyApplication myApplication = MyApplication.getInstance();
         if(myApplication.isLogin() && !myApplication.isIMLogin()){
             UserModel userModel = myApplication.getUser();
             if(userModel == null)
@@ -122,7 +182,8 @@ public class IMUtil {
             TIMManager.getInstance().login(IM_SDK_APP_ID, timUser, userModel.getIm_usersig(), new TIMCallBack() {
                 @Override
                 public void onSuccess() {
-
+                    myApplication.setIMLogin(true);
+                    loadUnreadMessage();
                 }
 
                 @Override
@@ -142,7 +203,8 @@ public class IMUtil {
         TIMManager.getInstance().logout(new TIMCallBack() {
             @Override
             public void onSuccess() {
-
+                TIMManager.getInstance().setUserStatusListener(null);
+                MyApplication.getInstance().setIMLogin(false);
             }
 
             @Override
@@ -236,11 +298,12 @@ public class IMUtil {
         //查询数据库中是否有此会话
         ConversationRealmModel conversationRealmModel = ConversationDao.queryConversation(principal.getPrincipal_id());
         //插入或更新会话
-        ConversationDao.insertOrUpdateConversation(conversationRealmModel, principal.getPrincipal_id(), principal.getAvatar(), principal.getRemark(),
+        ConversationRealmModel conversation = ConversationDao.insertOrUpdateConversation(conversationRealmModel,
+                principal.getPrincipal_id(), principal.getAvatar(), principal.getRemark(),
                 chat.getTime(), chat.getMsg_type(), chat.getMsg_content(), principal.getPrincipal_user_id());
         refreshConversation();
         refreshMineUnreadMsg();
-        notifyMsg("新消息", "新消息", ConversationActivity.class);
+        notifyMsg(conversation.getRemark(), conversation.getContent(), ConversationActivity.class);
     }
 
     private void requestPrincipalInfo(final String principalId, final ChatRealmModel chat){

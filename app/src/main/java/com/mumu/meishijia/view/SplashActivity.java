@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.mumu.meishijia.BuildConfig;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.tencent.IMUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,8 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
 
         transparencyStatusBar();
+        IMUtil.getInstance().initTIMSDK();
+        IMUtil.getInstance().loginIM();
         initPermission();
     }
 

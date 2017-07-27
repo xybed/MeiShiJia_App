@@ -25,7 +25,7 @@ public class ConversationDao {
                 .findFirst();
     }
 
-    public static void insertOrUpdateConversation(ConversationRealmModel conversationRealmModel,
+    public static ConversationRealmModel insertOrUpdateConversation(ConversationRealmModel conversationRealmModel,
                       int conversationId, String avatar, String remark, long time, int msgType,
                       String msgContent, int friendId){
         Realm realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
@@ -61,5 +61,6 @@ public class ConversationDao {
         conversationRealmModel.setFriend_id(friendId);
         realm.insertOrUpdate(conversationRealmModel);
         realm.commitTransaction();
+        return conversationRealmModel;
     }
 }

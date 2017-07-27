@@ -10,6 +10,7 @@ import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.SettingPresenter;
+import com.mumu.meishijia.tencent.IMUtil;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.MainActivity;
 
@@ -52,8 +53,8 @@ public class SettingActivity extends BaseActivity implements SettingView{
         //退出登录
         MyApplication.getInstance().setUser(null);
         MyApplication.getInstance().setLogin(false);
-        //关闭socket的连接
-        MyApplication.getInstance().closeWebSocket();
+        //登出腾讯im
+        IMUtil.getInstance().logoutIM();
         //清空用户信息
         CacheJsonMgr.getInstance(this).deleteJson(UserModel.class.getSimpleName());
         RxBus.get().post(RxBusAction.MineUserData, "");

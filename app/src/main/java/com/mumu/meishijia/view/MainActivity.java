@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.tencent.IMUtil;
 import com.mumu.meishijia.view.food.FoodFragment;
 import com.mumu.meishijia.view.football.FootballFragment;
 import com.mumu.meishijia.view.mine.MineFragment;
@@ -143,5 +144,11 @@ public class MainActivity extends BaseActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IMUtil.getInstance().addMessageListener();
     }
 }

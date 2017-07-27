@@ -3,6 +3,7 @@ package com.mumu.meishijia;
 import android.support.multidex.MultiDexApplication;
 
 import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.tencent.IMUtil;
 
 import io.realm.Realm;
 import lib.cache.CacheJsonMgr;
@@ -28,6 +29,8 @@ public class MyApplication extends MultiDexApplication {
         MyCrashHandler.getInstance().init(this);
         initUserLoginInfo();
         initRealm();
+        //验证了，这个添加离线消息，必须放在这个位置，且初始化IM要放在启动页面中，才会正常
+        IMUtil.getInstance().addOfflineMsgListener();
     }
 
     /**
