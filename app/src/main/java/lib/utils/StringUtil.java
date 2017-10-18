@@ -27,4 +27,23 @@ public class StringUtil {
         }
         return str;
     }
+
+    /**
+     * 是否两个字符串是否匹配，即匹配字符串是否是元字符串的开头/拼音小写的开头
+     */
+    public static boolean isMatching(String filterRes, String filterString) {
+        if (filterRes == null || filterString == null) {
+            return false;
+        }
+        CharacterParser characterParser = CharacterParser.getInstance();
+        //过滤词是开头
+        if (filterRes.contains(filterString)) {
+            return true;
+        }
+        //过滤词是原字符串的拼音小写开头
+        if (characterParser.getSelling(filterRes).toLowerCase().contains(filterString.toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
 }

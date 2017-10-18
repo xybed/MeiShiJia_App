@@ -1,8 +1,13 @@
 package com.mumu.meishijia.view;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -13,8 +18,13 @@ import com.mumu.meishijia.view.food.FoodFragment;
 import com.mumu.meishijia.view.football.FootballFragment;
 import com.mumu.meishijia.view.mine.MineFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lib.utils.PinyinSortUtil;
+import lib.utils.StringUtil;
 import lib.utils.ToastUtil;
 
 public class MainActivity extends BaseActivity {
@@ -39,6 +49,7 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         initFragment();
         initBottomNavigationBar();
+        showDialog();
     }
 
     private void initFragment() {
@@ -150,5 +161,45 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         IMUtil.getInstance().addMessageListener();
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("版本更新");
+        dialog.setMessage("发现新版本");
+        dialog.setPositiveButton("立即下载", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://bodata-download.oss-cn-shanghai.aliyuncs.com/app/fnxp-release-v1.0-2017-10-18.apk"));
+                startActivity(intent);
+            }
+        });
+        dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.create().show();
+    }
+
+    List<String> tempList = new ArrayList<>();
+    private void searchFilter(String filterStr){
+        List<String> strList = new ArrayList<>();
+        if (TextUtils.isEmpty(filterStr)) {
+            //如果为空，strList为缓存的list
+        } else {
+            strList.clear();
+            for (String str: tempList) {
+                //匹配两个字符串
+                if(StringUtil.isMatching(str, filterStr)){
+                    strList.add(str);
+                }
+            }
+        }
+        PinyinSortUtil pinyinSortUtil = new PinyinSortUtil();
+        // 根据a-z进行排序
+        pinyinSortUtil.Sort(strList, "getSortLetters");
+        //刷新界面
     }
 }
