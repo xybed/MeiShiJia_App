@@ -13,14 +13,20 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.presenter.BasePresenter;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
 
 import lib.baidu.MyLocation;
 import lib.utils.MyLogUtil;
 import lib.utils.ToastUtil;
 import lib.widget.LoadingDialog;
 
-public class BaseActivity extends AppCompatActivity implements BaseView{
+public class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView{
+
+    protected P presenter;
 
     private SystemBarTintManager tintManager;
     private LoadingDialog loadingDialog;
@@ -29,6 +35,7 @@ public class BaseActivity extends AppCompatActivity implements BaseView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        createPresenter();
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             setTranslucentStatus(true);
 
@@ -39,7 +46,24 @@ public class BaseActivity extends AppCompatActivity implements BaseView{
             tintManager.setTintColor(0xffe8866c);
 //                tintManager.setTintResource(R.drawable.bg_bar_status);
         }
-        ToastUtil.setContext(this);//统一设置toast的context
+
+    }
+
+    @SuppressWarnings("unchecked")
+    private void createPresenter(){
+        try {
+            presenter = ((Class<P>) ((ParameterizedType) (this.getClass().getGenericSuperclass())).getActualTypeArguments()[0]).getConstructor(BaseView.class).newInstance(this);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (ClassCastException e){
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

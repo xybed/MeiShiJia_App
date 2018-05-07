@@ -40,11 +40,7 @@ public class MD5Util {
         }
     }
 
-    public static String createParamSign(Map<String, String> param, String tokenKey){
-        List<String> keyList = new ArrayList<>();
-        for(Map.Entry<String, String> entry : param.entrySet()){
-            keyList.add(entry.getKey() + "=" + entry.getValue());
-        }
+    public static String createParamSign(List<String> keyList, String tokenKey){
         Collections.sort(keyList);
         StringBuilder builder = new StringBuilder();
         builder.append(tokenKey);

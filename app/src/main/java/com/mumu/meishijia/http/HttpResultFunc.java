@@ -1,18 +1,17 @@
 package com.mumu.meishijia.http;
 
-import com.google.gson.Gson;
 import com.mumu.meishijia.model.BaseModel;
 
-import lib.utils.MyLogUtil;
-import rx.functions.Func1;
+import io.reactivex.functions.Function;
 
 /**
  * Created by 7mu on 2016/8/24.
+ * 网络请求回调统一处理最外层json数据
  */
-public class HttpResultFunc<T> implements Func1<BaseModel<T>, T> {
+public class HttpResultFunc<T> implements Function<BaseModel<T>, T> {
+
     @Override
-    public T call(BaseModel<T> baseModel) {
-        MyLogUtil.e("http_返回数据", new Gson().toJson(baseModel));
+    public T apply(BaseModel<T> baseModel) throws Exception {
         switch (baseModel.getResultCode()){
             case -1:
                 throw new ApiException(baseModel.getDetail());
@@ -23,5 +22,4 @@ public class HttpResultFunc<T> implements Func1<BaseModel<T>, T> {
         }
         return baseModel.getData();
     }
-
 }

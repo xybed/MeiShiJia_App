@@ -21,22 +21,22 @@ public class RankingViewModel {
     }
 
     public void getRanking(int type){
-        HttpRequestParams params = new HttpRequestParams();
-        params.put("type", type);
-        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-        httpRetrofit.getList(httpRetrofit.getApiService(FootballService.class, HttpUrl.GetRanking, params).getRanking(params.urlParams), "", new RetroResListener<List<RankingModel>>() {
-            @Override
-            protected void onSuccess(List<RankingModel> result) {
-                if(listener != null)
-                    listener.getSuccess(result);
-            }
-
-            @Override
-            protected void onFailure(String errMsg) {
-                if(listener != null)
-                    listener.getFail(errMsg);
-            }
-        });
+//        HttpRequestParams params = new HttpRequestParams();
+//        params.put("type", type);
+//        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
+//        httpRetrofit.getList(httpRetrofit.getApiService(FootballService.class, HttpUrl.GetRanking, params).getRanking(params.urlParams), "", new RetroResListener<List<RankingModel>>() {
+//            @Override
+//            protected void onSuccess(List<RankingModel> result) {
+//                if(listener != null)
+//                    listener.getSuccess(result);
+//            }
+//
+//            @Override
+//            protected void onFailure(String errMsg) {
+//                if(listener != null)
+//                    listener.getFail(errMsg);
+//            }
+//        });
     }
 
     private RankingListener listener;

@@ -18,23 +18,23 @@ public class ForgetPwdViewModel {
     }
 
     public void modifyPwd(String username, String password){
-        HttpRequestParams params = new HttpRequestParams();
-        params.put("username", username);
-        params.put("password", password);
-        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.ModifyPwd, params).modifyPwd(params.urlParams), "", new RetroResListener<String>() {
-            @Override
-            protected void onSuccess(String result) {
-                if(listener != null)
-                    listener.modifySuccess(result);
-            }
-
-            @Override
-            protected void onFailure(String errMsg) {
-                if(listener != null)
-                    listener.modifyFail(errMsg);
-            }
-        });
+//        HttpRequestParams params = new HttpRequestParams();
+//        params.put("username", username);
+//        params.put("password", password);
+//        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
+//        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.ModifyPwd, params).modifyPwd(params.urlParams), "", new RetroResListener<String>() {
+//            @Override
+//            protected void onSuccess(String result) {
+//                if(listener != null)
+//                    listener.modifySuccess(result);
+//            }
+//
+//            @Override
+//            protected void onFailure(String errMsg) {
+//                if(listener != null)
+//                    listener.modifyFail(errMsg);
+//            }
+//        });
     }
 
     private ForgetPwdListener listener;

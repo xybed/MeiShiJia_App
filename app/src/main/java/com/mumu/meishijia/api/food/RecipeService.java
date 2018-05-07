@@ -6,10 +6,9 @@ import com.mumu.meishijia.model.food.RecipeSubModel;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
-import rx.Observable;
 
 /**
  * Created by Administrator on 2016/12/14.

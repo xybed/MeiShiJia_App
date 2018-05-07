@@ -18,21 +18,21 @@ public class SettingViewModel {
     }
 
     public void logout(){
-        HttpRequestParams params = new HttpRequestParams();
-        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.Logout, params).logout(params.urlParams), "", new RetroResListener<String>() {
-            @Override
-            protected void onSuccess(String result) {
-                if(listener != null)
-                    listener.logoutSuccess(result);
-            }
-
-            @Override
-            protected void onFailure(String errMsg) {
-                if(listener != null)
-                    listener.logoutFail(errMsg);
-            }
-        });
+//        HttpRequestParams params = new HttpRequestParams();
+//        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
+//        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.Logout, params).logout(params.urlParams), "", new RetroResListener<String>() {
+//            @Override
+//            protected void onSuccess(String result) {
+//                if(listener != null)
+//                    listener.logoutSuccess(result);
+//            }
+//
+//            @Override
+//            protected void onFailure(String errMsg) {
+//                if(listener != null)
+//                    listener.logoutFail(errMsg);
+//            }
+//        });
     }
 
     private SettingListener listener;

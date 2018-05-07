@@ -20,23 +20,23 @@ public class ContactsDetailViewModel {
     }
 
     public void getContactsDetail(int friendId){
-        HttpRequestParams params = new HttpRequestParams();
-        params.put("user_id", MyApplication.getInstance().getUser().getId());
-        params.put("friend_id", friendId);
-        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-        httpRetrofit.getModel(httpRetrofit.getApiService(ImService.class, HttpUrl.GetContactsDetail, params).getContactsDetail(params.urlParams), "", new RetroResListener<ContactsDetailModel>() {
-            @Override
-            protected void onSuccess(ContactsDetailModel result) {
-                if(listener != null)
-                    listener.getSuccess(result);
-            }
-
-            @Override
-            protected void onFailure(String errMsg) {
-                if(listener != null)
-                    listener.getFail(errMsg);
-            }
-        });
+//        HttpRequestParams params = new HttpRequestParams();
+//        params.put("user_id", MyApplication.getInstance().getUser().getId());
+//        params.put("friend_id", friendId);
+//        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
+//        httpRetrofit.getModel(httpRetrofit.getApiService(ImService.class, HttpUrl.GetContactsDetail, params).getContactsDetail(params.urlParams), "", new RetroResListener<ContactsDetailModel>() {
+//            @Override
+//            protected void onSuccess(ContactsDetailModel result) {
+//                if(listener != null)
+//                    listener.getSuccess(result);
+//            }
+//
+//            @Override
+//            protected void onFailure(String errMsg) {
+//                if(listener != null)
+//                    listener.getFail(errMsg);
+//            }
+//        });
     }
 
     private ContactsDetailListener listener;

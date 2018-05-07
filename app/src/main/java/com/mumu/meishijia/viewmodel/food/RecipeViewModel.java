@@ -20,21 +20,21 @@ public class RecipeViewModel {
     }
 
     public void getRecipe(){
-        HttpRequestParams params = new HttpRequestParams();
-        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-        httpRetrofit.getList(httpRetrofit.getApiService(RecipeService.class, HttpUrl.GetRecipe, params).getRecipe(params.urlParams), "", new RetroResListener<List<RecipeSubModel>>() {
-            @Override
-            protected void onSuccess(List<RecipeSubModel> result) {
-                if(listener != null)
-                    listener.getSuccess(result);
-            }
-
-            @Override
-            protected void onFailure(String errMsg) {
-                if(listener != null)
-                    listener.getFail(errMsg);
-            }
-        });
+//        HttpRequestParams params = new HttpRequestParams();
+//        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
+//        httpRetrofit.getList(httpRetrofit.getApiService(RecipeService.class, HttpUrl.GetRecipe, params).getRecipe(params.urlParams), "", new RetroResListener<List<RecipeSubModel>>() {
+//            @Override
+//            protected void onSuccess(List<RecipeSubModel> result) {
+//                if(listener != null)
+//                    listener.getSuccess(result);
+//            }
+//
+//            @Override
+//            protected void onFailure(String errMsg) {
+//                if(listener != null)
+//                    listener.getFail(errMsg);
+//            }
+//        });
     }
 
     private RecipeListener listener;

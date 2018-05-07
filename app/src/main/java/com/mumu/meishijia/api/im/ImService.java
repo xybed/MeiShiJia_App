@@ -9,11 +9,11 @@ import com.mumu.meishijia.model.im.PrincipalModel;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
-import rx.Observable;
 
 /**
  * im的接口

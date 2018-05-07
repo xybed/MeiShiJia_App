@@ -9,6 +9,7 @@ import io.realm.Realm;
 import lib.cache.CacheJsonMgr;
 import lib.crash.MyCrashHandler;
 import lib.realm.MyRealm;
+import lib.utils.ToastUtil;
 
 /**
  * MyApplication
@@ -29,6 +30,8 @@ public class MyApplication extends MultiDexApplication {
         MyCrashHandler.getInstance().init(this);
         initUserLoginInfo();
         initRealm();
+        //统一设置toast的context,context为app可避免内存泄漏
+        ToastUtil.setContext(this);
         //验证了，这个添加离线消息，必须放在这个位置，且初始化IM要放在启动页面中，才会正常
         IMUtil.getInstance().addOfflineMsgListener();
     }

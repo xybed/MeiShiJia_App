@@ -19,23 +19,23 @@ public class LoginViewModel {
     }
 
     public void login(String username, String password){
-        HttpRequestParams params = new HttpRequestParams();
-        params.put("username", username);
-        params.put("password", password);
-        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.Login, params).login(params.urlParams), UserModel.class.getSimpleName(), new RetroResListener<UserModel>() {
-            @Override
-            protected void onSuccess(UserModel result) {
-                if(listener != null)
-                    listener.loginSuccess(result);
-            }
-
-            @Override
-            protected void onFailure(String errMsg) {
-                if(listener != null)
-                    listener.loginFail(errMsg);
-            }
-        });
+//        HttpRequestParams params = new HttpRequestParams();
+//        params.put("username", username);
+//        params.put("password", password);
+//        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
+//        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.Login, params).login(params.urlParams), UserModel.class.getSimpleName(), new RetroResListener<UserModel>() {
+//            @Override
+//            protected void onSuccess(UserModel result) {
+//                if(listener != null)
+//                    listener.loginSuccess(result);
+//            }
+//
+//            @Override
+//            protected void onFailure(String errMsg) {
+//                if(listener != null)
+//                    listener.loginFail(errMsg);
+//            }
+//        });
     }
 
     private LoginListener listener;

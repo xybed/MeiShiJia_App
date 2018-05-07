@@ -135,7 +135,7 @@ public class UserModel {
     }
 
     public String getToken() {
-        return token;
+        return token == null ? "" : token;
     }
 
     public void setToken(String token) {
