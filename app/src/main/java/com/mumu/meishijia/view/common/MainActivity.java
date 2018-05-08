@@ -1,4 +1,4 @@
-package com.mumu.meishijia.view;
+package com.mumu.meishijia.view.common;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.tencent.IMUtil;
+import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.food.FoodFragment;
 import com.mumu.meishijia.view.football.FootballFragment;
 import com.mumu.meishijia.view.mine.MineFragment;

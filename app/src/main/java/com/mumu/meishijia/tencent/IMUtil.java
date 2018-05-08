@@ -10,14 +10,7 @@ import android.support.v4.app.NotificationCompat;
 
 import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
-import com.mumu.meishijia.api.im.ImService;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.http.HttpRequestParams;
-import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.http.HttpUrl;
-import com.mumu.meishijia.http.RetroResListener;
-import com.mumu.meishijia.tencent.model.MessageFactory;
-import com.mumu.meishijia.model.im.PrincipalModel;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.tencent.dao.ChatDao;
 import com.mumu.meishijia.tencent.dao.ConversationDao;
@@ -25,7 +18,8 @@ import com.mumu.meishijia.tencent.dao.PrincipalDao;
 import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 import com.mumu.meishijia.tencent.dbmodel.PrincipalRealmModel;
-import com.mumu.meishijia.view.SplashActivity;
+import com.mumu.meishijia.tencent.model.MessageFactory;
+import com.mumu.meishijia.view.common.SplashActivity;
 import com.mumu.meishijia.view.im.ConversationActivity;
 import com.tencent.TIMCallBack;
 import com.tencent.TIMConversation;
@@ -44,7 +38,6 @@ import com.tencent.qalsdk.sdk.MsfSdkUtils;
 
 import java.util.List;
 
-import lib.utils.MyLogUtil;
 import lib.utils.NumberUtil;
 import lib.utils.SystemUtil;
 
@@ -306,28 +299,28 @@ public class IMUtil {
     }
 
     private void requestPrincipalInfo(final String principalId, final ChatRealmModel chat){
-        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-        HttpRequestParams params = new HttpRequestParams();
-        params.put("id", MyApplication.getInstance().getUser().getId());
-        params.put("principal_id", principalId);
-        httpRetrofit.getModel(httpRetrofit.getApiService(ImService.class, HttpUrl.GetPrincipalInfo, params).getPrincipalInfo(params.urlParams), "", new RetroResListener<PrincipalModel>() {
-            @Override
-            protected void onSuccess(PrincipalModel result) {
-                //把PrincipalModel转为PrincipalRealmModel
-                PrincipalRealmModel principal = new PrincipalRealmModel();
-                principal.setUser_id(MyApplication.getInstance().getUser().getId());
-                principal.setPrincipal_user_id(result.getPrincipal_user_id());
-                principal.setRemark(result.getRemark());
-                principal.setAvatar(result.getAvatar());
-                principal.setPrincipal_id(result.getPrincipal_id());
-                insertOrUpdateConversation(principal, chat);
-            }
-
-            @Override
-            protected void onFailure(String errMsg) {
-                MyLogUtil.e("消息主体err", "请求"+principalId+"的主体信息失败");
-            }
-        });
+//        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
+//        HttpRequestParams params = new HttpRequestParams();
+//        params.put("id", MyApplication.getInstance().getUser().getId());
+//        params.put("principal_id", principalId);
+//        httpRetrofit.getModel(httpRetrofit.getApiService(ImService.class, HttpUrl.GetPrincipalInfo, params).getPrincipalInfo(params.urlParams), "", new RetroResListener<PrincipalModel>() {
+//            @Override
+//            protected void onSuccess(PrincipalModel result) {
+//                //把PrincipalModel转为PrincipalRealmModel
+//                PrincipalRealmModel principal = new PrincipalRealmModel();
+//                principal.setUser_id(MyApplication.getInstance().getUser().getId());
+//                principal.setPrincipal_user_id(result.getPrincipal_user_id());
+//                principal.setRemark(result.getRemark());
+//                principal.setAvatar(result.getAvatar());
+//                principal.setPrincipal_id(result.getPrincipal_id());
+//                insertOrUpdateConversation(principal, chat);
+//            }
+//
+//            @Override
+//            protected void onFailure(String errMsg) {
+//                MyLogUtil.e("消息主体err", "请求"+principalId+"的主体信息失败");
+//            }
+//        });
     }
 
     private static void refreshChat(){

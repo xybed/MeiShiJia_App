@@ -1,4 +1,4 @@
-package com.mumu.meishijia.view;
+package com.mumu.meishijia.view.common;
 
 import android.Manifest;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.SelectCityGridAdapter;
 import com.mumu.meishijia.model.LocationModel;
 import com.mumu.meishijia.model.RegionModel;
+import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.mine.UserInfoActivity;
 
 import java.io.InputStream;
@@ -25,7 +26,6 @@ import butterknife.OnClick;
 import lib.baidu.MyLocation;
 import lib.utils.PullParseUtil;
 import lib.utils.ToastUtil;
-import lib.widget.FrameProgressLayout;
 import lib.widget.SelectCityDialog;
 
 public class SelectCityActivity extends BaseActivity {

@@ -1,4 +1,4 @@
-package com.mumu.meishijia.view;
+package com.mumu.meishijia.view.common;
 
 import android.Manifest;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.mumu.meishijia.BuildConfig;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.tencent.IMUtil;
+import com.mumu.meishijia.view.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

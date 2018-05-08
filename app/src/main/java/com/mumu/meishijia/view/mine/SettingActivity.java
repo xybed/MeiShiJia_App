@@ -12,7 +12,7 @@ import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.SettingPresenter;
 import com.mumu.meishijia.tencent.IMUtil;
 import com.mumu.meishijia.view.BaseActivity;
-import com.mumu.meishijia.view.MainActivity;
+import com.mumu.meishijia.view.common.MainActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

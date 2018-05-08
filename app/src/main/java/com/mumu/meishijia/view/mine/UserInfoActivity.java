@@ -24,7 +24,7 @@ import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.UserInfoPresenter;
 import com.mumu.meishijia.view.BaseActivity;
-import com.mumu.meishijia.view.SelectCityActivity;
+import com.mumu.meishijia.view.common.SelectCityActivity;
 import com.zhihu.matisse.Matisse;
 
 import java.io.InputStream;

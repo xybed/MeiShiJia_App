@@ -19,7 +19,7 @@ import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.mine.RegisterPresenter;
 import com.mumu.meishijia.view.BaseActivity;
-import com.mumu.meishijia.view.MainActivity;
+import com.mumu.meishijia.view.common.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
