@@ -6,10 +6,12 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.presenter.BasePresenter;
@@ -120,6 +122,29 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
         super.onDestroy();
         hideSoftInput();
         presenter.unSubscribe();
+    }
+
+    protected void toast(int resId){
+        toast(getString(resId));
+    }
+
+    protected void toast(String msg){
+        if(!TextUtils.isEmpty(msg)){
+            /*
+            * 因为在主题里设置了fitsSystemWindows为true，所以toast的文字位置不居中
+            * 把application当作context的值传入可解决这个问题*/
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 针对请求错误的统一处理
+     * @param msg 错误信息
+     */
+    @Override
+    public void toastErr(String msg){
+        dismissLoadingDialog();
+        toast(msg);
     }
 
     @Override

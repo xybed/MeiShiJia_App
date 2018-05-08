@@ -85,6 +85,8 @@ public class BasePresenter<V extends BaseView, M extends BaseViewModel> {
         }
 
         protected abstract void onSuccess(T t);
-        protected void onFail(String errMsg){}
+        protected void onFail(String errMsg){
+            view.toastErr(errMsg);
+        }
     }
 }

@@ -28,7 +28,7 @@ import lib.utils.RegexUtil;
 import lib.utils.StringUtil;
 import lib.utils.ToastUtil;
 
-public class LoginActivity extends BaseActivity implements LoginView{
+public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginView{
 
     @BindView(R.id.edit_username)
     EditText editUsername;
@@ -39,8 +39,6 @@ public class LoginActivity extends BaseActivity implements LoginView{
     @BindView(R.id.btn_login)
     Button btnLogin;
 
-    private LoginPresenter presenter;
-
     private boolean isLook;
 
     @Override
@@ -50,7 +48,6 @@ public class LoginActivity extends BaseActivity implements LoginView{
 
         ButterKnife.bind(this);
         addWatcher();
-        presenter = new LoginPresenter(this);
     }
 
     private void addWatcher(){
