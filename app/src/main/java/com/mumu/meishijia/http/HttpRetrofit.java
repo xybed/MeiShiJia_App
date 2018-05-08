@@ -62,7 +62,7 @@ public class HttpRetrofit {
      * @param filePath 图片路径
      * @return part
      */
-    public MultipartBody.Part createImageMultipart(String filePath){
+    public static MultipartBody.Part createImageMultipart(String filePath){
         File file = new File(filePath);
         RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         return MultipartBody.Part.createFormData("img_file", file.getName(), imageBody);

@@ -45,8 +45,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @BindView(R.id.btn_register)
     Button btnRegister;
 
-    private RegisterPresenter presenter;
-
     private ShareSDKLogin shareSDKLogin;
     private boolean isLook;
 
@@ -58,7 +56,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         ButterKnife.bind(this);
         addWatcher();
         RxBus.get().register(this);
-        presenter = new RegisterPresenter(this);
         shareSDKLogin = new ShareSDKLogin(this, this);
     }
 

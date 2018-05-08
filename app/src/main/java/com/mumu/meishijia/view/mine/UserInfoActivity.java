@@ -3,7 +3,6 @@ package com.mumu.meishijia.view.mine;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -27,8 +26,6 @@ import com.mumu.meishijia.presenter.mine.UserInfoPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.SelectCityActivity;
 import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -47,7 +44,7 @@ import lib.utils.StreamUtil;
 import lib.utils.ToastUtil;
 import lib.widget.ActionSheet;
 
-public class UserInfoActivity extends BaseActivity implements UserInfoView {
+public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements UserInfoView {
     public static final int REQ_CITY = 1;
     public static final String RESULT_PROVINCE = "result_province";
     public static final String RESULT_CITY = "result_city";
@@ -69,8 +66,6 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
     @BindView(R.id.edit_signature)
     EditText editSignature;
 
-    private UserInfoPresenter presenter;
-
     private String sexCode;
     private String province;
     private String city;
@@ -82,7 +77,6 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
 
         ButterKnife.bind(this);
         initUI();
-        presenter = new UserInfoPresenter(this);
         RxBus.get().register(this);
     }
 
@@ -325,12 +319,6 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
     }
 
     @Override
-    public void modifyFail(String errMsg) {
-        dismissLoadingDialog();
-        ToastUtil.show(errMsg);
-    }
-
-    @Override
     public void modifyAvatarSuccess(String result) {
         dismissLoadingDialog();
         //更改本地的userModel数据
@@ -341,12 +329,6 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         cacheJsonMgr.saveJson(jsonStr, UserModel.class.getSimpleName());
         RxBus.get().post(RxBusAction.MineUserData, "");
         ToastUtil.show(R.string.com_upload_success);
-    }
-
-    @Override
-    public void modifyAvatarFail(String errMsg) {
-        dismissLoadingDialog();
-        ToastUtil.show(errMsg);
     }
 
     @Override

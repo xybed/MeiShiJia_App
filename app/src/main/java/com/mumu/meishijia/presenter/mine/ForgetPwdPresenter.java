@@ -1,5 +1,7 @@
 package com.mumu.meishijia.presenter.mine;
 
+import com.mumu.meishijia.presenter.BasePresenter;
+import com.mumu.meishijia.view.BaseView;
 import com.mumu.meishijia.view.mine.ForgetPwdView;
 import com.mumu.meishijia.viewmodel.mine.ForgetPwdViewModel;
 
@@ -11,15 +13,12 @@ import lib.utils.TimerUtil;
  * Created by Administrator on 2017/3/29.
  */
 
-public class ForgetPwdPresenter implements ForgetPwdViewModel.ForgetPwdListener, TimerUtil.TimerListener {
+public class ForgetPwdPresenter extends BasePresenter<ForgetPwdView, ForgetPwdViewModel> implements TimerUtil.TimerListener {
 
-    private ForgetPwdView view;
-    private ForgetPwdViewModel viewModel;
     private TimerUtil timerUtil;
 
-    public ForgetPwdPresenter(ForgetPwdView view){
-        this.view = view;
-        viewModel = new ForgetPwdViewModel(this);
+    public ForgetPwdPresenter(BaseView view){
+        super(view);
         timerUtil = new TimerUtil(60, 60, this);
     }
 
@@ -33,7 +32,14 @@ public class ForgetPwdPresenter implements ForgetPwdViewModel.ForgetPwdListener,
 
     public void modifyPwd(String username, String password){
         password = MD5Util.MD5(password);
-        viewModel.modifyPwd(username, password);
+        model.modifyPwd(username, password)
+                .subscribe(new RxObserver<String>() {
+                    @Override
+                    protected void onSuccess(String s) {
+                        if(view != null)
+                            view.modifySuccess(s);
+                    }
+                });
     }
 
     @Override
@@ -46,13 +52,4 @@ public class ForgetPwdPresenter implements ForgetPwdViewModel.ForgetPwdListener,
         view.onTimerEnd();
     }
 
-    @Override
-    public void modifySuccess(String result) {
-        view.modifySuccess(result);
-    }
-
-    @Override
-    public void modifyFail(String errMsg) {
-        view.modifyFail(errMsg);
-    }
 }

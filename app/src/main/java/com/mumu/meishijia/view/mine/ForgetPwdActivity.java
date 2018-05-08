@@ -24,7 +24,7 @@ import lib.utils.RegexUtil;
 import lib.utils.StringUtil;
 import lib.utils.ToastUtil;
 
-public class ForgetPwdActivity extends BaseActivity implements ForgetPwdView, ShareSDKLogin.SMSListener{
+public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresenter> implements ForgetPwdView, ShareSDKLogin.SMSListener{
 
     @BindView(R.id.edit_username)
     EditText editUsername;
@@ -39,8 +39,6 @@ public class ForgetPwdActivity extends BaseActivity implements ForgetPwdView, Sh
     @BindView(R.id.btn_commit)
     Button btnCommit;
 
-    private ForgetPwdPresenter presenter;
-
     private ShareSDKLogin shareSDKLogin;
     private boolean isLook;
 
@@ -52,7 +50,6 @@ public class ForgetPwdActivity extends BaseActivity implements ForgetPwdView, Sh
         ButterKnife.bind(this);
         addWatcher();
         shareSDKLogin = new ShareSDKLogin(this, this);
-        presenter = new ForgetPwdPresenter(this);
     }
 
     private void addWatcher(){
@@ -198,12 +195,6 @@ public class ForgetPwdActivity extends BaseActivity implements ForgetPwdView, Sh
         ToastUtil.show(result);
         //关闭此界面，现只有登录界面跳转过来，关闭就回到登录界面去登录
         finish();
-    }
-
-    @Override
-    public void modifyFail(String errMsg) {
-        dismissLoadingDialog();
-        ToastUtil.show(errMsg);
     }
 
     @Override

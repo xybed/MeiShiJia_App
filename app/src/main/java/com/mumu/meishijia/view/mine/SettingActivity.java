@@ -17,12 +17,8 @@ import com.mumu.meishijia.view.MainActivity;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lib.cache.CacheJsonMgr;
-import lib.utils.MyLogUtil;
-import lib.utils.ToastUtil;
 
-public class SettingActivity extends BaseActivity implements SettingView{
-
-    private SettingPresenter presenter;
+public class SettingActivity extends BaseActivity<SettingPresenter> implements SettingView{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +27,6 @@ public class SettingActivity extends BaseActivity implements SettingView{
 
         ButterKnife.bind(this);
         RxBus.get().register(this);
-        presenter = new SettingPresenter(this);
     }
 
     @OnClick({R.id.btn_left, R.id.llay_logout})
@@ -61,12 +56,6 @@ public class SettingActivity extends BaseActivity implements SettingView{
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-    }
-
-    @Override
-    public void logoutFail(String errMsg) {
-        dismissLoadingDialog();
-        ToastUtil.show(errMsg);
     }
 
     @Override

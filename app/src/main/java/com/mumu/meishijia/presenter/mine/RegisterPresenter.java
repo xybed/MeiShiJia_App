@@ -2,6 +2,7 @@ package com.mumu.meishijia.presenter.mine;
 
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.BasePresenter;
+import com.mumu.meishijia.view.BaseView;
 import com.mumu.meishijia.view.mine.RegisterView;
 import com.mumu.meishijia.viewmodel.mine.RegisterViewModel;
 
@@ -17,7 +18,7 @@ public class RegisterPresenter extends BasePresenter<RegisterView, RegisterViewM
 
     private TimerUtil timerUtil;
 
-    public RegisterPresenter(RegisterView view){
+    public RegisterPresenter(BaseView view){
         super(view);
         timerUtil = new TimerUtil(60, 60, this);
     }
