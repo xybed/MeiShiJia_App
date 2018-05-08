@@ -1,16 +1,15 @@
 package com.mumu.meishijia.view.mine;
 
 import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.view.BaseView;
 
 /**
  * Created by Administrator on 2017/3/27.
  */
 
-public interface RegisterView {
+public interface RegisterView extends BaseView{
     void onTimerRunning(int totalTime);
     void onTimerEnd();
     void registerSuccess(String result);
-    void registerFail(String errMsg);
     void loginSuccess(UserModel result);
-    void loginFail(String errMsg);
 }

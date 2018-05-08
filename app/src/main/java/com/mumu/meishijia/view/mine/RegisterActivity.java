@@ -30,7 +30,7 @@ import lib.utils.RegexUtil;
 import lib.utils.StringUtil;
 import lib.utils.ToastUtil;
 
-public class RegisterActivity extends BaseActivity implements RegisterView, ShareSDKLogin.SMSListener{
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterView, ShareSDKLogin.SMSListener{
 
     @BindView(R.id.edit_username)
     EditText editUsername;
@@ -209,12 +209,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
     }
 
     @Override
-    public void registerFail(String errMsg) {
-        dismissLoadingDialog();
-        ToastUtil.show(errMsg);
-    }
-
-    @Override
     public void loginSuccess(UserModel result) {
         dismissLoadingDialog();
         //登录成功，跳转主界面
@@ -226,12 +220,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Shar
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    public void loginFail(String errMsg) {
-        dismissLoadingDialog();
-        ToastUtil.show(errMsg);
     }
 
     @Override

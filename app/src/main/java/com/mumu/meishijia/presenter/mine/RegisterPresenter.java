@@ -1,6 +1,7 @@
 package com.mumu.meishijia.presenter.mine;
 
 import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.presenter.BasePresenter;
 import com.mumu.meishijia.view.mine.RegisterView;
 import com.mumu.meishijia.viewmodel.mine.RegisterViewModel;
 
@@ -12,26 +13,37 @@ import lib.utils.TimerUtil;
  * Created by Administrator on 2017/3/27.
  */
 
-public class RegisterPresenter implements RegisterViewModel.RegisterListener, TimerUtil.TimerListener{
+public class RegisterPresenter extends BasePresenter<RegisterView, RegisterViewModel> implements TimerUtil.TimerListener{
 
-    private RegisterView view;
-    private RegisterViewModel viewModel;
     private TimerUtil timerUtil;
 
     public RegisterPresenter(RegisterView view){
-        this.view = view;
-        viewModel = new RegisterViewModel(this);
+        super(view);
         timerUtil = new TimerUtil(60, 60, this);
     }
 
     public void register(String username, String password, String verifyCode){
         password = MD5Util.MD5(password);
-        viewModel.register(username, password, verifyCode);
+        model.register(username, password, verifyCode)
+                .subscribe(new RxObserver<String>() {
+                    @Override
+                    protected void onSuccess(String s) {
+                        if(view != null)
+                            view.registerSuccess(s);
+                    }
+                });
     }
 
     public void login(String username, String password){
         password = MD5Util.MD5(password);
-        viewModel.login(username, password);
+        model.login(username, password)
+                .subscribe(new RxObserver<UserModel>() {
+                    @Override
+                    protected void onSuccess(UserModel userModel) {
+                        if(view != null)
+                            view.loginSuccess(userModel);
+                    }
+                });
     }
 
     public void startTimer(){
@@ -52,23 +64,4 @@ public class RegisterPresenter implements RegisterViewModel.RegisterListener, Ti
         view.onTimerEnd();
     }
 
-    @Override
-    public void registerSuccess(String result) {
-        view.registerSuccess(result);
-    }
-
-    @Override
-    public void registerFail(String errMsg) {
-        view.registerFail(errMsg);
-    }
-
-    @Override
-    public void loginSuccess(UserModel result) {
-        view.loginSuccess(result);
-    }
-
-    @Override
-    public void loginFail(String errMsg) {
-        view.loginFail(errMsg);
-    }
 }

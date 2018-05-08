@@ -9,5 +9,4 @@ import com.mumu.meishijia.view.BaseView;
  */
 public interface LoginView extends BaseView{
     void loginSuccess(UserModel result);
-    void loginFail(String errMsg);
 }

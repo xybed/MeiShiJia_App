@@ -2,6 +2,7 @@ package com.mumu.meishijia.presenter.mine;
 
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.BasePresenter;
+import com.mumu.meishijia.view.BaseView;
 import com.mumu.meishijia.view.mine.LoginView;
 import com.mumu.meishijia.viewmodel.mine.LoginViewModel;
 
@@ -14,7 +15,7 @@ import lib.utils.MD5Util;
 
 public class LoginPresenter extends BasePresenter<LoginView, LoginViewModel>{
 
-    public LoginPresenter(LoginView view){
+    public LoginPresenter(BaseView view){
         super(view);
     }
 

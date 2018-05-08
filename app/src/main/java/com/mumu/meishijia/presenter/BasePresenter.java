@@ -31,7 +31,7 @@ public class BasePresenter<V extends BaseView, M extends BaseViewModel> {
     @SuppressWarnings("unchecked")
     private void createModel(){
         try {
-            model = ((Class<M>) ((ParameterizedType) (this.getClass().getGenericSuperclass())).getActualTypeArguments()[0]).getConstructor(BaseViewModel.class).newInstance();
+            model = ((Class<M>) ((ParameterizedType) (this.getClass().getGenericSuperclass())).getActualTypeArguments()[1]).getConstructor().newInstance();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {

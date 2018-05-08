@@ -159,9 +159,4 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         finish();
     }
 
-    @Override
-    public void loginFail(String errMsg) {
-        dismissLoadingDialog();
-        ToastUtil.show(errMsg);
-    }
 }
