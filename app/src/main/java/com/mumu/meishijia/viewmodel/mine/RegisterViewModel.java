@@ -1,10 +1,5 @@
 package com.mumu.meishijia.viewmodel.mine;
 
-import com.mumu.meishijia.api.mine.UserService;
-import com.mumu.meishijia.http.HttpRequestParams;
-import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.http.HttpUrl;
-import com.mumu.meishijia.http.RetroResListener;
 import com.mumu.meishijia.model.mine.UserModel;
 
 /**
@@ -23,7 +18,7 @@ public class RegisterViewModel {
 //        params.put("password", password);
 //        params.put("verify_code", verifyCode);
 //        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-//        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.Register, params).register(params.urlParams), "", new RetroResListener<String>() {
+//        httpRetrofit.getModel(httpRetrofit.getApiService(UserApi.class, HttpUrl.Register, params).register(params.urlParams), "", new RetroResListener<String>() {
 //            @Override
 //            protected void onSuccess(String result) {
 //                if(listener != null)
@@ -43,7 +38,7 @@ public class RegisterViewModel {
 //        params.put("username", username);
 //        params.put("password", password);
 //        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-//        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.Login, params).login(params.urlParams), UserModel.class.getSimpleName(), new RetroResListener<UserModel>() {
+//        httpRetrofit.getModel(httpRetrofit.getApiService(UserApi.class, HttpUrl.Login, params).login(params.urlParams), UserModel.class.getSimpleName(), new RetroResListener<UserModel>() {
 //            @Override
 //            protected void onSuccess(UserModel result) {
 //                if(listener != null)

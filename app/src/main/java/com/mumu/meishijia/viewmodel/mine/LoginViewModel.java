@@ -1,11 +1,16 @@
 package com.mumu.meishijia.viewmodel.mine;
 
-import com.mumu.meishijia.api.mine.UserService;
-import com.mumu.meishijia.http.HttpRequestParams;
+import com.mumu.meishijia.api.mine.UserApi;
+import com.mumu.meishijia.http.HttpResultFunc;
 import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.http.HttpUrl;
-import com.mumu.meishijia.http.RetroResListener;
+import com.mumu.meishijia.http.RxObserver;
 import com.mumu.meishijia.model.mine.UserModel;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 登录的viewModel
@@ -19,11 +24,25 @@ public class LoginViewModel {
     }
 
     public void login(String username, String password){
+        Map<String, String> params = new HashMap<>();
+        params.put("username", username);
+        params.put("password", password);
+        HttpRetrofit.create(UserApi.class)
+                .login(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new HttpResultFunc<UserModel>())
+                .subscribe(new RxObserver<UserModel>() {
+                    @Override
+                    protected void onSuccess(UserModel userModel) {
+
+                    }
+                });
 //        HttpRequestParams params = new HttpRequestParams();
 //        params.put("username", username);
 //        params.put("password", password);
 //        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-//        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.Login, params).login(params.urlParams), UserModel.class.getSimpleName(), new RetroResListener<UserModel>() {
+//        httpRetrofit.getModel(httpRetrofit.getApiService(UserApi.class, HttpUrl.Login, params).login(params.urlParams), UserModel.class.getSimpleName(), new RetroResListener<UserModel>() {
 //            @Override
 //            protected void onSuccess(UserModel result) {
 //                if(listener != null)

@@ -1,11 +1,5 @@
 package com.mumu.meishijia.viewmodel.mine;
 
-import com.mumu.meishijia.api.mine.UserService;
-import com.mumu.meishijia.http.HttpRequestParams;
-import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.http.HttpUrl;
-import com.mumu.meishijia.http.RetroResListener;
-
 /**
  * 忘记密码的viewModel
  * Created by Administrator on 2017/3/29.
@@ -22,7 +16,7 @@ public class ForgetPwdViewModel {
 //        params.put("username", username);
 //        params.put("password", password);
 //        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-//        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.ModifyPwd, params).modifyPwd(params.urlParams), "", new RetroResListener<String>() {
+//        httpRetrofit.getModel(httpRetrofit.getApiService(UserApi.class, HttpUrl.ModifyPwd, params).modifyPwd(params.urlParams), "", new RetroResListener<String>() {
 //            @Override
 //            protected void onSuccess(String result) {
 //                if(listener != null)

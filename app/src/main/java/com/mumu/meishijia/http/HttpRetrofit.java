@@ -18,11 +18,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by 7mu on 2016/8/24.
  */
 public class HttpRetrofit {
-    private Retrofit retrofit;
+    private static Retrofit retrofit;
 
-    private void initRetrofit(){
+    private static void initRetrofit(){
         if(retrofit == null){
-            synchronized (HttpRetrofit.this){
+            synchronized (HttpRetrofit.class){
                 if(retrofit == null){
                     OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder()
                             .connectTimeout(10000, TimeUnit.MILLISECONDS);
@@ -42,7 +42,7 @@ public class HttpRetrofit {
         }
     }
 
-    public <T> T create(Class<T> clazz){
+    public static <T> T create(Class<T> clazz){
         if(retrofit == null)
             initRetrofit();
         return retrofit.create(clazz);

@@ -1,21 +1,5 @@
 package com.mumu.meishijia.viewmodel.mine;
 
-import com.mumu.meishijia.MyApplication;
-import com.mumu.meishijia.api.mine.UserService;
-import com.mumu.meishijia.http.HttpRequestParams;
-import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.http.HttpUrl;
-import com.mumu.meishijia.http.RetroResListener;
-
-import java.io.File;
-import java.io.InputStream;
-import java.util.concurrent.ConcurrentHashMap;
-
-import lib.utils.StreamUtil;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-
 /**
  * 个人资料的viewModel
  * Created by Administrator on 2017/3/30.
@@ -40,7 +24,7 @@ public class UserInfoViewModel {
 //        params.put("city", city);
 //        params.put("signature", signature);
 //        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-//        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.ModifyUserInfo, params).modifyUserInfo(params.urlParams), "", new RetroResListener<String>() {
+//        httpRetrofit.getModel(httpRetrofit.getApiService(UserApi.class, HttpUrl.ModifyUserInfo, params).modifyUserInfo(params.urlParams), "", new RetroResListener<String>() {
 //            @Override
 //            protected void onSuccess(String result) {
 //                if(listener != null)
@@ -60,7 +44,7 @@ public class UserInfoViewModel {
 //        params.put("id", MyApplication.getInstance().getUser().getId());
 //        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
 //        MultipartBody.Part part = httpRetrofit.createImageMultipart(filePath);
-//        httpRetrofit.getModel(httpRetrofit.getApiService(UserService.class, HttpUrl.ModifyAvatar, params).modifyAvatar(part, params.urlParams), "", new RetroResListener<String>() {
+//        httpRetrofit.getModel(httpRetrofit.getApiService(UserApi.class, HttpUrl.ModifyAvatar, params).modifyAvatar(part, params.urlParams), "", new RetroResListener<String>() {
 //            @Override
 //            protected void onSuccess(String result) {
 //                if(listener != null)

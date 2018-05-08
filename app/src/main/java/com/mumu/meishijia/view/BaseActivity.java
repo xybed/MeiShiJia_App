@@ -11,7 +11,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
-import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.presenter.BasePresenter;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -120,6 +119,7 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
     protected void onDestroy() {
         super.onDestroy();
         hideSoftInput();
+        presenter.unSubscribe();
     }
 
     @Override

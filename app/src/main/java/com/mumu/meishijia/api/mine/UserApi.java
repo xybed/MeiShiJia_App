@@ -17,7 +17,7 @@ import retrofit2.http.Part;
  * 注册的api
  * Created by Administrator on 2017/3/28.
  */
-public interface UserService {
+public interface UserApi {
     @POST(HttpUrl.Register)
     Observable<BaseModel<String>> register(@Body Map<String, String> map);
     @POST(HttpUrl.Login)
