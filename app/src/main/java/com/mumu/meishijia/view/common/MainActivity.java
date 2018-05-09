@@ -1,13 +1,8 @@
 package com.mumu.meishijia.view.common;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -19,13 +14,8 @@ import com.mumu.meishijia.view.food.FoodFragment;
 import com.mumu.meishijia.view.football.FootballFragment;
 import com.mumu.meishijia.view.mine.MineFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lib.utils.PinyinSortUtil;
-import lib.utils.StringUtil;
 import lib.utils.ToastUtil;
 
 public class MainActivity extends BaseActivity {
@@ -55,7 +45,7 @@ public class MainActivity extends BaseActivity {
     private void initFragment() {
         content = new FoodFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.content, content).commit();
-        transparencyStatusBar();
+        transparentStatusBar(true);
     }
 
     private void initBottomNavigationBar(){
@@ -110,15 +100,15 @@ public class MainActivity extends BaseActivity {
         switch (position) {
             case 0:
                 switchFragment(content, getFoodFragment());
-                transparencyStatusBar();
+                transparentStatusBar(true);
                 break;
             case 1:
                 switchFragment(content, getFootballFragment());
-                transparencyStatusBar(false);
+                transparentStatusBar(false);
                 break;
             case 2:
                 switchFragment(content, getMineFragment());
-                transparencyStatusBar();
+                transparentStatusBar(true);
                 break;
         }
     }

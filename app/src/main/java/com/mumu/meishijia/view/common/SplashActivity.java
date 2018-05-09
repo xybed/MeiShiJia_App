@@ -45,7 +45,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        transparencyStatusBar();
+        transparentStatusBar(true);
         IMUtil.getInstance().initTIMSDK();
         IMUtil.getInstance().loginIM();
         initPermission();

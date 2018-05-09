@@ -4,9 +4,11 @@
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:windowAnimationStyle">@style/Animation.Activity.Bd</item>
-        <item name="android:windowNoTitle">true</item>
         <item name="colorAccent">@color/theme_color</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Activity.Bd</item>
     </style>
 
     <!-- 设置activity统一的切换动画效果-->

@@ -10,6 +10,4 @@ public interface BaseView {
     void showLoadingDialog(String message);
     void dismissLoadingDialog();
     void hideSoftInput();
-    void transparencyStatusBar(boolean isTransparency);
-    void transparencyStatusBar();
 }

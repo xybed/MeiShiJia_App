@@ -46,10 +46,8 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
             tintManager.setStatusBarTintEnabled(true);
             tintManager.setNavigationBarTintEnabled(true);
             //此处可以重新指定状态栏颜色
-            tintManager.setTintColor(0xffe8866c);
-//                tintManager.setTintResource(R.drawable.bg_bar_status);
+            tintManager.setStatusBarTintResource(R.color.theme_color);
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -69,28 +67,6 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
         }
     }
 
-    @Override
-    public void transparencyStatusBar(boolean isTransparency){
-        //版本大于4.4
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if(isTransparency)
-                //设置为全透明
-                tintManager.setTintColor(0x00000000);
-            else{
-                tintManager.setTintColor(0xffe8866c);
-//                tintManager.setTintResource(R.drawable.bg_bar_status);
-            }
-        }
-    }
-
-    @Override
-    public void transparencyStatusBar(){
-        //版本大于4.4
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            tintManager.setTintColor(0x00000000);
-        }
-    }
-
     @TargetApi(19)
     private void setTranslucentStatus(boolean on) {
         Window win = getWindow();
@@ -104,9 +80,22 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
         win.setAttributes(winParams);
     }
 
+    protected void transparentStatusBar(boolean isTransparency){
+        //版本大于4.4
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if(isTransparency)
+                //设置为全透明
+                tintManager.setTintColor(0x00000000);
+            else{
+                tintManager.setStatusBarTintResource(R.color.theme_color);
+            }
+        }
+    }
+
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
+
         getTitleBar();
         if(actionTitleBar != null){
             actionTitleBar.getImgLeft().setOnClickListener(new View.OnClickListener() {
