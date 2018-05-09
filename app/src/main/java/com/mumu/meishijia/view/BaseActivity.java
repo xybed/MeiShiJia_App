@@ -23,6 +23,7 @@ import java.lang.reflect.ParameterizedType;
 import lib.baidu.MyLocation;
 import lib.utils.MyLogUtil;
 import lib.utils.ToastUtil;
+import lib.widget.ActionTitleBar;
 import lib.widget.LoadingDialog;
 
 public class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView{
@@ -31,6 +32,7 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
 
     private SystemBarTintManager tintManager;
     private LoadingDialog loadingDialog;
+    private ActionTitleBar actionTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,43 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
     }
 
     @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        getTitleBar();
+        if(actionTitleBar != null){
+            actionTitleBar.getImgLeft().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onLeftButtonClick();
+                }
+            });
+            actionTitleBar.getImgRight().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    onRightButtonClick();
+                }
+            });
+        }
+    }
+
+    private void getTitleBar(){
+        if (actionTitleBar == null) {
+            View root = getWindow().getDecorView();
+            actionTitleBar = root.findViewWithTag(ActionTitleBar.TAG);
+        }
+    }
+
+    protected void setTitle(String title){
+        if(actionTitleBar == null)
+            return;
+        actionTitleBar.getTxtTitle().setText(title);
+    }
+
+    protected void onLeftButtonClick(){
+        finish();
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
     }
@@ -120,8 +159,11 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if(presenter != null){
+            presenter.unSubscribe();
+            presenter = null;
+        }
         hideSoftInput();
-        presenter.unSubscribe();
     }
 
     protected void toast(int resId){

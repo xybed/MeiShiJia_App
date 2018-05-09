@@ -88,13 +88,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         }
     }
 
-    @OnClick({R.id.btn_left, R.id.img_password_look, R.id.btn_login, R.id.txt_register, R.id.txt_forget_password})
+    @OnClick({R.id.img_password_look, R.id.btn_login, R.id.txt_register, R.id.txt_forget_password})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.btn_left:
-                finish();
-                break;
             case R.id.img_password_look:
                 togglePassword();
                 break;
