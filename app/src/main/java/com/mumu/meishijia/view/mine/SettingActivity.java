@@ -29,12 +29,9 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
         RxBus.get().register(this);
     }
 
-    @OnClick({R.id.btn_left, R.id.llay_logout})
+    @OnClick({R.id.llay_logout})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_left:
-                finish();
-                break;
             case R.id.llay_logout:
                 showLoadingDialog(getString(R.string.user_logging_off), false, false);
                 presenter.logout();

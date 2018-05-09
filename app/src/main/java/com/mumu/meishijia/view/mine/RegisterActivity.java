@@ -99,12 +99,9 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         }
     }
 
-    @OnClick({R.id.btn_left, R.id.img_password_look, R.id.btn_get_verify, R.id.btn_register})
+    @OnClick({R.id.img_password_look, R.id.btn_get_verify, R.id.btn_register})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_left:
-                finish();
-                break;
             case R.id.img_password_look:
                 togglePassword();
                 break;

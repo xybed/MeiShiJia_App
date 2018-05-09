@@ -14,8 +14,8 @@ import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ConversationAdapter;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 import com.mumu.meishijia.presenter.im.ConversationPresenter;
+import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 import com.mumu.meishijia.view.BaseActivity;
 
 import java.util.ArrayList;
@@ -23,7 +23,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.realm.Realm;
 import lib.realm.MyRealm;
 import lib.widget.FrameProgressLayout;
@@ -72,11 +71,6 @@ public class ConversationActivity extends BaseActivity implements ConversationVi
                 startActivity(intent);
             }
         });
-    }
-
-    @OnClick(R.id.btn_left)
-    public void onClick() {
-        finish();
     }
 
     @Override

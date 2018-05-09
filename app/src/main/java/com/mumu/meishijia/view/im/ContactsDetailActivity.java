@@ -88,13 +88,10 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         RxBus.get().post(RxBusAction.ContactsList, "");
     }
 
-    @OnClick({R.id.btn_left, R.id.txt_set_remark, R.id.btn_send_msg})
+    @OnClick({R.id.txt_set_remark, R.id.btn_send_msg})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.btn_left:
-                finish();
-                break;
             case R.id.txt_set_remark:
                 intent = new Intent(this, ModifyRemarkActivity.class);
                 intent.putExtra(ModifyRemarkActivity.FRIEND_ID, friend_id);

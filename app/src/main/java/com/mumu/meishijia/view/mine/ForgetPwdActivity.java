@@ -92,12 +92,9 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresenter> implemen
         }
     }
 
-    @OnClick({R.id.btn_left, R.id.btn_get_verify, R.id.img_password_look, R.id.btn_commit})
+    @OnClick({R.id.btn_get_verify, R.id.img_password_look, R.id.btn_commit})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_left:
-                finish();
-                break;
             case R.id.btn_get_verify:
                 getVerifyCode();
                 break;
