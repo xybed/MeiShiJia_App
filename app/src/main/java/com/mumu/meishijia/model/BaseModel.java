@@ -5,8 +5,8 @@ package com.mumu.meishijia.model;
  */
 public class BaseModel<T> {
     private int resultType;
-    private int resultCode;
-    private String detail;
+    private int code;
+    private String message;
     private T data;
 
     public int getResultType() {
@@ -17,20 +17,20 @@ public class BaseModel<T> {
         this.resultType = resultType;
     }
 
-    public int getResultCode() {
-        return resultCode;
+    public int getCode() {
+        return code;
     }
 
-    public void setResultCode(int resultCode) {
-        this.resultCode = resultCode;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public String getDetail() {
-        return detail;
+    public String getMessage() {
+        return message;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {

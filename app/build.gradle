@@ -44,7 +44,7 @@ android {
             signingConfig signingConfigs.config
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.0.101:3000/"'
+            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.0.108:8080/"'
             buildConfigField 'String', 'Time', "\"${releaseTime()}\""
         }
     }
