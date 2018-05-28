@@ -1,6 +1,7 @@
 package com.mumu.meishijia.http;
 
 import com.mumu.meishijia.BuildConfig;
+import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -9,6 +10,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -27,9 +29,22 @@ public class HttpRetrofit {
                     OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder()
                             .connectTimeout(10000, TimeUnit.MILLISECONDS);
 
+                    //设置log的拦截器
+                    HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                        @Override
+                        public void log(String message) {
+                            if(message.startsWith("{")){
+                                Logger.json(message);
+                            }else {
+                                Logger.d(message);
+                            }
+                        }
+                    });
                     //添加拦截器
-                    BaseParamsInterceptor interceptor = new BaseParamsInterceptor();
-                    httpClientBuilder.addInterceptor(interceptor);
+                    BaseParamsInterceptor baseParamsInterceptor = new BaseParamsInterceptor();
+                    httpClientBuilder.addInterceptor(baseParamsInterceptor);
+                    httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                    httpClientBuilder.addInterceptor(httpLoggingInterceptor);
 
                     retrofit = new Retrofit.Builder()
                             .client(httpClientBuilder.build())

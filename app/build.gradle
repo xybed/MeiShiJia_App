@@ -115,4 +115,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //知乎的开源图片选择框架，github地址https://github.com/zhihu/Matisse
     compile 'com.zhihu.android:matisse:0.4.3'
+    //打印网络请求日志的库
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    //log日志库
+    compile 'com.orhanobut:logger:2.1.1'
 }

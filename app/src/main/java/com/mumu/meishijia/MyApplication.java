@@ -4,6 +4,10 @@ import android.support.multidex.MultiDexApplication;
 
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.tencent.IMUtil;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.FormatStrategy;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 
 import io.realm.Realm;
 import lib.cache.CacheJsonMgr;
@@ -17,6 +21,7 @@ import lib.utils.ToastUtil;
  */
 public class MyApplication extends MultiDexApplication {
     private static MyApplication myApplication;
+    private static final String TAG = "http";
 
     private UserModel user;
     private boolean isLogin;
@@ -27,6 +32,7 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
         myApplication = this;
 
+        initLogger(TAG);
         MyCrashHandler.getInstance().init(this);
         initUserLoginInfo();
         initRealm();
@@ -34,6 +40,20 @@ public class MyApplication extends MultiDexApplication {
         ToastUtil.setContext(this);
         //验证了，这个添加离线消息，必须放在这个位置，且初始化IM要放在启动页面中，才会正常
         IMUtil.getInstance().addOfflineMsgListener();
+    }
+
+    private void initLogger(String tag) {
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .tag(tag) // 全局tag
+                .showThreadInfo(false)
+                .methodCount(0)
+                .build();
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
+            @Override
+            public boolean isLoggable(int priority, String tag) {
+                return BuildConfig.DEBUG;
+            }
+        });
     }
 
     /**
