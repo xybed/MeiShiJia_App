@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import lib.utils.MD5Util;
-import lib.utils.MyLogUtil;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -33,7 +32,7 @@ public class BaseParamsInterceptor implements Interceptor{
         }
         Request request = chain.request()
                 .newBuilder()
-                .addHeader("version", BuildConfig.DEVELOP_VERSION)
+                .addHeader("ver", BuildConfig.DEVELOP_VERSION)
                 .addHeader("platform", "android")
                 .addHeader("token", token)
                 .addHeader("sign", sign)
