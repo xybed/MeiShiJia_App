@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.alibaba.fastjson.JSON;
 import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
@@ -24,6 +25,7 @@ import com.mumu.meishijia.view.common.MainActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import lib.cache.CacheJsonMgr;
 import lib.utils.RegexUtil;
 import lib.utils.StringUtil;
 import lib.utils.ToastUtil;
@@ -143,6 +145,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void loginSuccess(UserModel result) {
         dismissLoadingDialog();
+        CacheJsonMgr.getInstance(this).saveJson(JSON.toJSONString(result), UserModel.class.getSimpleName());
         //登录成功，跳转主界面
         MyApplication.getInstance().setUser(result);
         MyApplication.getInstance().setLogin(true);
