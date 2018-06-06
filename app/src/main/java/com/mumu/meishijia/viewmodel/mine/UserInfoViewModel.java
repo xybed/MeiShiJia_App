@@ -1,6 +1,5 @@
 package com.mumu.meishijia.viewmodel.mine;
 
-import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.api.mine.UserApi;
 import com.mumu.meishijia.http.HttpResultFunc;
 import com.mumu.meishijia.http.HttpRetrofit;
@@ -40,12 +39,15 @@ public class UserInfoViewModel extends BaseViewModel{
                 .map(new HttpResultFunc<String>());
     }
 
+    /**
+     * 这里只做上传图片，并未更改数据库中的头像地址
+     * 做在另外的接口里更改数据库中的地址
+     * @param filePath 本地文件路径
+     */
     public Observable<String> modifyAvatar(String filePath){
-        Map<String, Integer> params = new HashMap<>();
-        params.put("id", MyApplication.getInstance().getUser().getId());
         MultipartBody.Part part = HttpRetrofit.createImageMultipart(filePath);
         return HttpRetrofit.create(UserApi.class)
-                .modifyAvatar(part, params)
+                .modifyAvatar(part)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(new HttpResultFunc<String>());

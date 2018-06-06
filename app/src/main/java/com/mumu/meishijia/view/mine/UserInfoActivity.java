@@ -89,6 +89,7 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
         }
         UserModel user = MyApplication.getInstance().getUser();
         Glide.with(this).load(user.getAvatar())
+                .placeholder(R.drawable.icon_default_avatar)
                 .transform(new GlideCircleTransform(this))
                 .into(imgAvatar);
         editNickname.setText(user.getNickname());

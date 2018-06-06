@@ -30,5 +30,5 @@ public interface UserApi {
     Observable<BaseModel<String>> modifyUserInfo(@Body Map<String, String> map);
     @Multipart
     @POST(HttpUrl.ModifyAvatar)
-    Observable<BaseModel<String>> modifyAvatar(@Part MultipartBody.Part part, @Body Map<String, Integer> map);
+    Observable<BaseModel<String>> modifyAvatar(@Part MultipartBody.Part part);
 }
