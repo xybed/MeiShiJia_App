@@ -16,9 +16,9 @@ public class UserInfoPresenter extends BasePresenter<UserInfoView, UserInfoViewM
         super(view);
     }
 
-    public void modifyUserInfo(String id, String nickname, String realName,
+    public void modifyUserInfo(String id, String avatar, String nickname, String realName,
                                String sex, String birthday, String email, String province, String city, String signature){
-        model.modifyUserInfo(id, nickname, realName, sex, birthday, email, province, city, signature)
+        model.modifyUserInfo(id, avatar, nickname, realName, sex, birthday, email, province, city, signature)
                 .subscribe(new RxObserver<String>() {
                     @Override
                     protected void onSuccess(String s) {
@@ -28,13 +28,13 @@ public class UserInfoPresenter extends BasePresenter<UserInfoView, UserInfoViewM
                 });
     }
 
-    public void modifyAvatar(String filePath){
-        model.modifyAvatar(filePath)
+    public void uploadImage(String filePath){
+        model.uploadImage(filePath)
                 .subscribe(new RxObserver<String>() {
                     @Override
                     protected void onSuccess(String s) {
                         if(view != null)
-                            view.modifyAvatarSuccess(s);
+                            view.uploadSuccess(s);
                     }
                 });
     }

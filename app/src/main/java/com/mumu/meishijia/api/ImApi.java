@@ -1,4 +1,4 @@
-package com.mumu.meishijia.api.im;
+package com.mumu.meishijia.api;
 
 import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.model.BaseModel;
@@ -20,7 +20,7 @@ import retrofit2.http.QueryMap;
  * Created by Administrator on 2017/4/10.
  */
 
-public interface ImService {
+public interface ImApi {
     @GET(HttpUrl.GetContacts)
     Observable<BaseModel<List<ContactsModel>>> getContacts(@QueryMap Map<String, String> map);
     @GET(HttpUrl.GetContactsDetail)

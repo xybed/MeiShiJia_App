@@ -62,5 +62,6 @@
     <string name="com_open_write_external_storage_permission">您需要开启读取内存权限,并重启应用</string>
     <string name="com_go_open">去开启</string>
     <string name="com_open_app">开启美食佳</string>
+    <string name="com_upload_image">正在上传图片</string>
     <string name="com_upload_success">上传成功</string>
 </resources>

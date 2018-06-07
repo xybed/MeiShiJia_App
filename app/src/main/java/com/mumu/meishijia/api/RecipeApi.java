@@ -1,4 +1,4 @@
-package com.mumu.meishijia.api.food;
+package com.mumu.meishijia.api;
 
 import com.mumu.meishijia.model.BaseModel;
 import com.mumu.meishijia.model.food.RecipeSubModel;
@@ -14,7 +14,7 @@ import retrofit2.http.QueryMap;
  * Created by Administrator on 2016/12/14.
  */
 
-public interface RecipeService {
+public interface RecipeApi {
     @GET("food/recipe")
     Observable<BaseModel<List<RecipeSubModel>>> getRecipe(@QueryMap Map<String, String> map);
 }

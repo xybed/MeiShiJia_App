@@ -69,6 +69,7 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
     private String sexCode;
     private String province;
     private String city;
+    private String avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +117,7 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
             txtCity.setText(province + "  " + city);
         }
         editSignature.setText(user.getSignature());
+        avatar = user.getAvatar();
     }
 
     @OnClick({R.id.btn_left, R.id.txt_save, R.id.img_avatar, R.id.llay_sex, R.id.llay_birthday, R.id.llay_city})
@@ -232,7 +234,7 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
             return;
         }
         showLoadingDialog(getString(R.string.com_committing));
-        presenter.modifyUserInfo(MyApplication.getInstance().getUser().getId()+"", editNickname.getText().toString(),
+        presenter.modifyUserInfo(MyApplication.getInstance().getUser().getId()+"", avatar, editNickname.getText().toString(),
                 editRealName.getText().toString(), sexCode, txtBirthday.getText().toString(),
                 editEmail.getText().toString(), province, city, editSignature.getText().toString());
     }
@@ -281,8 +283,8 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
                 Glide.with(UserInfoActivity.this).load(StreamUtil.inputStream2Byte(is))
                         .transform(new GlideCircleTransform(UserInfoActivity.this))
                         .into(imgAvatar);
-                showLoadingDialog(getString(R.string.user_upload_avatar), false, false);
-                presenter.modifyAvatar(path);
+                showLoadingDialog(getString(R.string.com_upload_image), false, false);
+                presenter.uploadImage(path);
             }
 
             @Override
@@ -305,6 +307,7 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
         //更改本地的userModel数据
         CacheJsonMgr cacheJsonMgr = CacheJsonMgr.getInstance(this);
         UserModel userModel = MyApplication.getInstance().getUser();
+        userModel.setAvatar(avatar);
         userModel.setNickname(editNickname.getText().toString());
         userModel.setReal_name(editRealName.getText().toString());
         userModel.setSex(NumberUtil.parseInt(sexCode, 0));
@@ -320,16 +323,10 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
     }
 
     @Override
-    public void modifyAvatarSuccess(String result) {
+    public void uploadSuccess(String result) {
         dismissLoadingDialog();
-        //更改本地的userModel数据
-        CacheJsonMgr cacheJsonMgr = CacheJsonMgr.getInstance(this);
-        UserModel userModel = MyApplication.getInstance().getUser();
-        userModel.setAvatar(result);
-        String jsonStr = JSON.toJSONString(userModel);
-        cacheJsonMgr.saveJson(jsonStr, UserModel.class.getSimpleName());
-        RxBus.get().post(RxBusAction.MineUserData, "");
         ToastUtil.show(R.string.com_upload_success);
+        avatar = result;
     }
 
     @Override

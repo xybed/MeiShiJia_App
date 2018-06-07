@@ -1,4 +1,4 @@
-package com.mumu.meishijia.api.mine;
+package com.mumu.meishijia.api;
 
 import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.model.BaseModel;
@@ -7,11 +7,8 @@ import com.mumu.meishijia.model.mine.UserModel;
 import java.util.Map;
 
 import io.reactivex.Observable;
-import okhttp3.MultipartBody;
 import retrofit2.http.Body;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 
 /**
  * 注册的api
@@ -28,7 +25,4 @@ public interface UserApi {
     Observable<BaseModel<String>> modifyPwd(@Body Map<String, String> map);
     @POST(HttpUrl.ModifyUserInfo)
     Observable<BaseModel<String>> modifyUserInfo(@Body Map<String, String> map);
-    @Multipart
-    @POST(HttpUrl.ModifyAvatar)
-    Observable<BaseModel<String>> modifyAvatar(@Part MultipartBody.Part part);
 }

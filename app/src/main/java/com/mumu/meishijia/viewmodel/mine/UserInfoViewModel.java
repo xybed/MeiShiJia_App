@@ -1,6 +1,7 @@
 package com.mumu.meishijia.viewmodel.mine;
 
-import com.mumu.meishijia.api.mine.UserApi;
+import com.mumu.meishijia.api.CommonApi;
+import com.mumu.meishijia.api.UserApi;
 import com.mumu.meishijia.http.HttpResultFunc;
 import com.mumu.meishijia.http.HttpRetrofit;
 import com.mumu.meishijia.viewmodel.BaseViewModel;
@@ -20,10 +21,11 @@ import okhttp3.MultipartBody;
 
 public class UserInfoViewModel extends BaseViewModel{
 
-    public Observable<String> modifyUserInfo(String id, String nickname, String realName,
+    public Observable<String> modifyUserInfo(String id, String avatar, String nickname, String realName,
                                      String sex, String birthday, String email, String province, String city, String signature){
         Map<String, String> params = new HashMap<>();
         params.put("id", id);
+        params.put("avatar", avatar);
         params.put("nickname", nickname);
         params.put("real_name", realName);
         params.put("sex", sex);
@@ -44,10 +46,10 @@ public class UserInfoViewModel extends BaseViewModel{
      * 做在另外的接口里更改数据库中的地址
      * @param filePath 本地文件路径
      */
-    public Observable<String> modifyAvatar(String filePath){
+    public Observable<String> uploadImage(String filePath){
         MultipartBody.Part part = HttpRetrofit.createImageMultipart(filePath);
-        return HttpRetrofit.create(UserApi.class)
-                .modifyAvatar(part)
+        return HttpRetrofit.create(CommonApi.class)
+                .uploadImage(part)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(new HttpResultFunc<String>());

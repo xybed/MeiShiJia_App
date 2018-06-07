@@ -1,6 +1,6 @@
 package com.mumu.meishijia.viewmodel.mine;
 
-import com.mumu.meishijia.api.mine.UserApi;
+import com.mumu.meishijia.api.UserApi;
 import com.mumu.meishijia.http.HttpResultFunc;
 import com.mumu.meishijia.http.HttpRetrofit;
 import com.mumu.meishijia.viewmodel.BaseViewModel;

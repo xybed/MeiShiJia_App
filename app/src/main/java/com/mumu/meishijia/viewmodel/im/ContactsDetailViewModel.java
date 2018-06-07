@@ -1,11 +1,5 @@
 package com.mumu.meishijia.viewmodel.im;
 
-import com.mumu.meishijia.MyApplication;
-import com.mumu.meishijia.api.im.ImService;
-import com.mumu.meishijia.http.HttpRequestParams;
-import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.http.HttpUrl;
-import com.mumu.meishijia.http.RetroResListener;
 import com.mumu.meishijia.model.im.ContactsDetailModel;
 
 /**
@@ -24,7 +18,7 @@ public class ContactsDetailViewModel {
 //        params.put("user_id", MyApplication.getInstance().getUser().getId());
 //        params.put("friend_id", friendId);
 //        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
-//        httpRetrofit.getModel(httpRetrofit.getApiService(ImService.class, HttpUrl.GetContactsDetail, params).getContactsDetail(params.urlParams), "", new RetroResListener<ContactsDetailModel>() {
+//        httpRetrofit.getModel(httpRetrofit.getApiService(ImApi.class, HttpUrl.GetContactsDetail, params).getContactsDetail(params.urlParams), "", new RetroResListener<ContactsDetailModel>() {
 //            @Override
 //            protected void onSuccess(ContactsDetailModel result) {
 //                if(listener != null)

@@ -303,7 +303,7 @@ public class IMUtil {
 //        HttpRequestParams params = new HttpRequestParams();
 //        params.put("id", MyApplication.getInstance().getUser().getId());
 //        params.put("principal_id", principalId);
-//        httpRetrofit.getModel(httpRetrofit.getApiService(ImService.class, HttpUrl.GetPrincipalInfo, params).getPrincipalInfo(params.urlParams), "", new RetroResListener<PrincipalModel>() {
+//        httpRetrofit.getModel(httpRetrofit.getApiService(ImApi.class, HttpUrl.GetPrincipalInfo, params).getPrincipalInfo(params.urlParams), "", new RetroResListener<PrincipalModel>() {
 //            @Override
 //            protected void onSuccess(PrincipalModel result) {
 //                //把PrincipalModel转为PrincipalRealmModel

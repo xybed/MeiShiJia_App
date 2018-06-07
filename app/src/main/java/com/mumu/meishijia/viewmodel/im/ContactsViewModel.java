@@ -1,11 +1,5 @@
 package com.mumu.meishijia.viewmodel.im;
 
-import com.mumu.meishijia.MyApplication;
-import com.mumu.meishijia.api.im.ImService;
-import com.mumu.meishijia.http.HttpRequestParams;
-import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.http.HttpUrl;
-import com.mumu.meishijia.http.RetroResListener;
 import com.mumu.meishijia.model.im.ContactsModel;
 
 import java.util.List;
@@ -26,7 +20,7 @@ public class ContactsViewModel {
 //        HttpRetrofit httpRetrofit = HttpRetrofit.getInstance();
 //        HttpRequestParams params = new HttpRequestParams();
 //        params.put("id", userId);
-//        httpRetrofit.getList(httpRetrofit.getApiService(ImService.class, HttpUrl.GetContacts, params).getContacts(params.urlParams), "", new RetroResListener<List<ContactsModel>>() {
+//        httpRetrofit.getList(httpRetrofit.getApiService(ImApi.class, HttpUrl.GetContacts, params).getContacts(params.urlParams), "", new RetroResListener<List<ContactsModel>>() {
 //            @Override
 //            protected void onSuccess(List<ContactsModel> result) {
 //                if(listener != null)

@@ -9,5 +9,5 @@ import com.mumu.meishijia.view.BaseView;
 
 public interface UserInfoView extends BaseView{
     void modifySuccess(String result);
-    void modifyAvatarSuccess(String result);
+    void uploadSuccess(String result);
 }

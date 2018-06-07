@@ -1,10 +1,5 @@
 package com.mumu.meishijia.viewmodel.food;
 
-import com.mumu.meishijia.api.food.RecipeService;
-import com.mumu.meishijia.http.HttpRequestParams;
-import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.http.HttpUrl;
-import com.mumu.meishijia.http.RetroResListener;
 import com.mumu.meishijia.model.food.RecipeSubModel;
 
 import java.util.List;
