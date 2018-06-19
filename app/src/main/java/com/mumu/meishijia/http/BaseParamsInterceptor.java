@@ -1,5 +1,6 @@
 package com.mumu.meishijia.http;
 
+import com.alibaba.fastjson.JSON;
 import com.mumu.meishijia.BuildConfig;
 import com.mumu.meishijia.MyApplication;
 
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import lib.utils.MD5Util;
 import okhttp3.Interceptor;
@@ -56,13 +58,9 @@ public class BaseParamsInterceptor implements Interceptor{
                 Buffer buffer = new Buffer();
                 requestBody.writeTo(buffer);
                 String queryJson = buffer.readUtf8();
-                queryJson = queryJson.substring(1, queryJson.length()-1);
-                String[] queries = queryJson.split(",");
-                for(String query : queries){
-                    String[] parameters = query.split(":");
-                    if(parameters.length == 2){
-                        keyList.add(parameters[0].replace("\"", "")+"="+parameters[1].replace("\"", ""));
-                    }
+                Map<String, String> paramsMap = JSON.parseObject(queryJson, Map.class);
+                for(String key : paramsMap.keySet()){
+                    keyList.add(key + "=" + paramsMap.get(key));
                 }
             }
         }
