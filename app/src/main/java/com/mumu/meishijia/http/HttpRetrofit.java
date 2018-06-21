@@ -1,6 +1,7 @@
 package com.mumu.meishijia.http;
 
 import com.mumu.meishijia.BuildConfig;
+import com.mumu.meishijia.MyApplication;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
@@ -27,7 +28,8 @@ public class HttpRetrofit {
             synchronized (HttpRetrofit.class){
                 if(retrofit == null){
                     OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder()
-                            .connectTimeout(10000, TimeUnit.MILLISECONDS);
+                            .connectTimeout(10000, TimeUnit.MILLISECONDS)
+                            .sslSocketFactory(MySSLSocketFactory.getSocketFactory(MyApplication.getInstance()));
 
                     //设置log的拦截器
                     HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
