@@ -2,6 +2,7 @@ package com.mumu.meishijia.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,14 +14,20 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.hwangjr.rxbus.RxBus;
+import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.constant.RxBusAction;
+import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.BasePresenter;
+import com.mumu.meishijia.view.mine.LoginActivity;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 
 import lib.baidu.MyLocation;
+import lib.cache.CacheJsonMgr;
 import lib.utils.MyLogUtil;
 import lib.utils.ToastUtil;
 import lib.widget.ActionTitleBar;
@@ -176,6 +183,24 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
     public void toastErr(String msg){
         dismissLoadingDialog();
         toast(msg);
+    }
+
+    @Override
+    public void goLogin() {
+        MyApplication.getInstance().setUser(null);
+        MyApplication.getInstance().setLogin(false);
+        MyApplication.getInstance().setIMLogin(false);
+        //清除用户信息
+        CacheJsonMgr.getInstance(this).deleteJson(UserModel.class.getSimpleName());
+
+        //通知我的界面刷新数据
+        RxBus.get().post(RxBusAction.MineUserData, "");
+
+        //跳转到LoginActivity
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     @Override

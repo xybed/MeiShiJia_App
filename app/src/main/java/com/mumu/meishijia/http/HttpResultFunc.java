@@ -16,7 +16,7 @@ public class HttpResultFunc<T> implements Function<BaseModel<T>, T> {
             case -1:
                 throw new ApiException(baseModel.getMessage());
             case -99:
-                throw new ApiException("未登录");
+                throw new ApiException("登录过期");
             default:
                 break;
         }

@@ -6,8 +6,11 @@ package com.mumu.meishijia.view;
 public interface BaseView {
     void toastErr(String msg);
 
+    void goLogin();
+
     void showLoadingDialog(String message, boolean cancelable, boolean otoCancelable);
     void showLoadingDialog(String message);
     void dismissLoadingDialog();
+
     void hideSoftInput();
 }

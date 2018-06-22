@@ -71,9 +71,9 @@ public class BasePresenter<V extends BaseView, M extends BaseViewModel> {
                 onFail("连接超时");
             }else if(e instanceof JsonSyntaxException){
                 onFail("json格式不符");
-            }else if("未登录".equals(e.getMessage())){
+            }else if("登录过期".equals(e.getMessage())){
                 onFail(e.getMessage());
-//                    goLogin();
+                goLogin();
             }else{
                 onFail(e.getMessage());
             }
@@ -88,5 +88,6 @@ public class BasePresenter<V extends BaseView, M extends BaseViewModel> {
         protected void onFail(String errMsg){
             view.toastErr(errMsg);
         }
+        private void goLogin(){view.goLogin();}
     }
 }
