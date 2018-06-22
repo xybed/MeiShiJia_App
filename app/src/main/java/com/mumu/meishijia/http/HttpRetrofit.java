@@ -1,10 +1,13 @@
 package com.mumu.meishijia.http;
 
-import com.mumu.meishijia.BuildConfig;
+import com.mumu.meishijia.MyApplication;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -27,8 +30,15 @@ public class HttpRetrofit {
             synchronized (HttpRetrofit.class){
                 if(retrofit == null){
                     OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder()
-                            .connectTimeout(10000, TimeUnit.MILLISECONDS);
-//                            .sslSocketFactory(MySSLSocketFactory.getSocketFactory(MyApplication.getInstance()));
+                            .connectTimeout(10000, TimeUnit.MILLISECONDS)
+                            .sslSocketFactory(MySSLSocketFactory.getSocketFactory(MyApplication.getInstance()))
+                            .hostnameVerifier(new HostnameVerifier() {
+                                @Override
+                                public boolean verify(String s, SSLSession sslSession) {
+                                    //TODO 为避免验证hostname暂时做的处理
+                                    return true;
+                                }
+                            });
 
                     //设置log的拦截器
                     HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -49,7 +59,7 @@ public class HttpRetrofit {
 
                     retrofit = new Retrofit.Builder()
                             .client(httpClientBuilder.build())
-                            .baseUrl(BuildConfig.Base_Api_Url)
+                            .baseUrl(HttpUrl.BASE_API_URL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .build();
@@ -63,15 +73,6 @@ public class HttpRetrofit {
             initRetrofit();
         return retrofit.create(clazz);
     }
-
-//    private void goLogin(){
-//        MyApplication.getInstance().setUser(null);
-//        MyApplication.getInstance().setLogin(false);
-//        CacheJsonMgr.getInstance(context).deleteJson(UserModel.class.getSimpleName());
-//        Intent intent = new Intent(context, LoginActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        context.startActivity(intent);
-//    }
 
     /**
      * 构建上传图片的multipart，网上摘录方法

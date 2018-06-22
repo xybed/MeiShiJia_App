@@ -71,6 +71,6 @@ public class BaseParamsInterceptor implements Interceptor{
         }else {
             keyList.add("token=");
         }
-        return MD5Util.createParamSign(keyList, "MeiShiJia");
+        return MD5Util.createParamSign(keyList, HttpUrl.TOKEN_KEY);
     }
 }

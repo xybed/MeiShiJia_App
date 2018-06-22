@@ -44,7 +44,7 @@ android {
             signingConfig signingConfigs.config
             buildConfigField 'String', 'DEVELOP_VERSION', '"1"'
 
-            buildConfigField 'String', 'Base_Api_Url', '"http://192.168.0.108:8080/"'
+            buildConfigField 'String', 'Base_Api_Url', '"https://192.168.0.108:8443/"'
             buildConfigField 'String', 'Time', "\"${releaseTime()}\""
         }
     }
@@ -76,6 +76,11 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     //ShareSDK 2.8.2
     compile fileTree(include: ['Mob*.jar'], dir: 'libs')
     compile fileTree(include: ['ShareSDK*.jar'], dir: 'libs')
@@ -90,11 +95,6 @@ dependencies {
     compile files('libs/soload.jar')
     compile files('libs/tls_sdk.jar')
     compile files('libs/wup-1.0.0-SNAPSHOT.jar')
-    implementation 'com.android.support:support-v4:26.1.0'
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:cardview-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     //用于解决Dex方法数超出限制的问题
     compile 'com.android.support:multidex:1.0.1'
     //兼容4.4沉浸式状态栏
