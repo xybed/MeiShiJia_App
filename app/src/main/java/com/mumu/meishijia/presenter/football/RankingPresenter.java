@@ -1,6 +1,8 @@
 package com.mumu.meishijia.presenter.football;
 
 import com.mumu.meishijia.model.football.RankingModel;
+import com.mumu.meishijia.presenter.BasePresenter;
+import com.mumu.meishijia.view.BaseView;
 import com.mumu.meishijia.view.football.RankingView;
 import com.mumu.meishijia.viewmodel.football.RankingViewModel;
 
@@ -11,27 +13,20 @@ import java.util.List;
  * Created by Administrator on 2017/6/8.
  */
 
-public class RankingPresenter implements RankingViewModel.RankingListener{
+public class RankingPresenter extends BasePresenter<RankingView, RankingViewModel>{
 
-    private RankingView view;
-    private RankingViewModel viewModel;
-
-    public RankingPresenter(RankingView view){
-        this.view = view;
-        viewModel = new RankingViewModel(this);
+    public RankingPresenter(BaseView view) {
+        super(view);
     }
 
     public void getRanking(int type){
-        viewModel.getRanking(type);
+        model.getRanking(type)
+                .subscribe(new RxObserver<List<RankingModel>>() {
+                    @Override
+                    protected void onSuccess(List<RankingModel> rankingModels) {
+                        view.getSuccess(rankingModels);
+                    }
+                });
     }
 
-    @Override
-    public void getSuccess(List<RankingModel> result) {
-        view.getSuccess(result);
-    }
-
-    @Override
-    public void getFail(String errMsg) {
-        view.getFail(errMsg);
-    }
 }

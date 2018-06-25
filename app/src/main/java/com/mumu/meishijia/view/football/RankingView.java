@@ -1,6 +1,7 @@
 package com.mumu.meishijia.view.football;
 
 import com.mumu.meishijia.model.football.RankingModel;
+import com.mumu.meishijia.view.BaseView;
 
 import java.util.List;
 
@@ -9,7 +10,6 @@ import java.util.List;
  * Created by Administrator on 2017/6/8.
  */
 
-public interface RankingView {
+public interface RankingView extends BaseView{
     void getSuccess(List<RankingModel> result);
-    void getFail(String errMsg);
 }

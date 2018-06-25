@@ -18,5 +18,5 @@ import retrofit2.http.QueryMap;
 
 public interface FootballApi {
     @GET(HttpUrl.GetRanking)
-    Observable<BaseModel<List<RankingModel>>> getRanking(@QueryMap Map<String, String> map);
+    Observable<BaseModel<List<RankingModel>>> getRanking(@QueryMap Map<String, Integer> map);
 }
