@@ -12,14 +12,13 @@ public class HttpResultFunc<T> implements Function<BaseModel<T>, T> {
 
     @Override
     public T apply(BaseModel<T> baseModel) throws Exception {
-        switch (baseModel.getCode()){
-            case -1:
-                throw new ApiException(baseModel.getMessage());
-            case -99:
-                throw new ApiException("登录过期");
-            default:
-                break;
+        int code = baseModel.getCode();
+        if(code == 0){
+            return baseModel.getData();
+        }else if(code == -99){
+            throw new ApiException("登录过期");
+        }else {
+            throw new ApiException(baseModel.getMessage());
         }
-        return baseModel.getData();
     }
 }
