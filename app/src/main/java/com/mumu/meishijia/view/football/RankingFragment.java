@@ -4,6 +4,7 @@ package com.mumu.meishijia.view.football;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,8 @@ import butterknife.Unbinder;
 public class RankingFragment extends BaseFragment<RankingPresenter> implements RankingView{
     public static final String LEAGUE_TYPE = "league_type";
 
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout swipeRefresh;
     @BindView(R.id.list_view)
     ListView listView;
     Unbinder unbinder;
@@ -49,12 +52,20 @@ public class RankingFragment extends BaseFragment<RankingPresenter> implements R
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ranking, container, false);
         initUI(view);
+        swipeRefresh.setRefreshing(true);
         presenter.getRanking(leagueType);
         return view;
     }
 
     private void initUI(View view) {
         unbinder = ButterKnife.bind(this, view);
+        swipeRefresh.setColorSchemeResources(R.color.theme_color);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.getRanking(leagueType);
+            }
+        });
         adapter = new RankingAdapter(getActivity());
         listView.setAdapter(adapter);
     }
@@ -67,6 +78,7 @@ public class RankingFragment extends BaseFragment<RankingPresenter> implements R
 
     @Override
     public void getSuccess(List<RankingModel> result) {
+        swipeRefresh.setRefreshing(false);
         if(result == null || result.size() < 0)
             return;
         adapter.setData(result);
