@@ -174,7 +174,10 @@
 
 
 
-
+        <!--okhttp配合glide加载https图片的配置-->
+        <meta-data
+            android:name="lib.glide.OkHttpGlideModule"
+            android:value="GlideModule"/>
         <activity
             android:name=".view.common.SplashActivity"
             android:screenOrientation="portrait">

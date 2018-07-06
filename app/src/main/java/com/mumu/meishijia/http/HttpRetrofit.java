@@ -24,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class HttpRetrofit {
     private static Retrofit retrofit;
+    private static OkHttpClient okHttpClient;
 
     private static void initRetrofit(){
         if(retrofit == null){
@@ -57,8 +58,9 @@ public class HttpRetrofit {
                     httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
                     httpClientBuilder.addInterceptor(httpLoggingInterceptor);
 
+                    okHttpClient = httpClientBuilder.build();
                     retrofit = new Retrofit.Builder()
-                            .client(httpClientBuilder.build())
+                            .client(okHttpClient)
                             .baseUrl(HttpUrl.BASE_API_URL)
                             .addConverterFactory(GsonConverterFactory.create())
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -72,6 +74,12 @@ public class HttpRetrofit {
         if(retrofit == null)
             initRetrofit();
         return retrofit.create(clazz);
+    }
+
+    public static OkHttpClient getOkHttpClient(){
+        if(okHttpClient == null)
+            initRetrofit();
+        return okHttpClient;
     }
 
     /**
