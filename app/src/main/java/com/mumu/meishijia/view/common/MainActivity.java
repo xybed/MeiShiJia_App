@@ -10,7 +10,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.tencent.IMUtil;
 import com.mumu.meishijia.view.BaseActivity;
-import com.mumu.meishijia.view.food.FoodFragment;
+import com.mumu.meishijia.view.food.HomeFragment;
 import com.mumu.meishijia.view.football.FootballFragment;
 import com.mumu.meishijia.view.mine.MineFragment;
 
@@ -24,7 +24,7 @@ public class MainActivity extends BaseActivity {
     BottomNavigationBar bottomNavigationBar;
 
     private Fragment content;
-    private Fragment foodFragment;
+    private Fragment homeFragment;
     private Fragment footballFragment;
     private Fragment mineFragment;
 
@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initFragment() {
-        content = new FoodFragment();
+        content = new HomeFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.content, content).commit();
         transparentStatusBar(true);
     }
@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity {
     private void initBottomNavigationBar(){
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
-        bottomNavigationBar.setActiveColor(R.color.theme_color_orange_c);
+        bottomNavigationBar.setActiveColor(R.color.theme_color);
         bottomNavigationBar.setInActiveColor(R.color.theme_color_black_a);
         bottomNavigationBar.setBarBackgroundColor(R.color.theme_color_white);
         bottomNavigationBar
@@ -78,10 +78,10 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private Fragment getFoodFragment() {
-        if (foodFragment == null)
-            foodFragment = new FoodFragment();
-        return foodFragment;
+    private Fragment getHomeFragment() {
+        if (homeFragment == null)
+            homeFragment = new HomeFragment();
+        return homeFragment;
     }
 
     private Fragment getFootballFragment() {
@@ -99,7 +99,7 @@ public class MainActivity extends BaseActivity {
     private void switchFragment(int position) {
         switch (position) {
             case 0:
-                switchFragment(content, getFoodFragment());
+                switchFragment(content, getHomeFragment());
                 transparentStatusBar(true);
                 break;
             case 1:

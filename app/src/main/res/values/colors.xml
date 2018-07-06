@@ -4,12 +4,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <!--整个app的主题色-->
-    <color name="theme_color">#ffe8866c</color>
-    <color name="theme_color_transparent">#77e8866c</color>
+    <color name="theme_color">#ff0084ff</color>
+    <color name="theme_color_transparent">#770084ff</color>
     <!--背景色-->
     <color name="theme_bg_color">#fffafafa</color>
     <!--标题栏背景色-->
-    <color name="title_bar_bg_color">#ffe8866c</color>
+    <color name="title_bar_bg_color">#ff0084ff</color>
     <!--标题栏标题的颜色-->
     <color name="title_bar_text_center_color">#ffffffff</color>
     <!--标题栏右侧文字的颜色-->
