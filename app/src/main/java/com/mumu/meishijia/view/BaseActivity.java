@@ -114,7 +114,13 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
             actionTitleBar.getImgRight().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    onRightButtonClick();
+                    onRightButtonClick();
+                }
+            });
+            actionTitleBar.getTxtRight().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onRightButtonClick();
                 }
             });
         }
@@ -136,6 +142,8 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
     protected void onLeftButtonClick(){
         finish();
     }
+
+    protected void onRightButtonClick(){}
 
     @Override
     protected void onStart() {

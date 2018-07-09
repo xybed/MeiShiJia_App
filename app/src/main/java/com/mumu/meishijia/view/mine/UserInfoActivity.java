@@ -120,15 +120,14 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
         avatar = user.getAvatar();
     }
 
-    @OnClick({R.id.btn_left, R.id.txt_save, R.id.img_avatar, R.id.llay_sex, R.id.llay_birthday, R.id.llay_city})
+    @Override
+    protected void onRightButtonClick() {
+        modifyUserInfo();
+    }
+
+    @OnClick({R.id.img_avatar, R.id.llay_sex, R.id.llay_birthday, R.id.llay_city})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_left:
-                finish();
-                break;
-            case R.id.txt_save:
-                modifyUserInfo();
-                break;
             case R.id.img_avatar:
                 changeAvatar();
                 break;

@@ -2,6 +2,7 @@ package lib.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,6 +29,7 @@ public class ActionTitleBar extends FrameLayout{
     private ImageView imgLeft;
     private TextView txtTitle;
     private ImageView imgRight;
+    private TextView txtRight;
 
     public ActionTitleBar(@NonNull Context context) {
         this(context, null);
@@ -50,12 +52,26 @@ public class ActionTitleBar extends FrameLayout{
         imgLeft = view.findViewById(R.id.img_left);
         txtTitle = view.findViewById(R.id.txt_title);
         imgRight = view.findViewById(R.id.img_right);
+        txtRight = view.findViewById(R.id.txt_right);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ActionTitleBar);
         String title = a.getString(R.styleable.ActionTitleBar_title);
         int backgroundColor = a.getResourceId(R.styleable.ActionTitleBar_title_color, R.color.title_bar_bg_color);
+        Drawable rightDrawable = a.getDrawable(R.styleable.ActionTitleBar_right_image);
+        String rightText = a.getString(R.styleable.ActionTitleBar_right_text);
         setBackgroundResource(backgroundColor);
         txtTitle.setText(title);
+        if(rightDrawable == null){
+            imgRight.setVisibility(GONE);
+        }else {
+            imgRight.setVisibility(VISIBLE);
+        }
+        if(rightText == null){
+            txtRight.setVisibility(GONE);
+        }else {
+            txtRight.setText(rightText);
+            txtRight.setVisibility(VISIBLE);
+        }
         a.recycle();
     }
 
@@ -69,5 +85,9 @@ public class ActionTitleBar extends FrameLayout{
 
     public ImageView getImgRight() {
         return imgRight;
+    }
+
+    public TextView getTxtRight() {
+        return txtRight;
     }
 }

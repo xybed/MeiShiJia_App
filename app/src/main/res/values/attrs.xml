@@ -29,5 +29,7 @@
     <declare-styleable name="ActionTitleBar">
         <attr name="title" format="string"/>
         <attr name="title_color" format="color"/>
+        <attr name="right_image" format="reference"/>
+        <attr name="right_text" format="string"/>
     </declare-styleable>
 </resources>
