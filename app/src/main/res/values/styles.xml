@@ -9,7 +9,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowAnimationStyle">@style/Animation.Activity.Bd</item>
-        <item name="android:listDivider">@drawable/shape_divider_white_c</item>
+        <item name="android:listDivider">@drawable/shape_divider_gray_d</item>
     </style>
 
     <!-- 设置activity统一的切换动画效果-->
