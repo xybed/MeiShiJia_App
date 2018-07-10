@@ -39,6 +39,6 @@ public class TeamDetailActivity extends BaseActivity {
     private void initUI(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new PlayerAdapter();
+        adapter = new PlayerAdapter(this);
     }
 }
