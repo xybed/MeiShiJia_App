@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false">
+    <lib.widget.ActionTitleBar
+        xmlns:atb="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        atb:title="@string/ball_team"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/theme_color">
+        <ImageView
+            android:id="@+id/img_team"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:contentDescription="@null"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txt_team_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="皇家马德里"
+                android:textColor="@color/theme_color_white"
+                android:textSize="@dimen/theme_text_size_sixteen"/>
+            <TextView
+                android:id="@+id/txt_team_eng_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/theme_margin_five"
+                tools:text="Real Madrid"
+                android:textColor="@color/theme_color_gray_a"
+                android:textSize="@dimen/theme_text_size_fourteen"/>
+            <TextView
+                android:id="@+id/txt_extra_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/theme_margin_five"
+                tools:text="1902年/马德里/西班牙"
+                android:textColor="@color/theme_color_gray_a"
+                android:textSize="@dimen/theme_text_size_fourteen"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mumu.meishijia">
+    package="com.mumu.meishijia" >
 
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -54,7 +54,7 @@
         android:icon="@drawable/icon_app"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
 
         <!-- ShareSDK begin -->
         <activity
@@ -62,7 +62,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize">
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+
             <!--
             AuthorizeAdapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter 的类，
             这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。
@@ -116,47 +117,47 @@
         <!-- ShareSDK end -->
 
 
-
         <!-- 百度地图begin -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote">
+            android:process=":remote" >
             <intent-filter>
                 <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="xM32ClrCQCoP5b8AakKtDiGN59pQyiRt" />
         <!-- 百度地图end -->
 
 
-
         <!-- 腾讯im begin -->
-        <!--  消息收发service -->
+        <!-- 消息收发service -->
         <service
             android:name="com.tencent.qalsdk.service.QalService"
             android:exported="false"
             android:process=":QALSERVICE" >
         </service>
-        <!--  消息收发辅助service -->
+        <!-- 消息收发辅助service -->
         <service
             android:name="com.tencent.qalsdk.service.QalAssistService"
             android:exported="false"
             android:process=":QALSERVICE" >
         </service>
-        <!--  离线消息广播接收器 -->
+        <!-- 离线消息广播接收器 -->
         <receiver
             android:name="com.tencent.qalsdk.QALBroadcastReceiver"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.tencent.qalsdk.broadcast.qal" />
             </intent-filter>
         </receiver>
-        <!--  系统消息广播接收器 -->
+        <!-- 系统消息广播接收器 -->
         <receiver
-            android:name="com.tencent.qalsdk.core.NetConnInfoCenter"  android:process=":QALSERVICE">
+            android:name="com.tencent.qalsdk.core.NetConnInfoCenter"
+            android:process=":QALSERVICE" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -173,14 +174,14 @@
         <!-- 腾讯im end -->
 
 
-
-        <!--okhttp配合glide加载https图片的配置-->
+        <!-- okhttp配合glide加载https图片的配置 -->
         <meta-data
             android:name="lib.glide.OkHttpGlideModule"
-            android:value="GlideModule"/>
+            android:value="GlideModule" />
+
         <activity
             android:name=".view.common.SplashActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -235,6 +236,9 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".view.football.TeamDetailActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

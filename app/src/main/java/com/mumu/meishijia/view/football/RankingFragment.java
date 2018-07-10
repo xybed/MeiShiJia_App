@@ -1,6 +1,7 @@
 package com.mumu.meishijia.view.football;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.mumu.meishijia.R;
@@ -67,6 +69,13 @@ public class RankingFragment extends BaseFragment<RankingPresenter> implements R
             }
         });
         adapter = new RankingAdapter(getActivity());
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), TeamDetailActivity.class);
+                startActivity(intent);
+            }
+        });
         listView.setAdapter(adapter);
     }
 
