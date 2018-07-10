@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseRecyclerAdapter;
 import com.mumu.meishijia.model.football.FootballPlayer;
@@ -36,7 +37,12 @@ public class PlayerAdapter extends BaseRecyclerAdapter<FootballPlayer, PlayerAda
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         FootballPlayer item = datas.get(position);
-
+        Glide.with(context)
+                .load(item.getAvatar())
+                .error(R.drawable.icon_default_avatar)
+                .into(holder.imgAvatar);
+        holder.txtName.setText(item.getName());
+        holder.txtNumber.setText(context.getResources().getString(R.string.ball_number_placeholder,item.getNumber()));
     }
 
 

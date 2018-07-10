@@ -2,6 +2,7 @@ package com.mumu.meishijia.api;
 
 import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.model.BaseModel;
+import com.mumu.meishijia.model.football.FootballPlayer;
 import com.mumu.meishijia.model.football.RankingModel;
 
 import java.util.List;
@@ -19,4 +20,7 @@ import retrofit2.http.QueryMap;
 public interface FootballApi {
     @GET(HttpUrl.GetRanking)
     Observable<BaseModel<List<RankingModel>>> getRanking(@QueryMap Map<String, Integer> map);
+
+    @GET(HttpUrl.GetTeam)
+    Observable<BaseModel<List<FootballPlayer>>> getTeam(@QueryMap Map<String, Integer> map);
 }

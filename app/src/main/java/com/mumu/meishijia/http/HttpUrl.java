@@ -38,4 +38,6 @@ public class HttpUrl {
 
     //获取联赛排名
     public static final String GetRanking = "football/ranking";
+    //获取球队球员
+    public static final String GetTeam = "football/team";
 }

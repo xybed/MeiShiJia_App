@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="60dp"
     android:gravity="center_vertical"
     android:background="@color/white">
     <ImageView
@@ -23,15 +23,17 @@
             android:id="@+id/txt_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:singleLine="true"
             tools:text="C罗"
-            android:textSize="@dimen/text_size_16"
+            android:textSize="@dimen/text_size_14"
             android:textColor="@color/black_a"/>
         <TextView
             android:id="@+id/txt_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="7号"
-            android:textSize="@dimen/text_size_14"
+            android:textSize="@dimen/text_size_12"
             android:textColor="@color/gray_f"/>
     </LinearLayout>
 

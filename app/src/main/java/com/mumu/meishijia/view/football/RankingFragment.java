@@ -72,7 +72,9 @@ public class RankingFragment extends BaseFragment<RankingPresenter> implements R
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                RankingModel rankingModel = (RankingModel) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getActivity(), TeamDetailActivity.class);
+                intent.putExtra(TeamDetailActivity.TEAM_ID, rankingModel.getTeam_id());
                 startActivity(intent);
             }
         });

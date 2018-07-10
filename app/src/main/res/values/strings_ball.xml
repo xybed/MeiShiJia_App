@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ball_team">球队</string>
+    <string name="ball_number_placeholder">%1$d号</string>
 </resources>
