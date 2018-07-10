@@ -27,7 +27,7 @@
         android:layout_height="24dp"
         android:gravity="center"
         android:text="@string/com_click_refresh"
-        android:textColor="@color/theme_color_blue_a"
+        android:textColor="@color/blue_a"
         android:textSize="14sp"
         android:background="@drawable/shape_rect_transparent_border_blue_a"
         android:visibility="visible" />
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/com_no_data"
-        android:textColor="@color/theme_color_blue_a"
+        android:textColor="@color/blue_a"
         android:textSize="14sp"
         android:visibility="visible" />
 

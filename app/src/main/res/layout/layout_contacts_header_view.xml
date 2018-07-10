@@ -35,8 +35,8 @@
                 android:background="@drawable/shape_circle_red"
                 android:gravity="center"
                 android:text="5"
-                android:textColor="@color/theme_color_white"
-                android:textSize="@dimen/theme_text_size_twelve"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_12"
                 android:visibility="gone"/>
         </RelativeLayout>
 
@@ -47,8 +47,8 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:text="@string/im_new_friend"
-            android:textColor="@color/theme_color_black_a"
-            android:textSize="@dimen/theme_text_size_sixteen" />
+            android:textColor="@color/black_a"
+            android:textSize="@dimen/text_size_16" />
     </LinearLayout>
 
     <include layout="@layout/layout_split_line_gray"/>

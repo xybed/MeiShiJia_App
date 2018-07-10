@@ -7,7 +7,7 @@
     <color name="theme_color">#ff0084ff</color>
     <color name="theme_color_transparent">#770084ff</color>
     <!--背景色-->
-    <color name="theme_bg_color">#fffafafa</color>
+    <color name="bg_color">#fffafafa</color>
     <!--标题栏背景色-->
     <color name="title_bar_bg_color">#ff0084ff</color>
     <!--标题栏标题的颜色-->
@@ -15,37 +15,37 @@
     <!--标题栏右侧文字的颜色-->
     <color name="title_bar_text_right_color">#ffffffff</color>
     <!--主题白色-->
-    <color name="theme_color_white">#ffffffff</color>
-    <color name="theme_color_white_transparent">#77ffffff</color>
+    <color name="white">#ffffffff</color>
+    <color name="white_transparent">#77ffffff</color>
     <!--主题橙色，abc不代表等级-->
-    <color name="theme_color_orange_a">#ffea8010</color>
-    <color name="theme_color_orange_b">#8cea8010</color>
-    <color name="theme_color_orange_c">#ffe8866c</color>
+    <color name="orange_a">#ffea8010</color>
+    <color name="orange_b">#8cea8010</color>
+    <color name="orange_c">#ffe8866c</color>
     <!--主题灰色，abc不代表等级-->
-    <color name="theme_color_gray">#fff3f2f1</color>
-    <color name="theme_color_gray_a">#fff6f8f3</color>
-    <color name="theme_color_gray_b">#ffb3b3b3</color>
-    <color name="theme_color_gray_c">#ff808080</color>
-    <color name="theme_color_gray_d">#ffe6e6e6</color>
-    <color name="theme_color_gray_e">#ffc7c7c7</color>
-    <color name="theme_color_gray_f">#ff909090</color>
-    <color name="theme_color_gray_g">#ffa9b7b7</color>
-    <color name="theme_color_gray_h">#77f2f2f2</color>
+    <color name="gray">#fff3f2f1</color>
+    <color name="gray_a">#fff6f8f3</color>
+    <color name="gray_b">#ffb3b3b3</color>
+    <color name="gray_c">#ff808080</color>
+    <color name="gray_d">#ffe6e6e6</color>
+    <color name="gray_e">#ffc7c7c7</color>
+    <color name="gray_f">#ff909090</color>
+    <color name="gray_g">#ffa9b7b7</color>
+    <color name="gray_h">#77f2f2f2</color>
     <!--主题粉色，abc不代表等级-->
-    <color name="theme_color_pink_a">#ffcf526d</color>
-    <color name="theme_color_pink_b">#77cf526d</color>
-    <color name="theme_color_pink_c">#ffff6561</color>
-    <color name="theme_color_pink_d">#ffff4d70</color>
+    <color name="pink_a">#ffcf526d</color>
+    <color name="pink_b">#77cf526d</color>
+    <color name="pink_c">#ffff6561</color>
+    <color name="pink_d">#ffff4d70</color>
     <!--全透明-->
     <color name="transparent">#00000000</color>
     <color name="half_transparent">#77ffffff</color>
     <!--主题蓝色，abc不代表等级-->
-    <color name="theme_color_blue_a">#ff69c6ec</color>
+    <color name="blue_a">#ff69c6ec</color>
     <!--主题黑色，abc..不代表等级-->
-    <color name="theme_color_black_a">#ff4d4d4d</color>
-    <color name="theme_color_black_b">#aa212d3d</color>
+    <color name="black_a">#ff4d4d4d</color>
+    <color name="black_b">#aa212d3d</color>
     <!--主题绿色，abc..不代表等级-->
-    <color name="theme_color_green_a">#ffadff2f</color>
+    <color name="green_a">#ffadff2f</color>
     <!--主题红色，abc..不代表等级-->
-    <color name="theme_color_red_a">#fff8361b</color>
+    <color name="red_a">#fff8361b</color>
 </resources>

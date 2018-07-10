@@ -7,47 +7,47 @@
     <dimen name="title_bar_text_center_size">18sp</dimen>
     <dimen name="title_bar_text_right_size">16sp</dimen>
     <!-- 文字大小-->
-    <dimen name="theme_text_size_twelve">12sp</dimen>
-    <dimen name="theme_text_size_thirteen">13sp</dimen>
-    <dimen name="theme_text_size_fourteen">14sp</dimen>
-    <dimen name="theme_text_size_fifteen">15sp</dimen>
-    <dimen name="theme_text_size_sixteen">16sp</dimen>
-    <dimen name="theme_text_size_seventeen">17sp</dimen>
-    <dimen name="theme_text_size_eighteen">18sp</dimen>
-    <dimen name="theme_text_size_twenty_five">25sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_17">17sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_25">25sp</dimen>
 
     <!-- margin、padding-->
-    <dimen name="theme_margin_one">1dp</dimen>
-    <dimen name="theme_margin_five">5dp</dimen>
-    <dimen name="theme_margin_ten">10dp</dimen>
-    <dimen name="theme_margin_fifteen">15dp</dimen>
-    <dimen name="theme_margin_eighteen">18dp</dimen>
-    <dimen name="theme_margin_twenty">20dp</dimen>
-    <dimen name="theme_margin_thirty">30dp</dimen>
-    <dimen name="theme_margin_forty">40dp</dimen>
-    <dimen name="theme_margin_fifty">50dp</dimen>
-    <dimen name="theme_margin_seventy">70dp</dimen>
-    <dimen name="theme_margin_eighty">80dp</dimen>
-    <dimen name="theme_margin_hundred">100dp</dimen>
-    <dimen name="theme_padding_three">3dp</dimen>
-    <dimen name="theme_padding_five">5dp</dimen>
-    <dimen name="theme_padding_eight">8dp</dimen>
-    <dimen name="theme_padding_ten">10dp</dimen>
-    <dimen name="theme_padding_twelve">12dp</dimen>
-    <dimen name="theme_padding_fifteen">15dp</dimen>
-    <dimen name="theme_padding_twenty">20dp</dimen>
-    <dimen name="theme_padding_twenty_five">25dp</dimen>
-    <dimen name="theme_padding_thirty">30dp</dimen>
-    <dimen name="theme_padding_forty">40dp</dimen>
-    <dimen name="theme_padding_fifty">50dp</dimen>
-    <dimen name="theme_padding_seventy">70dp</dimen>
-    <dimen name="theme_padding_eighty">80dp</dimen>
+    <dimen name="margin_1">1dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_70">70dp</dimen>
+    <dimen name="margin_80">80dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+    <dimen name="padding_3">3dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="padding_15">15dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+    <dimen name="padding_25">25dp</dimen>
+    <dimen name="padding_30">30dp</dimen>
+    <dimen name="padding_40">40dp</dimen>
+    <dimen name="padding_50">50dp</dimen>
+    <dimen name="padding_70">70dp</dimen>
+    <dimen name="padding_80">80dp</dimen>
 
     <!--height-->
-    <dimen name="theme_height_a">44dp</dimen>
-    <dimen name="theme_height_b">50dp</dimen>
-    <dimen name="theme_height_c">48dp</dimen>
-    <dimen name="theme_height_d">40dp</dimen>
+    <dimen name="height_40">40dp</dimen>
+    <dimen name="height_44">44dp</dimen>
+    <dimen name="height_48">48dp</dimen>
+    <dimen name="height_50">50dp</dimen>
 
     <!--头像长宽-->
     <dimen name="avatar_img_size">78dp</dimen>

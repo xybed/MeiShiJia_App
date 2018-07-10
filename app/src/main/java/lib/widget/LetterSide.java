@@ -59,7 +59,7 @@ public class LetterSide extends View {
         // 获取每一个字母的高度
         int singleHeight = height / b1.length;
         for(int i=0;i<b1.length;i++){
-            paint.setColor(context.getResources().getColor(R.color.theme_color_black_a));
+            paint.setColor(context.getResources().getColor(R.color.black_a));
             paint.setTypeface(Typeface.DEFAULT_BOLD);
             paint.setAntiAlias(true);
             paint.setTextSize(DensityUtil.sp2px(context, 12));
@@ -92,7 +92,7 @@ public class LetterSide extends View {
                     textView.setVisibility(GONE);
                 break;
             default:
-                setBackgroundResource(R.color.theme_color_gray_d);
+                setBackgroundResource(R.color.gray_d);
                 if(touchPos != choose){
                     //如果触摸的地方和上次相同，就没必要再走一遍代码
                     if(textView != null){

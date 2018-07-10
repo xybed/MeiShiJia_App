@@ -10,8 +10,6 @@ import com.alibaba.fastjson.parser.Feature;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ChatAdapter;
 import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
-import com.mumu.meishijia.tencent.model.BaseMessage;
-import com.mumu.meishijia.tencent.model.MsgContentModel;
 
 import lib.utils.DensityUtil;
 
@@ -33,7 +31,7 @@ public class TextMessage extends BaseMessage {
         clearView(bubbleView);
         TextView tv = new TextView(context);
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
-        tv.setTextColor(context.getResources().getColor(R.color.theme_color_black_a));
+        tv.setTextColor(context.getResources().getColor(R.color.black_a));
         tv.setMaxWidth(DensityUtil.dip2px(context, 250));
         int dp5 = DensityUtil.dip2px(context, 5);
         tv.setPadding(dp5, 0, dp5, 0);

@@ -6,29 +6,29 @@
         android:id="@+id/txt_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/theme_margin_ten"
+        android:layout_marginTop="@dimen/margin_10"
         android:gravity="center_horizontal"
         android:text="2017/4/17 10:33"
-        android:textSize="@dimen/theme_text_size_twelve"
-        android:textColor="@color/theme_color_gray_c"/>
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/gray_c"/>
     <TextView
         android:id="@+id/txt_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_rect_gray_e"
-        android:layout_marginTop="@dimen/theme_margin_ten"
-        android:paddingLeft="@dimen/theme_padding_ten"
-        android:paddingRight="@dimen/theme_padding_ten"
-        android:paddingTop="@dimen/theme_padding_three"
-        android:paddingBottom="@dimen/theme_padding_three"
+        android:layout_marginTop="@dimen/margin_10"
+        android:paddingLeft="@dimen/padding_10"
+        android:paddingRight="@dimen/padding_10"
+        android:paddingTop="@dimen/padding_3"
+        android:paddingBottom="@dimen/padding_3"
         android:layout_gravity="center_horizontal"
         android:text="提示"
-        android:textColor="@color/theme_color_white"
-        android:textSize="@dimen/theme_text_size_twelve"/>
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_12"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/theme_margin_ten"
+        android:layout_marginTop="@dimen/margin_10"
         android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/llay_left_panel"
@@ -38,8 +38,8 @@
                 android:id="@+id/img_friend_avatar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/theme_margin_ten"
-                android:layout_marginRight="@dimen/theme_margin_ten"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_10"
                 android:src="@drawable/icon_default_avatar"
                 android:contentDescription="@null"/>
             <RelativeLayout
@@ -59,8 +59,8 @@
                 android:id="@+id/img_avatar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="@dimen/theme_margin_ten"
-                android:layout_marginRight="@dimen/theme_margin_ten"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_10"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/icon_default_avatar"
                 android:contentDescription="@null"/>
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/rlay_right_message"
-                android:layout_marginRight="@dimen/theme_margin_five"
+                android:layout_marginRight="@dimen/margin_5"
                 android:layout_centerVertical="true">
                 <ProgressBar
                     android:id="@+id/progress_send"

@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:gravity="center_vertical"
-    android:background="@color/theme_color_white">
+    android:background="@color/white">
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="@dimen/theme_margin_fifteen"
-        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_10"
         android:src="@drawable/ic_launcher"
         android:contentDescription="@null"/>
     <LinearLayout
@@ -22,14 +22,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="C罗"
-            android:textSize="@dimen/theme_text_size_sixteen"
-            android:textColor="@color/theme_color_black_a"/>
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/black_a"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="7号"
-            android:textSize="@dimen/theme_text_size_fourteen"
-            android:textColor="@color/theme_color_gray_f"/>
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/gray_f"/>
     </LinearLayout>
 
 </LinearLayout>

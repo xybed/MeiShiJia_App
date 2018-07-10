@@ -5,6 +5,6 @@
     android:layout_margin="5dp"
     android:padding="5dp"
     android:background="@drawable/shape_text_flow"
-    android:textColor="@color/theme_color_pink_c"
-    android:textSize="@dimen/theme_text_size_twelve"
+    android:textColor="@color/pink_c"
+    android:textSize="@dimen/text_size_12"
     />

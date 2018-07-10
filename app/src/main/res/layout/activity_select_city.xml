@@ -2,17 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_bg_color"
+    android:background="@color/bg_color"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:clipToPadding="false">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/theme_height_a"
+        android:layout_height="@dimen/height_44"
         android:background="@color/title_bar_bg_color">
         <ImageView
             android:id="@+id/btn_left"
-            android:layout_width="@dimen/theme_height_a"
+            android:layout_width="@dimen/height_44"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
             android:src="@drawable/bar_back_btn"
@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="@dimen/theme_margin_ten"
-            android:layout_marginRight="@dimen/theme_margin_ten"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
             android:text="@string/com_whole_country"
             android:gravity="center"
             android:textColor="@color/title_bar_text_right_color"
@@ -43,12 +43,12 @@
     <LinearLayout
         android:id="@+id/llay_gps"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/theme_height_c"
-        android:layout_marginLeft="@dimen/theme_margin_ten"
-        android:layout_marginRight="@dimen/theme_margin_ten"
-        android:layout_marginTop="@dimen/theme_margin_fifteen"
-        android:paddingLeft="@dimen/theme_padding_fifteen"
-        android:paddingRight="@dimen/theme_padding_fifteen"
+        android:layout_height="@dimen/height_48"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_15"
+        android:paddingLeft="@dimen/padding_15"
+        android:paddingRight="@dimen/padding_15"
         android:background="@drawable/selector_rect_white_border_gray_h"
         android:orientation="horizontal">
 
@@ -70,18 +70,18 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/theme_height_c"
-        android:layout_marginLeft="@dimen/theme_margin_ten"
-        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:layout_height="@dimen/height_48"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
         android:gravity="center_vertical"
         android:text="@string/com_select_city"
         android:textColor="@color/theme_color" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/theme_height_c"
-        android:layout_marginLeft="@dimen/theme_margin_ten"
-        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:layout_height="@dimen/height_48"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -133,8 +133,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/theme_margin_fifteen"
-                android:layout_marginRight="@dimen/theme_margin_fifteen"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginRight="@dimen/margin_15"
                 android:src="@drawable/icon_arrow_down"
                 android:contentDescription="@null"/>
         </LinearLayout>
@@ -142,9 +142,9 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/theme_height_c"
-        android:layout_marginLeft="@dimen/theme_margin_ten"
-        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:layout_height="@dimen/height_48"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
         android:gravity="center_vertical"
         android:text="@string/com_hot_city"
         android:textColor="@color/theme_color" />
@@ -153,8 +153,8 @@
         android:id="@+id/grid_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/theme_margin_ten"
-        android:layout_marginRight="@dimen/theme_margin_ten"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
         android:cacheColorHint="#00000000"
         android:horizontalSpacing="10dp"
         android:listSelector="@drawable/selector_rect_white_border_gray_h"

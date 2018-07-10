@@ -7,7 +7,7 @@
     <!-- 线的宽度，颜色灰色 -->
     <stroke
         android:width="0.5dp"
-        android:color="@color/theme_color_blue_a"/>
+        android:color="@color/blue_a"/>
     <!-- 矩形的圆角半径 -->
     <corners android:radius="2dp" />
 

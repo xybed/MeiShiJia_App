@@ -2,17 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_bg_color"
+    android:background="@color/bg_color"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:clipToPadding="false">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/theme_height_a"
+        android:layout_height="@dimen/height_44"
         android:background="@color/title_bar_bg_color">
         <ImageView
             android:id="@+id/btn_left"
-            android:layout_width="@dimen/theme_height_a"
+            android:layout_width="@dimen/height_44"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
             android:src="@drawable/bar_back_btn"
@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="@dimen/theme_margin_ten"
-            android:layout_marginRight="@dimen/theme_margin_ten"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
             android:text="@string/com_complete"
             android:gravity="center"
             android:textColor="@color/title_bar_text_right_color"
@@ -43,22 +43,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/theme_margin_twenty"
-        android:layout_marginLeft="@dimen/theme_margin_twenty"
-        android:layout_marginRight="@dimen/theme_margin_twenty"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
         android:text="@string/im_remark"
-        android:textColor="@color/theme_color_black_a"
-        android:textSize="@dimen/theme_text_size_sixteen"/>
+        android:textColor="@color/black_a"
+        android:textSize="@dimen/text_size_16"/>
 
     <EditText
         android:id="@+id/edit_remark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/theme_margin_twenty"
-        android:layout_marginRight="@dimen/theme_margin_twenty"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
         android:maxLength="20"
         android:hint="@string/im_remark"
-        android:textColorHint="@color/theme_color_gray_b"
-        android:textColor="@color/theme_color_gray_c"
-        android:textSize="@dimen/theme_text_size_fourteen"/>
+        android:textColorHint="@color/gray_b"
+        android:textColor="@color/gray_c"
+        android:textSize="@dimen/text_size_14"/>
 </LinearLayout>

@@ -40,7 +40,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
         ScreenUtil.measureViewByImg(getActivity(), imgBanner, 2.9);
-        swipeRefresh.setColorSchemeResources(R.color.theme_color_green_a);
+        swipeRefresh.setColorSchemeResources(R.color.green_a);
         swipeRefresh.setOnRefreshListener(this);
         return view;
     }

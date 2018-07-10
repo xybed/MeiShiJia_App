@@ -7,14 +7,14 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:gravity="center_vertical"
-        android:background="@color/theme_color_white"
+        android:background="@color/white"
         android:orientation="vertical">
         <!--第一行-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/theme_padding_fifteen"
-            android:paddingRight="@dimen/theme_padding_fifteen"
+            android:paddingLeft="@dimen/padding_15"
+            android:paddingRight="@dimen/padding_15"
             android:orientation="horizontal">
             <!--列-->
             <LinearLayout
@@ -39,10 +39,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/theme_margin_five"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/im_view_pager_album"
-                    android:textColor="@color/theme_color_gray_c"
-                    android:textSize="@dimen/theme_text_size_twelve"/>
+                    android:textColor="@color/gray_c"
+                    android:textSize="@dimen/text_size_12"/>
             </LinearLayout>
 
             <!--列-->
@@ -68,10 +68,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/theme_margin_five"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/im_view_pager_take_photo"
-                    android:textColor="@color/theme_color_gray_c"
-                    android:textSize="@dimen/theme_text_size_twelve"/>
+                    android:textColor="@color/gray_c"
+                    android:textSize="@dimen/text_size_12"/>
             </LinearLayout>
 
             <!--列-->
@@ -97,10 +97,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/theme_margin_five"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/im_view_pager_video_chat"
-                    android:textColor="@color/theme_color_gray_c"
-                    android:textSize="@dimen/theme_text_size_twelve"/>
+                    android:textColor="@color/gray_c"
+                    android:textSize="@dimen/text_size_12"/>
             </LinearLayout>
 
             <!--列-->
@@ -126,10 +126,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/theme_margin_five"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/im_view_pager_location"
-                    android:textColor="@color/theme_color_gray_c"
-                    android:textSize="@dimen/theme_text_size_twelve"/>
+                    android:textColor="@color/gray_c"
+                    android:textSize="@dimen/text_size_12"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -137,9 +137,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/theme_margin_twenty"
-            android:paddingLeft="@dimen/theme_padding_fifteen"
-            android:paddingRight="@dimen/theme_padding_fifteen"
+            android:layout_marginTop="@dimen/margin_20"
+            android:paddingLeft="@dimen/padding_15"
+            android:paddingRight="@dimen/padding_15"
             android:orientation="horizontal">
             <!--列-->
             <LinearLayout
@@ -164,10 +164,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/theme_margin_five"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/im_view_pager_red_packet"
-                    android:textColor="@color/theme_color_gray_c"
-                    android:textSize="@dimen/theme_text_size_twelve"/>
+                    android:textColor="@color/gray_c"
+                    android:textSize="@dimen/text_size_12"/>
             </LinearLayout>
 
             <!--列-->
@@ -193,10 +193,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/theme_margin_five"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/im_view_pager_transfer_accounts"
-                    android:textColor="@color/theme_color_gray_c"
-                    android:textSize="@dimen/theme_text_size_twelve"/>
+                    android:textColor="@color/gray_c"
+                    android:textSize="@dimen/text_size_12"/>
             </LinearLayout>
 
             <!--列-->
@@ -222,10 +222,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/theme_margin_five"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/im_view_pager_business_card"
-                    android:textColor="@color/theme_color_gray_c"
-                    android:textSize="@dimen/theme_text_size_twelve"/>
+                    android:textColor="@color/gray_c"
+                    android:textSize="@dimen/text_size_12"/>
             </LinearLayout>
 
             <!--列-->
@@ -251,10 +251,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/theme_margin_five"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:text="@string/im_view_pager_voice"
-                    android:textColor="@color/theme_color_gray_c"
-                    android:textSize="@dimen/theme_text_size_twelve"/>
+                    android:textColor="@color/gray_c"
+                    android:textSize="@dimen/text_size_12"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

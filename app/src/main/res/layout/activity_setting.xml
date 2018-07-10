@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_bg_color"
+    android:background="@color/bg_color"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:clipToPadding="false">
@@ -23,8 +23,8 @@
             <LinearLayout
                 android:id="@+id/llay_logout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/theme_height_a"
-                android:layout_marginTop="@dimen/theme_margin_ten"
+                android:layout_height="@dimen/height_44"
+                android:layout_marginTop="@dimen/margin_10"
                 android:background="@drawable/selector_bg_white_gray_h"
                 android:gravity="center">
                 <TextView
@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/user_logout"
                     android:textColor="@color/theme_color"
-                    android:textSize="@dimen/theme_text_size_sixteen"/>
+                    android:textSize="@dimen/text_size_16"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

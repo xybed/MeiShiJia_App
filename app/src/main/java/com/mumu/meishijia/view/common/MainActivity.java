@@ -52,8 +52,8 @@ public class MainActivity extends BaseActivity {
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         bottomNavigationBar.setActiveColor(R.color.theme_color);
-        bottomNavigationBar.setInActiveColor(R.color.theme_color_black_a);
-        bottomNavigationBar.setBarBackgroundColor(R.color.theme_color_white);
+        bottomNavigationBar.setInActiveColor(R.color.black_a);
+        bottomNavigationBar.setBarBackgroundColor(R.color.white);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.icon_food_tab, "美食佳"))
                 .addItem(new BottomNavigationItem(R.drawable.icon_shop_tab, "数据"))

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_bg_color"
+    android:background="@color/bg_color"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:clipToPadding="false">
@@ -26,28 +26,28 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/theme_margin_twenty"
+                android:layout_marginTop="@dimen/margin_20"
                 android:contentDescription="@null"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/theme_margin_twenty"
-                android:paddingLeft="@dimen/theme_padding_ten"
-                android:paddingRight="@dimen/theme_padding_ten"
-                android:background="@color/theme_color_white"
+                android:layout_marginTop="@dimen/margin_20"
+                android:paddingLeft="@dimen/padding_10"
+                android:paddingRight="@dimen/padding_10"
+                android:background="@color/white"
                 android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/theme_height_a"
+                    android:layout_height="@dimen/height_44"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/user_msg_img_size"
                         android:layout_height="@dimen/user_msg_img_size"
-                        android:layout_marginLeft="@dimen/theme_margin_ten"
-                        android:layout_marginRight="@dimen/theme_margin_ten"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
                         android:src="@drawable/icon_nickname"
                         android:contentDescription="@null"/>
 
@@ -55,8 +55,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/user_nickname"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textSize="@dimen/text_size_14" />
 
                     <EditText
                         android:id="@+id/edit_nickname"
@@ -67,27 +67,27 @@
                         android:gravity="end|center_vertical"
                         android:hint="@string/user_pls_input_nickname"
                         android:maxLength="20"
-                        android:paddingLeft="@dimen/theme_padding_twenty_five"
-                        android:paddingRight="@dimen/theme_padding_twenty_five"
+                        android:paddingLeft="@dimen/padding_25"
+                        android:paddingRight="@dimen/padding_25"
                         android:singleLine="true"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textColorHint="@color/theme_color_gray_b"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textColorHint="@color/gray_b"
+                        android:textSize="@dimen/text_size_14" />
                 </LinearLayout>
 
                 <include layout="@layout/layout_split_line_gray_e" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/theme_height_a"
+                    android:layout_height="@dimen/height_44"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/user_msg_img_size"
                         android:layout_height="@dimen/user_msg_img_size"
-                        android:layout_marginLeft="@dimen/theme_margin_ten"
-                        android:layout_marginRight="@dimen/theme_margin_ten"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
                         android:src="@drawable/icon_real_name"
                         android:contentDescription="@null"/>
 
@@ -95,8 +95,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/user_real_name"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textSize="@dimen/text_size_14" />
 
                     <EditText
                         android:id="@+id/edit_real_name"
@@ -107,12 +107,12 @@
                         android:gravity="end|center_vertical"
                         android:hint="@string/user_pls_input_real_name"
                         android:maxLength="20"
-                        android:paddingLeft="@dimen/theme_padding_twenty_five"
-                        android:paddingRight="@dimen/theme_padding_twenty_five"
+                        android:paddingLeft="@dimen/padding_25"
+                        android:paddingRight="@dimen/padding_25"
                         android:singleLine="true"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textColorHint="@color/theme_color_gray_b"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textColorHint="@color/gray_b"
+                        android:textSize="@dimen/text_size_14" />
                 </LinearLayout>
 
                 <include layout="@layout/layout_split_line_gray_e" />
@@ -120,15 +120,15 @@
                 <LinearLayout
                     android:id="@+id/llay_sex"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/theme_height_a"
+                    android:layout_height="@dimen/height_44"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/user_msg_img_size"
                         android:layout_height="@dimen/user_msg_img_size"
-                        android:layout_marginLeft="@dimen/theme_margin_ten"
-                        android:layout_marginRight="@dimen/theme_margin_ten"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
                         android:src="@drawable/icon_sex"
                         android:contentDescription="@null"/>
 
@@ -136,8 +136,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/user_sex"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textSize="@dimen/text_size_14" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -149,11 +149,11 @@
                             android:id="@+id/txt_sex"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/theme_margin_ten"
-                            android:layout_marginRight="@dimen/theme_margin_ten"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
                             android:text=""
-                            android:textColor="@color/theme_color_gray_c"
-                            android:textSize="@dimen/theme_text_size_fourteen" />
+                            android:textColor="@color/gray_c"
+                            android:textSize="@dimen/text_size_14" />
 
                         <ImageView
                             android:layout_width="15dp"
@@ -168,16 +168,16 @@
                 <LinearLayout
                     android:id="@+id/llay_birthday"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/theme_height_a"
-                    android:background="@color/theme_color_white"
+                    android:layout_height="@dimen/height_44"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/user_msg_img_size"
                         android:layout_height="@dimen/user_msg_img_size"
-                        android:layout_marginLeft="@dimen/theme_margin_ten"
-                        android:layout_marginRight="@dimen/theme_margin_ten"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
                         android:src="@drawable/icon_birthday"
                         android:contentDescription="@null"/>
 
@@ -185,8 +185,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/user_birthday"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textSize="@dimen/text_size_14" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -198,11 +198,11 @@
                             android:id="@+id/txt_birthday"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/theme_margin_ten"
-                            android:layout_marginRight="@dimen/theme_margin_ten"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
                             android:text=""
-                            android:textColor="@color/theme_color_gray_c"
-                            android:textSize="@dimen/theme_text_size_fourteen" />
+                            android:textColor="@color/gray_c"
+                            android:textSize="@dimen/text_size_14" />
 
                         <ImageView
                             android:layout_width="15dp"
@@ -216,15 +216,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/theme_height_a"
+                    android:layout_height="@dimen/height_44"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/user_msg_img_size"
                         android:layout_height="@dimen/user_msg_img_size"
-                        android:layout_marginLeft="@dimen/theme_margin_ten"
-                        android:layout_marginRight="@dimen/theme_margin_ten"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
                         android:src="@drawable/icon_email"
                         android:contentDescription="@null"/>
 
@@ -232,8 +232,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/user_email"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textSize="@dimen/text_size_14" />
 
                     <EditText
                         android:id="@+id/edit_email"
@@ -245,12 +245,12 @@
                         android:hint="@string/user_pls_input_email"
                         android:inputType="textEmailAddress"
                         android:maxLength="50"
-                        android:paddingLeft="@dimen/theme_padding_twenty_five"
-                        android:paddingRight="@dimen/theme_padding_twenty_five"
+                        android:paddingLeft="@dimen/padding_25"
+                        android:paddingRight="@dimen/padding_25"
                         android:singleLine="true"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textColorHint="@color/theme_color_gray_b"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textColorHint="@color/gray_b"
+                        android:textSize="@dimen/text_size_14" />
                 </LinearLayout>
 
                 <include layout="@layout/layout_split_line_gray_e" />
@@ -258,15 +258,15 @@
                 <LinearLayout
                     android:id="@+id/llay_city"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/theme_height_a"
+                    android:layout_height="@dimen/height_44"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/user_msg_img_size"
                         android:layout_height="@dimen/user_msg_img_size"
-                        android:layout_marginLeft="@dimen/theme_margin_ten"
-                        android:layout_marginRight="@dimen/theme_margin_ten"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
                         android:src="@drawable/icon_city"
                         android:contentDescription="@null"/>
 
@@ -274,8 +274,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/user_city"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textSize="@dimen/text_size_14" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -287,13 +287,13 @@
                             android:id="@+id/txt_city"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/theme_margin_ten"
-                            android:layout_marginRight="@dimen/theme_margin_ten"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
                             android:hint="@string/user_pls_select_city"
                             android:gravity="end"
-                            android:textColorHint="@color/theme_color_gray_b"
-                            android:textColor="@color/theme_color_gray_c"
-                            android:textSize="@dimen/theme_text_size_fourteen" />
+                            android:textColorHint="@color/gray_b"
+                            android:textColor="@color/gray_c"
+                            android:textSize="@dimen/text_size_14" />
 
                         <ImageView
                             android:layout_width="15dp"
@@ -307,15 +307,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/theme_height_a"
+                    android:layout_height="@dimen/height_44"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="@dimen/user_msg_img_size"
                         android:layout_height="@dimen/user_msg_img_size"
-                        android:layout_marginLeft="@dimen/theme_margin_ten"
-                        android:layout_marginRight="@dimen/theme_margin_ten"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
                         android:src="@drawable/icon_signature"
                         android:contentDescription="@null"/>
 
@@ -323,8 +323,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/user_signature"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textSize="@dimen/text_size_14" />
 
                     <EditText
                         android:id="@+id/edit_signature"
@@ -335,12 +335,12 @@
                         android:gravity="end|center_vertical"
                         android:hint="@string/user_pls_input_signature"
                         android:maxLength="30"
-                        android:paddingLeft="@dimen/theme_padding_twenty_five"
-                        android:paddingRight="@dimen/theme_padding_twenty_five"
+                        android:paddingLeft="@dimen/padding_25"
+                        android:paddingRight="@dimen/padding_25"
                         android:singleLine="true"
-                        android:textColor="@color/theme_color_gray_c"
-                        android:textColorHint="@color/theme_color_gray_b"
-                        android:textSize="@dimen/theme_text_size_fourteen" />
+                        android:textColor="@color/gray_c"
+                        android:textColorHint="@color/gray_b"
+                        android:textSize="@dimen/text_size_14" />
                 </LinearLayout>
             </LinearLayout>
 

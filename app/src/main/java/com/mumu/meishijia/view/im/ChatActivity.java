@@ -59,8 +59,6 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
     public static final String FRIEND_ID = "friend_id";
     public static final String PRINCIPAL_ID = "principal_id";
 
-    @BindView(R.id.txt_remark)
-    TextView txtRemark;
     @BindView(R.id.list_view)
     ListView listView;
     @BindView(R.id.swipe_refresh_layout)
@@ -190,14 +188,9 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         });
     }
 
-    @OnClick({R.id.btn_left, R.id.btn_friend_info, R.id.img_sound, R.id.img_keyboard, R.id.img_add, R.id.btn_send_msg})
+    @OnClick({R.id.img_sound, R.id.img_keyboard, R.id.img_add, R.id.btn_send_msg})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_left:
-                finish();
-                break;
-            case R.id.btn_friend_info:
-                break;
             case R.id.img_sound:
                 imgSound.setVisibility(View.GONE);
                 editMsg.setVisibility(View.GONE);

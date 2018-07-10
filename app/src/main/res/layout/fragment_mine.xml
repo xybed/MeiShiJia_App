@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/theme_bg_color">
+    android:background="@color/bg_color">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,45 +23,45 @@
                     android:id="@+id/img_avatar"
                     android:layout_width="@dimen/avatar_img_size"
                     android:layout_height="@dimen/avatar_img_size"
-                    android:padding="@dimen/theme_padding_three"
+                    android:padding="@dimen/padding_3"
                     android:background="@drawable/shape_circle_white"
                     android:contentDescription="@null"/>
                 <TextView
                     android:id="@+id/txt_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/theme_margin_ten"
+                    android:layout_marginTop="@dimen/margin_10"
                     android:text="@string/user_login"
                     android:textColor="@color/theme_color"
-                    android:textSize="@dimen/theme_text_size_fourteen"/>
+                    android:textSize="@dimen/text_size_14"/>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llay_conversation"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/theme_height_a"
+                android:layout_height="@dimen/height_44"
                 android:background="@drawable/selector_bg_white_gray_h"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/theme_margin_fifteen"
-                    android:layout_marginRight="@dimen/theme_margin_fifteen"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_marginRight="@dimen/margin_15"
                     android:src="@drawable/icon_chat"
                     android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/im_chat"
-                    android:textColor="@color/theme_color_black_a"
-                    android:textSize="@dimen/theme_text_size_fourteen"/>
+                    android:textColor="@color/black_a"
+                    android:textSize="@dimen/text_size_14"/>
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:paddingLeft="@dimen/theme_padding_ten"
-                    android:paddingRight="@dimen/theme_padding_ten"
+                    android:paddingLeft="@dimen/padding_10"
+                    android:paddingRight="@dimen/padding_10"
                     android:gravity="right|center_vertical">
                     <TextView
                         android:visibility="gone"
@@ -70,8 +70,8 @@
                         android:layout_height="@dimen/unread_red_dot_size"
                         android:background="@drawable/shape_circle_red"
                         android:gravity="center"
-                        android:textSize="@dimen/theme_text_size_twelve"
-                        android:textColor="@color/theme_color_white"/>
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/white"/>
                 </RelativeLayout>
             </LinearLayout>
 
@@ -80,46 +80,46 @@
             <LinearLayout
                 android:id="@+id/llay_contacts"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/theme_height_a"
+                android:layout_height="@dimen/height_44"
                 android:background="@drawable/selector_bg_white_gray_h"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/theme_margin_fifteen"
-                    android:layout_marginRight="@dimen/theme_margin_fifteen"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_marginRight="@dimen/margin_15"
                     android:src="@drawable/icon_contacts"
                     android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/im_contacts"
-                    android:textColor="@color/theme_color_black_a"
-                    android:textSize="@dimen/theme_text_size_fourteen"/>
+                    android:textColor="@color/black_a"
+                    android:textSize="@dimen/text_size_14"/>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llay_setting"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/theme_height_a"
-                android:layout_marginTop="@dimen/theme_margin_ten"
+                android:layout_height="@dimen/height_44"
+                android:layout_marginTop="@dimen/margin_10"
                 android:background="@drawable/selector_bg_white_gray_h"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/theme_margin_fifteen"
-                    android:layout_marginRight="@dimen/theme_margin_fifteen"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_marginRight="@dimen/margin_15"
                     android:src="@drawable/icon_setting"
                     android:contentDescription="@null"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/com_setting"
-                    android:textColor="@color/theme_color_black_a"
-                    android:textSize="@dimen/theme_text_size_fourteen"/>
+                    android:textColor="@color/black_a"
+                    android:textSize="@dimen/text_size_14"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
