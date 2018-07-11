@@ -1,6 +1,5 @@
 package com.mumu.meishijia.view;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,19 +8,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.hwangjr.rxbus.RxBus;
+import com.jaeger.library.StatusBarUtil;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.BasePresenter;
 import com.mumu.meishijia.view.mine.LoginActivity;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
@@ -37,7 +34,6 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
 
     protected P presenter;
 
-    private SystemBarTintManager tintManager;
     private LoadingDialog loadingDialog;
     private ActionTitleBar actionTitleBar;
 
@@ -46,15 +42,6 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
         super.onCreate(savedInstanceState);
 
         createPresenter();
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-            setTranslucentStatus(true);
-
-            tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(true);
-            tintManager.setNavigationBarTintEnabled(true);
-            //此处可以重新指定状态栏颜色
-            tintManager.setStatusBarTintResource(R.color.theme_color);
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -74,35 +61,11 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
         }
     }
 
-    @TargetApi(19)
-    private void setTranslucentStatus(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }
-
-    protected void transparentStatusBar(boolean isTransparency){
-        //版本大于4.4
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if(isTransparency)
-                //设置为全透明
-                tintManager.setTintColor(0x00000000);
-            else{
-                tintManager.setStatusBarTintResource(R.color.theme_color);
-            }
-        }
-    }
-
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
 
+        setStatusBar();
         getTitleBar();
         if(actionTitleBar != null){
             actionTitleBar.getImgLeft().setOnClickListener(new View.OnClickListener() {
@@ -124,6 +87,18 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
                 }
             });
         }
+    }
+
+    protected void setStatusBar(){
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.theme_color), 1);
+    }
+
+    protected void setStatusBarTransparent(){
+        StatusBarUtil.setTransparent(this);
+    }
+
+    protected void setStatusBarTransparentInFragment(){
+        StatusBarUtil.setTranslucentForImageViewInFragment(this, 1, null);
     }
 
     private void getTitleBar(){

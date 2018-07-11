@@ -21,7 +21,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 
 import lib.cache.CacheJsonMgr;
-import lib.utils.DensityUtil;
 import lib.utils.ToastUtil;
 import lib.widget.LoadingDialog;
 
@@ -84,21 +83,6 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
             InputMethodManager inputmanger = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-    }
-
-    /***系统状态栏高度  start**/
-    private int statusBarHeight = 0;
-
-    public int getStatusBarHeight() {
-        if(statusBarHeight == 0){
-            //默认状态栏高度
-            statusBarHeight = DensityUtil.dip2px(getActivity(),25);
-        }
-        return statusBarHeight;
-    }
-
-    public void setStatusBarHeight(int statusBarHeight) {
-        this.statusBarHeight = statusBarHeight;
     }
 
     @Override

@@ -97,8 +97,8 @@ dependencies {
     compile files('libs/wup-1.0.0-SNAPSHOT.jar')
     //用于解决Dex方法数超出限制的问题
     compile 'com.android.support:multidex:1.0.1'
-    //兼容4.4沉浸式状态栏
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.4'
+    //沉浸式状态栏
+    compile 'com.jaeger.statusbarutil:library:1.5.1'
     //butterknife 8.4.0
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'

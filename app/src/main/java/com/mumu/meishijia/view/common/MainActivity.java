@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity {
     private void initFragment() {
         content = new HomeFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.content, content).commit();
-        transparentStatusBar(true);
+        setStatusBarTransparentInFragment();
     }
 
     private void initBottomNavigationBar(){
@@ -100,15 +100,12 @@ public class MainActivity extends BaseActivity {
         switch (position) {
             case 0:
                 switchFragment(content, getHomeFragment());
-                transparentStatusBar(true);
                 break;
             case 1:
                 switchFragment(content, getFootballFragment());
-                transparentStatusBar(false);
                 break;
             case 2:
                 switchFragment(content, getMineFragment());
-                transparentStatusBar(true);
                 break;
         }
     }
