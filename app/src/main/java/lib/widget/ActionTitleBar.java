@@ -64,6 +64,7 @@ public class ActionTitleBar extends FrameLayout{
         if(rightDrawable == null){
             imgRight.setVisibility(GONE);
         }else {
+            imgRight.setImageDrawable(rightDrawable);
             imgRight.setVisibility(VISIBLE);
         }
         if(rightText == null){

@@ -3,7 +3,7 @@ package com.mumu.meishijia.api;
 import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.model.BaseModel;
 import com.mumu.meishijia.model.im.ContactsDetailModel;
-import com.mumu.meishijia.model.im.ContactsModel;
+import com.mumu.meishijia.model.im.Contacts;
 import com.mumu.meishijia.model.im.PrincipalModel;
 
 import java.util.List;
@@ -22,7 +22,7 @@ import retrofit2.http.QueryMap;
 
 public interface ImApi {
     @GET(HttpUrl.GetContacts)
-    Observable<BaseModel<List<ContactsModel>>> getContacts(@QueryMap Map<String, Integer> map);
+    Observable<BaseModel<List<Contacts>>> getContacts(@QueryMap Map<String, Integer> map);
     @GET(HttpUrl.GetContactsDetail)
     Observable<BaseModel<ContactsDetailModel>> getContactsDetail(@QueryMap Map<String, String> map);
     @POST(HttpUrl.ModifyRemark)

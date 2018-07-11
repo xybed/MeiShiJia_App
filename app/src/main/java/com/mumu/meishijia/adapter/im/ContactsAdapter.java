@@ -9,14 +9,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
-import com.mumu.meishijia.model.im.ContactsModel;
-import com.mumu.meishijia.model.im.ContactsRealmModel;
+import com.mumu.meishijia.model.im.Contacts;
 
 import java.util.List;
 
 import lib.swipelayout.BaseSwipeAdapter;
 import lib.swipelayout.SwipeLayout;
-import lib.utils.MyLogUtil;
 import lib.utils.ToastUtil;
 
 /**
@@ -27,9 +25,9 @@ import lib.utils.ToastUtil;
 public class ContactsAdapter extends BaseSwipeAdapter{
 
     private Context context;
-    private List<ContactsModel> contactsList;
+    private List<Contacts> contactsList;
 
-    public ContactsAdapter(Context context, List<ContactsModel> contactsList){
+    public ContactsAdapter(Context context, List<Contacts> contactsList){
         this.context = context;
         this.contactsList = contactsList;
     }
@@ -46,7 +44,7 @@ public class ContactsAdapter extends BaseSwipeAdapter{
 
     @Override
     public void fillValues(int position, View convertView) {
-        final ContactsModel model = contactsList.get(position);
+        final Contacts model = contactsList.get(position);
         Holder holder = new Holder();
         holder.txtLetter = (TextView) convertView.findViewById(R.id.txt_letter);
         holder.swipeLayout = (SwipeLayout) convertView.findViewById(R.id.swipe_layout);
@@ -55,8 +53,8 @@ public class ContactsAdapter extends BaseSwipeAdapter{
         holder.txtName = (TextView) convertView.findViewById(R.id.txt_name);
 
         //显示字母
-        if(position == 0 || !model.getSort_letter().equals(contactsList.get(position - 1).getSort_letter())){
-            holder.txtLetter.setText(model.getSort_letter());
+        if(position == 0 || !model.getSortLetter().equals(contactsList.get(position - 1).getSortLetter())){
+            holder.txtLetter.setText(model.getSortLetter());
             holder.txtLetter.setVisibility(View.VISIBLE);
         }else {
             holder.txtLetter.setVisibility(View.GONE);
@@ -105,14 +103,14 @@ public class ContactsAdapter extends BaseSwipeAdapter{
      * 设置数据
      * @param list
      */
-    public void setData(List<ContactsModel> list) {
+    public void setData(List<Contacts> list) {
         if (list == null){
             this.contactsList.clear();
             notifyDataSetChanged();
             return;
         }
         this.contactsList.clear();
-        for (ContactsModel t : list) {
+        for (Contacts t : list) {
             this.contactsList.add(t);
         }
         notifyDataSetChanged();
@@ -122,7 +120,7 @@ public class ContactsAdapter extends BaseSwipeAdapter{
      * 增加数据
      * @param list
      */
-    public void addData(List<ContactsModel> list){
+    public void addData(List<Contacts> list){
         if(list == null)
             return;
         this.contactsList.addAll(list);
@@ -133,7 +131,7 @@ public class ContactsAdapter extends BaseSwipeAdapter{
      * 获取数据
      * @return
      */
-    public List<ContactsModel> getData() {
+    public List<Contacts> getData() {
         return this.contactsList;
     }
 

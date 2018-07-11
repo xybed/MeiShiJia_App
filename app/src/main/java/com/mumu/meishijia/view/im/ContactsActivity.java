@@ -15,7 +15,7 @@ import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ContactsAdapter;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.im.ContactsModel;
+import com.mumu.meishijia.model.im.Contacts;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.presenter.im.ContactsPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -25,7 +25,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import lib.widget.LetterSide;
 
 public class ContactsActivity extends BaseActivity<ContactsPresenter> implements ContactsView{
@@ -38,7 +37,7 @@ public class ContactsActivity extends BaseActivity<ContactsPresenter> implements
     LetterSide letterSide;
 
     private ContactsAdapter adapter;
-    private List<ContactsModel> contactsList;
+    private List<Contacts> contactsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,19 +84,13 @@ public class ContactsActivity extends BaseActivity<ContactsPresenter> implements
         presenter.getContacts();
     }
 
-    @OnClick({R.id.btn_left, R.id.btn_add})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_left:
-                finish();
-                break;
-            case R.id.btn_add:
-                break;
-        }
+    @Override
+    protected void onRightButtonClick() {
+        toast("加新朋友");
     }
 
     @Override
-    public void getContactsSuccess(List<ContactsModel> contactsList) {
+    public void getContactsSuccess(List<Contacts> contactsList) {
         dismissLoadingDialog();
         this.contactsList = contactsList;
         if(contactsList == null || contactsList.size() <= 0)

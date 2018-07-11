@@ -1,6 +1,6 @@
 package com.mumu.meishijia.view.im;
 
-import com.mumu.meishijia.model.im.ContactsModel;
+import com.mumu.meishijia.model.im.Contacts;
 import com.mumu.meishijia.view.BaseView;
 
 import java.util.List;
@@ -11,5 +11,5 @@ import java.util.List;
  */
 
 public interface ContactsView extends BaseView{
-    void getContactsSuccess(List<ContactsModel> contactsList);
+    void getContactsSuccess(List<Contacts> contactsList);
 }

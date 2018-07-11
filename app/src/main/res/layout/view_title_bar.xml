@@ -31,6 +31,7 @@
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:scaleType="centerInside"
         android:contentDescription="@null"/>
 
     <TextView

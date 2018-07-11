@@ -1,7 +1,7 @@
 package com.mumu.meishijia.presenter.im;
 
 import com.mumu.meishijia.MyApplication;
-import com.mumu.meishijia.model.im.ContactsModel;
+import com.mumu.meishijia.model.im.Contacts;
 import com.mumu.meishijia.presenter.BasePresenter;
 import com.mumu.meishijia.view.BaseView;
 import com.mumu.meishijia.view.im.ContactsView;
@@ -22,11 +22,11 @@ public class ContactsPresenter extends BasePresenter<ContactsView, ContactsViewM
     public void getContacts(){
         int userId = MyApplication.getInstance().getUser().getId();
         model.getContacts(userId)
-                .subscribe(new RxObserver<List<ContactsModel>>() {
+                .subscribe(new RxObserver<List<Contacts>>() {
                     @Override
-                    protected void onSuccess(List<ContactsModel> contactsModels) {
+                    protected void onSuccess(List<Contacts> contacts) {
                         if(view != null)
-                            view.getContactsSuccess(contactsModels);
+                            view.getContactsSuccess(contacts);
                     }
                 });
     }

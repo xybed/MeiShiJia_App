@@ -312,7 +312,7 @@ public class IMUtil {
 //                principal.setPrincipal_user_id(result.getPrincipal_user_id());
 //                principal.setRemark(result.getRemark());
 //                principal.setAvatar(result.getAvatar());
-//                principal.setPrincipal_id(result.getPrincipal_id());
+//                principal.setPrincipalId(result.getPrincipalId());
 //                insertOrUpdateConversation(principal, chat);
 //            }
 //
