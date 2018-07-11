@@ -26,13 +26,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.realm.Realm;
-import io.realm.RealmResults;
-import lib.realm.MyRealm;
-import lib.utils.ToastUtil;
 import lib.widget.LetterSide;
 
-public class ContactsActivity extends BaseActivity implements ContactsView{
+public class ContactsActivity extends BaseActivity<ContactsPresenter> implements ContactsView{
 
     @BindView(R.id.list_view)
     ListView listView;
@@ -40,8 +36,6 @@ public class ContactsActivity extends BaseActivity implements ContactsView{
     TextView txtCenter;
     @BindView(R.id.letter_side)
     LetterSide letterSide;
-
-    private ContactsPresenter presenter;
 
     private ContactsAdapter adapter;
     private List<ContactsModel> contactsList;
@@ -52,7 +46,6 @@ public class ContactsActivity extends BaseActivity implements ContactsView{
         setContentView(R.layout.activity_contacts);
 
         initUI();
-        presenter = new ContactsPresenter(this);
         getContacts();
         RxBus.get().register(this);
     }
@@ -110,12 +103,6 @@ public class ContactsActivity extends BaseActivity implements ContactsView{
         if(contactsList == null || contactsList.size() <= 0)
             return;
         adapter.setData(contactsList);
-    }
-
-    @Override
-    public void getContactsFail(String errMsg) {
-        dismissLoadingDialog();
-        ToastUtil.show(errMsg);
     }
 
     @Subscribe(

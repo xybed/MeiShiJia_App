@@ -22,7 +22,7 @@ import retrofit2.http.QueryMap;
 
 public interface ImApi {
     @GET(HttpUrl.GetContacts)
-    Observable<BaseModel<List<ContactsModel>>> getContacts(@QueryMap Map<String, String> map);
+    Observable<BaseModel<List<ContactsModel>>> getContacts(@QueryMap Map<String, Integer> map);
     @GET(HttpUrl.GetContactsDetail)
     Observable<BaseModel<ContactsDetailModel>> getContactsDetail(@QueryMap Map<String, String> map);
     @POST(HttpUrl.ModifyRemark)

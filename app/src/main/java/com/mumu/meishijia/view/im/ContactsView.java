@@ -1,6 +1,7 @@
 package com.mumu.meishijia.view.im;
 
 import com.mumu.meishijia.model.im.ContactsModel;
+import com.mumu.meishijia.view.BaseView;
 
 import java.util.List;
 
@@ -9,7 +10,6 @@ import java.util.List;
  * Created by Administrator on 2017/4/10.
  */
 
-public interface ContactsView {
+public interface ContactsView extends BaseView{
     void getContactsSuccess(List<ContactsModel> contactsList);
-    void getContactsFail(String errMsg);
 }
