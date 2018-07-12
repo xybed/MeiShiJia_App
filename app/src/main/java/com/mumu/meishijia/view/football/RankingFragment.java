@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.football.RankingAdapter;
-import com.mumu.meishijia.model.football.RankingModel;
+import com.mumu.meishijia.model.football.Ranking;
 import com.mumu.meishijia.presenter.football.RankingPresenter;
 import com.mumu.meishijia.view.BaseFragment;
 
@@ -68,9 +68,9 @@ public class RankingFragment extends BaseFragment<RankingPresenter> implements R
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                RankingModel rankingModel = (RankingModel) adapterView.getItemAtPosition(i);
+                Ranking ranking = (Ranking) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getActivity(), TeamDetailActivity.class);
-                intent.putExtra(TeamDetailActivity.TEAM_ID, rankingModel.getTeam_id());
+                intent.putExtra(TeamDetailActivity.TEAM_ID, ranking.getTeam_id());
                 startActivity(intent);
             }
         });
@@ -89,7 +89,7 @@ public class RankingFragment extends BaseFragment<RankingPresenter> implements R
     }
 
     @Override
-    public void getSuccess(List<RankingModel> result) {
+    public void getSuccess(List<Ranking> result) {
         stopRefresh();
         if(result == null || result.size() < 0)
             return;

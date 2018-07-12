@@ -21,7 +21,7 @@ import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.presenter.mine.UserInfoPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.common.SelectCityActivity;
@@ -88,13 +88,13 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
             finish();
             return;
         }
-        UserModel user = MyApplication.getInstance().getUser();
+        User user = MyApplication.getInstance().getUser();
         Glide.with(this).load(user.getAvatar())
                 .placeholder(R.drawable.icon_default_avatar)
                 .transform(new GlideCircleTransform(this))
                 .into(imgAvatar);
         editNickname.setText(user.getNickname());
-        editRealName.setText(user.getReal_name());
+        editRealName.setText(user.getRealName());
         switch (user.getSex()){
             case 0:
                 txtSex.setText(getString(R.string.user_sex_unknown));
@@ -305,18 +305,18 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
         dismissLoadingDialog();
         //更改本地的userModel数据
         CacheJsonMgr cacheJsonMgr = CacheJsonMgr.getInstance(this);
-        UserModel userModel = MyApplication.getInstance().getUser();
-        userModel.setAvatar(avatar);
-        userModel.setNickname(editNickname.getText().toString());
-        userModel.setReal_name(editRealName.getText().toString());
-        userModel.setSex(NumberUtil.parseInt(sexCode, 0));
-        userModel.setBirthday(txtBirthday.getText().toString());
-        userModel.setEmail(editEmail.getText().toString());
-        userModel.setProvince(province);
-        userModel.setCity(city);
-        userModel.setSignature(editSignature.getText().toString());
-        String jsonStr = JSON.toJSONString(userModel);
-        cacheJsonMgr.saveJson(jsonStr, UserModel.class.getSimpleName());
+        User user = MyApplication.getInstance().getUser();
+        user.setAvatar(avatar);
+        user.setNickname(editNickname.getText().toString());
+        user.setRealName(editRealName.getText().toString());
+        user.setSex(NumberUtil.parseInt(sexCode, 0));
+        user.setBirthday(txtBirthday.getText().toString());
+        user.setEmail(editEmail.getText().toString());
+        user.setProvince(province);
+        user.setCity(city);
+        user.setSignature(editSignature.getText().toString());
+        String jsonStr = JSON.toJSONString(user);
+        cacheJsonMgr.saveJson(jsonStr, User.class.getSimpleName());
         RxBus.get().post(RxBusAction.MineUserData, "");
         finish();
     }

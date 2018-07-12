@@ -1,6 +1,6 @@
 package com.mumu.meishijia.view.mine;
 
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.view.BaseView;
 
 /**
@@ -8,5 +8,5 @@ import com.mumu.meishijia.view.BaseView;
  * Created by Administrator on 2017/3/29.
  */
 public interface LoginView extends BaseView{
-    void loginSuccess(UserModel result);
+    void loginSuccess(User result);
 }

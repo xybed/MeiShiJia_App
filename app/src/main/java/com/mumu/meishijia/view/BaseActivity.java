@@ -17,7 +17,7 @@ import com.jaeger.library.StatusBarUtil;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.presenter.BasePresenter;
 import com.mumu.meishijia.view.mine.LoginActivity;
 
@@ -255,7 +255,7 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
         MyApplication.getInstance().setLogin(false);
         MyApplication.getInstance().setIMLogin(false);
         //清除用户信息
-        CacheJsonMgr.getInstance(this).deleteJson(UserModel.class.getSimpleName());
+        CacheJsonMgr.getInstance(this).deleteJson(User.class.getSimpleName());
 
         //通知我的界面刷新数据
         RxBus.get().post(RxBusAction.MineUserData, "");

@@ -8,7 +8,7 @@ import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.presenter.mine.SettingPresenter;
 import com.mumu.meishijia.tencent.IMUtil;
 import com.mumu.meishijia.view.BaseActivity;
@@ -48,7 +48,7 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
         //登出腾讯im
         IMUtil.getInstance().logoutIM();
         //清空用户信息
-        CacheJsonMgr.getInstance(this).deleteJson(UserModel.class.getSimpleName());
+        CacheJsonMgr.getInstance(this).deleteJson(User.class.getSimpleName());
         RxBus.get().post(RxBusAction.MineUserData, "");
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

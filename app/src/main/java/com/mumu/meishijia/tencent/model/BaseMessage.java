@@ -11,7 +11,7 @@ import com.mumu.meishijia.adapter.im.ChatAdapter;
 import com.mumu.meishijia.tencent.IMConstant;
 import com.mumu.meishijia.tencent.dbmodel.ChatRealmModel;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 
 import io.realm.Realm;
 import lib.realm.MyRealm;
@@ -34,7 +34,7 @@ public abstract class BaseMessage {
         holder.txtTime.setVisibility(View.GONE);
         holder.txtTip.setVisibility(View.GONE);
 
-        UserModel user = MyApplication.getInstance().getUser();
+        User user = MyApplication.getInstance().getUser();
         //显示头像
         if(isSelf()){
             Glide.with(context)
@@ -63,7 +63,7 @@ public abstract class BaseMessage {
     }
 
     private boolean isSelf(){
-        return message.getFrom_id() == MyApplication.getInstance().getUser().getPrincipal_id();
+        return message.getFrom_id() == MyApplication.getInstance().getUser().getPrincipalId();
     }
 
     protected void showStatus(ChatAdapter.Holder holder){

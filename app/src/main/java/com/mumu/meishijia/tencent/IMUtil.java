@@ -11,7 +11,7 @@ import android.support.v4.app.NotificationCompat;
 import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.tencent.dao.ChatDao;
 import com.mumu.meishijia.tencent.dao.ConversationDao;
 import com.mumu.meishijia.tencent.dao.PrincipalDao;
@@ -162,16 +162,16 @@ public class IMUtil {
     public void loginIM(){
         final MyApplication myApplication = MyApplication.getInstance();
         if(myApplication.isLogin() && !myApplication.isIMLogin()){
-            UserModel userModel = myApplication.getUser();
-            if(userModel == null)
+            User user = myApplication.getUser();
+            if(user == null)
                 return;
 
             TIMUser timUser = new TIMUser();
             timUser.setAccountType(IM_ACCOUNT_TYPE);
             timUser.setAppIdAt3rd(String.valueOf(IM_SDK_APP_ID));
-            timUser.setIdentifier(String.valueOf(userModel.getPrincipal_id()));
+            timUser.setIdentifier(String.valueOf(user.getPrincipalId()));
 
-            TIMManager.getInstance().login(IM_SDK_APP_ID, timUser, userModel.getIm_usersig(), new TIMCallBack() {
+            TIMManager.getInstance().login(IM_SDK_APP_ID, timUser, user.getIm_usersig(), new TIMCallBack() {
                 @Override
                 public void onSuccess() {
                     myApplication.setIMLogin(true);
@@ -263,7 +263,7 @@ public class IMUtil {
             chatRealmModel.setUser_id(myApplication.getUser().getId());
             chatRealmModel.setConversation_id(NumberUtil.parseInt(conversation.getPeer(), 0));
             chatRealmModel.setFrom_id(NumberUtil.parseInt(conversation.getPeer(), 0));
-            chatRealmModel.setTo_id(myApplication.getUser().getPrincipal_id());
+            chatRealmModel.setTo_id(myApplication.getUser().getPrincipalId());
             chatRealmModel.setTime(msg.timestamp());
             //在转换的时候已经设置过消息类型，所以这里不再设置
             chatRealmModel.setMsg_status(IMConstant.MSG_STATUS_SUCCESS);

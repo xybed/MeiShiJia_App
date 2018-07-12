@@ -3,7 +3,7 @@ package com.mumu.meishijia.viewmodel.mine;
 import com.mumu.meishijia.api.UserApi;
 import com.mumu.meishijia.http.HttpResultFunc;
 import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.viewmodel.BaseViewModel;
 
 import java.util.HashMap;
@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginViewModel extends BaseViewModel{
 
-    public Observable<UserModel> login(String username, String password){
+    public Observable<User> login(String username, String password){
         Map<String, String> params = new HashMap<>();
         params.put("username", username);
         params.put("password", password);
@@ -28,7 +28,7 @@ public class LoginViewModel extends BaseViewModel{
                 .login(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new HttpResultFunc<UserModel>());
+                .map(new HttpResultFunc<User>());
     }
 
 }

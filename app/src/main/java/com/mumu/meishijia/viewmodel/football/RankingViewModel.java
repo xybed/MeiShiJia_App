@@ -3,7 +3,7 @@ package com.mumu.meishijia.viewmodel.football;
 import com.mumu.meishijia.api.FootballApi;
 import com.mumu.meishijia.http.HttpResultFunc;
 import com.mumu.meishijia.http.HttpRetrofit;
-import com.mumu.meishijia.model.football.RankingModel;
+import com.mumu.meishijia.model.football.Ranking;
 import com.mumu.meishijia.viewmodel.BaseViewModel;
 
 import java.util.HashMap;
@@ -21,14 +21,14 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RankingViewModel extends BaseViewModel{
 
-    public Observable<List<RankingModel>> getRanking(int type){
+    public Observable<List<Ranking>> getRanking(int type){
         Map<String, Integer> params = new HashMap<>();
         params.put("type", type);
         return HttpRetrofit.create(FootballApi.class)
                 .getRanking(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new HttpResultFunc<List<RankingModel>>());
+                .map(new HttpResultFunc<List<Ranking>>());
     }
 
 }

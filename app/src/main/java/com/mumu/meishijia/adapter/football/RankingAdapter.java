@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseMyAdapter;
-import com.mumu.meishijia.model.football.RankingModel;
+import com.mumu.meishijia.model.football.Ranking;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/6/7.
  */
 
-public class RankingAdapter extends BaseMyAdapter<RankingModel> {
+public class RankingAdapter extends BaseMyAdapter<Ranking> {
     public RankingAdapter(Context context) {
         super(context);
     }
@@ -43,7 +43,7 @@ public class RankingAdapter extends BaseMyAdapter<RankingModel> {
         }else {
             holder.llayText.setVisibility(View.GONE);
         }
-        RankingModel data = datas.get(position);
+        Ranking data = datas.get(position);
         holder.txtRanking.setText(data.getRanking()+"");
         Glide.with(context).load(data.getLogo()).into(holder.imgLogo);
         holder.txtName.setText(data.getName());
@@ -54,7 +54,7 @@ public class RankingAdapter extends BaseMyAdapter<RankingModel> {
         holder.txtLose.setText(data.getLose()+"");
         holder.txtGoal.setText(data.getGoal()+"");
         holder.txtConceded.setText(data.getConceded()+"");
-        holder.txtGoalDifference.setText(data.getGoal_difference()+"");
+        holder.txtGoalDifference.setText(data.getGoalDifference()+"");
     }
 
     class Holder {

@@ -2,7 +2,7 @@ package com.mumu.meishijia;
 
 import android.support.multidex.MultiDexApplication;
 
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.tencent.IMUtil;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -23,7 +23,7 @@ public class MyApplication extends MultiDexApplication {
     private static MyApplication myApplication;
     private static final String TAG = "http";
 
-    private UserModel user;
+    private User user;
     private boolean isLogin;
     private boolean isIMLogin;
 
@@ -61,9 +61,9 @@ public class MyApplication extends MultiDexApplication {
      */
     private void initUserLoginInfo(){
         //读取用户登陆内容
-        Object object = CacheJsonMgr.getInstance(this).getJsonObject(UserModel.class);
+        Object object = CacheJsonMgr.getInstance(this).getJsonObject(User.class);
         if (object != null) {
-            setUser((UserModel) object);
+            setUser((User) object);
             setLogin(true);
         }
     }
@@ -79,10 +79,10 @@ public class MyApplication extends MultiDexApplication {
     public static MyApplication getInstance(){
         return myApplication;
     }
-    public UserModel getUser() {
+    public User getUser() {
         return user;
     }
-    public void setUser(UserModel user) {
+    public void setUser(User user) {
         this.user = user;
     }
     public boolean isLogin() {

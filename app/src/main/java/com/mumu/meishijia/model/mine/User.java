@@ -1,16 +1,20 @@
 package com.mumu.meishijia.model.mine;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 用户model
  * Created by Administrator on 2017/3/28.
  */
-public class UserModel {
+public class User {
     private int id;
     private String username;
     private String avatar;
-    private String real_name;
+    @SerializedName("real_name")
+    private String realName;
     private String nickname;
-    private String mobile_phone;
+    @SerializedName("mobile_phone")
+    private String mobilePhone;
     private int sex;
     private String birthday;
     private String email;
@@ -18,7 +22,8 @@ public class UserModel {
     private String city;
     private String address;
     private String signature;
-    private int principal_id;
+    @SerializedName("principal_id")
+    private int principalId;
     private String token;
     private String im_usersig;
 
@@ -46,12 +51,12 @@ public class UserModel {
         this.avatar = avatar;
     }
 
-    public String getReal_name() {
-        return real_name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setReal_name(String real_name) {
-        this.real_name = real_name;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getNickname() {
@@ -62,12 +67,12 @@ public class UserModel {
         this.nickname = nickname;
     }
 
-    public String getMobile_phone() {
-        return mobile_phone;
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 
-    public void setMobile_phone(String mobile_phone) {
-        this.mobile_phone = mobile_phone;
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 
     public int getSex() {
@@ -126,12 +131,12 @@ public class UserModel {
         this.signature = signature;
     }
 
-    public int getPrincipal_id() {
-        return principal_id;
+    public int getPrincipalId() {
+        return principalId;
     }
 
-    public void setPrincipal_id(int principal_id) {
-        this.principal_id = principal_id;
+    public void setPrincipalId(int principalId) {
+        this.principalId = principalId;
     }
 
     public String getToken() {

@@ -17,7 +17,7 @@ import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.presenter.BasePresenter;
 import com.mumu.meishijia.view.mine.LoginActivity;
 
@@ -186,7 +186,7 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
         MyApplication.getInstance().setLogin(false);
         MyApplication.getInstance().setIMLogin(false);
         //清除用户信息
-        CacheJsonMgr.getInstance(getActivity()).deleteJson(UserModel.class.getSimpleName());
+        CacheJsonMgr.getInstance(getActivity()).deleteJson(User.class.getSimpleName());
 
         //通知我的界面刷新数据
         RxBus.get().post(RxBusAction.MineUserData, "");

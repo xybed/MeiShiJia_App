@@ -2,7 +2,7 @@ package com.mumu.meishijia.api;
 
 import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.model.BaseModel;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 
 import java.util.Map;
 
@@ -18,7 +18,7 @@ public interface UserApi {
     @POST(HttpUrl.Register)
     Observable<BaseModel<String>> register(@Body Map<String, String> map);
     @POST(HttpUrl.Login)
-    Observable<BaseModel<UserModel>> login(@Body Map<String, String> map);
+    Observable<BaseModel<User>> login(@Body Map<String, String> map);
     @POST(HttpUrl.Logout)
     Observable<BaseModel<String>> logout(@Body Map<String, String> map);
     @POST(HttpUrl.ModifyPwd)

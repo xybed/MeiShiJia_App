@@ -16,7 +16,7 @@ import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.presenter.mine.LoginPresenter;
 import com.mumu.meishijia.tencent.IMUtil;
 import com.mumu.meishijia.view.BaseActivity;
@@ -143,9 +143,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     @Override
-    public void loginSuccess(UserModel result) {
+    public void loginSuccess(User result) {
         dismissLoadingDialog();
-        CacheJsonMgr.getInstance(this).saveJson(JSON.toJSONString(result), UserModel.class.getSimpleName());
+        CacheJsonMgr.getInstance(this).saveJson(JSON.toJSONString(result), User.class.getSimpleName());
         //登录成功，跳转主界面
         MyApplication.getInstance().setUser(result);
         MyApplication.getInstance().setLogin(true);

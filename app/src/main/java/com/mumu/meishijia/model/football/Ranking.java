@@ -1,12 +1,15 @@
 package com.mumu.meishijia.model.football;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 足球球队排名
  * Created by Administrator on 2017/6/7.
  */
 
-public class RankingModel {
-    private int league_id;
+public class Ranking {
+    @SerializedName("league_id")
+    private int leagueId;
     private int team_id;
     private int ranking;
     private String logo;
@@ -18,14 +21,15 @@ public class RankingModel {
     private int lose;
     private int goal;
     private int conceded;
-    private int goal_difference;
+    @SerializedName("goal_difference")
+    private int goalDifference;
 
-    public int getLeague_id() {
-        return league_id;
+    public int getLeagueId() {
+        return leagueId;
     }
 
-    public void setLeague_id(int league_id) {
-        this.league_id = league_id;
+    public void setLeagueId(int leagueId) {
+        this.leagueId = leagueId;
     }
 
     public int getTeam_id() {
@@ -116,11 +120,11 @@ public class RankingModel {
         this.conceded = conceded;
     }
 
-    public int getGoal_difference() {
-        return goal_difference;
+    public int getGoalDifference() {
+        return goalDifference;
     }
 
-    public void setGoal_difference(int goal_difference) {
-        this.goal_difference = goal_difference;
+    public void setGoalDifference(int goalDifference) {
+        this.goalDifference = goalDifference;
     }
 }

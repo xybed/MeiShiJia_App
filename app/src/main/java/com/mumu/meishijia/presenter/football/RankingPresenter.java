@@ -1,6 +1,6 @@
 package com.mumu.meishijia.presenter.football;
 
-import com.mumu.meishijia.model.football.RankingModel;
+import com.mumu.meishijia.model.football.Ranking;
 import com.mumu.meishijia.presenter.BasePresenter;
 import com.mumu.meishijia.view.BaseView;
 import com.mumu.meishijia.view.football.RankingView;
@@ -21,10 +21,10 @@ public class RankingPresenter extends BasePresenter<RankingView, RankingViewMode
 
     public void getRanking(int type){
         model.getRanking(type)
-                .subscribe(new RxObserver<List<RankingModel>>() {
+                .subscribe(new RxObserver<List<Ranking>>() {
                     @Override
-                    protected void onSuccess(List<RankingModel> rankingModels) {
-                        view.getSuccess(rankingModels);
+                    protected void onSuccess(List<Ranking> rankings) {
+                        view.getSuccess(rankings);
                     }
                 });
     }

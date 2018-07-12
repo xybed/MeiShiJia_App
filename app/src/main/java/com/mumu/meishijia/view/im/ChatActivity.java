@@ -257,7 +257,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         ChatRealmModel chatRealmModel = new ChatRealmModel();
         chatRealmModel.setUser_id(MyApplication.getInstance().getUser().getId());
         chatRealmModel.setConversation_id(principal_id);
-        chatRealmModel.setFrom_id(MyApplication.getInstance().getUser().getPrincipal_id());
+        chatRealmModel.setFrom_id(MyApplication.getInstance().getUser().getPrincipalId());
         chatRealmModel.setTo_id(principal_id);
         chatRealmModel.setTime(System.currentTimeMillis());
         chatRealmModel.setMsg_type(IMConstant.MSG_TYPE_TEXT);

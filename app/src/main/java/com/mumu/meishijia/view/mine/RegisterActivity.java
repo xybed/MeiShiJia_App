@@ -16,7 +16,7 @@ import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.presenter.mine.RegisterPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.common.MainActivity;
@@ -203,7 +203,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     }
 
     @Override
-    public void loginSuccess(UserModel result) {
+    public void loginSuccess(User result) {
         dismissLoadingDialog();
         //登录成功，跳转主界面
         MyApplication.getInstance().setUser(result);

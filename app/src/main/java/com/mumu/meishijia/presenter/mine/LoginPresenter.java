@@ -1,6 +1,6 @@
 package com.mumu.meishijia.presenter.mine;
 
-import com.mumu.meishijia.model.mine.UserModel;
+import com.mumu.meishijia.model.mine.User;
 import com.mumu.meishijia.presenter.BasePresenter;
 import com.mumu.meishijia.view.BaseView;
 import com.mumu.meishijia.view.mine.LoginView;
@@ -22,11 +22,11 @@ public class LoginPresenter extends BasePresenter<LoginView, LoginViewModel>{
     public void login(String username, String password){
         password = MD5Util.MD5(password);
         model.login(username, password)
-                .subscribe(new RxObserver<UserModel>() {
+                .subscribe(new RxObserver<User>() {
                     @Override
-                    protected void onSuccess(UserModel userModel) {
+                    protected void onSuccess(User user) {
                         if(view != null)
-                            view.loginSuccess(userModel);
+                            view.loginSuccess(user);
                     }
                 });
     }
