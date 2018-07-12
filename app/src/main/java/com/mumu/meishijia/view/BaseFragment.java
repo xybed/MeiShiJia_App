@@ -4,7 +4,10 @@ package com.mumu.meishijia.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 
 import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
+import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.UserModel;
 import com.mumu.meishijia.presenter.BasePresenter;
@@ -21,21 +25,20 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 
 import lib.cache.CacheJsonMgr;
-import lib.utils.ToastUtil;
 import lib.widget.LoadingDialog;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BaseFragment<P extends BasePresenter> extends Fragment implements BaseView{
+public class BaseFragment<P extends BasePresenter> extends Fragment implements BaseView, SwipeRefreshLayout.OnRefreshListener{
 
     protected P presenter;
 
     private LoadingDialog loadingDialog;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        ToastUtil.setContext(getActivity());
         super.onCreate(savedInstanceState);
         createPresenter();
     }
@@ -55,6 +58,36 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getSwipeRefresh(view);
+    }
+
+    private void getSwipeRefresh(View view){
+        if(swipeRefreshLayout == null)
+            swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
+        if(swipeRefreshLayout != null){
+            swipeRefreshLayout.setColorSchemeResources(R.color.theme_color);
+            swipeRefreshLayout.setOnRefreshListener(this);
+        }
+    }
+
+    protected void startRefresh(){
+        if(swipeRefreshLayout != null)
+            swipeRefreshLayout.setRefreshing(true);
+    }
+
+    protected void stopRefresh(){
+        if(swipeRefreshLayout != null)
+            swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onRefresh() {
+
     }
 
     @Override
@@ -88,6 +121,7 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
     @Override
     public void toastErr(String msg) {
         dismissLoadingDialog();
+        stopRefresh();
         toast(msg);
     }
 
@@ -132,4 +166,5 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
         if(loadingDialog != null)
             loadingDialog.dismiss();
     }
+
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,12 +31,13 @@ import lib.utils.ToastUtil;
 import lib.widget.ActionTitleBar;
 import lib.widget.LoadingDialog;
 
-public class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView{
+public class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView, SwipeRefreshLayout.OnRefreshListener{
 
     protected P presenter;
 
     private LoadingDialog loadingDialog;
     private ActionTitleBar actionTitleBar;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
                 }
             });
         }
+        getSwipeRefresh();
     }
 
     protected void setStatusBar(){
@@ -119,6 +122,30 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
     }
 
     protected void onRightButtonClick(){}
+
+    private void getSwipeRefresh(){
+        if(swipeRefreshLayout == null)
+            swipeRefreshLayout = findViewById(R.id.swipe_refresh);
+        if(swipeRefreshLayout != null){
+            swipeRefreshLayout.setColorSchemeResources(R.color.theme_color);
+            swipeRefreshLayout.setOnRefreshListener(this);
+        }
+    }
+
+    protected void startRefresh(){
+        if(swipeRefreshLayout != null)
+            swipeRefreshLayout.setRefreshing(true);
+    }
+
+    protected void stopRefresh(){
+        if(swipeRefreshLayout != null)
+            swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
 
     @Override
     protected void onStart() {
