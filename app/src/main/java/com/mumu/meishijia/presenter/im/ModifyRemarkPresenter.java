@@ -1,5 +1,8 @@
 package com.mumu.meishijia.presenter.im;
 
+import com.mumu.meishijia.MyApplication;
+import com.mumu.meishijia.presenter.BasePresenter;
+import com.mumu.meishijia.view.BaseView;
 import com.mumu.meishijia.view.im.ModifyRemarkView;
 import com.mumu.meishijia.viewmodel.im.ModifyRemarkViewModel;
 
@@ -8,27 +11,23 @@ import com.mumu.meishijia.viewmodel.im.ModifyRemarkViewModel;
  * Created by Administrator on 2017/4/11.
  */
 
-public class ModifyRemarkPresenter implements ModifyRemarkViewModel.ModifyRemarkListener{
+public class ModifyRemarkPresenter extends BasePresenter<ModifyRemarkView, ModifyRemarkViewModel>{
 
-    private ModifyRemarkView view;
-    private ModifyRemarkViewModel viewModel;
 
-    public ModifyRemarkPresenter(ModifyRemarkView view) {
-        this.view = view;
-        viewModel = new ModifyRemarkViewModel(this);
+    public ModifyRemarkPresenter(BaseView view) {
+        super(view);
     }
 
-    public void modifyRemark(int userId, int friendId, String remark){
-        viewModel.modifyRemark(userId, friendId, remark);
+    public void modifyRemark(int friendId, String remark){
+        int userId = MyApplication.getInstance().getUser().getId();
+        model.modifyRemark(userId, friendId, remark)
+                .subscribe(new RxObserver<String>() {
+                    @Override
+                    protected void onSuccess(String s) {
+                        if(view != null)
+                            view.modifySuccess(s);
+                    }
+                });
     }
 
-    @Override
-    public void modifySuccess(String result) {
-        view.modifySuccess(result);
-    }
-
-    @Override
-    public void modifyFail(String errMsg) {
-        view.modifyFail(errMsg);
-    }
 }

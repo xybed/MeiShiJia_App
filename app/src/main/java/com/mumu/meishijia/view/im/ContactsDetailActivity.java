@@ -169,14 +169,14 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
             String remark = data.getStringExtra(RESULT_REMARK);
             txtRemark.setText(remark);
             //修改本地数据库
-            ContactsRealmModel contactsRealmModel = realm.where(ContactsRealmModel.class)
-                    .equalTo("user_id", MyApplication.getInstance().getUser().getId())
-                    .equalTo("friend_id", friendId)
-                    .findFirst();
-            realm.beginTransaction();
-            contactsRealmModel.setRemark(remark);
-            realm.insertOrUpdate(contactsRealmModel);
-            realm.commitTransaction();
+//            ContactsRealmModel contactsRealmModel = realm.where(ContactsRealmModel.class)
+//                    .equalTo("user_id", MyApplication.getInstance().getUser().getId())
+//                    .equalTo("friend_id", friendId)
+//                    .findFirst();
+//            realm.beginTransaction();
+//            contactsRealmModel.setRemark(remark);
+//            realm.insertOrUpdate(contactsRealmModel);
+//            realm.commitTransaction();
             //刷新联系人列表
             refreshContactsList();
             return;
