@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.mumu.meishijia.R;
 
 public class FrameProgressLayout extends LinearLayout {
+    public static final String TAG = "FrameProgressLayout";
+
     private Context mContext;
     private Button btnRefresh;
     private TextView txtStatus;
@@ -26,6 +28,7 @@ public class FrameProgressLayout extends LinearLayout {
     }
 
     private void init() {
+        setTag(TAG);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.loading_progress_layout, this);
         progressBar = (ProgressBar) view.findViewById(R.id.load_progressbar);

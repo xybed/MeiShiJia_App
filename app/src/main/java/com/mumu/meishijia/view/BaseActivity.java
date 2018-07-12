@@ -29,15 +29,18 @@ import lib.cache.CacheJsonMgr;
 import lib.utils.MyLogUtil;
 import lib.utils.ToastUtil;
 import lib.widget.ActionTitleBar;
+import lib.widget.FrameProgressLayout;
 import lib.widget.LoadingDialog;
 
-public class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView, SwipeRefreshLayout.OnRefreshListener{
+public class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView,
+        SwipeRefreshLayout.OnRefreshListener, FrameProgressLayout.OnClickRefreshListener{
 
     protected P presenter;
 
     private LoadingDialog loadingDialog;
     private ActionTitleBar actionTitleBar;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private FrameProgressLayout frameProgressLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,7 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
             });
         }
         getSwipeRefresh();
+        getFrameProgress();
     }
 
     protected void setStatusBar(){
@@ -147,6 +151,50 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
 
     }
 
+    private void getFrameProgress(){
+        if(frameProgressLayout == null){
+            View root = getWindow().getDecorView();
+            frameProgressLayout = root.findViewWithTag(FrameProgressLayout.TAG);
+        }
+        if(frameProgressLayout != null)
+            frameProgressLayout.setOnClickRefreshListener(this);
+    }
+
+    protected void showFrameProgress(){
+        if(frameProgressLayout != null)
+            frameProgressLayout.show();
+    }
+
+    protected void dismissFrameProgress(){
+        if(frameProgressLayout != null)
+            frameProgressLayout.dismiss();
+    }
+
+    protected void noData(String str){
+        if(frameProgressLayout != null){
+            if(str != null){
+                frameProgressLayout.noData(str);
+            }else {
+                frameProgressLayout.noData();
+            }
+        }
+    }
+
+    protected void loadFail(String str){
+        if(frameProgressLayout != null){
+            if(str != null){
+                frameProgressLayout.loadFail(str);
+            }else {
+                frameProgressLayout.loadFail();
+            }
+        }
+    }
+
+    @Override
+    public void onClickRefresh() {
+
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -192,6 +240,12 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
     @Override
     public void toastErr(String msg){
         dismissLoadingDialog();
+        stopRefresh();
+        if("暂无数据".equals(msg)){
+            noData(null);
+        }else {
+            loadFail(null);
+        }
         toast(msg);
     }
 

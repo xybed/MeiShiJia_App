@@ -23,7 +23,6 @@ import butterknife.OnClick;
 import io.realm.Realm;
 import lib.glide.GlideCircleTransform;
 import lib.realm.MyRealm;
-import lib.widget.FrameProgressLayout;
 
 public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter> implements ContactsDetailView{
     public static final String FRIEND_ID = "friend_id";
@@ -31,8 +30,6 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
     public static final int REQ_MODIFY_REMARK = 0;
     public static final String RESULT_REMARK = "result_remark";
 
-    @BindView(R.id.frame_progress)
-    FrameProgressLayout frameProgress;
     @BindView(R.id.img_avatar)
     ImageView imgAvatar;
     @BindView(R.id.txt_remark)
@@ -48,8 +45,8 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
     @BindView(R.id.txt_signature)
     TextView txtSignature;
 
-    private int friend_id;
-    private int principal_id;
+    private int friendId;
+    private int principalId;
     private Realm realm;
 
     @Override
@@ -58,7 +55,7 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
         setContentView(R.layout.activity_contacts_detail);
 
         initUI();
-        presenter.getContactsDetail(friend_id);
+        presenter.getContactsDetail(friendId);
         realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
         RxBus.get().register(this);
     }
@@ -66,15 +63,14 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
     private void initUI(){
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        friend_id = intent.getIntExtra(FRIEND_ID, 0);
-        principal_id = intent.getIntExtra(PRINCIPAL_ID, 0);
-        frameProgress.show();
-        frameProgress.setOnClickRefreshListener(new FrameProgressLayout.OnClickRefreshListener() {
-            @Override
-            public void onClickRefresh() {
-                presenter.getContactsDetail(friend_id);
-            }
-        });
+        friendId = intent.getIntExtra(FRIEND_ID, 0);
+        principalId = intent.getIntExtra(PRINCIPAL_ID, 0);
+        showFrameProgress();
+    }
+
+    @Override
+    public void onClickRefresh() {
+        presenter.getContactsDetail(friendId);
     }
 
     /**
@@ -90,14 +86,14 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
         switch (view.getId()) {
             case R.id.txt_set_remark:
                 intent = new Intent(this, ModifyRemarkActivity.class);
-                intent.putExtra(ModifyRemarkActivity.FRIEND_ID, friend_id);
+                intent.putExtra(ModifyRemarkActivity.FRIEND_ID, friendId);
                 intent.putExtra(ModifyRemarkActivity.REMARK, txtRemark.getText().toString());
                 startActivityForResult(intent, REQ_MODIFY_REMARK);
                 break;
             case R.id.btn_send_msg:
                 intent = new Intent(this, ChatActivity.class);
-                intent.putExtra(ChatActivity.FRIEND_ID, friend_id);
-                intent.putExtra(ChatActivity.PRINCIPAL_ID, principal_id);
+                intent.putExtra(ChatActivity.FRIEND_ID, friendId);
+                intent.putExtra(ChatActivity.PRINCIPAL_ID, principalId);
                 startActivity(intent);
                 break;
         }
@@ -106,10 +102,10 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
     @Override
     public void getSuccess(ContactsDetail result) {
         if(result == null){
-            frameProgress.noData(getString(R.string.im_no_contacts_detail));
+            noData(getString(R.string.im_no_contacts_detail));
             return;
         }
-        frameProgress.dismiss();
+        dismissFrameProgress();
         Glide.with(this).load(result.getAvatar())
                 .placeholder(R.drawable.icon_default_avatar)
                 .transform(new GlideCircleTransform(this))
@@ -152,7 +148,9 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
         }
         //修改本地数据库
         ContactsRealmModel contactsRealmModel = realm.where(ContactsRealmModel.class)
-                .equalTo("user_id", MyApplication.getInstance().getUser().getId()).equalTo("friend_id", friend_id).findFirst();
+                .equalTo("user_id", MyApplication.getInstance().getUser().getId())
+                .equalTo("friend_id", friendId)
+                .findFirst();
         realm.beginTransaction();
         //好友可能主动改的数据有头像、昵称、地区、个性签名，但影响联系人表的只有头像这个字段
         contactsRealmModel.setAvatar(result.getAvatar());
@@ -172,7 +170,9 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
             txtRemark.setText(remark);
             //修改本地数据库
             ContactsRealmModel contactsRealmModel = realm.where(ContactsRealmModel.class)
-                    .equalTo("user_id", MyApplication.getInstance().getUser().getId()).equalTo("friend_id", friend_id).findFirst();
+                    .equalTo("user_id", MyApplication.getInstance().getUser().getId())
+                    .equalTo("friend_id", friendId)
+                    .findFirst();
             realm.beginTransaction();
             contactsRealmModel.setRemark(remark);
             realm.insertOrUpdate(contactsRealmModel);

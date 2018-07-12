@@ -74,6 +74,8 @@ public class BasePresenter<V extends BaseView, M extends BaseViewModel> {
             }else if("登录过期".equals(e.getMessage())){
                 onFail(e.getMessage());
                 goLogin();
+            }else if(e instanceof NullPointerException){
+                onFail("暂无数据");
             }else{
                 onFail(e.getMessage());
             }

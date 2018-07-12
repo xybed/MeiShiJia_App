@@ -25,17 +25,20 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 
 import lib.cache.CacheJsonMgr;
+import lib.widget.FrameProgressLayout;
 import lib.widget.LoadingDialog;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BaseFragment<P extends BasePresenter> extends Fragment implements BaseView, SwipeRefreshLayout.OnRefreshListener{
+public class BaseFragment<P extends BasePresenter> extends Fragment implements BaseView,
+        SwipeRefreshLayout.OnRefreshListener, FrameProgressLayout.OnClickRefreshListener{
 
     protected P presenter;
 
     private LoadingDialog loadingDialog;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private FrameProgressLayout frameProgressLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,7 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getSwipeRefresh(view);
+        getFrameProgress(view);
     }
 
     private void getSwipeRefresh(View view){
@@ -87,6 +91,48 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
 
     @Override
     public void onRefresh() {
+
+    }
+
+    private void getFrameProgress(View view){
+        if(frameProgressLayout == null)
+            frameProgressLayout = view.findViewWithTag(FrameProgressLayout.TAG);
+        if(frameProgressLayout != null)
+            frameProgressLayout.setOnClickRefreshListener(this);
+    }
+
+    protected void showFrameProgress(){
+        if(frameProgressLayout != null)
+            frameProgressLayout.show();
+    }
+
+    protected void dismissFrameProgress(){
+        if(frameProgressLayout != null)
+            frameProgressLayout.dismiss();
+    }
+
+    protected void noData(String str){
+        if(frameProgressLayout != null){
+            if(str != null){
+                frameProgressLayout.noData(str);
+            }else {
+                frameProgressLayout.noData();
+            }
+        }
+    }
+
+    protected void loadFail(String str){
+        if(frameProgressLayout != null){
+            if(str != null){
+                frameProgressLayout.loadFail(str);
+            }else {
+                frameProgressLayout.loadFail();
+            }
+        }
+    }
+
+    @Override
+    public void onClickRefresh() {
 
     }
 
