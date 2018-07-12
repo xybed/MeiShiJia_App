@@ -12,7 +12,7 @@ import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
-import com.mumu.meishijia.model.im.ContactsDetailModel;
+import com.mumu.meishijia.model.im.ContactsDetail;
 import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.presenter.im.ContactsDetailPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -23,10 +23,9 @@ import butterknife.OnClick;
 import io.realm.Realm;
 import lib.glide.GlideCircleTransform;
 import lib.realm.MyRealm;
-import lib.utils.ToastUtil;
 import lib.widget.FrameProgressLayout;
 
-public class ContactsDetailActivity extends BaseActivity implements ContactsDetailView{
+public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter> implements ContactsDetailView{
     public static final String FRIEND_ID = "friend_id";
     public static final String PRINCIPAL_ID = "principal_id";
     public static final int REQ_MODIFY_REMARK = 0;
@@ -49,8 +48,6 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
     @BindView(R.id.txt_signature)
     TextView txtSignature;
 
-    private ContactsDetailPresenter presenter;
-
     private int friend_id;
     private int principal_id;
     private Realm realm;
@@ -60,7 +57,6 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_detail);
 
-        presenter = new ContactsDetailPresenter(this);
         initUI();
         presenter.getContactsDetail(friend_id);
         realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
@@ -108,7 +104,7 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
     }
 
     @Override
-    public void getSuccess(ContactsDetailModel result) {
+    public void getSuccess(ContactsDetail result) {
         if(result == null){
             frameProgress.noData(getString(R.string.im_no_contacts_detail));
             return;
@@ -164,12 +160,6 @@ public class ContactsDetailActivity extends BaseActivity implements ContactsDeta
         realm.commitTransaction();
         //刷新联系人列表
         refreshContactsList();
-    }
-
-    @Override
-    public void getFail(String errMsg) {
-        frameProgress.loadFail();
-        ToastUtil.show(errMsg);
     }
 
     @Override

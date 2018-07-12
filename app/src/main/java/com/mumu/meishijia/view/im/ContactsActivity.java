@@ -16,7 +16,6 @@ import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.im.ContactsAdapter;
 import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.im.Contacts;
-import com.mumu.meishijia.model.im.ContactsRealmModel;
 import com.mumu.meishijia.presenter.im.ContactsPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 
@@ -70,10 +69,10 @@ public class ContactsActivity extends BaseActivity<ContactsPresenter> implements
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //因为有headerView，所以这里的position从1开始
-                ContactsRealmModel model = (ContactsRealmModel) adapter.getItem(position-1);
+                Contacts contacts = (Contacts) adapter.getItem(position-1);
                 Intent intent = new Intent(ContactsActivity.this, ContactsDetailActivity.class);
-                intent.putExtra(ContactsDetailActivity.FRIEND_ID, model.getFriend_id());
-                intent.putExtra(ContactsDetailActivity.PRINCIPAL_ID, model.getPrincipal_id());
+                intent.putExtra(ContactsDetailActivity.FRIEND_ID, contacts.getFriendId());
+                intent.putExtra(ContactsDetailActivity.PRINCIPAL_ID, contacts.getPrincipalId());
                 startActivity(intent);
             }
         });

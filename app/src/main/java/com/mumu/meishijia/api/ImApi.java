@@ -2,7 +2,7 @@ package com.mumu.meishijia.api;
 
 import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.model.BaseModel;
-import com.mumu.meishijia.model.im.ContactsDetailModel;
+import com.mumu.meishijia.model.im.ContactsDetail;
 import com.mumu.meishijia.model.im.Contacts;
 import com.mumu.meishijia.model.im.PrincipalModel;
 
@@ -24,7 +24,7 @@ public interface ImApi {
     @GET(HttpUrl.GetContacts)
     Observable<BaseModel<List<Contacts>>> getContacts(@QueryMap Map<String, Integer> map);
     @GET(HttpUrl.GetContactsDetail)
-    Observable<BaseModel<ContactsDetailModel>> getContactsDetail(@QueryMap Map<String, String> map);
+    Observable<BaseModel<ContactsDetail>> getContactsDetail(@QueryMap Map<String, Integer> map);
     @POST(HttpUrl.ModifyRemark)
     Observable<BaseModel<String>> modifyRemark(@Body Map<String, String> map);
     @GET(HttpUrl.GetPrincipalInfo)

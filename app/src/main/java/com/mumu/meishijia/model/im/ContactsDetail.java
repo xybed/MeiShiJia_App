@@ -1,19 +1,22 @@
 package com.mumu.meishijia.model.im;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 联系人的详细资料
  * Created by Administrator on 2017/4/10.
  */
-public class ContactsDetailModel {
+public class ContactsDetail {
     private String avatar;
     private String remark;
-    private int sex;
+    private Integer sex;
     private String username;
     private String nickname;
     private String province;
     private String city;
     private String signature;
-    private int principal_id;
+    @SerializedName("principal_id")
+    private Integer principalId;
 
     public String getAvatar() {
         return avatar;
@@ -31,11 +34,11 @@ public class ContactsDetailModel {
         this.remark = remark;
     }
 
-    public int getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
@@ -79,11 +82,11 @@ public class ContactsDetailModel {
         this.signature = signature;
     }
 
-    public int getPrincipal_id() {
-        return principal_id;
+    public Integer getPrincipalId() {
+        return principalId;
     }
 
-    public void setPrincipal_id(int principal_id) {
-        this.principal_id = principal_id;
+    public void setPrincipalId(Integer principalId) {
+        this.principalId = principalId;
     }
 }
