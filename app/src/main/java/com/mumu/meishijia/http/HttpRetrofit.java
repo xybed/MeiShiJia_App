@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -89,7 +88,7 @@ public class HttpRetrofit {
      */
     public static MultipartBody.Part createImageMultipart(String filePath){
         File file = new File(filePath);
-        RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        RequestBody imageBody = RequestBody.create(MultipartBody.FORM, file);
         return MultipartBody.Part.createFormData("img_file", file.getName(), imageBody);
     }
 }

@@ -25,6 +25,12 @@ import okio.Buffer;
 public class BaseParamsInterceptor implements Interceptor{
     @Override
     public Response intercept(Chain chain) throws IOException {
+        Request request = chain.request();
+        String path = request.url().url().getPath();
+        //为了解决上传图片时奇怪的json语法错误问题
+        if(("/"+HttpUrl.UploadImage).equals(path))
+            return chain.proceed(request);
+
         String sign = createSign(chain);
         String token;
         if(MyApplication.getInstance().isLogin()){
@@ -32,7 +38,7 @@ public class BaseParamsInterceptor implements Interceptor{
         }else {
             token = "";
         }
-        Request request = chain.request()
+        request = request
                 .newBuilder()
                 .addHeader("ver", BuildConfig.DEVELOP_VERSION)
                 .addHeader("platform", "android")
