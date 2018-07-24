@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_10"
                     android:text="@string/user_login"
-                    android:textColor="@color/theme_color"
+                    android:textColor="@color/black_a"
                     android:textSize="@dimen/text_size_14"/>
             </LinearLayout>
 

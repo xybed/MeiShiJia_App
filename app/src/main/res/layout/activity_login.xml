@@ -29,7 +29,7 @@
             android:background="@drawable/shape_rect_white_border_gray_b"
             android:hint="@string/user_username_hint"
             android:textColorHint="@color/gray_b"
-            android:textColor="@color/theme_color"
+            android:textColor="@color/black_a"
             android:textSize="@dimen/text_size_14"/>
 
         <!--密码的布局-->
@@ -51,7 +51,7 @@
                 android:inputType="textPassword"
                 android:hint="@string/user_password_hint"
                 android:textColorHint="@color/gray_b"
-                android:textColor="@color/theme_color"
+                android:textColor="@color/black_a"
                 android:textSize="@dimen/text_size_14"/>
             <ImageView
                 android:id="@+id/img_password_look"
