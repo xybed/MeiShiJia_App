@@ -84,7 +84,7 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresenter> implemen
         if(!StringUtil.isEmpty(editUsername.getText().toString())
                 && !StringUtil.isEmpty(editVerifyCode.getText().toString())
                 && !StringUtil.isEmpty(editPassword.getText().toString())){
-            btnCommit.setBackgroundResource(R.drawable.selector_rect_theme_color);
+            btnCommit.setBackgroundResource(R.drawable.selector_rect2_theme_color);
             btnCommit.setClickable(true);
         }else{
             btnCommit.setBackgroundResource(R.drawable.shape_rect_gray_b);
@@ -169,7 +169,7 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresenter> implemen
     @Override
     public void onTimerEnd() {
         btnGetVerify.setText(getString(R.string.user_get_verify_code));
-        btnGetVerify.setBackgroundResource(R.drawable.selector_rect_theme_color);
+        btnGetVerify.setBackgroundResource(R.drawable.selector_rect2_theme_color);
         btnGetVerify.setClickable(true);
     }
 

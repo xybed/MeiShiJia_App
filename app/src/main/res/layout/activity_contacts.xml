@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         atb:title="@string/im_communication_list"
-        atb:right_image="@drawable/bar_add_btn"/>
+        atb:right_image="@drawable/icon_add"/>
 
     <FrameLayout
         android:layout_width="match_parent"

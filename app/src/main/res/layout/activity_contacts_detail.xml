@@ -156,7 +156,7 @@
         android:layout_marginTop="@dimen/margin_20"
         android:layout_marginLeft="@dimen/margin_40"
         android:layout_marginRight="@dimen/margin_40"
-        android:background="@drawable/selector_rect_theme_color"
+        android:background="@drawable/selector_rect2_theme_color"
         android:text="@string/im_send_message"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_16"/>

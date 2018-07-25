@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <!--整个app的主题色-->
     <color name="theme_color">#ff0084ff</color>
-    <color name="theme_color_press">#ff4DA5F7</color>
+    <color name="theme_color_press">#ff469AE8</color>
     <!--背景色-->
     <color name="bg_color">#fffafafa</color>
     <!--标题栏背景色-->

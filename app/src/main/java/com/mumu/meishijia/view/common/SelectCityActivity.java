@@ -30,8 +30,6 @@ import lib.widget.SelectCityDialog;
 
 public class SelectCityActivity extends BaseActivity {
 
-    @BindView(R.id.txt_whole_country)
-    TextView txtWholeCountry;
     @BindView(R.id.txt_gps)
     TextView txtGps;
     @BindView(R.id.txt_province)
@@ -95,15 +93,9 @@ public class SelectCityActivity extends BaseActivity {
         return mSortList;
     }
 
-    @OnClick({R.id.btn_left, R.id.txt_whole_country, R.id.llay_gps, R.id.llay_province, R.id.llay_city})
+    @OnClick({R.id.llay_gps, R.id.llay_province, R.id.llay_city})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_left:
-                finish();
-                break;
-            case R.id.txt_whole_country:
-                setUserInfoCity(txtWholeCountry.getText().toString(), txtWholeCountry.getText().toString());
-                break;
             case R.id.llay_gps:
                 setUserInfoCity(gpsProvince, txtGps.getText().toString());
                 break;
@@ -137,6 +129,11 @@ public class SelectCityActivity extends BaseActivity {
                 cityDialog.showDialog(getResources().getString(R.string.com_select_city));
                 break;
         }
+    }
+
+    @Override
+    protected void onRightButtonClick() {
+        setUserInfoCity(getString(R.string.com_whole_country), getString(R.string.com_whole_country));
     }
 
     private void setUserInfoCity(String province, String city){

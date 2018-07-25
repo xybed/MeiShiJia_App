@@ -82,7 +82,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private void setLoginButtonState(){
         if(!StringUtil.isEmpty(editUsername.getText().toString())
                 && !StringUtil.isEmpty(editPassword.getText().toString())){
-            btnLogin.setBackgroundResource(R.drawable.selector_rect_theme_color);
+            btnLogin.setBackgroundResource(R.drawable.selector_rect2_theme_color);
             btnLogin.setClickable(true);
         }else{
             btnLogin.setBackgroundResource(R.drawable.shape_rect_gray_b);

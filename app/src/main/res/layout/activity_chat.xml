@@ -8,7 +8,7 @@
         xmlns:atb="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        atb:right_image="@drawable/bar_friend_info_btn"/>
+        atb:right_image="@drawable/icon_friend_info"/>
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -101,7 +101,7 @@
                 android:layout_height="35dp"
                 android:layout_marginLeft="@dimen/margin_10"
                 android:layout_marginRight="@dimen/margin_10"
-                android:background="@drawable/selector_rect_theme_color"
+                android:background="@drawable/selector_rect2_theme_color"
                 android:text="@string/im_send"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_14"

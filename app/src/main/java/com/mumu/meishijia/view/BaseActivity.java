@@ -73,13 +73,13 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
         setStatusBar();
         getTitleBar();
         if(actionTitleBar != null){
-            actionTitleBar.getImgLeft().setOnClickListener(new View.OnClickListener() {
+            actionTitleBar.getImbLeft().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     onLeftButtonClick();
                 }
             });
-            actionTitleBar.getImgRight().setOnClickListener(new View.OnClickListener() {
+            actionTitleBar.getImbRight().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     onRightButtonClick();
@@ -123,6 +123,7 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
 
     protected void onLeftButtonClick(){
         finish();
+        hideSoftInput();
     }
 
     protected void onRightButtonClick(){}
@@ -289,7 +290,6 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
      */
     @Override
     public void hideSoftInput() {
-        /** 隐藏软键盘 **/
         View view = getWindow().peekDecorView();
         if (view != null) {
             InputMethodManager inputmanger = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

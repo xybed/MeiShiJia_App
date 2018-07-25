@@ -91,7 +91,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         if(!StringUtil.isEmpty(editUsername.getText().toString())
                 && !StringUtil.isEmpty(editPassword.getText().toString())
                 && !StringUtil.isEmpty(editVerifyCode.getText().toString())){
-            btnRegister.setBackgroundResource(R.drawable.selector_rect_theme_color);
+            btnRegister.setBackgroundResource(R.drawable.selector_rect2_theme_color);
             btnRegister.setClickable(true);
         }else{
             btnRegister.setBackgroundResource(R.drawable.shape_rect_gray_b);
@@ -176,7 +176,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @Override
     public void onTimerEnd() {
         btnGetVerify.setText(getString(R.string.user_get_verify_code));
-        btnGetVerify.setBackgroundResource(R.drawable.selector_rect_theme_color);
+        btnGetVerify.setBackgroundResource(R.drawable.selector_rect2_theme_color);
         btnGetVerify.setClickable(true);
     }
 

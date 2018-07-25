@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.mumu.meishijia.R;
@@ -26,9 +26,9 @@ public class ActionTitleBar extends FrameLayout{
      */
     public static final String TAG = "ActionTitleBar";
 
-    private ImageView imgLeft;
+    private ImageButton imbLeft;
     private TextView txtTitle;
-    private ImageView imgRight;
+    private ImageButton imbRight;
     private TextView txtRight;
 
     public ActionTitleBar(@NonNull Context context) {
@@ -49,9 +49,9 @@ public class ActionTitleBar extends FrameLayout{
         setTag(TAG);
         View view = LayoutInflater.from(context).inflate(R.layout.view_title_bar, this, false);
         addView(view);
-        imgLeft = view.findViewById(R.id.img_left);
+        imbLeft = view.findViewById(R.id.imb_left);
         txtTitle = view.findViewById(R.id.txt_title);
-        imgRight = view.findViewById(R.id.img_right);
+        imbRight = view.findViewById(R.id.imb_right);
         txtRight = view.findViewById(R.id.txt_right);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ActionTitleBar);
@@ -62,10 +62,10 @@ public class ActionTitleBar extends FrameLayout{
         setBackgroundResource(backgroundColor);
         txtTitle.setText(title);
         if(rightDrawable == null){
-            imgRight.setVisibility(GONE);
+            imbRight.setVisibility(GONE);
         }else {
-            imgRight.setImageDrawable(rightDrawable);
-            imgRight.setVisibility(VISIBLE);
+            imbRight.setImageDrawable(rightDrawable);
+            imbRight.setVisibility(VISIBLE);
         }
         if(rightText == null){
             txtRight.setVisibility(GONE);
@@ -76,16 +76,16 @@ public class ActionTitleBar extends FrameLayout{
         a.recycle();
     }
 
-    public ImageView getImgLeft() {
-        return imgLeft;
+    public ImageButton getImbLeft() {
+        return imbLeft;
     }
 
     public TextView getTxtTitle() {
         return txtTitle;
     }
 
-    public ImageView getImgRight() {
-        return imgRight;
+    public ImageButton getImbRight() {
+        return imbRight;
     }
 
     public TextView getTxtRight() {

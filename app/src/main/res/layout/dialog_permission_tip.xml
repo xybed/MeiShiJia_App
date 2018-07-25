@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_44"
             android:layout_marginTop="@dimen/margin_15"
-            android:background="@drawable/selector_rect_theme_color"
+            android:background="@drawable/selector_rect2_theme_color"
             android:text="@string/com_go_open"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_14"/>
