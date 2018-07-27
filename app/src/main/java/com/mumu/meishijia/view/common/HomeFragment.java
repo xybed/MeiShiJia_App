@@ -1,4 +1,4 @@
-package com.mumu.meishijia.view.food;
+package com.mumu.meishijia.view.common;
 
 
 import android.content.Intent;

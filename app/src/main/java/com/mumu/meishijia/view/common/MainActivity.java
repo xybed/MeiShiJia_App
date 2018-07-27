@@ -10,7 +10,6 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.tencent.IMUtil;
 import com.mumu.meishijia.view.BaseActivity;
-import com.mumu.meishijia.view.food.HomeFragment;
 import com.mumu.meishijia.view.football.FootballFragment;
 import com.mumu.meishijia.view.mine.MineFragment;
 
