@@ -1,7 +1,68 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_50"
+        android:background="@color/theme_color"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="13dp"
+                android:src="@drawable/icon_main_location"
+                android:contentDescription="@null"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/com_location"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/padding_5"
+            android:paddingRight="@dimen/padding_5"
+            android:gravity="center_vertical"
+            android:background="@drawable/shape_rect_white">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_search"
+                android:contentDescription="@null"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_marginRight="@dimen/margin_5"
+                android:gravity="center_vertical"
+                android:text="@string/product_search_product"
+                android:textColor="@color/gray_b"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_main_voice"
+                android:contentDescription="@null"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:src="@drawable/icon_shopping_cart"
+            android:contentDescription="@null"/>
+    </LinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
@@ -15,11 +76,109 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/img_banner"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:src="@drawable/bg_main_banner"/>
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingBottom="@dimen/padding_10"
+                    android:paddingLeft="@dimen/padding_20"
+                    android:paddingRight="@dimen/padding_20">
+
+                    <LinearLayout
+                        android:id="@+id/llay_cloth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_white_gray_h"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_main_cloth"
+                            android:contentDescription="@null"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:text="@string/com_cloth"
+                            android:textColor="@color/black_a"
+                            android:textSize="@dimen/text_size_14"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llay_snacks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_white_gray_h"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_main_snacks"
+                            android:contentDescription="@null"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:text="@string/com_snacks"
+                            android:textColor="@color/black_a"
+                            android:textSize="@dimen/text_size_14"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llay_kitchen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_white_gray_h"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_main_kitchen"
+                            android:contentDescription="@null"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:text="@string/com_kitchen"
+                            android:textColor="@color/black_a"
+                            android:textSize="@dimen/text_size_14"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llay_shampoo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_white_gray_h"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_main_shampoo"
+                            android:contentDescription="@null"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:text="@string/com_shampoo"
+                            android:textColor="@color/black_a"
+                            android:textSize="@dimen/text_size_14"/>
+                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -32,6 +191,52 @@
                     android:paddingRight="@dimen/padding_20">
 
                     <LinearLayout
+                        android:id="@+id/llay_wine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_white_gray_h"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_main_wine"
+                            android:contentDescription="@null"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:text="@string/com_wine"
+                            android:textColor="@color/black_a"
+                            android:textSize="@dimen/text_size_14"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llay_guitar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_white_gray_h"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_main_guitar"
+                            android:contentDescription="@null"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:text="@string/com_guitar"
+                            android:textColor="@color/black_a"
+                            android:textSize="@dimen/text_size_14"/>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/llay_jia_love"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -42,7 +247,8 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/icon_main_jia_love"/>
+                            android:src="@drawable/icon_main_jia_love"
+                            android:contentDescription="@null"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -54,7 +260,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/llay_kitchen_qa"
+                        android:id="@+id/llay_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/selector_bg_white_gray_h"
@@ -64,39 +270,118 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/icon_main_kitchen_qa"/>
+                            android:src="@drawable/icon_main_category"
+                            android:contentDescription="@null"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_10"
-                            android:text="@string/com_kitchen_qa"
-                            android:textColor="@color/black_a"
-                            android:textSize="@dimen/text_size_14"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/llay_cookbook_category"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_bg_white_gray_h"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_main_cookbook_category"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_10"
-                            android:text="@string/com_cookbook_category"
+                            android:text="@string/com_all_category"
                             android:textColor="@color/black_a"
                             android:textSize="@dimen/text_size_14"/>
                     </LinearLayout>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:paddingLeft="@dimen/padding_20"
+                    android:paddingRight="@dimen/padding_20">
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/margin_5">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_launcher"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:text="@string/product_popular_product_in_week"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"/>
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/margin_5">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_launcher"
+                            android:contentDescription="@null"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:text="@string/food_popular_food_in_week"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_16"
+                            android:textStyle="bold"/>
+                    </FrameLayout>
+                </LinearLayout>
+
+                <lib.widget.BannerView
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/product_popularity_recommend"
+                            android:textColor="@color/black_b"
+                            android:textSize="@dimen/text_size_20"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/product_popularity_recommend_tip"
+                            android:textColor="@color/gray_c"
+                            android:textSize="@dimen/text_size_16"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:gravity="right"
+                        android:text="@string/com_watch_all"
+                        android:textColor="@color/theme_color"
+                        android:textSize="@dimen/text_size_18"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"/>
+
             </LinearLayout>
         </ScrollView>
 

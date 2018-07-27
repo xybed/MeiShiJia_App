@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="product_search_product">搜索商品</string>
+    <string name="product_popular_product_in_week">本周\n流行商品</string>
+    <string name="product_popularity_recommend">人气推荐</string>
+    <string name="product_popularity_recommend_tip">百万网友，口碑票选</string>
+</resources>

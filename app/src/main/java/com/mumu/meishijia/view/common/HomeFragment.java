@@ -8,7 +8,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.view.BaseFragment;
@@ -16,7 +15,6 @@ import com.mumu.meishijia.view.BaseFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import lib.utils.ScreenUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,8 +22,6 @@ import lib.utils.ScreenUtil;
 public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
-    @BindView(R.id.img_banner)
-    ImageView imgBanner;
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
 
@@ -39,7 +35,6 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
-        ScreenUtil.measureViewByImg(getActivity(), imgBanner, 2.9);
         swipeRefresh.setColorSchemeResources(R.color.green_a);
         swipeRefresh.setOnRefreshListener(this);
         return view;
@@ -50,15 +45,13 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         swipeRefresh.setRefreshing(false);
     }
 
-    @OnClick({R.id.llay_jia_love, R.id.llay_kitchen_qa, R.id.llay_cookbook_category})
+    @OnClick({R.id.llay_jia_love, R.id.llay_category})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
             case R.id.llay_jia_love:
                 break;
-            case R.id.llay_kitchen_qa:
-                break;
-            case R.id.llay_cookbook_category:
+            case R.id.llay_category:
                 break;
         }
     }

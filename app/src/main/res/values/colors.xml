@@ -43,7 +43,7 @@
     <color name="blue_a">#ff69c6ec</color>
     <!--主题黑色，abc..不代表等级-->
     <color name="black_a">#ff4d4d4d</color>
-    <color name="black_b">#aa212d3d</color>
+    <color name="black_b">#ff2d2d2d</color>
     <!--主题绿色，abc..不代表等级-->
     <color name="green_a">#ffadff2f</color>
     <!--主题红色，abc..不代表等级-->

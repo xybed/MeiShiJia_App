@@ -3,8 +3,13 @@
     <string name="img_description">jia</string>
 
     <string name="com_jia_love">佳佳爱</string>
-    <string name="com_kitchen_qa">厨房问答</string>
-    <string name="com_cookbook_category">菜谱分类</string>
+    <string name="com_cloth">服装</string>
+    <string name="com_snacks">零食</string>
+    <string name="com_kitchen">厨具</string>
+    <string name="com_shampoo">洗发沐浴</string>
+    <string name="com_wine">酒水</string>
+    <string name="com_guitar">吉他</string>
+    <string name="com_all_category">全部分类</string>
     <string name="com_click_refresh">点击刷新</string>
     <string name="com_no_data">暂无数据</string>
     <string name="com_wait">请稍候......</string>
@@ -64,4 +69,6 @@
     <string name="com_open_app">开启美食佳</string>
     <string name="com_upload_image">正在上传图片</string>
     <string name="com_upload_success">上传成功</string>
+    <string name="com_watch_all">查看全部</string>
+    <string name="com_location">定位</string>
 </resources>
