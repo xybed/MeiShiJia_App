@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import lib.baidu.MyLocation;
 import lib.utils.MyLogUtil;
 import lib.widget.CenterInDialog;
 
@@ -62,6 +63,8 @@ public class SplashActivity extends BaseActivity {
             List<String> permissionList = new ArrayList<>();
             if(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
                 permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            }else {
+                MyLocation.getInstance().requestLocation();
             }
             if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
                 permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);

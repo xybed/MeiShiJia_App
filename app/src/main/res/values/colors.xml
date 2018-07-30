@@ -17,6 +17,7 @@
     <!--主题白色-->
     <color name="white">#ffffffff</color>
     <color name="white_transparent">#77ffffff</color>
+    <color name="white_a">#fffafafa</color>
     <!--主题橙色，abc不代表等级-->
     <color name="orange_a">#ffea8010</color>
     <color name="orange_b">#8cea8010</color>

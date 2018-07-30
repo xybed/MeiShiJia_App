@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity {
     private void initFragment() {
         content = new HomeFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.content, content).commit();
+        setStatusBarTransparentInFragment();
     }
 
     private void initBottomNavigationBar(){

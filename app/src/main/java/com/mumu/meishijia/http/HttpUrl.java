@@ -40,4 +40,7 @@ public class HttpUrl {
     public static final String GetRanking = "football/ranking";
     //获取球队球员
     public static final String GetTeam = "football/team";
+
+    //获取商品分类
+    public static final String GetProductCategory = "product/category/{id}";
 }
