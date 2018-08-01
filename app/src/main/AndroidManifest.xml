@@ -242,6 +242,8 @@
         <activity
             android:name=".view.product.ProductCategoryActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".test.TestActivity">
+        </activity>
     </application>
 
 </manifest>
