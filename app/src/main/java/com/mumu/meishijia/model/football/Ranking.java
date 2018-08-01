@@ -10,7 +10,8 @@ import com.google.gson.annotations.SerializedName;
 public class Ranking {
     @SerializedName("league_id")
     private int leagueId;
-    private int team_id;
+    @SerializedName("team_id")
+    private int teamId;
     private int ranking;
     private String logo;
     private String name;
@@ -32,12 +33,12 @@ public class Ranking {
         this.leagueId = leagueId;
     }
 
-    public int getTeam_id() {
-        return team_id;
+    public int getTeamId() {
+        return teamId;
     }
 
-    public void setTeam_id(int team_id) {
-        this.team_id = team_id;
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 
     public int getRanking() {

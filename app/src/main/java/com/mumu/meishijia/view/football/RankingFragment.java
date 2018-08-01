@@ -70,7 +70,7 @@ public class RankingFragment extends BaseFragment<RankingPresenter> implements R
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Ranking ranking = (Ranking) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(getActivity(), TeamDetailActivity.class);
-                intent.putExtra(TeamDetailActivity.TEAM_ID, ranking.getTeam_id());
+                intent.putExtra(TeamDetailActivity.TEAM_ID, ranking.getTeamId());
                 startActivity(intent);
             }
         });
