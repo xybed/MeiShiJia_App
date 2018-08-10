@@ -19,9 +19,9 @@ import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
+import com.mumu.meishijia.test.TestActivity;
 import com.mumu.meishijia.view.BaseFragment;
 import com.mumu.meishijia.view.im.ContactsActivity;
-import com.mumu.meishijia.view.im.ConversationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -113,7 +113,7 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.llay_conversation:
                 if(MyApplication.getInstance().isLogin()){
-                    intent = new Intent(getActivity(), ConversationActivity.class);
+                    intent = new Intent(getActivity(), TestActivity.class);
                 }else {
                     intent = new Intent(getActivity(), LoginActivity.class);
                 }

@@ -244,6 +244,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".test.TestActivity">
         </activity>
+        <activity android:name=".view.product.ProductListActivity">
+        </activity>
     </application>
 
 </manifest>

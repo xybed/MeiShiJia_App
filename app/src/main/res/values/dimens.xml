@@ -10,6 +10,7 @@
     <dimen name="title_bar_text_center_size">18sp</dimen>
     <dimen name="title_bar_text_right_size">16sp</dimen>
     <!-- 文字大小-->
+    <dimen name="text_size_10">10sp</dimen>
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_13">13sp</dimen>
     <dimen name="text_size_14">14sp</dimen>

@@ -13,6 +13,7 @@ import com.mumu.meishijia.R;
 import com.mumu.meishijia.model.LocationModel;
 import com.mumu.meishijia.view.BaseFragment;
 import com.mumu.meishijia.view.product.ProductCategoryActivity;
+import com.mumu.meishijia.view.product.ProductListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,6 +60,8 @@ public class HomeFragment extends BaseFragment {
         Intent intent;
         switch (view.getId()) {
             case R.id.llay_cloth:
+                intent = new Intent(getActivity(), ProductListActivity.class);
+                startActivity(intent);
                 break;
             case R.id.llay_snacks:
                 break;

@@ -18,7 +18,7 @@
                 android:layout_height="180dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:background="@drawable/bg_mine">
+                android:background="@drawable/bg_main_banner">
                 <ImageView
                     android:id="@+id/img_avatar"
                     android:layout_width="@dimen/avatar_img_size"

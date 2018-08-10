@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+    <ImageView
+        android:id="@+id/img_product_image"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:src="@drawable/ic_launcher"
+        android:contentDescription="@null"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:lineSpacingExtra="6dp"
+            android:text="          杰威尔（JVR） 男士洗发沐浴套装（洗发水+沐浴露）沐浴液清凉舒爽洗发露控油去屑头洗浴套装 洗护超值装(洗发水500ml+沐浴露500ml）"
+            android:textColor="@color/black_b"
+            android:textSize="@dimen/text_size_16"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rect2_theme_color"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="@dimen/padding_3"
+            android:paddingRight="@dimen/padding_3"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:text="@string/product_business_self"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txt_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="资生堂丝蓓绮（TSUBAKI） 滢艳润养 洗护套装 （洗发露500ml+护发素500ml）（日本原装进口洗发水）"
+        android:maxLines="3"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/gray_c"
+        android:textSize="@dimen/text_size_14"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:gravity="bottom">
+        <TextView
+            android:id="@+id/txt_discount_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥77"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/text_size_12"/>
+        <TextView
+            android:id="@+id/txt_original_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:text="￥100"
+            android:textColor="@color/gray_c"
+            android:textSize="@dimen/text_size_10"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -5,4 +5,6 @@
     <string name="product_popularity_recommend">人气推荐</string>
     <string name="product_popularity_recommend_tip">百万网友，口碑票选</string>
     <string name="product_product_category">商品分类</string>
+    <string name="product_product_list">商品列表</string>
+    <string name="product_business_self">自营</string>
 </resources>
