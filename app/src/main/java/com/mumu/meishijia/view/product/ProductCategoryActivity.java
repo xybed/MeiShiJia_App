@@ -1,5 +1,6 @@
 package com.mumu.meishijia.view.product;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -109,7 +110,9 @@ public class ProductCategoryActivity extends BaseActivity<ProductCategoryPresent
         threeAdapter.setOnItemClickListener(new ProductCategoryThreeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(ProductCategory category) {
-                //TODO 跳转商品列表
+                Intent intent = new Intent(ProductCategoryActivity.this, ProductListActivity.class);
+                intent.putExtra(ProductListActivity.CATEGORY_ID, category.getId());
+                startActivity(intent);
             }
         });
         recyclerViewThree.setLayoutManager(gridLayoutManager);
