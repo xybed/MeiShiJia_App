@@ -30,7 +30,9 @@ public class HttpRetrofit {
             synchronized (HttpRetrofit.class){
                 if(retrofit == null){
                     OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder()
-                            .connectTimeout(10000, TimeUnit.MILLISECONDS)
+                            .connectTimeout(30000, TimeUnit.MILLISECONDS)
+                            .readTimeout(30000, TimeUnit.MILLISECONDS)
+                            .writeTimeout(30000, TimeUnit.MILLISECONDS)
                             .sslSocketFactory(MySSLSocketFactory.getSocketFactory(MyApplication.getInstance()))
                             .hostnameVerifier(new HostnameVerifier() {
                                 @Override

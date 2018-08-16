@@ -1,8 +1,7 @@
 package com.mumu.meishijia.model.product;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.google.gson.annotations.SerializedName;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class Product {
 
     private String url;
 
-    @JSONField(name = "back_user_id")
+    @SerializedName("back_user_id")
     private Integer backUserId;
 
     private String name;
@@ -20,13 +19,13 @@ public class Product {
 
     private String image;
 
-    private BigDecimal price;
+    private double price;
 
-    @JSONField(name = "original_price")
-    private BigDecimal originalPrice;
+    @SerializedName("original_price")
+    private double originalPrice;
 
-    @JSONField(name = "discount_price")
-    private BigDecimal discountPrice;
+    @SerializedName("discount_price")
+    private double discountPrice;
 
     private Integer stock;
 
@@ -34,10 +33,10 @@ public class Product {
 
     private Integer status;
 
-    @JSONField(name = "gmt_create")
+    @SerializedName("gmt_create")
     private Date gmtCreate;
 
-    @JSONField(name = "gmt_modified")
+    @SerializedName("gmt_modified")
     private Date gmtModified;
 
     private String remark;
@@ -92,27 +91,27 @@ public class Product {
         this.image = image;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public BigDecimal getOriginalPrice() {
+    public double getOriginalPrice() {
         return originalPrice;
     }
 
-    public void setOriginalPrice(BigDecimal originalPrice) {
+    public void setOriginalPrice(double originalPrice) {
         this.originalPrice = originalPrice;
     }
 
-    public BigDecimal getDiscountPrice() {
+    public double getDiscountPrice() {
         return discountPrice;
     }
 
-    public void setDiscountPrice(BigDecimal discountPrice) {
+    public void setDiscountPrice(double discountPrice) {
         this.discountPrice = discountPrice;
     }
 

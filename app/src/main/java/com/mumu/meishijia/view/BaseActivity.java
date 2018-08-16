@@ -42,6 +42,9 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
     private SwipeRefreshLayout swipeRefreshLayout;
     private FrameProgressLayout frameProgressLayout;
 
+    protected int pageIndex = 1;
+    protected int pageSize = 10;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,26 +75,6 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
 
         setStatusBar();
         getTitleBar();
-        if(actionTitleBar != null){
-            actionTitleBar.getImbLeft().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onLeftButtonClick();
-                }
-            });
-            actionTitleBar.getImbRight().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onRightButtonClick();
-                }
-            });
-            actionTitleBar.getTxtRight().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onRightButtonClick();
-                }
-            });
-        }
         getSwipeRefresh();
         getFrameProgress();
     }
@@ -112,6 +95,26 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
         if (actionTitleBar == null) {
             View root = getWindow().getDecorView();
             actionTitleBar = root.findViewWithTag(ActionTitleBar.TAG);
+        }
+        if(actionTitleBar != null){
+            actionTitleBar.getImbLeft().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onLeftButtonClick();
+                }
+            });
+            actionTitleBar.getImbRight().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onRightButtonClick();
+                }
+            });
+            actionTitleBar.getTxtRight().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onRightButtonClick();
+                }
+            });
         }
     }
 

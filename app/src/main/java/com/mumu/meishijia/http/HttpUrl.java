@@ -43,4 +43,6 @@ public class HttpUrl {
 
     //获取商品分类
     public static final String GetProductCategory = "product/category/{id}";
+    //获取商品列表
+    public static final String GetProductList = "product";
 }

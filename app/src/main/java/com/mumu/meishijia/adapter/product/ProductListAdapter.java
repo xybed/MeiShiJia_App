@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseRecyclerAdapter;
 import com.mumu.meishijia.model.product.Product;
@@ -25,11 +26,6 @@ public class ProductListAdapter extends BaseRecyclerAdapter<Product, ProductList
     }
 
     @Override
-    public int getItemCount() {
-        return 10;
-    }
-
-    @Override
     public int getLayoutResourceId() {
         return R.layout.layout_product_item;
     }
@@ -42,18 +38,18 @@ public class ProductListAdapter extends BaseRecyclerAdapter<Product, ProductList
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.txtOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-//        Product item = datas.get(position);
-//        Glide.with(context).load(item.getImage()).placeholder(R.drawable.icon_no_image).into(holder.imgProductImage);
-//        holder.txtName.setText(item.getName());
-//        holder.txtDescription.setText(item.getDescription());
-//        holder.txtDiscountPrice.setText(item.getDiscountPrice().toString());
-//        if(item.getDiscountPrice().doubleValue() == item.getOriginalPrice().doubleValue()){
-//            holder.txtOriginalPrice.setVisibility(View.GONE);
-//        }else {
-//            holder.txtOriginalPrice.setVisibility(View.VISIBLE);
-//            holder.txtOriginalPrice.setText(item.getOriginalPrice().toString());
-//            holder.txtOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-//        }
+        Product item = datas.get(position);
+        Glide.with(context).load(item.getImage()).placeholder(R.drawable.icon_no_image).into(holder.imgProductImage);
+        holder.txtName.setText(context.getString(R.string.product_name_placeholder, item.getName()));
+        holder.txtDescription.setText(item.getDescription());
+        holder.txtDiscountPrice.setText(context.getString(R.string.product_price_placeholder, item.getDiscountPrice()));
+        if(item.getDiscountPrice() == item.getOriginalPrice()){
+            holder.txtOriginalPrice.setVisibility(View.GONE);
+        }else {
+            holder.txtOriginalPrice.setVisibility(View.VISIBLE);
+            holder.txtOriginalPrice.setText(context.getString(R.string.product_price_placeholder, item.getOriginalPrice()));
+            holder.txtOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }
     }
 
     class Holder extends RecyclerView.ViewHolder{

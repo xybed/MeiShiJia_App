@@ -8,19 +8,24 @@ import android.view.View;
 
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.product.ProductListAdapter;
+import com.mumu.meishijia.model.product.Product;
 import com.mumu.meishijia.presenter.product.ProductListPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lib.utils.DensityUtil;
 
-public class ProductListActivity extends BaseActivity<ProductListPresenter> {
+public class ProductListActivity extends BaseActivity<ProductListPresenter> implements ProductListView{
+    public static final String CATEGORY_ID = "category_id";
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
     private ProductListAdapter adapter;
+    private int categoryId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,9 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> {
 
         ButterKnife.bind(this);
         initUI();
+        categoryId = getIntent().getIntExtra(CATEGORY_ID, 0);
+        startRefresh();
+        presenter.getProductList(categoryId, pageIndex, pageSize);
     }
 
     private void initUI(){
@@ -45,5 +53,17 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> {
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onRefresh() {
+        pageIndex = 1;
+        presenter.getProductList(categoryId, pageIndex, pageSize);
+    }
+
+    @Override
+    public void getListSuccess(List<Product> productList) {
+        stopRefresh();
+        adapter.setData(productList);
     }
 }

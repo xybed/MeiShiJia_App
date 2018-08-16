@@ -7,4 +7,7 @@
     <string name="product_product_category">商品分类</string>
     <string name="product_product_list">商品列表</string>
     <string name="product_business_self">自营</string>
+
+    <string name="product_name_placeholder">&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;%1$s</string>
+    <string name="product_price_placeholder">￥%1$.2f</string>
 </resources>

@@ -59,21 +59,40 @@ public class HomeFragment extends BaseFragment {
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
-            case R.id.llay_cloth:
+            case R.id.llay_cloth://衣服
                 intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra(ProductListActivity.CATEGORY_ID, 11);
                 startActivity(intent);
                 break;
-            case R.id.llay_snacks:
+            case R.id.llay_snacks://零食
+                intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra(ProductListActivity.CATEGORY_ID, 21);
+                startActivity(intent);
                 break;
-            case R.id.llay_kitchen:
+            case R.id.llay_kitchen://厨具
+                intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra(ProductListActivity.CATEGORY_ID, 9);
+                startActivity(intent);
                 break;
-            case R.id.llay_shampoo:
+            case R.id.llay_shampoo://洗发沐浴
+                intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra(ProductListActivity.CATEGORY_ID, 969);
+                startActivity(intent);
                 break;
-            case R.id.llay_wine:
+            case R.id.llay_wine://酒水
+                intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra(ProductListActivity.CATEGORY_ID, 22);
+                startActivity(intent);
                 break;
-            case R.id.llay_guitar:
+            case R.id.llay_guitar://吉他
+                intent = new Intent(getActivity(), ProductListActivity.class);
+                intent.putExtra(ProductListActivity.CATEGORY_ID, 20);
+                startActivity(intent);
                 break;
             case R.id.llay_jia_love:
+//                intent = new Intent(getActivity(), ProductListActivity.class);
+//                intent.putExtra(ProductListActivity.CATEGORY_ID, 11);
+//                startActivity(intent);
                 break;
             case R.id.llay_category:
                 intent = new Intent(getActivity(), ProductCategoryActivity.class);
