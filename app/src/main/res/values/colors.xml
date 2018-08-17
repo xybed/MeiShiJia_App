@@ -49,4 +49,6 @@
     <color name="green_a">#ffadff2f</color>
     <!--主题红色，abc..不代表等级-->
     <color name="red_a">#fff8361b</color>
+    <!--主题黄色，abc..不代表等级-->
+    <color name="yellow_a">#fffef77e</color>
 </resources>

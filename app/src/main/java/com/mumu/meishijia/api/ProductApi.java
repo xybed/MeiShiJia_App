@@ -24,4 +24,7 @@ public interface ProductApi {
 
     @GET(HttpUrl.GetProductList)
     Observable<BaseModel<List<Product>>> getProductList(@QueryMap Map<String, Integer> map);
+
+    @GET(HttpUrl.GetProductDetail)
+    Observable<BaseModel<Product>> getProductDetail(@Path("id") int id);
 }

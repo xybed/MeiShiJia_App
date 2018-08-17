@@ -7,6 +7,16 @@
     <string name="product_product_category">商品分类</string>
     <string name="product_product_list">商品列表</string>
     <string name="product_business_self">自营</string>
+    <string name="product_comment_point">评分</string>
+    <string name="product_total_sale">总销量</string>
+    <string name="product_stock">库存</string>
+    <string name="product_free_shipping">包邮</string>
+    <string name="product_add_shopping_cart">加入购物车</string>
+    <string name="product_buy_immediately">立即购买</string>
+    <string name="product_refundable_seven_day">七天无理由退换货</string>
+    <string name="product_price_protection_seven_day">七天保价</string>
+    <string name="product_send_twenty_four_hours">24小时发货</string>
+    <string name="product_shop_notices">店铺公告</string>
 
     <string name="product_name_placeholder">&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;%1$s</string>
     <string name="product_price_placeholder">￥%1$.2f</string>

@@ -1,5 +1,6 @@
 package com.mumu.meishijia.view.product;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -50,6 +51,14 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
                 outRect.top = DensityUtil.dip2px(ProductListActivity.this, 15);
                 outRect.left = DensityUtil.dip2px(ProductListActivity.this, 6);
                 outRect.right = DensityUtil.dip2px(ProductListActivity.this, 6);
+            }
+        });
+        adapter.setOnItemClickListener(new ProductListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Product product) {
+                Intent intent = new Intent(ProductListActivity.this, ProductDetailActivity.class);
+                intent.putExtra(ProductDetailActivity.PRODUCT_ID, product.getId());
+                startActivity(intent);
             }
         });
         recyclerView.setAdapter(adapter);

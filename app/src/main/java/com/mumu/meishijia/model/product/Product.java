@@ -2,6 +2,7 @@ package com.mumu.meishijia.model.product;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -19,13 +20,13 @@ public class Product {
 
     private String image;
 
-    private double price;
+    private BigDecimal price;
 
     @SerializedName("original_price")
-    private double originalPrice;
+    private BigDecimal originalPrice;
 
     @SerializedName("discount_price")
-    private double discountPrice;
+    private BigDecimal discountPrice;
 
     private Integer stock;
 
@@ -91,27 +92,27 @@ public class Product {
         this.image = image;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public double getOriginalPrice() {
+    public BigDecimal getOriginalPrice() {
         return originalPrice;
     }
 
-    public void setOriginalPrice(double originalPrice) {
+    public void setOriginalPrice(BigDecimal originalPrice) {
         this.originalPrice = originalPrice;
     }
 
-    public double getDiscountPrice() {
+    public BigDecimal getDiscountPrice() {
         return discountPrice;
     }
 
-    public void setDiscountPrice(double discountPrice) {
+    public void setDiscountPrice(BigDecimal discountPrice) {
         this.discountPrice = discountPrice;
     }
 

@@ -244,8 +244,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".test.TestActivity">
         </activity>
-        <activity android:name=".view.product.ProductListActivity">
-        </activity>
+        <activity
+            android:name=".view.product.ProductListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.product.ProductDetailActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
