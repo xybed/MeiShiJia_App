@@ -11,4 +11,5 @@ import java.util.List;
 
 public interface ProductListView extends BaseView{
     void getListSuccess(List<Product> productList);
+    void getListFail(String errMsg);
 }

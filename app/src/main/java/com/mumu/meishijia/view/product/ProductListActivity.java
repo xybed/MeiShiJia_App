@@ -3,6 +3,7 @@ package com.mumu.meishijia.view.product;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,6 +13,10 @@ import com.mumu.meishijia.adapter.product.ProductListAdapter;
 import com.mumu.meishijia.model.product.Product;
 import com.mumu.meishijia.presenter.product.ProductListPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.List;
 
@@ -22,6 +27,8 @@ import lib.utils.DensityUtil;
 public class ProductListActivity extends BaseActivity<ProductListPresenter> implements ProductListView{
     public static final String CATEGORY_ID = "category_id";
 
+    @BindView(R.id.refresh_layout)
+    SmartRefreshLayout refreshLayout;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
@@ -36,7 +43,7 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
         ButterKnife.bind(this);
         initUI();
         categoryId = getIntent().getIntExtra(CATEGORY_ID, 0);
-        startRefresh();
+        refreshLayout.autoRefresh();
         presenter.getProductList(categoryId, pageIndex, pageSize);
     }
 
@@ -62,17 +69,48 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
             }
         });
         recyclerView.setAdapter(adapter);
-    }
 
-    @Override
-    public void onRefresh() {
-        pageIndex = 1;
-        presenter.getProductList(categoryId, pageIndex, pageSize);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                pageIndex = 1;
+                presenter.getProductList(categoryId, pageIndex, pageSize);
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                presenter.getProductList(categoryId, pageIndex, pageSize);
+            }
+        });
     }
 
     @Override
     public void getListSuccess(List<Product> productList) {
-        stopRefresh();
-        adapter.setData(productList);
+        refreshLayout.finishRefresh();
+        refreshLayout.finishLoadMore();
+
+        if(productList.size() < pageSize){
+            refreshLayout.setNoMoreData(true);
+        }else {
+            refreshLayout.setNoMoreData(false);
+        }
+        if(pageIndex == 1){
+            adapter.setData(productList);
+        }else {
+            adapter.addData(productList);
+        }
+
+        pageIndex++;
+    }
+
+    @Override
+    public void getListFail(String errMsg) {
+        if(pageIndex == 1){
+            refreshLayout.finishRefresh(false);
+        }else {
+            refreshLayout.finishLoadMore(false);
+        }
+        toast(errMsg);
     }
 }

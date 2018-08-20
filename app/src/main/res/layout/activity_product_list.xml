@@ -12,8 +12,8 @@
         atb:title="@string/product_product_list"
         atb:right_image="@drawable/icon_shopping_cart"/>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <android.support.v7.widget.RecyclerView
@@ -23,6 +23,6 @@
             android:paddingLeft="@dimen/padding_10"
             android:paddingRight="@dimen/padding_10"
             android:paddingBottom="@dimen/padding_15"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.mumu.meishijia;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.multidex.MultiDexApplication;
 
 import com.mumu.meishijia.model.mine.User;
@@ -8,6 +10,12 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.scwang.smartrefresh.header.MaterialHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshInitializer;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import io.realm.Realm;
 import lib.cache.CacheJsonMgr;
@@ -26,6 +34,27 @@ public class MyApplication extends MultiDexApplication {
     private User user;
     private boolean isLogin;
     private boolean isIMLogin;
+
+    static {
+        //设置全局默认配置
+        SmartRefreshLayout.setDefaultRefreshInitializer(new DefaultRefreshInitializer() {
+            @Override
+            public void initialize(@NonNull Context context, @NonNull RefreshLayout layout) {
+//                layout.setReboundDuration(1000);//回弹动画时长（毫秒）
+//                layout.setReboundInterpolator(new DropBounceInterpolator());//设置回弹动画的插值器（默认减速）
+                layout.setDisableContentWhenLoading(false);//是否在加载的时候禁止列表的操作
+            }
+        });
+        //全局设置默认的 Header
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+            @NonNull
+            @Override
+            public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
+                layout.setEnableHeaderTranslationContent(false);//拖动Header的时候是否同时拖动内容
+                return new MaterialHeader(context).setColorSchemeResources(R.color.theme_color);
+            }
+        });
+    }
 
     @Override
     public void onCreate() {

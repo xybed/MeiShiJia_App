@@ -25,6 +25,12 @@ public class ProductListPresenter extends BasePresenter<ProductListView, Product
                         if(view != null)
                             view.getListSuccess(products);
                     }
+
+                    @Override
+                    protected void onFail(String errMsg) {
+                        if(view != null)
+                            view.getListFail(errMsg);
+                    }
                 });
     }
 }
