@@ -66,7 +66,21 @@ public class ProductCategoryActivity extends BaseActivity<ProductCategoryPresent
                 //刷新二级分类
                 List<ProductCategory> childList = category.getChildList();
                 if(childList != null){
+                    //刷新二级列表时，还要刷新三级列表
+                    for(ProductCategory child : childList){
+                        child.setSelected(false);
+                    }
+                    twoPos = 0;
+                    ProductCategory child = childList.get(0);
+                    child.setSelected(true);
                     twoAdapter.setData(childList);
+                    //刷新三级列表
+                    if(child.getChildList() != null){
+                        threeAdapter.setData(child.getChildList());
+                    }else {
+                        level = 3;
+                        presenter.getProductCategory(child.getId());
+                    }
                 }else {
                     level = 2;
                     presenter.getProductCategory(category.getId());
