@@ -46,7 +46,8 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
         initUI();
         categoryId = getIntent().getIntExtra(CATEGORY_ID, 0);
         keyword = getIntent().getStringExtra(KEYWORD);
-        refreshLayout.autoRefresh();
+        showFrameProgress();
+        presenter.getProductList(categoryId, keyword, pageIndex, pageSize);
     }
 
     private void initUI(){
@@ -89,9 +90,17 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
 
     @Override
     public void getListSuccess(List<Product> productList) {
+        dismissFrameProgress();
         refreshLayout.finishRefresh();
         refreshLayout.finishLoadMore();
 
+        if(productList.size() == 0){
+            refreshLayout.setNoMoreData(true);
+            if(pageIndex == 1){
+                noData(getString(R.string.product_no_product));
+            }
+            return;
+        }
         if(productList.size() < pageSize){
             refreshLayout.setNoMoreData(true);
         }else {
@@ -108,8 +117,10 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
 
     @Override
     public void getListFail(String errMsg) {
+        dismissFrameProgress();
+        refreshLayout.finishRefresh();
         if(pageIndex == 1){
-            refreshLayout.finishRefresh(false);
+            loadFail(null);
         }else {
             refreshLayout.finishLoadMore(false);
         }

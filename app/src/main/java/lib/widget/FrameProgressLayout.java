@@ -49,6 +49,7 @@ public class FrameProgressLayout extends LinearLayout {
     }
 
     public void loadFail(String msg){
+        setVisibility(VISIBLE);
         progressBar.setVisibility(GONE);
         txtStatus.setVisibility(GONE);
 
@@ -70,6 +71,7 @@ public class FrameProgressLayout extends LinearLayout {
     }
 
     public void loadFail(){
+        setVisibility(VISIBLE);
         progressBar.setVisibility(GONE);
         txtStatus.setVisibility(GONE);
 
@@ -90,6 +92,7 @@ public class FrameProgressLayout extends LinearLayout {
     }
 
     public void noImage(){
+        setVisibility(VISIBLE);
         imgLoadStatus.setVisibility(VISIBLE);
         imgLoadStatus.setImageResource(R.drawable.icon_load_fail);
 
@@ -99,6 +102,7 @@ public class FrameProgressLayout extends LinearLayout {
     }
 
     public void noData(){
+        setVisibility(VISIBLE);
         imgLoadStatus.setVisibility(VISIBLE);
         imgLoadStatus.setImageResource(R.drawable.icon_load_no_data);
         txtStatus.setVisibility(VISIBLE);
@@ -109,6 +113,7 @@ public class FrameProgressLayout extends LinearLayout {
     }
 
     public void noData(String str){
+        setVisibility(VISIBLE);
         imgLoadStatus.setVisibility(VISIBLE);
         imgLoadStatus.setImageResource(R.drawable.icon_load_no_data);
         txtStatus.setText(str);

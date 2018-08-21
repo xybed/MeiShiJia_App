@@ -12,6 +12,11 @@
         atb:title="@string/product_product_list"
         atb:right_image="@drawable/icon_shopping_cart"/>
 
+    <lib.widget.FrameProgressLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
