@@ -26,6 +26,7 @@ import lib.utils.DensityUtil;
 
 public class ProductListActivity extends BaseActivity<ProductListPresenter> implements ProductListView{
     public static final String CATEGORY_ID = "category_id";
+    public static final String KEYWORD = "keyword";
 
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout refreshLayout;
@@ -34,6 +35,7 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
 
     private ProductListAdapter adapter;
     private int categoryId;
+    private String keyword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,8 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
         ButterKnife.bind(this);
         initUI();
         categoryId = getIntent().getIntExtra(CATEGORY_ID, 0);
+        keyword = getIntent().getStringExtra(KEYWORD);
         refreshLayout.autoRefresh();
-        presenter.getProductList(categoryId, pageIndex, pageSize);
     }
 
     private void initUI(){
@@ -74,13 +76,13 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 pageIndex = 1;
-                presenter.getProductList(categoryId, pageIndex, pageSize);
+                presenter.getProductList(categoryId, keyword, pageIndex, pageSize);
             }
         });
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                presenter.getProductList(categoryId, pageIndex, pageSize);
+                presenter.getProductList(categoryId, keyword, pageIndex, pageSize);
             }
         });
     }

@@ -17,7 +17,11 @@
     <string name="product_price_protection_seven_day">七天保价</string>
     <string name="product_send_twenty_four_hours">24小时发货</string>
     <string name="product_shop_notices">店铺公告</string>
+    <string name="product_search_history">搜索历史</string>
+    <string name="product_clean_search_history">清除搜索记录</string>
 
     <string name="product_name_placeholder">&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;%1$s</string>
     <string name="product_price_placeholder">￥%1$.2f</string>
+
+    <string name="product_pls_input_search_content">请输入搜索内容</string>
 </resources>

@@ -32,6 +32,7 @@
                 android:textColor="@color/white"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/llay_search_product"
             android:layout_width="0dp"
             android:layout_height="35dp"
             android:layout_weight="1"
@@ -53,7 +54,8 @@
                 android:layout_marginRight="@dimen/margin_5"
                 android:gravity="center_vertical"
                 android:text="@string/product_search_product"
-                android:textColor="@color/gray_b"/>
+                android:textColor="@color/gray_b"
+                android:textSize="@dimen/text_size_14"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"

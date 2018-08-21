@@ -14,6 +14,7 @@ import com.mumu.meishijia.model.LocationModel;
 import com.mumu.meishijia.view.BaseFragment;
 import com.mumu.meishijia.view.product.ProductCategoryActivity;
 import com.mumu.meishijia.view.product.ProductListActivity;
+import com.mumu.meishijia.view.product.SearchActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,10 +56,14 @@ public class HomeFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.llay_cloth, R.id.llay_snacks, R.id.llay_kitchen, R.id.llay_shampoo, R.id.llay_wine, R.id.llay_guitar, R.id.llay_jia_love, R.id.llay_category})
+    @OnClick({R.id.llay_search_product, R.id.llay_cloth, R.id.llay_snacks, R.id.llay_kitchen, R.id.llay_shampoo, R.id.llay_wine, R.id.llay_guitar, R.id.llay_jia_love, R.id.llay_category})
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
+            case R.id.llay_search_product:
+                intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
+                break;
             case R.id.llay_cloth://衣服
                 intent = new Intent(getActivity(), ProductListActivity.class);
                 intent.putExtra(ProductListActivity.CATEGORY_ID, 11);
@@ -86,7 +91,7 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.llay_guitar://吉他
                 intent = new Intent(getActivity(), ProductListActivity.class);
-                intent.putExtra(ProductListActivity.CATEGORY_ID, 20);
+                intent.putExtra(ProductListActivity.CATEGORY_ID, 744);
                 startActivity(intent);
                 break;
             case R.id.llay_jia_love:

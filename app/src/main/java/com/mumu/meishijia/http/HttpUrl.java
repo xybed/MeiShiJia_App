@@ -47,4 +47,6 @@ public class HttpUrl {
     public static final String GetProductList = "product";
     //获取商品详情
     public static final String GetProductDetail = "product/{id}";
+    //搜索商品
+    public static final String SearchProductList = "product/search";
 }

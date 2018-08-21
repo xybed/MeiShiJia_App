@@ -19,6 +19,7 @@
     <string name="com_save">保存</string>
     <string name="com_cancel">取消</string>
     <string name="com_complete">完成</string>
+    <string name="com_search">搜索</string>
     <string name="com_in_region">所在地</string>
     <string name="com_whole_country">全国</string>
     <string name="com_gps">GPS定位</string>

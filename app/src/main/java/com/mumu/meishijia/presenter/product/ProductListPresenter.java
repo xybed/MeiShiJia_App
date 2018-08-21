@@ -8,6 +8,8 @@ import com.mumu.meishijia.viewmodel.product.ProductListViewModel;
 
 import java.util.List;
 
+import lib.utils.StringUtil;
+
 /**
  * Created by 77 on 2018/8/10 0010.
  */
@@ -17,20 +19,37 @@ public class ProductListPresenter extends BasePresenter<ProductListView, Product
         super(view);
     }
 
-    public void getProductList(int categoryId, int pageIndex, int pageSize){
-        model.getProductList(categoryId, pageIndex, pageSize)
-                .subscribe(new RxObserver<List<Product>>() {
-                    @Override
-                    protected void onSuccess(List<Product> products) {
-                        if(view != null)
-                            view.getListSuccess(products);
-                    }
+    public void getProductList(int categoryId, String keyword, int pageIndex, int pageSize){
+        if(StringUtil.isEmpty(keyword)){
+            model.getProductList(categoryId, pageIndex, pageSize)
+                    .subscribe(new RxObserver<List<Product>>() {
+                        @Override
+                        protected void onSuccess(List<Product> products) {
+                            if(view != null)
+                                view.getListSuccess(products);
+                        }
 
-                    @Override
-                    protected void onFail(String errMsg) {
-                        if(view != null)
-                            view.getListFail(errMsg);
-                    }
-                });
+                        @Override
+                        protected void onFail(String errMsg) {
+                            if(view != null)
+                                view.getListFail(errMsg);
+                        }
+                    });
+        }else {
+            model.searchProductList(keyword, pageIndex, pageSize)
+                    .subscribe(new RxObserver<List<Product>>() {
+                        @Override
+                        protected void onSuccess(List<Product> products) {
+                            if(view != null)
+                                view.getListSuccess(products);
+                        }
+
+                        @Override
+                        protected void onFail(String errMsg) {
+                            if(view != null)
+                                view.getListFail(errMsg);
+                        }
+                    });
+        }
     }
 }
