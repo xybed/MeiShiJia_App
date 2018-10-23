@@ -20,6 +20,8 @@
     <string name="product_search_history">搜索历史</string>
     <string name="product_clean_search_history">清除搜索记录</string>
     <string name="product_no_product">暂无商品</string>
+    <string name="product_receiving_address">收货地址</string>
+    <string name="product_add_address">新建地址</string>
 
     <string name="product_name_placeholder">&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;%1$s</string>
     <string name="product_price_placeholder">￥%1$.2f</string>

@@ -250,8 +250,12 @@
         <activity
             android:name=".view.product.ProductDetailActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".view.product.SearchActivity">
-        </activity>
+        <activity
+            android:name=".view.product.SearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.mine.ReceivingAddressActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

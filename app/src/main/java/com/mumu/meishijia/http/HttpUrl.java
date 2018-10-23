@@ -26,6 +26,8 @@ public class HttpUrl {
     public static final String ModifyPwd = "user/modifyPwd";
     //修改个人信息
     public static final String ModifyUserInfo = "user/modifyUserInfo";
+    //获取收货地址列表
+    public static final String GetReceivingAddress = "address";
 
     //获取联系人
     public static final String GetContacts = "im/contacts";

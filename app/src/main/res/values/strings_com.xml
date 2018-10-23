@@ -72,6 +72,9 @@
     <string name="com_upload_success">上传成功</string>
     <string name="com_watch_all">查看全部</string>
     <string name="com_location">定位</string>
+    <string name="com_default">默认</string>
+    <string name="com_edit">编辑</string>
+    <string name="com_delete">删除</string>
 
     <string name="com_placeholder">%1$d</string>
 </resources>

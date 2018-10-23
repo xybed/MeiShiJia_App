@@ -99,13 +99,21 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.llay_top_img, R.id.llay_conversation, R.id.llay_contacts, R.id.llay_setting})
+    @OnClick({R.id.llay_top_img, R.id.llay_receiving_address, R.id.llay_conversation, R.id.llay_contacts, R.id.llay_setting})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
             case R.id.llay_top_img:
                 if(MyApplication.getInstance().isLogin()){
                     intent = new Intent(getActivity(), UserInfoActivity.class);
+                }else {
+                    intent = new Intent(getActivity(), LoginActivity.class);
+                }
+                startActivity(intent);
+                break;
+            case R.id.llay_receiving_address:
+                if(MyApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(), ReceivingAddressActivity.class);
                 }else {
                     intent = new Intent(getActivity(), LoginActivity.class);
                 }
