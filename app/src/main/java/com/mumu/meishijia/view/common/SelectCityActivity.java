@@ -13,7 +13,6 @@ import com.mumu.meishijia.adapter.SelectCityGridAdapter;
 import com.mumu.meishijia.model.LocationModel;
 import com.mumu.meishijia.model.RegionModel;
 import com.mumu.meishijia.view.BaseActivity;
-import com.mumu.meishijia.view.mine.UserInfoActivity;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -29,6 +28,8 @@ import lib.utils.ToastUtil;
 import lib.widget.SelectCityDialog;
 
 public class SelectCityActivity extends BaseActivity {
+    public static final String RESULT_PROVINCE = "result_province";
+    public static final String RESULT_CITY = "result_city";
 
     @BindView(R.id.txt_gps)
     TextView txtGps;
@@ -138,8 +139,8 @@ public class SelectCityActivity extends BaseActivity {
 
     private void setUserInfoCity(String province, String city){
         Intent intent = new Intent();
-        intent.putExtra(UserInfoActivity.RESULT_PROVINCE, province);
-        intent.putExtra(UserInfoActivity.RESULT_CITY, city);
+        intent.putExtra(RESULT_PROVINCE, province);
+        intent.putExtra(RESULT_CITY, city);
         setResult(RESULT_OK, intent);
         finish();
     }

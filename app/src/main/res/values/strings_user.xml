@@ -36,6 +36,12 @@
     <string name="user_pls_select_city">请选择城市</string>
     <string name="user_signature">个性签名</string>
     <string name="user_pls_input_signature">请输入个性签名</string>
+    <string name="user_mobile_phone">手机号码</string>
+    <string name="user_mobile_phone_hint">11位</string>
+    <string name="user_province_city">省市</string>
+    <string name="user_province_city_hint">省份&#8201;&#8201;城市</string>
+    <string name="user_address">详细地址</string>
+    <string name="user_address_hint">请填写快递员能识别的地址</string>
     <string name="user_sex_unknown">保密</string>
     <string name="user_male">男</string>
     <string name="user_female">女</string>
@@ -48,4 +54,6 @@
     <string name="user_nickname_tip">昵称不能为空</string>
     <string name="user_permission_apply">权限申请</string>
     <string name="user_permission_tip_text">请在设置-应用-美食佳-权限中开启相关权限。</string>
+
+    <string name="user_province_city_placeholder">%1$s&#8201;&#8201;%2$s</string>
 </resources>

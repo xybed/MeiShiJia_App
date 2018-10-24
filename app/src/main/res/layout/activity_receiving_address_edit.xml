@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <lib.widget.ActionTitleBar
+        xmlns:atb="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        atb:title="@string/product_receiving_address"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:text="@string/product_addressee"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/theme_color"/>
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_10"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:background="@null"
+        android:hint="@string/product_addressee_hint"
+        android:textColorHint="@color/gray_b"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/black_b"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_5"
+        android:background="@color/gray_c"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:text="@string/user_mobile_phone"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/theme_color"/>
+
+    <EditText
+        android:id="@+id/edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@null"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:inputType="phone"
+        android:hint="@string/user_mobile_phone_hint"
+        android:textColorHint="@color/gray_b"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/black_b"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_5"
+        android:background="@color/gray_c"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:text="@string/user_province_city"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/theme_color"/>
+
+    <TextView
+        android:id="@+id/txt_province_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_10"
+        android:hint="@string/user_province_city_hint"
+        android:textColorHint="@color/gray_b"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/black_b"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_5"
+        android:background="@color/gray_c"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:text="@string/user_address"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/theme_color"/>
+
+    <EditText
+        android:id="@+id/edit_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@null"
+        android:maxHeight="75dp"
+        android:lineSpacingExtra="3dp"
+        android:hint="@string/user_address_hint"
+        android:textColorHint="@color/gray_b"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/black_b"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:text="@string/product_set_default_address"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/theme_color"/>
+
+    <ImageView
+        android:id="@+id/img_switch"
+        android:layout_width="44dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:background="@color/white"
+        android:src="@drawable/icon_switch_close"
+        android:contentDescription="@null"/>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_44"
+        android:layout_margin="@dimen/margin_20"
+        android:background="@drawable/selector_rect_theme_color"
+        android:text="@string/com_save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"
+        android:enabled="false"/>
+
+</LinearLayout>

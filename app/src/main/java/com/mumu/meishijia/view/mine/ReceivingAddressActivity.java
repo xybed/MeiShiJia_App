@@ -1,5 +1,6 @@
 package com.mumu.meishijia.view.mine;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -52,6 +53,9 @@ public class ReceivingAddressActivity extends BaseActivity<ReceivingAddressPrese
 
     @OnClick(R.id.btn_add)
     public void onViewClicked() {
+        Intent intent = new Intent(this, ReceivingAddressEditActivity.class);
+        intent.putExtra(ReceivingAddressEditActivity.TITLE, "添加收货地址");
+        startActivity(intent);
     }
 
     @Override

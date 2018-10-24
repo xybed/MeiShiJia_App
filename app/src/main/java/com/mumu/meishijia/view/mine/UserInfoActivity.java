@@ -46,8 +46,6 @@ import lib.widget.ActionSheet;
 
 public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements UserInfoView {
     public static final int REQ_CITY = 1;
-    public static final String RESULT_PROVINCE = "result_province";
-    public static final String RESULT_CITY = "result_city";
 
     @BindView(R.id.img_avatar)
     ImageView imgAvatar;
@@ -268,9 +266,9 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
             return;
         //选择城市回调的结果
         if(requestCode == REQ_CITY){
-            province = data.getStringExtra(RESULT_PROVINCE);
-            city = data.getStringExtra(RESULT_CITY);
-            txtCity.setText(province + "  " + city);
+            province = data.getStringExtra(SelectCityActivity.RESULT_PROVINCE);
+            city = data.getStringExtra(SelectCityActivity.RESULT_CITY);
+            txtCity.setText(getString(R.string.user_province_city_placeholder, province, city));
             return;
         }
         //选择图片返回

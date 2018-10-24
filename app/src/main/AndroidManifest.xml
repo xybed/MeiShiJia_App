@@ -256,6 +256,8 @@
         <activity
             android:name=".view.mine.ReceivingAddressActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".view.mine.ReceivingAddressEditActivity">
+        </activity>
     </application>
 
 </manifest>
