@@ -1,13 +1,9 @@
 package com.mumu.meishijia.http;
 
-import com.mumu.meishijia.MyApplication;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
 
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -32,15 +28,15 @@ public class HttpRetrofit {
                     OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder()
                             .connectTimeout(30000, TimeUnit.MILLISECONDS)
                             .readTimeout(30000, TimeUnit.MILLISECONDS)
-                            .writeTimeout(30000, TimeUnit.MILLISECONDS)
-                            .sslSocketFactory(MySSLSocketFactory.getSocketFactory(MyApplication.getInstance()))
-                            .hostnameVerifier(new HostnameVerifier() {
-                                @Override
-                                public boolean verify(String s, SSLSession sslSession) {
-                                    //TODO 为避免验证hostname暂时做的处理
-                                    return true;
-                                }
-                            });
+                            .writeTimeout(30000, TimeUnit.MILLISECONDS);
+//                            .sslSocketFactory(MySSLSocketFactory.getSocketFactory(MyApplication.getInstance()))
+//                            .hostnameVerifier(new HostnameVerifier() {
+//                                @Override
+//                                public boolean verify(String s, SSLSession sslSession) {
+//                                    //TODO 为避免验证hostname暂时做的处理
+//                                    return true;
+//                                }
+//                            });
 
                     //设置log的拦截器
                     HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
