@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.model.LocationModel;
 import com.mumu.meishijia.view.BaseFragment;
+import com.mumu.meishijia.view.order.ShoppingCartActivity;
 import com.mumu.meishijia.view.product.ProductCategoryActivity;
 import com.mumu.meishijia.view.product.ProductListActivity;
 import com.mumu.meishijia.view.product.SearchActivity;
@@ -56,7 +57,9 @@ public class HomeFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.llay_search_product, R.id.llay_cloth, R.id.llay_snacks, R.id.llay_kitchen, R.id.llay_shampoo, R.id.llay_wine, R.id.llay_guitar, R.id.llay_jia_love, R.id.llay_category})
+    @OnClick({R.id.llay_search_product, R.id.llay_cloth, R.id.llay_snacks, R.id.llay_kitchen,
+            R.id.llay_shampoo, R.id.llay_wine, R.id.llay_guitar, R.id.llay_jia_love,
+            R.id.llay_category, R.id.img_shopping_cart})
     public void onViewClicked(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -101,6 +104,10 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.llay_category:
                 intent = new Intent(getActivity(), ProductCategoryActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.img_shopping_cart:
+                intent = new Intent(getActivity(), ShoppingCartActivity.class);
                 startActivity(intent);
                 break;
         }

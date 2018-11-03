@@ -63,6 +63,7 @@
                 android:contentDescription="@null"/>
         </LinearLayout>
         <ImageView
+            android:id="@+id/img_shopping_cart"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginLeft="13dp"

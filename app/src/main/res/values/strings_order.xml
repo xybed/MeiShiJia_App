@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="order_shopping_cart">购物车</string>
+    <string name="order_clear_invalid_product">清空失效商品</string>
+    <string name="order_invalid">失效</string>
+    
+    <string name="order_total_amount_placeholder">合计：￥%1$.2f</string>
+    <string name="order_settlement_placeholder">结算（%1$d）</string>
+</resources>
