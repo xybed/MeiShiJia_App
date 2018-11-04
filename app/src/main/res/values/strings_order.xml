@@ -3,7 +3,17 @@
     <string name="order_shopping_cart">购物车</string>
     <string name="order_clear_invalid_product">清空失效商品</string>
     <string name="order_invalid">失效</string>
+    <string name="order_confirm_order">确认订单</string>
+    <string name="order_submit_order">提交订单</string>
+    <string name="order_pay">付款</string>
+    <string name="order_distribution_type">配送方式</string>
+    <string name="order_express_free">快递&#8201;&#8201;免邮</string>
+    <string name="order_buyer_remark_colon">买家留言：</string>
+    <string name="order_buyer_remark_tips">选填：填写内容已和卖家协商确认</string>
+    <string name="order_subtotal_colon">小计：</string>
     
     <string name="order_total_amount_placeholder">合计：￥%1$.2f</string>
     <string name="order_settlement_placeholder">结算（%1$d）</string>
+    <string name="order_true_pay_placeholder">实付款：￥%1$.2f</string>
+    <string name="order_total_count_product_placeholder">共%1$d件商品</string>
 </resources>

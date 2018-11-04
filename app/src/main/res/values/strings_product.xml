@@ -21,6 +21,7 @@
     <string name="product_clean_search_history">清除搜索记录</string>
     <string name="product_no_product">暂无商品</string>
     <string name="product_receiving_address">收货地址</string>
+    <string name="product_select_receiving_address">选择收货地址</string>
     <string name="product_add_address">新建地址</string>
     <string name="product_addressee">收货人</string>
     <string name="product_addressee_hint">最少两个字</string>

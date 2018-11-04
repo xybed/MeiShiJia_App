@@ -138,12 +138,12 @@
         <service
             android:name="com.tencent.qalsdk.service.QalService"
             android:exported="false"
-            android:process=":QALSERVICE"></service>
+            android:process=":QALSERVICE" />
         <!-- 消息收发辅助service -->
         <service
             android:name="com.tencent.qalsdk.service.QalAssistService"
             android:exported="false"
-            android:process=":QALSERVICE"></service>
+            android:process=":QALSERVICE" />
         <!-- 离线消息广播接收器 -->
         <receiver
             android:name="com.tencent.qalsdk.QALBroadcastReceiver"
@@ -240,7 +240,7 @@
         <activity
             android:name=".view.product.ProductCategoryActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".test.TestActivity"></activity>
+        <activity android:name=".test.TestActivity" />
         <activity
             android:name=".view.product.ProductListActivity"
             android:screenOrientation="portrait" />
@@ -253,8 +253,9 @@
         <activity
             android:name=".view.mine.ReceivingAddressActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.mine.ReceivingAddressEditActivity"></activity>
-        <activity android:name=".view.order.ShoppingCartActivity"></activity>
+        <activity android:name=".view.mine.ReceivingAddressEditActivity" />
+        <activity android:name=".view.order.ShoppingCartActivity" />
+        <activity android:name=".view.order.OrderConfirmActivity"></activity>
     </application>
 
 </manifest>

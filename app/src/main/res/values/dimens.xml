@@ -49,6 +49,7 @@
     <dimen name="padding_80">80dp</dimen>
 
     <!--height-->
+    <dimen name="height_30">30dp</dimen>
     <dimen name="height_40">40dp</dimen>
     <dimen name="height_44">44dp</dimen>
     <dimen name="height_48">48dp</dimen>
