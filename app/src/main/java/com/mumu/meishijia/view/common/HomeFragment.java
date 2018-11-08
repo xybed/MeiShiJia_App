@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.model.LocationModel;
 import com.mumu.meishijia.view.BaseFragment;
+import com.mumu.meishijia.view.mine.LoginActivity;
 import com.mumu.meishijia.view.order.ShoppingCartActivity;
 import com.mumu.meishijia.view.product.ProductCategoryActivity;
 import com.mumu.meishijia.view.product.ProductListActivity;
@@ -107,7 +109,11 @@ public class HomeFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.img_shopping_cart:
-                intent = new Intent(getActivity(), ShoppingCartActivity.class);
+                if(MyApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(), ShoppingCartActivity.class);
+                }else {
+                    intent = new Intent(getActivity(), LoginActivity.class);
+                }
                 startActivity(intent);
                 break;
         }

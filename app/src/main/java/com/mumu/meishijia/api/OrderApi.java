@@ -28,4 +28,7 @@ public interface OrderApi {
 
     @PUT(HttpUrl.ReceivingAddress)
     Observable<BaseModel<String>> updateReceivingAddress(@Body Map<String, Object> map);
+
+    @GET(HttpUrl.ReceivingAddress)
+    Observable<BaseModel<ReceivingAddress>> getDefaultReceivingAddress(@QueryMap Map<String, Integer> map);
 }

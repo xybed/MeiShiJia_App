@@ -16,4 +16,5 @@
     <string name="order_settlement_placeholder">结算（%1$d）</string>
     <string name="order_true_pay_placeholder">实付款：￥%1$.2f</string>
     <string name="order_total_count_product_placeholder">共%1$d件商品</string>
+    <string name="order_receiving_address_placeholder">%1$s&#8201;&#8201;%2$s&#8201;&#8201;%3$s</string>
 </resources>

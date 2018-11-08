@@ -1,14 +1,20 @@
 package com.mumu.meishijia.view.product;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.model.product.Product;
 import com.mumu.meishijia.presenter.product.ProductDetailPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+import com.mumu.meishijia.view.mine.LoginActivity;
+import com.mumu.meishijia.view.order.OrderConfirmActivity;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +42,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
     @BindView(R.id.txt_remark)
     TextView txtRemark;
 
-    private int productId;
+    private Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,23 +50,35 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
         setContentView(R.layout.activity_product_detail);
 
         ButterKnife.bind(this);
-        productId = getIntent().getIntExtra(PRODUCT_ID, 0);
+        int productId = getIntent().getIntExtra(PRODUCT_ID, 0);
         showFrameProgress();
         presenter.getProducDetail(productId);
     }
 
     @OnClick({R.id.txt_add_shopping_cart, R.id.txt_buy_immediately})
     public void onViewClicked(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.txt_add_shopping_cart:
                 break;
             case R.id.txt_buy_immediately:
+                if(!MyApplication.getInstance().isLogin()){
+                    intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                }else {
+                    intent = new Intent(this, OrderConfirmActivity.class);
+                    ArrayList<Product> productList = new ArrayList<>();
+                    productList.add(product);
+                    intent.putExtra(OrderConfirmActivity.PRODUCT_LIST, productList);
+                }
+                startActivity(intent);
                 break;
         }
     }
 
     @Override
     public void getSuccess(Product product) {
+        this.product = product;
         dismissFrameProgress();
         bannerView.setImgUrl(product.getImages());
         txtTotalSale.setText(getString(R.string.com_placeholder, product.getStock()));

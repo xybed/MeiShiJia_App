@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers;
  * 收货地址信息model
  */
 
-public class ReceivingAddressEditModel extends BaseViewModel{
+public class ReceivingAddressEditViewModel extends BaseViewModel{
 
     public Observable<String> addReceivingAddress(int userId, String name, String phone,
                       String province, String city, String address, boolean type){

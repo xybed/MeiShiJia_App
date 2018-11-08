@@ -2,17 +2,12 @@ package com.mumu.meishijia.model.product;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
-public class Product {
+public class Product implements Serializable {
     private Integer id;
-
-    private String url;
-
-    @SerializedName("back_user_id")
-    private Integer backUserId;
 
     private String name;
 
@@ -34,12 +29,6 @@ public class Product {
 
     private Integer status;
 
-    @SerializedName("gmt_create")
-    private Date gmtCreate;
-
-    @SerializedName("gmt_modified")
-    private Date gmtModified;
-
     private String remark;
 
     private List<String> images;
@@ -50,22 +39,6 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Integer getBackUserId() {
-        return backUserId;
-    }
-
-    public void setBackUserId(Integer backUserId) {
-        this.backUserId = backUserId;
     }
 
     public String getName() {
@@ -140,22 +113,6 @@ public class Product {
         this.status = status;
     }
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public Date getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
     public String getRemark() {
         return remark;
     }
@@ -171,4 +128,5 @@ public class Product {
     public void setImages(List<String> images) {
         this.images = images;
     }
+
 }

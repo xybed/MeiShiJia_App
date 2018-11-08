@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers;
  * 收货地址列表model
  */
 
-public class ReceivingAddressModel extends BaseViewModel{
+public class ReceivingAddressViewModel extends BaseViewModel{
 
     public Observable<List<ReceivingAddress>> getReceivingAddress(Integer userId){
         Map<String, Integer> params = new HashMap<>();

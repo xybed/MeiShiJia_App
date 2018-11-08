@@ -14,43 +14,43 @@ public class HttpUrl {
     public static final String GetRecipe = "food/recipe";
 
     //上传头像
-    public static final String UploadImage = "upload/image";
+    public static final String UploadImage = "msj-user/upload/image";
 
     //注册
-    public static final String Register = "user/register";
+    public static final String Register = "msj-user/user/register";
     //登录
-    public static final String Login = "user/login";
+    public static final String Login = "msj-user/user/login";
     //退出登录
-    public static final String Logout = "user/logout";
+    public static final String Logout = "msj-user/user/logout";
     //修改密码
-    public static final String ModifyPwd = "user/modifyPwd";
+    public static final String ModifyPwd = "msj-user/user/modifyPwd";
     //修改个人信息
-    public static final String ModifyUserInfo = "user/modifyUserInfo";
+    public static final String ModifyUserInfo = "msj-user/user/modifyUserInfo";
     //获取收货地址列表
-    public static final String GetReceivingAddress = "addresses";
-    //添加、更改收货地址
-    public static final String ReceivingAddress = "address";
+    public static final String GetReceivingAddress = "msj-order/addresses";
+    //添加、更改收货地址、获取默认地址
+    public static final String ReceivingAddress = "msj-order/address";
 
     //获取联系人
-    public static final String GetContacts = "im/contacts";
+    public static final String GetContacts = "msj-user/im/contacts";
     //获取联系人详细信息
-    public static final String GetContactsDetail = "im/contactsDetail";
+    public static final String GetContactsDetail = "msj-user/im/contactsDetail";
     //修改联系人的备注名
-    public static final String ModifyRemark = "im/modifyRemark";
+    public static final String ModifyRemark = "msj-user/im/modifyRemark";
     //获取消息主体的信息
-    public static final String GetPrincipalInfo = "im/principalInfo";
+    public static final String GetPrincipalInfo = "msj-user/im/principalInfo";
 
     //获取联赛排名
-    public static final String GetRanking = "football/ranking";
+    public static final String GetRanking = "msj-football/football/ranking";
     //获取球队球员
-    public static final String GetTeam = "football/team";
+    public static final String GetTeam = "msj-football/football/team";
 
     //获取商品分类
-    public static final String GetProductCategory = "product/category/{id}";
+    public static final String GetProductCategory = "msj-product/product/category/{id}";
     //获取商品列表
-    public static final String GetProductList = "product";
+    public static final String GetProductList = "msj-product/product";
     //获取商品详情
-    public static final String GetProductDetail = "product/{id}";
+    public static final String GetProductDetail = "msj-product/product/{id}";
     //搜索商品
-    public static final String SearchProductList = "product/search";
+    public static final String SearchProductList = "msj-product/product/search";
 }

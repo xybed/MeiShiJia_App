@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg_color">
+    android:background="@color/bg_color"
+    android:focusableInTouchMode="true">
     <lib.widget.ActionTitleBar
         xmlns:atb="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         atb:title="@string/order_confirm_order"/>
 
     <LinearLayout
+        android:id="@+id/llay_receiving_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/padding_10"
@@ -21,6 +23,7 @@
         android:background="#ffE3E7E6"
         android:gravity="center_vertical">
         <TextView
+            android:id="@+id/txt_select_receiving_address"
             android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,6 +34,7 @@
             android:textColor="@color/black_b"
             android:textSize="@dimen/text_size_16"/>
         <LinearLayout
+            android:id="@+id/llay_receiving_address_info"
             android:visibility="visible"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,6 +48,7 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:gravity="bottom">
                 <TextView
+                    android:id="@+id/txt_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -51,6 +56,7 @@
                     android:textSize="@dimen/text_size_14"
                     android:textColor="@color/black_b"/>
                 <TextView
+                    android:id="@+id/txt_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="15606954708"
@@ -58,6 +64,7 @@
                     android:textColor="@color/black_b"/>
             </LinearLayout>
             <TextView
+                android:id="@+id/txt_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_10"
@@ -87,6 +94,7 @@
         android:paddingRight="@dimen/padding_10"
         android:gravity="center_vertical">
         <TextView
+            android:id="@+id/txt_total_amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_10"
@@ -97,6 +105,7 @@
             android:textColor="@color/theme_color"
             android:textSize="@dimen/text_size_16"/>
         <Button
+            android:id="@+id/btn_submit"
             android:layout_width="80dp"
             android:layout_height="@dimen/height_40"
             android:background="@drawable/selector_rect2_theme_color"

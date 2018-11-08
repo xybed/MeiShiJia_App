@@ -4,7 +4,7 @@ import com.mumu.meishijia.model.mine.ReceivingAddress;
 import com.mumu.meishijia.presenter.BasePresenter;
 import com.mumu.meishijia.view.BaseView;
 import com.mumu.meishijia.view.mine.ReceivingAddressView;
-import com.mumu.meishijia.viewmodel.mine.ReceivingAddressModel;
+import com.mumu.meishijia.viewmodel.mine.ReceivingAddressViewModel;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * 收货地址列表presenter
  */
 
-public class ReceivingAddressPresenter extends BasePresenter<ReceivingAddressView, ReceivingAddressModel>{
+public class ReceivingAddressPresenter extends BasePresenter<ReceivingAddressView, ReceivingAddressViewModel>{
     public ReceivingAddressPresenter(BaseView view) {
         super(view);
     }
