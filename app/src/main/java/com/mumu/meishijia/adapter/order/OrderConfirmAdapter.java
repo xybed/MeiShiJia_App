@@ -15,6 +15,7 @@ import com.mumu.meishijia.model.product.Product;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lib.utils.NumberUtil;
 
 /**
  * Created by qiqi on 2018/11/4.
@@ -43,6 +44,8 @@ public class OrderConfirmAdapter extends BaseRecyclerAdapter<Product, OrderConfi
         holder.txtName.setText(item.getName());
         holder.txtDescription.setText(item.getDescription());
         holder.txtPrice.setText(context.getString(R.string.product_price_placeholder, item.getPrice().doubleValue()));
+        holder.txtNum.setText(context.getString(R.string.product_num_placeholder, item.getNum()));
+        holder.txtTotalCount.setText(context.getString(R.string.order_total_count_product_placeholder, item.getNum()));
     }
 
     class Holder extends RecyclerView.ViewHolder{

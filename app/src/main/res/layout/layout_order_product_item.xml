@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -37,7 +38,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="2"
-                        android:text="杰威尔（JVR） 男士洗发沐浴套装（洗发水+沐浴露）沐浴液清凉舒爽洗发露控油去屑头洗浴套装 洗护超值装(洗发水500ml+沐浴露500ml）"
+                        tools:text="杰威尔（JVR） 男士洗发沐浴套装（洗发水+沐浴露）沐浴液清凉舒爽洗发露控油去屑头洗浴套装 洗护超值装(洗发水500ml+沐浴露500ml）"
                         android:textColor="@color/black_b"
                         android:textSize="@dimen/text_size_12"/>
                     <TextView
@@ -45,7 +46,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margin_5"
-                        android:text="资生堂丝蓓绮（TSUBAKI） 滢艳润养 洗护套装 （洗发露500ml+护发素500ml）（日本原装进口洗发水）"
+                        tools:text="资生堂丝蓓绮（TSUBAKI） 滢艳润养 洗护套装 （洗发露500ml+护发素500ml）（日本原装进口洗发水）"
                         android:maxLines="1"
                         android:textColor="@color/gray_c"
                         android:textSize="@dimen/text_size_12"/>
@@ -58,14 +59,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="￥177.52"
+                            tools:text="￥177.52"
                             android:textSize="@dimen/text_size_14"
                             android:textColor="@color/theme_color"/>
                         <TextView
                             android:id="@+id/txt_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="x1"
+                            tools:text="x1"
                             android:textColor="@color/black_b"
                             android:textSize="@dimen/text_size_14"/>
                     </LinearLayout>
@@ -133,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="@string/order_total_count_product_placeholder"
+                    tools:text="@string/order_total_count_product_placeholder"
                     android:textColor="@color/black_b"
                     android:textSize="@dimen/text_size_14"/>
                 <TextView
@@ -147,7 +148,7 @@
                     android:id="@+id/txt_total_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/product_price_placeholder"
+                    tools:text="@string/product_price_placeholder"
                     android:textColor="@color/theme_color"
                     android:textSize="@dimen/text_size_14"/>
             </LinearLayout>

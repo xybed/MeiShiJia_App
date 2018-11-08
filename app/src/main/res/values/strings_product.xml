@@ -29,6 +29,7 @@
 
     <string name="product_name_placeholder">&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;&#8201;%1$s</string>
     <string name="product_price_placeholder">￥%1$.2f</string>
+    <string name="product_num_placeholder">x%1$d</string>
 
     <string name="product_pls_input_search_content">请输入搜索内容</string>
 </resources>

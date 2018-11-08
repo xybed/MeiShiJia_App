@@ -33,6 +33,9 @@ public class Product implements Serializable {
 
     private List<String> images;
 
+    //记录购买数量
+    private Integer num;
+
     public Integer getId() {
         return id;
     }
@@ -129,4 +132,11 @@ public class Product implements Serializable {
         this.images = images;
     }
 
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
 }

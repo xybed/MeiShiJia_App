@@ -68,6 +68,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
                 }else {
                     intent = new Intent(this, OrderConfirmActivity.class);
                     ArrayList<Product> productList = new ArrayList<>();
+                    product.setNum(1);
                     productList.add(product);
                     intent.putExtra(OrderConfirmActivity.PRODUCT_LIST, productList);
                 }
