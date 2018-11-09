@@ -92,7 +92,8 @@
         android:layout_height="@dimen/height_50"
         android:paddingLeft="@dimen/padding_10"
         android:paddingRight="@dimen/padding_10"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:background="@color/white">
         <TextView
             android:id="@+id/txt_total_amount"
             android:layout_width="0dp"

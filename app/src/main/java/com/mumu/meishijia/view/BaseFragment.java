@@ -40,6 +40,8 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
     private SwipeRefreshLayout swipeRefreshLayout;
     private FrameProgressLayout frameProgressLayout;
 
+    private boolean isRegisterRxBus;//是否注册了RxBus
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +138,11 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
 
     }
 
+    protected void registerRxBus(){
+        RxBus.get().register(this);
+        isRegisterRxBus = true;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -149,6 +156,9 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if(isRegisterRxBus){
+            RxBus.get().unregister(this);
+        }
         hideSoftInput();
     }
 

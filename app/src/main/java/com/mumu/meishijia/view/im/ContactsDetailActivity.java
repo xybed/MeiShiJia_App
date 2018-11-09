@@ -57,7 +57,6 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
         initUI();
         presenter.getContactsDetail(friendId);
         realm = Realm.getInstance(MyRealm.getInstance().getMyConfig());
-        RxBus.get().register(this);
     }
 
     private void initUI(){
@@ -184,9 +183,4 @@ public class ContactsDetailActivity extends BaseActivity<ContactsDetailPresenter
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    protected void onDestroy() {
-        RxBus.get().unregister(this);
-        super.onDestroy();
-    }
 }

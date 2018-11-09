@@ -46,6 +46,8 @@ public class OrderConfirmAdapter extends BaseRecyclerAdapter<Product, OrderConfi
         holder.txtPrice.setText(context.getString(R.string.product_price_placeholder, item.getPrice().doubleValue()));
         holder.txtNum.setText(context.getString(R.string.product_num_placeholder, item.getNum()));
         holder.txtTotalCount.setText(context.getString(R.string.order_total_count_product_placeholder, item.getNum()));
+        double totalAmount = NumberUtil.multiply(item.getNum(), item.getPrice().doubleValue());
+        holder.txtTotalAmount.setText(context.getString(R.string.product_price_placeholder, totalAmount));
     }
 
     class Holder extends RecyclerView.ViewHolder{

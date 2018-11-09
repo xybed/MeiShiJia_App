@@ -42,6 +42,8 @@
     <string name="user_province_city_hint">省份&#8201;&#8201;城市</string>
     <string name="user_address">详细地址</string>
     <string name="user_address_hint">请填写快递员能识别的地址</string>
+    <string name="user_add_receiving_address">添加收货地址</string>
+    <string name="user_edit_receiving_address">编辑收货地址</string>
     <string name="user_sex_unknown">保密</string>
     <string name="user_male">男</string>
     <string name="user_female">女</string>

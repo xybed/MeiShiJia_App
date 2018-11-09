@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
@@ -45,7 +44,7 @@ public class ConversationActivity extends BaseActivity implements ConversationVi
         setContentView(R.layout.activity_conversation);
 
         initUI();
-        RxBus.get().register(this);
+        registerRxBus();
         presenter = new ConversationPresenter(this);
         presenter.getConversation(MyApplication.getInstance().getUser().getId());
     }
@@ -94,9 +93,4 @@ public class ConversationActivity extends BaseActivity implements ConversationVi
         presenter.getConversation(MyApplication.getInstance().getUser().getId());
     }
 
-    @Override
-    protected void onDestroy() {
-        RxBus.get().unregister(this);
-        super.onDestroy();
-    }
 }

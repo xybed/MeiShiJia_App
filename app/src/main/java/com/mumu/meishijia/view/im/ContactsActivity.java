@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
@@ -45,7 +44,7 @@ public class ContactsActivity extends BaseActivity<ContactsPresenter> implements
 
         initUI();
         getContacts();
-        RxBus.get().register(this);
+        registerRxBus();
     }
 
     private void initUI(){
@@ -107,9 +106,4 @@ public class ContactsActivity extends BaseActivity<ContactsPresenter> implements
         presenter.getContacts();
     }
 
-    @Override
-    protected void onDestroy() {
-        RxBus.get().unregister(this);
-        super.onDestroy();
-    }
 }

@@ -1,5 +1,6 @@
 package com.mumu.meishijia.view.order;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.mumu.meishijia.model.mine.ReceivingAddress;
 import com.mumu.meishijia.model.product.Product;
 import com.mumu.meishijia.presenter.order.OrderConfirmPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+import com.mumu.meishijia.view.mine.ReceivingAddressActivity;
 
 import java.util.List;
 
@@ -23,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lib.utils.DensityUtil;
+import lib.utils.NumberUtil;
 
 public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> implements OrderConfirmView{
     public static final String PRODUCT_LIST = "product_list";
@@ -78,12 +81,21 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
             }
         });
         recyclerView.setAdapter(adapter);
+
+        //底部布局
+        double totalAmount = 0;
+        for(Product product : productList){
+            totalAmount += NumberUtil.multiply(product.getNum(), product.getPrice().doubleValue());
+        }
+        txtTotalAmount.setText(getString(R.string.order_total_amount_placeholder, totalAmount));
     }
 
     @OnClick({R.id.llay_receiving_address, R.id.btn_submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llay_receiving_address://选择地址
+                Intent intent = new Intent(this, ReceivingAddressActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_submit://提交订单
                 break;

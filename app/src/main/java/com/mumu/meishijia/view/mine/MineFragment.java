@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
@@ -53,7 +52,7 @@ public class MineFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, container, false);
         initUI(view);
-        RxBus.get().register(this);
+        registerRxBus();
         return view;
     }
 
@@ -162,9 +161,4 @@ public class MineFragment extends BaseFragment {
         refreshUnreadMsg();
     }
 
-    @Override
-    public void onDestroyView() {
-        RxBus.get().unregister(this);
-        super.onDestroyView();
-    }
 }

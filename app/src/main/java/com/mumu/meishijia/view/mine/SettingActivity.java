@@ -26,7 +26,6 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
         setContentView(R.layout.activity_setting);
 
         ButterKnife.bind(this);
-        RxBus.get().register(this);
     }
 
     @OnClick({R.id.llay_logout})
@@ -55,9 +54,4 @@ public class SettingActivity extends BaseActivity<SettingPresenter> implements S
         startActivity(intent);
     }
 
-    @Override
-    protected void onDestroy() {
-        RxBus.get().unregister(this);
-        super.onDestroy();
-    }
 }

@@ -40,6 +40,25 @@ public class ReceivingAddressActivity extends BaseActivity<ReceivingAddressPrese
     private void initUI(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         adapter = new ReceivingAddressAdapter(this);
+        adapter.setOnItemClickListener(new ReceivingAddressAdapter.OnItemClickListener() {
+            @Override
+            public void onClickEdit(ReceivingAddress receivingAddress) {
+                Intent intent = new Intent(ReceivingAddressActivity.this, ReceivingAddressEditActivity.class);
+                intent.putExtra(ReceivingAddressEditActivity.TITLE, getString(R.string.user_edit_receiving_address));
+                intent.putExtra(ReceivingAddressEditActivity.RECEIVING_ADDRESS, receivingAddress);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onClickDelete(int addressId) {
+
+            }
+
+            @Override
+            public void onClickItem(ReceivingAddress receivingAddress) {
+
+            }
+        });
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
@@ -54,7 +73,7 @@ public class ReceivingAddressActivity extends BaseActivity<ReceivingAddressPrese
     @OnClick(R.id.btn_add)
     public void onViewClicked() {
         Intent intent = new Intent(this, ReceivingAddressEditActivity.class);
-        intent.putExtra(ReceivingAddressEditActivity.TITLE, "添加收货地址");
+        intent.putExtra(ReceivingAddressEditActivity.TITLE, getString(R.string.user_add_receiving_address));
         startActivity(intent);
     }
 

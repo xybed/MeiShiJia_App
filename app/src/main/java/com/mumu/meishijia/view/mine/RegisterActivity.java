@@ -55,7 +55,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
 
         ButterKnife.bind(this);
         addWatcher();
-        RxBus.get().register(this);
         shareSDKLogin = new ShareSDKLogin(this, this);
     }
 
@@ -220,7 +219,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     protected void onDestroy() {
         presenter.stopTimer();
         SMSSDK.unregisterAllEventHandler();
-        RxBus.get().unregister(this);
         super.onDestroy();
     }
 }

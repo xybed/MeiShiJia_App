@@ -42,6 +42,8 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
     private SwipeRefreshLayout swipeRefreshLayout;
     private FrameProgressLayout frameProgressLayout;
 
+    private boolean isRegisterRxBus;//是否注册了RxBus
+
     protected int pageIndex = 1;
     protected int pageSize = 10;
 
@@ -199,6 +201,11 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
 
     }
 
+    protected void registerRxBus(){
+        RxBus.get().register(this);
+        isRegisterRxBus = true;
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -220,6 +227,9 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
         if(presenter != null){
             presenter.unSubscribe();
             presenter = null;
+        }
+        if(isRegisterRxBus){
+            RxBus.get().unregister(this);
         }
         hideSoftInput();
     }

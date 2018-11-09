@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.constant.ReceivingAddressType;
+import com.mumu.meishijia.model.mine.ReceivingAddress;
 import com.mumu.meishijia.presenter.mine.ReceivingAddressEditPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.common.SelectCityActivity;
@@ -24,6 +26,7 @@ import lib.utils.StringUtil;
 
 public class ReceivingAddressEditActivity extends BaseActivity<ReceivingAddressEditPresenter> implements ReceivingAddressEditView{
     public static final String TITLE = "title";
+    public static final String RECEIVING_ADDRESS = "receiving_address";
     public static final int REQ_CITY = 1;
 
     @BindView(R.id.edit_name)
@@ -39,6 +42,7 @@ public class ReceivingAddressEditActivity extends BaseActivity<ReceivingAddressE
     @BindView(R.id.btn_save)
     Button btnSave;
 
+    private ReceivingAddress receivingAddress;
     private String province;
     private String city;
     private boolean isDefault;
@@ -52,7 +56,22 @@ public class ReceivingAddressEditActivity extends BaseActivity<ReceivingAddressE
     }
 
     private void initUI(){
-        String title = getIntent().getStringExtra(TITLE);
+        Intent intent = getIntent();
+        receivingAddress = intent.getParcelableExtra(RECEIVING_ADDRESS);
+        if(receivingAddress != null){
+            editName.setText(receivingAddress.getName());
+            editPhone.setText(receivingAddress.getPhone());
+            txtProvinceCity.setText(getString(R.string.user_province_city_placeholder,
+                    receivingAddress.getProvince(), receivingAddress.getCity()));
+            editAddress.setText(receivingAddress.getAddress());
+            if(ReceivingAddressType.DEFAULT.getCode().intValue() == receivingAddress.getType()){
+                imgSwitch.setImageResource(R.drawable.icon_switch_open);
+            }else {
+                imgSwitch.setImageResource(R.drawable.icon_switch_close);
+            }
+        }
+
+        String title = intent.getStringExtra(TITLE);
         setTitle(title);
         TextWatcher textWatcher = new TextWatcher() {
             @Override

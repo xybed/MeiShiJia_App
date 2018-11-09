@@ -60,4 +60,23 @@ public class NumberUtil {
         return b1.subtract(b2).doubleValue();
     }
 
+    public static double multiply(double v1, double v2){
+        BigDecimal b1 = new BigDecimal(Double.toString(v1));
+        BigDecimal b2 = new BigDecimal(Double.toString(v2));
+        return b1.multiply(b2).doubleValue();
+    }
+
+    public static double multiply(String v1, String v2){
+        BigDecimal b1 = new BigDecimal(v1);
+        BigDecimal b2 = new BigDecimal(v2);
+        return b1.multiply(b2).doubleValue();
+    }
+
+    public static double divide(String v1, String v2){
+        BigDecimal b1 = new BigDecimal(v1);
+        BigDecimal b2 = new BigDecimal(v2);
+        //进行除法时当不整除，出现无限循环小数时，就会抛异常的
+        //设置小数点和指定标度
+        return b1.divide(b2, 2, BigDecimal.ROUND_HALF_EVEN).doubleValue();
+    }
 }

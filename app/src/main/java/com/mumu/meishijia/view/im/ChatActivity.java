@@ -102,7 +102,7 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
 
         initUI();
         initListener();
-        RxBus.get().register(this);
+        registerRxBus();
         Intent intent = getIntent();
         friend_id = intent.getIntExtra(FRIEND_ID, 0);
         principal_id = intent.getIntExtra(PRINCIPAL_ID, 0);
@@ -378,9 +378,4 @@ public class ChatActivity extends BaseActivity implements ChatView,View.OnClickL
         presenter.getMessage(principal_id);
     }
 
-    @Override
-    protected void onDestroy() {
-        RxBus.get().unregister(this);
-        super.onDestroy();
-    }
 }

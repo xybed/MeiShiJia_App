@@ -76,7 +76,6 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
 
         ButterKnife.bind(this);
         initUI();
-        RxBus.get().register(this);
     }
 
     private void initUI(){
@@ -326,9 +325,4 @@ public class UserInfoActivity extends BaseActivity<UserInfoPresenter> implements
         avatar = result;
     }
 
-    @Override
-    protected void onDestroy() {
-        RxBus.get().unregister(this);
-        super.onDestroy();
-    }
 }
