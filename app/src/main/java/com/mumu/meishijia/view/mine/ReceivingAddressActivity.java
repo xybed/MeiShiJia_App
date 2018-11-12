@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
@@ -77,7 +78,9 @@ public class ReceivingAddressActivity extends BaseActivity<ReceivingAddressPrese
 
             @Override
             public void onClickItem(ReceivingAddress receivingAddress) {
-
+                //行点击事件，选择收货地址
+                RxBus.get().post(RxBusAction.ReceivingAddressData, receivingAddress);
+                finish();
             }
         });
         recyclerView.setLayoutManager(layoutManager);

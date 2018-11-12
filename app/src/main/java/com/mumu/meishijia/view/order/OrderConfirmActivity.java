@@ -10,9 +10,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hwangjr.rxbus.annotation.Tag;
+import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.order.OrderConfirmAdapter;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.ReceivingAddress;
 import com.mumu.meishijia.model.product.Product;
 import com.mumu.meishijia.presenter.order.OrderConfirmPresenter;
@@ -51,6 +55,7 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
 
     private List<Product> productList;
     private OrderConfirmAdapter adapter;
+    private ReceivingAddress receivingAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,7 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
         setContentView(R.layout.activity_order_confirm);
         ButterKnife.bind(this);
         initUI();
+        registerRxBus();
         presenter.getDefaultReceivingAddress(MyApplication.getInstance().getUser().getId());
     }
 
@@ -104,6 +110,17 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
 
     @Override
     public void getAddressSuccess(ReceivingAddress receivingAddress) {
+        refreshReceivingAddressInfo(receivingAddress);
+    }
+
+    @Subscribe(
+        thread = EventThread.MAIN_THREAD,
+        tags = {
+                @Tag(RxBusAction.ReceivingAddressData)
+        }
+    )
+    public void refreshReceivingAddressInfo(ReceivingAddress receivingAddress){
+        this.receivingAddress = receivingAddress;
         txtSelectReceivingAddress.setVisibility(View.GONE);
         llayReceivingAddressInfo.setVisibility(View.VISIBLE);
         txtName.setText(receivingAddress.getName());
