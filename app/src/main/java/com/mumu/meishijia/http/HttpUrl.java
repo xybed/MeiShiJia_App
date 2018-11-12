@@ -55,4 +55,7 @@ public class HttpUrl {
     public static final String GetProductDetail = "msj-product/product/{id}";
     //搜索商品
     public static final String SearchProductList = "msj-product/product/search";
+
+    //获取购物车列表
+    public static final String GetShoppingCart = "msj-order/shopping/carts";
 }

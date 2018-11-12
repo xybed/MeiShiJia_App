@@ -10,6 +10,7 @@
         xmlns:atb="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        atb:title="@string/product_product_detail"
         atb:right_image="@drawable/icon_shopping_cart"/>
     <lib.widget.FrameProgressLayout
         android:layout_width="match_parent"

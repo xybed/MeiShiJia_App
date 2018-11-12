@@ -49,7 +49,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_vertical">
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -57,9 +58,9 @@
                         android:id="@+id/txt_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxLines="2"
+                        android:maxLines="3"
                         android:lineSpacingExtra="2dp"
-                        android:text="          杰威尔（JVR） 男士洗发沐浴套装（洗发水+沐浴露）沐浴液清凉舒爽洗发露控油去屑头洗浴套装 洗护超值装(洗发水500ml+沐浴露500ml）"
+                        tools:text="          杰威尔（JVR） 男士洗发沐浴套装（洗发水+沐浴露）沐浴液清凉舒爽洗发露控油去屑头洗浴套装 洗护超值装(洗发水500ml+沐浴露500ml）"
                         android:textColor="@color/black_b"
                         android:textSize="@dimen/text_size_16"/>
                     <TextView
@@ -76,16 +77,6 @@
                         android:textSize="@dimen/text_size_12"/>
                 </FrameLayout>
 
-                <TextView
-                    android:id="@+id/txt_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:text="资生堂丝蓓绮（TSUBAKI） 滢艳润养 洗护套装 （洗发露500ml+护发素500ml）（日本原装进口洗发水）"
-                    android:maxLines="1"
-                    android:textColor="@color/gray_c"
-                    android:textSize="@dimen/text_size_14"/>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
@@ -96,7 +87,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="￥77"
+                        tools:text="￥77"
                         android:textColor="@color/theme_color"
                         android:textSize="@dimen/text_size_12"/>
                     <ImageView
@@ -110,7 +101,7 @@
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="0"
+                        tools:text="0"
                         android:textColor="@color/gray_e"
                         android:textSize="@dimen/text_size_12"/>
                     <ImageView

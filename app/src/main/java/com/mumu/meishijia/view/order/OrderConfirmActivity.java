@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -44,14 +43,10 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
     TextView txtAddress;
     @BindView(R.id.llay_receiving_address_info)
     LinearLayout llayReceivingAddressInfo;
-    @BindView(R.id.llay_receiving_address)
-    LinearLayout llayReceivingAddress;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.txt_total_amount)
     TextView txtTotalAmount;
-    @BindView(R.id.btn_submit)
-    Button btnSubmit;
 
     private List<Product> productList;
     private OrderConfirmAdapter adapter;

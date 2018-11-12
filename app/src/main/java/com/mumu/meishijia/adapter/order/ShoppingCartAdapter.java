@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseRecyclerAdapter;
+import com.mumu.meishijia.model.order.ShoppingCart;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,14 +20,9 @@ import butterknife.ButterKnife;
  * 购物车适配器
  */
 
-public class ShoppingCartAdapter extends BaseRecyclerAdapter<Object, ShoppingCartAdapter.Holder> {
+public class ShoppingCartAdapter extends BaseRecyclerAdapter<ShoppingCart, ShoppingCartAdapter.Holder> {
     public ShoppingCartAdapter(Context context) {
         super(context);
-    }
-
-    @Override
-    public int getItemCount() {
-        return 10;
     }
 
     @Override
@@ -53,8 +49,6 @@ public class ShoppingCartAdapter extends BaseRecyclerAdapter<Object, ShoppingCar
         TextView txtInvalid;
         @BindView(R.id.txt_name)
         TextView txtName;
-        @BindView(R.id.txt_description)
-        TextView txtDescription;
         @BindView(R.id.txt_price)
         TextView txtPrice;
         @BindView(R.id.img_sub)

@@ -9,16 +9,21 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.order.ShoppingCartAdapter;
+import com.mumu.meishijia.model.order.ShoppingCart;
+import com.mumu.meishijia.presenter.order.ShoppingCartPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lib.utils.DensityUtil;
 
-public class ShoppingCartActivity extends BaseActivity {
+public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> implements ShoppingCartView{
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -39,6 +44,7 @@ public class ShoppingCartActivity extends BaseActivity {
         setContentView(R.layout.activity_shopping_cart);
         ButterKnife.bind(this);
         initUI();
+        presenter.getShoppingCart(MyApplication.getInstance().getUser().getId(), pageIndex, pageSize);
     }
 
     private void initUI(){
@@ -53,6 +59,10 @@ public class ShoppingCartActivity extends BaseActivity {
             }
         });
         recyclerView.setAdapter(adapter);
+
+        //底部布局初始化
+        txtTotalAmount.setText(getString(R.string.order_total_amount_placeholder, 0f));
+        btnSettlement.setText(getString(R.string.order_settlement_placeholder, 0));
     }
 
     @OnClick({R.id.txt_clear_product, R.id.rb_all_select, R.id.btn_settlement})
@@ -65,5 +75,10 @@ public class ShoppingCartActivity extends BaseActivity {
             case R.id.btn_settlement:
                 break;
         }
+    }
+
+    @Override
+    public void getSuccess(List<ShoppingCart> shoppingCartList) {
+        adapter.setData(shoppingCartList);
     }
 }

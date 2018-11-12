@@ -3,6 +3,7 @@ package com.mumu.meishijia.api;
 import com.mumu.meishijia.http.HttpUrl;
 import com.mumu.meishijia.model.BaseModel;
 import com.mumu.meishijia.model.mine.ReceivingAddress;
+import com.mumu.meishijia.model.order.ShoppingCart;
 
 import java.util.List;
 import java.util.Map;
@@ -36,4 +37,7 @@ public interface OrderApi {
 
     @GET(HttpUrl.ReceivingAddress)
     Observable<BaseModel<ReceivingAddress>> getDefaultReceivingAddress(@QueryMap Map<String, Integer> map);
+
+    @GET(HttpUrl.GetShoppingCart)
+    Observable<BaseModel<List<ShoppingCart>>> getShoppingCart(@QueryMap Map<String, Integer> map);
 }
