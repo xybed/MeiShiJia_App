@@ -30,4 +30,12 @@ public class ReceivingAddressViewModel extends BaseViewModel{
                 .subscribeOn(Schedulers.io())
                 .map(new HttpResultFunc<List<ReceivingAddress>>());
     }
+
+    public Observable<String> deleteReceivingAddress(Integer id){
+        return HttpRetrofit.create(OrderApi.class)
+                .deleteReceivingAddress(id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .map(new HttpResultFunc<String>());
+    }
 }

@@ -1,8 +1,10 @@
 package com.mumu.meishijia.view.mine;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -55,8 +57,22 @@ public class ReceivingAddressActivity extends BaseActivity<ReceivingAddressPrese
             }
 
             @Override
-            public void onClickDelete(int addressId) {
-
+            public void onClickDelete(final int addressId) {
+                AlertDialog dialog = new AlertDialog.Builder(ReceivingAddressActivity.this)
+                        .setTitle(R.string.user_delete_receiving_address_tips)
+                        .setPositiveButton(R.string.com_confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                presenter.deleteReceivingAddress(addressId);
+                            }
+                        })
+                        .setNegativeButton(R.string.com_cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create();
+                dialog.show();
             }
 
             @Override
@@ -85,6 +101,12 @@ public class ReceivingAddressActivity extends BaseActivity<ReceivingAddressPrese
     @Override
     public void getSuccess(List<ReceivingAddress> receivingAddressList) {
         adapter.setData(receivingAddressList);
+    }
+
+    @Override
+    public void deleteSuccess(String s) {
+        toast(s);
+        presenter.getReceivingAddress(MyApplication.getInstance().getUser().getId());
     }
 
     @Subscribe(

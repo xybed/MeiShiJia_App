@@ -76,6 +76,7 @@
     <string name="com_edit">编辑</string>
     <string name="com_delete">删除</string>
     <string name="com_all_select">全选</string>
+    <string name="com_confirm">确认</string>
 
     <string name="com_placeholder">%1$d</string>
 </resources>

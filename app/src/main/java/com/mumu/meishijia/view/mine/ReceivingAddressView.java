@@ -11,4 +11,5 @@ import java.util.List;
 
 public interface ReceivingAddressView extends BaseView{
     void getSuccess(List<ReceivingAddress> receivingAddressList);
+    void deleteSuccess(String s);
 }

@@ -30,6 +30,8 @@ public class HttpUrl {
     public static final String GetReceivingAddress = "msj-order/addresses";
     //添加、更改收货地址、获取默认地址
     public static final String ReceivingAddress = "msj-order/address";
+    //删除收货地址
+    public static final String DeleteReceivingAddress = "msj-order/addresses/{id}";
 
     //获取联系人
     public static final String GetContacts = "msj-user/im/contacts";

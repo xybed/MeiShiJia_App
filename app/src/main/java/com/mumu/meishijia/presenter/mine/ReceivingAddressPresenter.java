@@ -28,4 +28,15 @@ public class ReceivingAddressPresenter extends BasePresenter<ReceivingAddressVie
                     }
                 });
     }
+
+    public void deleteReceivingAddress(Integer id){
+        model.deleteReceivingAddress(id)
+                .subscribe(new RxObserver<String>() {
+                    @Override
+                    protected void onSuccess(String s) {
+                        if(view != null)
+                            view.deleteSuccess(s);
+                    }
+                });
+    }
 }
