@@ -36,9 +36,10 @@ public class ReceivingAddressEditViewModel extends BaseViewModel{
                 .map(new HttpResultFunc<String>());
     }
 
-    public Observable<String> updateReceivingAddress(int id, String name, String phone,
+    public Observable<String> updateReceivingAddress(int userId, int id, String name, String phone,
                      String province, String city, String address, boolean type){
         Map<String, Object> params = new HashMap<>();
+        params.put("user_id", userId);
         params.put("id", id);
         params.put("name", name);
         params.put("phone", phone);

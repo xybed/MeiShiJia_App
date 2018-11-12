@@ -64,7 +64,7 @@ public class BaseParamsInterceptor implements Interceptor{
                 Buffer buffer = new Buffer();
                 requestBody.writeTo(buffer);
                 String queryJson = buffer.readUtf8();
-                Map<String, String> paramsMap = JSON.parseObject(queryJson, Map.class);
+                Map<String, Object> paramsMap = JSON.parseObject(queryJson, Map.class);
                 for(String key : paramsMap.keySet()){
                     keyList.add(key + "=" + paramsMap.get(key));
                 }

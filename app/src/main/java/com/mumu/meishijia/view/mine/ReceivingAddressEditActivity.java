@@ -10,9 +10,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.constant.ReceivingAddressType;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.ReceivingAddress;
 import com.mumu.meishijia.presenter.mine.ReceivingAddressEditPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -58,15 +60,19 @@ public class ReceivingAddressEditActivity extends BaseActivity<ReceivingAddressE
     private void initUI(){
         Intent intent = getIntent();
         receivingAddress = intent.getParcelableExtra(RECEIVING_ADDRESS);
+        //如果有地址数据，就赋值，代表是编辑界面
         if(receivingAddress != null){
             editName.setText(receivingAddress.getName());
             editPhone.setText(receivingAddress.getPhone());
-            txtProvinceCity.setText(getString(R.string.user_province_city_placeholder,
-                    receivingAddress.getProvince(), receivingAddress.getCity()));
+            province = receivingAddress.getProvince();
+            city = receivingAddress.getCity();
+            txtProvinceCity.setText(getString(R.string.user_province_city_placeholder, province, city));
             editAddress.setText(receivingAddress.getAddress());
             if(ReceivingAddressType.DEFAULT.getCode().intValue() == receivingAddress.getType()){
+                isDefault = true;
                 imgSwitch.setImageResource(R.drawable.icon_switch_open);
             }else {
+                isDefault = false;
                 imgSwitch.setImageResource(R.drawable.icon_switch_close);
             }
         }
@@ -115,6 +121,7 @@ public class ReceivingAddressEditActivity extends BaseActivity<ReceivingAddressE
             case R.id.img_switch:
                 isDefault = !isDefault;
                 imgSwitch.setImageResource(isDefault ? R.drawable.icon_switch_open : R.drawable.icon_switch_close);
+                setButtonStatus();
                 break;
             case R.id.btn_save:
                 save();
@@ -131,9 +138,16 @@ public class ReceivingAddressEditActivity extends BaseActivity<ReceivingAddressE
             toast(R.string.user_input_phone_number);
             return;
         }
-        presenter.addReceivingAddress(MyApplication.getInstance().getUser().getId(),
-                editName.getText().toString(), editPhone.getText().toString(),
-                province, city, editAddress.getText().toString(), isDefault);
+        int userId =MyApplication.getInstance().getUser().getId();
+        if(receivingAddress != null){
+            presenter.updateReceivingAddress(userId, receivingAddress.getId(),
+                    editName.getText().toString(), editPhone.getText().toString(),
+                    province, city, editAddress.getText().toString(), isDefault);
+        }else {
+            presenter.addReceivingAddress(userId,
+                    editName.getText().toString(), editPhone.getText().toString(),
+                    province, city, editAddress.getText().toString(), isDefault);
+        }
     }
 
     @Override
@@ -153,13 +167,14 @@ public class ReceivingAddressEditActivity extends BaseActivity<ReceivingAddressE
     @Override
     public void addSuccess(String s) {
         toast(s);
-        //TODO 刷新收货地址列表
-
+        RxBus.get().post(RxBusAction.ReceivingAddressList, s);
+        finish();
     }
 
     @Override
     public void updateSuccess(String s) {
         toast(s);
-        //TODO 刷新收货地址列表
+        RxBus.get().post(RxBusAction.ReceivingAddressList, s);
+        finish();
     }
 }

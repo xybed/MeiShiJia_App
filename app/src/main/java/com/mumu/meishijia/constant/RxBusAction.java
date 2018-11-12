@@ -17,6 +17,8 @@ public class RxBusAction {
     //接收到新消息、刷新聊天界面
     public static final String ChatList = "rxChatList";
 
+    //添加收货地址、编辑收货地址后，刷新收货地址列表界面
+    public static final String ReceivingAddressList = "rxReceivingAddressList";
     //选择收货地址后，刷新确认订单界面的地址信息
     public static final String ReceivingAddressData = "rxReceivingAddressData";
 }

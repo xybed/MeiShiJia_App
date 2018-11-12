@@ -27,9 +27,9 @@ public class ReceivingAddressEditPresenter extends BasePresenter<ReceivingAddres
                 });
     }
 
-    public void updateReceivingAddress(int id, String name, String phone,
+    public void updateReceivingAddress(int userId, int id, String name, String phone,
                    String province, String city, String address, boolean type){
-        model.updateReceivingAddress(id, name, phone, province, city, address, type)
+        model.updateReceivingAddress(userId, id, name, phone, province, city, address, type)
                 .subscribe(new RxObserver<String>() {
                     @Override
                     protected void onSuccess(String s) {

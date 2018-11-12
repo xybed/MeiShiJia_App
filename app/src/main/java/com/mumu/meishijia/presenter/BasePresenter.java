@@ -67,6 +67,7 @@ public class BasePresenter<V extends BaseView, M extends BaseViewModel> {
 
         @Override
         public void onError(Throwable e) {
+            e.printStackTrace();
             if(e instanceof SocketTimeoutException){
                 onFail("连接超时");
             }else if(e instanceof JsonSyntaxException){

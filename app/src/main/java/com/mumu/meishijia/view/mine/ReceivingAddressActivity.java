@@ -7,9 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hwangjr.rxbus.annotation.Tag;
+import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.mine.ReceivingAddressAdapter;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.ReceivingAddress;
 import com.mumu.meishijia.presenter.mine.ReceivingAddressPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -34,6 +38,7 @@ public class ReceivingAddressActivity extends BaseActivity<ReceivingAddressPrese
         setContentView(R.layout.activity_receiving_address);
         ButterKnife.bind(this);
         initUI();
+        registerRxBus();
         presenter.getReceivingAddress(MyApplication.getInstance().getUser().getId());
     }
 
@@ -80,5 +85,15 @@ public class ReceivingAddressActivity extends BaseActivity<ReceivingAddressPrese
     @Override
     public void getSuccess(List<ReceivingAddress> receivingAddressList) {
         adapter.setData(receivingAddressList);
+    }
+
+    @Subscribe(
+        thread = EventThread.MAIN_THREAD,
+        tags = {
+                @Tag(RxBusAction.ReceivingAddressList)
+        }
+    )
+    public void refreshList(String s){
+        presenter.getReceivingAddress(MyApplication.getInstance().getUser().getId());
     }
 }
