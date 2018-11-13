@@ -1,18 +1,14 @@
 package com.mumu.meishijia.model.football;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 import java.math.BigDecimal;
 
 public class FootballPlayer {
     private Integer id;
 
-    @JSONField(name = "team_id")
     private Integer teamId;
 
     private String name;
 
-    @JSONField(name = "eng_name")
     private String engName;
 
     private Integer number;
@@ -23,7 +19,6 @@ public class FootballPlayer {
 
     private String nationality;
 
-    @JSONField(name = "play_position")
     private String playPosition;
 
     private BigDecimal height;

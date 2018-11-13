@@ -1,16 +1,12 @@
 package com.mumu.meishijia.model.football;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * 足球球队排名
  * Created by Administrator on 2017/6/7.
  */
 
 public class Ranking {
-    @SerializedName("league_id")
     private int leagueId;
-    @SerializedName("team_id")
     private int teamId;
     private int ranking;
     private String logo;
@@ -22,7 +18,6 @@ public class Ranking {
     private int lose;
     private int goal;
     private int conceded;
-    @SerializedName("goal_difference")
     private int goalDifference;
 
     public int getLeagueId() {

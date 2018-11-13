@@ -1,7 +1,5 @@
 package com.mumu.meishijia.model.order;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.math.BigDecimal;
 
 /**
@@ -12,7 +10,6 @@ import java.math.BigDecimal;
 public class ShoppingCart {
     private Integer id;
 
-    @SerializedName("product_id")
     private Integer productId;
 
     private String name;
@@ -21,10 +18,8 @@ public class ShoppingCart {
 
     private BigDecimal price;
 
-    @SerializedName("original_price")
     private BigDecimal originalPrice;
 
-    @SerializedName("discount_price")
     private BigDecimal discountPrice;
 
     private Integer num;

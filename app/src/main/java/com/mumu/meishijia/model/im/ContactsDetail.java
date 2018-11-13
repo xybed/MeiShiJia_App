@@ -1,7 +1,5 @@
 package com.mumu.meishijia.model.im;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * 联系人的详细资料
  * Created by Administrator on 2017/4/10.
@@ -15,7 +13,6 @@ public class ContactsDetail {
     private String province;
     private String city;
     private String signature;
-    @SerializedName("principal_id")
     private Integer principalId;
 
     public String getAvatar() {

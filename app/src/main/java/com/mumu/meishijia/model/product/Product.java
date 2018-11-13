@@ -1,7 +1,5 @@
 package com.mumu.meishijia.model.product;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,10 +15,8 @@ public class Product implements Serializable {
 
     private BigDecimal price;
 
-    @SerializedName("original_price")
     private BigDecimal originalPrice;
 
-    @SerializedName("discount_price")
     private BigDecimal discountPrice;
 
     private Integer stock;

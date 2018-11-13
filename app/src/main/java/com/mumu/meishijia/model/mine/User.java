@@ -1,7 +1,5 @@
 package com.mumu.meishijia.model.mine;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * 用户model
  * Created by Administrator on 2017/3/28.
@@ -10,10 +8,8 @@ public class User {
     private int id;
     private String username;
     private String avatar;
-    @SerializedName("real_name")
     private String realName;
     private String nickname;
-    @SerializedName("mobile_phone")
     private String mobilePhone;
     private int sex;
     private String birthday;
@@ -22,7 +18,6 @@ public class User {
     private String city;
     private String address;
     private String signature;
-    @SerializedName("principal_id")
     private int principalId;
     private String token;
     private String im_usersig;

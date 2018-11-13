@@ -1,24 +1,19 @@
 package com.mumu.meishijia.model.im;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * 联系人的model
  * Created by Administrator on 2017/4/6.
  */
 
 public class Contacts {
-    @SerializedName("friend_id")
     private int friendId;
 
     private String avatar;
 
     private String remark;//对好友的备注
 
-    @SerializedName("sort_letter")
     private String sortLetter;//字母排序
 
-    @SerializedName("principal_id")
     private int principalId;
 
     public int getFriendId() {
