@@ -13,6 +13,7 @@ import com.mumu.meishijia.adapter.product.ProductListAdapter;
 import com.mumu.meishijia.model.product.Product;
 import com.mumu.meishijia.presenter.product.ProductListPresenter;
 import com.mumu.meishijia.view.BaseActivity;
+import com.mumu.meishijia.view.order.ShoppingCartActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -86,6 +87,12 @@ public class ProductListActivity extends BaseActivity<ProductListPresenter> impl
                 presenter.getProductList(categoryId, keyword, pageIndex, pageSize);
             }
         });
+    }
+
+    @Override
+    protected void onRightButtonClick() {
+        Intent intent = new Intent(this, ShoppingCartActivity.class);
+        startActivity(intent);
     }
 
     @Override

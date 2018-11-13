@@ -9,4 +9,7 @@ import com.mumu.meishijia.view.BaseView;
 
 public interface ProductDetailView extends BaseView{
     void getSuccess(Product product);
+
+    void addSuccess(String s);
+    void addFail(String s);
 }

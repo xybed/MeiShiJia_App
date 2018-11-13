@@ -15,13 +15,30 @@ public class ProductDetailPresenter extends BasePresenter<ProductDetailView, Pro
         super(view);
     }
 
-    public void getProducDetail(int id){
+    public void getProductDetail(int id){
         model.getProductDetail(id)
                 .subscribe(new RxObserver<Product>() {
                     @Override
                     protected void onSuccess(Product product) {
                         if(view != null)
                             view.getSuccess(product);
+                    }
+                });
+    }
+
+    public void addShoppingCart(int userId, int productId, int num){
+        model.addShoppingCart(userId, productId, num)
+                .subscribe(new RxObserver<String>() {
+                    @Override
+                    protected void onSuccess(String s) {
+                        if(view != null)
+                            view.addSuccess(s);
+                    }
+
+                    @Override
+                    protected void onFail(String errMsg) {
+                        if(view != null)
+                            view.addFail(errMsg);
                     }
                 });
     }

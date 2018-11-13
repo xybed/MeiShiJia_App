@@ -12,6 +12,9 @@ import java.math.BigDecimal;
 public class ShoppingCart {
     private Integer id;
 
+    @SerializedName("product_id")
+    private Integer productId;
+
     private String name;
 
     private String image;
@@ -34,6 +37,14 @@ public class ShoppingCart {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public String getName() {

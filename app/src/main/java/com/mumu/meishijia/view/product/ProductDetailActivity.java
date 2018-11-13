@@ -13,6 +13,7 @@ import com.mumu.meishijia.presenter.product.ProductDetailPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.mine.LoginActivity;
 import com.mumu.meishijia.view.order.OrderConfirmActivity;
+import com.mumu.meishijia.view.order.ShoppingCartActivity;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
     @BindView(R.id.txt_remark)
     TextView txtRemark;
 
+    private int productId;
     private Product product;
 
     @Override
@@ -50,9 +52,15 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
         setContentView(R.layout.activity_product_detail);
 
         ButterKnife.bind(this);
-        int productId = getIntent().getIntExtra(PRODUCT_ID, 0);
+        productId = getIntent().getIntExtra(PRODUCT_ID, 0);
         showFrameProgress();
-        presenter.getProducDetail(productId);
+        presenter.getProductDetail(productId);
+    }
+
+    @Override
+    protected void onRightButtonClick() {
+        Intent intent = new Intent(this, ShoppingCartActivity.class);
+        startActivity(intent);
     }
 
     @OnClick({R.id.txt_add_shopping_cart, R.id.txt_buy_immediately})
@@ -60,6 +68,13 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
         Intent intent;
         switch (view.getId()) {
             case R.id.txt_add_shopping_cart:
+                if(!MyApplication.getInstance().isLogin()){
+                    intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                }else {
+                    showLoadingDialog(getString(R.string.com_adding));
+                    presenter.addShoppingCart(MyApplication.getInstance().getUser().getId(), product.getId(), 1);
+                }
                 break;
             case R.id.txt_buy_immediately:
                 if(!MyApplication.getInstance().isLogin()){
@@ -75,6 +90,11 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void onClickRefresh() {
+        presenter.getProductDetail(productId);
     }
 
     @Override
@@ -100,5 +120,17 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
             txtRemark.setVisibility(View.VISIBLE);
             txtRemark.setText(product.getRemark());
         }
+    }
+
+    @Override
+    public void addSuccess(String s) {
+        dismissLoadingDialog();
+        toast(s);
+    }
+
+    @Override
+    public void addFail(String s) {
+        dismissLoadingDialog();
+        toast(s);
     }
 }

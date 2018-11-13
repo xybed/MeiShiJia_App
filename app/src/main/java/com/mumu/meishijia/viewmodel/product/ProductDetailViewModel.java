@@ -1,10 +1,14 @@
 package com.mumu.meishijia.viewmodel.product;
 
+import com.mumu.meishijia.api.OrderApi;
 import com.mumu.meishijia.api.ProductApi;
 import com.mumu.meishijia.http.HttpResultFunc;
 import com.mumu.meishijia.http.HttpRetrofit;
 import com.mumu.meishijia.model.product.Product;
 import com.mumu.meishijia.viewmodel.BaseViewModel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -21,5 +25,17 @@ public class ProductDetailViewModel extends BaseViewModel{
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(new HttpResultFunc<Product>());
+    }
+
+    public Observable<String> addShoppingCart(int userId, int productId, int num){
+        Map<String, Integer> params = new HashMap<>();
+        params.put("user_id", userId);
+        params.put("product_id", productId);
+        params.put("num", num);
+        return HttpRetrofit.create(OrderApi.class)
+                .addShoppingCart(params)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .map(new HttpResultFunc<String>());
     }
 }

@@ -40,4 +40,7 @@ public interface OrderApi {
 
     @GET(HttpUrl.GetShoppingCart)
     Observable<BaseModel<List<ShoppingCart>>> getShoppingCart(@QueryMap Map<String, Integer> map);
+
+    @POST(HttpUrl.ShoppingCart)
+    Observable<BaseModel<String>> addShoppingCart(@Body Map<String, Integer> map);
 }
