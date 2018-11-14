@@ -26,6 +26,8 @@ public class ShoppingCart {
 
     private Integer status;
 
+    private boolean isSelected;//app用到的字段，购物车是否被选中
+
     public Integer getId() {
         return id;
     }
@@ -96,5 +98,13 @@ public class ShoppingCart {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

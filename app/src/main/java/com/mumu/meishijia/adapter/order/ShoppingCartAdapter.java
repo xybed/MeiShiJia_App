@@ -8,8 +8,10 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseRecyclerAdapter;
+import com.mumu.meishijia.constant.ShoppingCartStatus;
 import com.mumu.meishijia.model.order.ShoppingCart;
 
 import butterknife.BindView;
@@ -37,7 +39,17 @@ public class ShoppingCartAdapter extends BaseRecyclerAdapter<ShoppingCart, Shopp
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-
+        ShoppingCart item = datas.get(position);
+        holder.rbSelect.setChecked(item.isSelected());
+        Glide.with(context).load(item.getImage()).placeholder(R.drawable.icon_no_image).into(holder.imgProduct);
+        if(item.getStatus().intValue() == ShoppingCartStatus.EFFECTIVE.getCode()){
+            holder.txtInvalid.setVisibility(View.GONE);
+        }else {
+            holder.txtInvalid.setVisibility(View.VISIBLE);
+        }
+        holder.txtName.setText(context.getString(R.string.product_name_placeholder, item.getName()));
+        holder.txtPrice.setText(context.getString(R.string.product_price_placeholder, item.getPrice().doubleValue()));
+        holder.txtCount.setText(context.getString(R.string.com_placeholder, item.getNum()));
     }
 
     class Holder extends RecyclerView.ViewHolder{
