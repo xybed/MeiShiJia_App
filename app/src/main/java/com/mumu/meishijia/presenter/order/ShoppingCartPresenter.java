@@ -18,8 +18,8 @@ public class ShoppingCartPresenter extends BasePresenter<ShoppingCartView, Shopp
         super(view);
     }
 
-    public void getShoppingCart(int userId, int pageIndex, int pageSize){
-        model.getShoppingCart(userId, pageIndex, pageSize)
+    public void getShoppingCart(int userId){
+        model.getShoppingCart(userId)
                 .subscribe(new RxObserver<List<ShoppingCart>>() {
                     @Override
                     protected void onSuccess(List<ShoppingCart> shoppingCarts) {

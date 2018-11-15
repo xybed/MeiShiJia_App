@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseRecyclerAdapter;
-import com.mumu.meishijia.constant.ShoppingCartStatus;
+import com.mumu.meishijia.constant.ProductStatus;
 import com.mumu.meishijia.model.order.ShoppingCart;
 
 import butterknife.BindView;
@@ -23,6 +23,8 @@ import butterknife.ButterKnife;
  */
 
 public class ShoppingCartAdapter extends BaseRecyclerAdapter<ShoppingCart, ShoppingCartAdapter.Holder> {
+    private boolean isShow;//是否显示加减按钮
+
     public ShoppingCartAdapter(Context context) {
         super(context);
     }
@@ -39,10 +41,10 @@ public class ShoppingCartAdapter extends BaseRecyclerAdapter<ShoppingCart, Shopp
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        ShoppingCart item = datas.get(position);
+        final ShoppingCart item = datas.get(position);
         holder.rbSelect.setChecked(item.isSelected());
         Glide.with(context).load(item.getImage()).placeholder(R.drawable.icon_no_image).into(holder.imgProduct);
-        if(item.getStatus().intValue() == ShoppingCartStatus.EFFECTIVE.getCode()){
+        if(item.getStatus().intValue() == ProductStatus.SHELF.getCode()){
             holder.txtInvalid.setVisibility(View.GONE);
         }else {
             holder.txtInvalid.setVisibility(View.VISIBLE);
@@ -50,6 +52,69 @@ public class ShoppingCartAdapter extends BaseRecyclerAdapter<ShoppingCart, Shopp
         holder.txtName.setText(context.getString(R.string.product_name_placeholder, item.getName()));
         holder.txtPrice.setText(context.getString(R.string.product_price_placeholder, item.getPrice().doubleValue()));
         holder.txtCount.setText(context.getString(R.string.com_placeholder, item.getNum()));
+
+        //点击事件，在商品有效的情况下，点击才有意义
+        if(isShow){
+            holder.imgAdd.setVisibility(View.VISIBLE);
+            holder.imgSub.setVisibility(View.VISIBLE);
+        }else {
+            holder.imgAdd.setVisibility(View.GONE);
+            holder.imgSub.setVisibility(View.GONE);
+        }
+        if(item.getStatus().intValue() == ProductStatus.SHELF.getCode()){
+            holder.imgAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    item.setNum(item.getNum()+1);
+                    notifyDataSetChanged();
+                    if(listener != null && item.isSelected())
+                        listener.onAddClick(item.getPrice().doubleValue());
+                }
+            });
+            holder.imgSub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(item.getNum() > 0){
+                        item.setNum(item.getNum()-1);
+                        notifyDataSetChanged();
+                        if(listener != null && item.isSelected())
+                            listener.onSubClick(item.getPrice().doubleValue());
+                    }
+                }
+            });
+            holder.rbSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    item.setSelected(!item.isSelected());
+                    notifyDataSetChanged();
+                    if(listener != null)
+                        listener.onRbClick(item.getPrice().doubleValue(), item.getNum(), item.isSelected());
+                }
+            });
+        }else {
+            holder.imgAdd.setClickable(false);
+            holder.imgSub.setClickable(false);
+            holder.rbSelect.setClickable(false);
+        }
+    }
+
+    public boolean isShow() {
+        return isShow;
+    }
+
+    public void setShow(boolean show) {
+        isShow = show;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
+    private OnItemClickListener listener;
+    public interface OnItemClickListener{
+        void onRbClick(double price, int num, boolean isSelected);
+        void onAddClick(double price);
+        void onSubClick(double price);
     }
 
     class Holder extends RecyclerView.ViewHolder{

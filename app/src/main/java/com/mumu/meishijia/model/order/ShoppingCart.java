@@ -24,7 +24,7 @@ public class ShoppingCart {
 
     private Integer num;
 
-    private Integer status;
+    private Integer status;//商品的状态
 
     private boolean isSelected;//app用到的字段，购物车是否被选中
 

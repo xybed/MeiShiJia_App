@@ -1,14 +1,14 @@
 package com.mumu.meishijia.constant;
 
-public enum ShoppingCartStatus {
-    INEFFECTIVE(0, "无效"),
-    EFFECTIVE(1, "有效");
+public enum ProductStatus {
+    LOWER(0, "下架"),
+    SHELF(1, "上架");
 
     private Integer code;
 
     private String text;
 
-    ShoppingCartStatus(Integer code, String text) {
+    ProductStatus(Integer code, String text) {
         this.code = code;
         this.text = text;
     }

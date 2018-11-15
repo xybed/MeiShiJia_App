@@ -133,6 +133,12 @@ public class BaseActivity<P extends BasePresenter> extends AppCompatActivity imp
 
     protected void onRightButtonClick(){}
 
+    protected void setRightTxt(String text){
+        if(actionTitleBar == null)
+            return;
+        actionTitleBar.getTxtRight().setText(text);
+    }
+
     private void getSwipeRefresh(){
         if(swipeRefreshLayout == null)
             swipeRefreshLayout = findViewById(R.id.swipe_refresh);

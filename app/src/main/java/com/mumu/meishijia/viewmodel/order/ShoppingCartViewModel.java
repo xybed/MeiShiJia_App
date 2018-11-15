@@ -21,11 +21,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ShoppingCartViewModel extends BaseViewModel{
 
-    public Observable<List<ShoppingCart>> getShoppingCart(int userId, int pageIndex, int pageSize){
+    public Observable<List<ShoppingCart>> getShoppingCart(int userId){
         Map<String, Integer> params = new HashMap<>();
         params.put("user_id", userId);
-        params.put("page_index", pageIndex);
-        params.put("page_size", pageSize);
         return HttpRetrofit.create(OrderApi.class)
                 .getShoppingCart(params)
                 .observeOn(AndroidSchedulers.mainThread())
