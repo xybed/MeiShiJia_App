@@ -29,8 +29,8 @@ public class ProductDetailViewModel extends BaseViewModel{
 
     public Observable<String> addShoppingCart(int userId, int productId, int num){
         Map<String, Integer> params = new HashMap<>();
-        params.put("user_id", userId);
-        params.put("product_id", productId);
+        params.put("userId", userId);
+        params.put("productId", productId);
         params.put("num", num);
         return HttpRetrofit.create(OrderApi.class)
                 .addShoppingCart(params)

@@ -16,6 +16,7 @@
     <string name="com_commit">提交</string>
     <string name="com_committing">正在提交</string>
     <string name="com_adding">正在添加</string>
+    <string name="com_deleting">正在删除</string>
     <string name="com_setting">设置</string>
     <string name="com_save">保存</string>
     <string name="com_cancel">取消</string>

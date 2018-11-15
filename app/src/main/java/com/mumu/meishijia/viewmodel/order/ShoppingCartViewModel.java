@@ -1,11 +1,14 @@
 package com.mumu.meishijia.viewmodel.order;
 
+import com.google.gson.Gson;
 import com.mumu.meishijia.api.OrderApi;
 import com.mumu.meishijia.http.HttpResultFunc;
 import com.mumu.meishijia.http.HttpRetrofit;
 import com.mumu.meishijia.model.order.ShoppingCart;
 import com.mumu.meishijia.viewmodel.BaseViewModel;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,5 +32,21 @@ public class ShoppingCartViewModel extends BaseViewModel{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .map(new HttpResultFunc<List<ShoppingCart>>());
+    }
+
+    public Observable<String> deleteShoppingCart(List<Integer> idList){
+        Map<String, String> params = new HashMap<>();
+        String json = new Gson().toJson(idList);
+        try {
+            json = URLEncoder.encode(json, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        params.put("json", json);
+        return HttpRetrofit.create(OrderApi.class)
+                .deleteShoppingCart(params)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .map(new HttpResultFunc<String>());
     }
 }

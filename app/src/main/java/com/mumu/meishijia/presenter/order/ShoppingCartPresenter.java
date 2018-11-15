@@ -28,4 +28,15 @@ public class ShoppingCartPresenter extends BasePresenter<ShoppingCartView, Shopp
                     }
                 });
     }
+
+    public void deleteShoppingCart(List<Integer> idList){
+        model.deleteShoppingCart(idList)
+                .subscribe(new RxObserver<String>() {
+                    @Override
+                    protected void onSuccess(String s) {
+                        if(view != null)
+                            view.deleteSuccess(s);
+                    }
+                });
+    }
 }

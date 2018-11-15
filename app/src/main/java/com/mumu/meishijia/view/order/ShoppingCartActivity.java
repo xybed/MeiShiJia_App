@@ -21,6 +21,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -104,7 +105,7 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                outRect.top = DensityUtil.sp2px(ShoppingCartActivity.this, 10);
+                outRect.top = DensityUtil.dip2px(ShoppingCartActivity.this, 10);
             }
         });
         recyclerView.setAdapter(adapter);
@@ -174,6 +175,18 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
                 btnSettlement.setText(isEdit ? getString(R.string.com_delete) : getString(R.string.order_settlement_placeholder, totalCount));
                 break;
             case R.id.btn_settlement:
+                if(isEdit){
+                    List<Integer> idList = new ArrayList<>();
+                    for(ShoppingCart shoppingCart : shoppingCartList){
+                        if(shoppingCart.isSelected()){
+                            idList.add(shoppingCart.getId());
+                        }
+                    }
+                    showLoadingDialog(getString(R.string.com_deleting));
+                    presenter.deleteShoppingCart(idList);
+                }else {
+
+                }
                 break;
         }
     }
@@ -195,5 +208,12 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
         rbAllSelect.setChecked(false);
         txtTotalAmount.setText(getString(R.string.order_total_amount_placeholder, 0f));
         btnSettlement.setText(getString(R.string.order_settlement_placeholder, 0));
+    }
+
+    @Override
+    public void deleteSuccess(String s) {
+        dismissLoadingDialog();
+        toast(s);
+        presenter.getShoppingCart(MyApplication.getInstance().getUser().getId());
     }
 }
