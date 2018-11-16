@@ -192,6 +192,7 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
                     showLoadingDialog(getString(R.string.com_deleting));
                     presenter.deleteShoppingCart(idList);
                 }else {
+                    //跳转确认订单界面
 
                 }
                 break;

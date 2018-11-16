@@ -30,30 +30,21 @@
                     android:contentDescription="@null"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:layout_marginLeft="@dimen/margin_10"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/txt_name"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLines="2"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:maxLines="3"
                         tools:text="杰威尔（JVR） 男士洗发沐浴套装（洗发水+沐浴露）沐浴液清凉舒爽洗发露控油去屑头洗浴套装 洗护超值装(洗发水500ml+沐浴露500ml）"
                         android:textColor="@color/black_b"
                         android:textSize="@dimen/text_size_12"/>
-                    <TextView
-                        android:id="@+id/txt_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_5"
-                        tools:text="资生堂丝蓓绮（TSUBAKI） 滢艳润养 洗护套装 （洗发露500ml+护发素500ml）（日本原装进口洗发水）"
-                        android:maxLines="1"
-                        android:textColor="@color/gray_c"
-                        android:textSize="@dimen/text_size_12"/>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_5">
+                        android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/txt_price"
                             android:layout_width="0dp"

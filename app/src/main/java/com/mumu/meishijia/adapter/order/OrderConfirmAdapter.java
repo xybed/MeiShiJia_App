@@ -42,7 +42,6 @@ public class OrderConfirmAdapter extends BaseRecyclerAdapter<Product, OrderConfi
         Product item = datas.get(position);
         Glide.with(context).load(item.getImage()).placeholder(R.drawable.icon_no_image).into(holder.imgProductImage);
         holder.txtName.setText(item.getName());
-        holder.txtDescription.setText(item.getDescription());
         holder.txtPrice.setText(context.getString(R.string.product_price_placeholder, item.getPrice().doubleValue()));
         holder.txtNum.setText(context.getString(R.string.product_num_placeholder, item.getNum()));
         holder.txtTotalCount.setText(context.getString(R.string.order_total_count_product_placeholder, item.getNum()));
@@ -55,8 +54,6 @@ public class OrderConfirmAdapter extends BaseRecyclerAdapter<Product, OrderConfi
         ImageView imgProductImage;
         @BindView(R.id.txt_name)
         TextView txtName;
-        @BindView(R.id.txt_description)
-        TextView txtDescription;
         @BindView(R.id.txt_price)
         TextView txtPrice;
         @BindView(R.id.txt_num)
