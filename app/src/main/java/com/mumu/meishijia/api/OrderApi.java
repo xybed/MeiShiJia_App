@@ -44,6 +44,9 @@ public interface OrderApi {
     @POST(HttpUrl.ShoppingCart)
     Observable<BaseModel<String>> addShoppingCart(@Body Map<String, Integer> map);
 
+    @PUT(HttpUrl.ShoppingCart)
+    Observable<BaseModel<String>> updateShoppingCart(@Body Map<String, String> map);
+
     @DELETE(HttpUrl.ShoppingCart)
     Observable<BaseModel<String>> deleteShoppingCart(@QueryMap Map<String, String> map);
 

@@ -142,6 +142,10 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
         txtTotalAmount.setVisibility(isEdit ? View.GONE : View.VISIBLE);
         txtTotalAmount.setText(getString(R.string.order_total_amount_placeholder, totalAmount));
         btnSettlement.setText(isEdit ? getString(R.string.com_delete) : getString(R.string.order_settlement_placeholder, totalCount));
+        if(!isEdit){
+            showLoadingDialog(getString(R.string.com_wait));
+            presenter.updateShoppingCart(shoppingCartList);
+        }
     }
 
     private boolean isAllSelected;
@@ -213,6 +217,19 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
         rbAllSelect.setChecked(false);
         txtTotalAmount.setText(getString(R.string.order_total_amount_placeholder, 0f));
         btnSettlement.setText(getString(R.string.order_settlement_placeholder, 0));
+    }
+
+    @Override
+    public void updateSuccess(String s) {
+        dismissLoadingDialog();
+        toast(s);
+    }
+
+    @Override
+    public void updateFail(String errMsg) {
+        dismissLoadingDialog();
+        toast(errMsg);
+        presenter.getShoppingCart(MyApplication.getInstance().getUser().getId());
     }
 
     @Override

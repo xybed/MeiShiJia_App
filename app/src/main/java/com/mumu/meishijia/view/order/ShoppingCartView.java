@@ -13,6 +13,10 @@ import java.util.List;
 public interface ShoppingCartView extends BaseView{
     void getSuccess(List<ShoppingCart> shoppingCartList);
 
+    void updateSuccess(String s);
+
+    void updateFail(String errMsg);
+
     void deleteSuccess(String s);
 
     void clearSuccess(String s);

@@ -58,7 +58,7 @@ public class HttpUrl {
 
     //获取购物车列表
     public static final String GetShoppingCart = "msj-order/shopping/carts";
-    //添加购物车、删除购物车
+    //添加购物车、修改购物车、删除购物车
     public static final String ShoppingCart = "msj-order/shopping/cart";
     //清除失效商品
     public static final String ClearShoppingCart = "msj-order/shopping/cart/invalid";

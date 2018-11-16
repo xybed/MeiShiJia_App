@@ -34,6 +34,17 @@ public class ShoppingCartViewModel extends BaseViewModel{
                 .map(new HttpResultFunc<List<ShoppingCart>>());
     }
 
+    public Observable<String> updateShoppingCart(List<ShoppingCart> shoppingCartList){
+        Map<String, String> params = new HashMap<>();
+        String json = new Gson().toJson(shoppingCartList);
+        params.put("json", json);
+        return HttpRetrofit.create(OrderApi.class)
+                .updateShoppingCart(params)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .map(new HttpResultFunc<String>());
+    }
+
     public Observable<String> deleteShoppingCart(List<Integer> idList){
         Map<String, String> params = new HashMap<>();
         String json = new Gson().toJson(idList);

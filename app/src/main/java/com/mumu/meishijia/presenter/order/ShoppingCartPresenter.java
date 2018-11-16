@@ -29,6 +29,23 @@ public class ShoppingCartPresenter extends BasePresenter<ShoppingCartView, Shopp
                 });
     }
 
+    public void updateShoppingCart(List<ShoppingCart> shoppingCartList){
+        model.updateShoppingCart(shoppingCartList)
+                .subscribe(new RxObserver<String>() {
+                    @Override
+                    protected void onSuccess(String s) {
+                        if(view != null)
+                            view.updateSuccess(s);
+                    }
+
+                    @Override
+                    protected void onFail(String errMsg) {
+                        if(view != null)
+                            view.updateFail(errMsg);
+                    }
+                });
+    }
+
     public void deleteShoppingCart(List<Integer> idList){
         model.deleteShoppingCart(idList)
                 .subscribe(new RxObserver<String>() {
