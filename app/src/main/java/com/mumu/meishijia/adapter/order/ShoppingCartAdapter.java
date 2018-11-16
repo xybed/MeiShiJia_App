@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
@@ -45,8 +46,16 @@ public class ShoppingCartAdapter extends BaseRecyclerAdapter<ShoppingCart, Shopp
         holder.rbSelect.setChecked(item.isSelected());
         Glide.with(context).load(item.getImage()).placeholder(R.drawable.icon_no_image).into(holder.imgProduct);
         if(item.getStatus().intValue() == ProductStatus.SHELF.getCode()){
-            holder.txtInvalid.setVisibility(View.GONE);
+            //在不失效的情况下，比较库存
+            if(item.getStock() < item.getNum()){
+                holder.txtInvalid.setText(context.getString(R.string.order_stock_not_enough));
+                holder.txtInvalid.setVisibility(View.VISIBLE);
+            }else {
+                holder.txtInvalid.setText(context.getString(R.string.order_invalid));
+                holder.txtInvalid.setVisibility(View.GONE);
+            }
         }else {
+            holder.txtInvalid.setText(context.getString(R.string.order_invalid));
             holder.txtInvalid.setVisibility(View.VISIBLE);
         }
         holder.txtName.setText(context.getString(R.string.product_name_placeholder, item.getName()));
@@ -65,10 +74,14 @@ public class ShoppingCartAdapter extends BaseRecyclerAdapter<ShoppingCart, Shopp
             holder.imgAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    item.setNum(item.getNum()+1);
-                    notifyDataSetChanged();
-                    if(listener != null && item.isSelected())
-                        listener.onAddClick(item.getPrice().doubleValue());
+                    if(item.getNum() < item.getStock()){
+                        item.setNum(item.getNum()+1);
+                        notifyDataSetChanged();
+                        if(listener != null && item.isSelected())
+                            listener.onAddClick(item.getPrice().doubleValue());
+                    }else {
+                        Toast.makeText(context.getApplicationContext(), context.getString(R.string.order_stock_not_enough), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
             holder.imgSub.setOnClickListener(new View.OnClickListener() {

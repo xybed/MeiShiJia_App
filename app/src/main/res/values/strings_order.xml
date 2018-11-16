@@ -11,6 +11,7 @@
     <string name="order_buyer_remark_colon">买家留言：</string>
     <string name="order_buyer_remark_tips">选填：填写内容已和卖家协商确认</string>
     <string name="order_subtotal_colon">小计：</string>
+    <string name="order_stock_not_enough">库存不足</string>
     
     <string name="order_total_amount_placeholder">合计：￥%1$.2f</string>
     <string name="order_settlement_placeholder">结算（%1$d）</string>
