@@ -49,4 +49,14 @@ public class ShoppingCartViewModel extends BaseViewModel{
                 .subscribeOn(Schedulers.io())
                 .map(new HttpResultFunc<String>());
     }
+
+    public Observable<String> clearShoppingCart(int userId){
+        Map<String, Integer> params = new HashMap<>();
+        params.put("userId", userId);
+        return HttpRetrofit.create(OrderApi.class)
+                .clearShoppingCart(params)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .map(new HttpResultFunc<String>());
+    }
 }

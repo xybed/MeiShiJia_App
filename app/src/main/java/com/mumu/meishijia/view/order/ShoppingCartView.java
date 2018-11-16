@@ -14,4 +14,6 @@ public interface ShoppingCartView extends BaseView{
     void getSuccess(List<ShoppingCart> shoppingCartList);
 
     void deleteSuccess(String s);
+
+    void clearSuccess(String s);
 }

@@ -111,6 +111,7 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
         recyclerView.setAdapter(adapter);
 
         //底部布局初始化
+        txtClearProduct.setVisibility(View.GONE);
         txtTotalAmount.setText(getString(R.string.order_total_amount_placeholder, 0f));
         btnSettlement.setText(getString(R.string.order_settlement_placeholder, 0));
 
@@ -148,6 +149,8 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.txt_clear_product:
+                showLoadingDialog(getString(R.string.com_clearing));
+                presenter.clearShoppingCart(MyApplication.getInstance().getUser().getId());
                 break;
             case R.id.rb_all_select:
                 isAllSelected = !isAllSelected;
@@ -199,6 +202,8 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
         for(ShoppingCart shoppingCart : shoppingCartList){
             if(shoppingCart.getStatus().intValue() == ProductStatus.SHELF.getCode()){
                 productShelfSize++;
+            }else {
+                txtClearProduct.setVisibility(View.VISIBLE);
             }
         }
         //初始化下数据
@@ -212,6 +217,13 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
 
     @Override
     public void deleteSuccess(String s) {
+        dismissLoadingDialog();
+        toast(s);
+        presenter.getShoppingCart(MyApplication.getInstance().getUser().getId());
+    }
+
+    @Override
+    public void clearSuccess(String s) {
         dismissLoadingDialog();
         toast(s);
         presenter.getShoppingCart(MyApplication.getInstance().getUser().getId());

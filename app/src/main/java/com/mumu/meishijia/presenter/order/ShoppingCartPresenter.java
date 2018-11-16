@@ -39,4 +39,15 @@ public class ShoppingCartPresenter extends BasePresenter<ShoppingCartView, Shopp
                     }
                 });
     }
+
+    public void clearShoppingCart(int userId){
+        model.clearShoppingCart(userId)
+                .subscribe(new RxObserver<String>() {
+                    @Override
+                    protected void onSuccess(String s) {
+                        if(view != null)
+                            view.clearSuccess(s);
+                    }
+                });
+    }
 }

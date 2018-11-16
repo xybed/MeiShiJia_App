@@ -46,4 +46,7 @@ public interface OrderApi {
 
     @DELETE(HttpUrl.ShoppingCart)
     Observable<BaseModel<String>> deleteShoppingCart(@QueryMap Map<String, String> map);
+
+    @PUT(HttpUrl.ClearShoppingCart)
+    Observable<BaseModel<String>> clearShoppingCart(@Body Map<String, Integer> map);
 }
