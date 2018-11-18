@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseRecyclerAdapter;
+import com.mumu.meishijia.model.order.ShoppingCart;
 import com.mumu.meishijia.model.product.Product;
 
 import butterknife.BindView;
@@ -22,7 +23,7 @@ import lib.utils.NumberUtil;
  * 确认订单的商品条目adapter
  */
 
-public class OrderConfirmAdapter extends BaseRecyclerAdapter<Product, OrderConfirmAdapter.Holder> {
+public class OrderConfirmAdapter extends BaseRecyclerAdapter<ShoppingCart, OrderConfirmAdapter.Holder> {
     public OrderConfirmAdapter(Context context) {
         super(context);
     }
@@ -39,7 +40,7 @@ public class OrderConfirmAdapter extends BaseRecyclerAdapter<Product, OrderConfi
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        Product item = datas.get(position);
+        ShoppingCart item = datas.get(position);
         Glide.with(context).load(item.getImage()).placeholder(R.drawable.icon_no_image).into(holder.imgProductImage);
         holder.txtName.setText(item.getName());
         holder.txtPrice.setText(context.getString(R.string.product_price_placeholder, item.getPrice().doubleValue()));

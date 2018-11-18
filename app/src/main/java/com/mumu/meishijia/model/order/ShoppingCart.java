@@ -1,5 +1,6 @@
 package com.mumu.meishijia.model.order;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -7,7 +8,7 @@ import java.math.BigDecimal;
  * 购物车实体
  */
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
     private Integer id;
 
     private Integer productId;

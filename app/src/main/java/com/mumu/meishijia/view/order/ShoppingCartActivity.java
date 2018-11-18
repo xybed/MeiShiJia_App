@@ -1,5 +1,6 @@
 package com.mumu.meishijia.view.order;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -193,7 +194,19 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
                     presenter.deleteShoppingCart(idList);
                 }else {
                     //跳转确认订单界面
-
+                    ArrayList<ShoppingCart> shoppingCartArrayList = new ArrayList<>();
+                    for(ShoppingCart shoppingCart : shoppingCartList){
+                        if(shoppingCart.isSelected()){
+                            shoppingCartArrayList.add(shoppingCart);
+                        }
+                    }
+                    if(shoppingCartArrayList.size() > 0){
+                        Intent intent = new Intent(this, OrderConfirmActivity.class);
+                        intent.putExtra(OrderConfirmActivity.SHOPPING_CART_LIST, shoppingCartArrayList);
+                        startActivity(intent);
+                    }else {
+                        toast(R.string.order_pls_select_shopping_cart_tip);
+                    }
                 }
                 break;
         }

@@ -12,6 +12,15 @@
     <string name="order_buyer_remark_tips">选填：填写内容已和卖家协商确认</string>
     <string name="order_subtotal_colon">小计：</string>
     <string name="order_stock_not_enough">库存不足</string>
+    <string name="order_mine_order">我的订单</string>
+    <string name="order_see_all_order">查看全部订单</string>
+    <string name="order_wait_pay">待付款</string>
+    <string name="order_wait_send">待发货</string>
+    <string name="order_wait_receive">待收货</string>
+    <string name="order_wait_comment">待评价</string>
+    <string name="order_refund">退款</string>
+
+    <string name="order_pls_select_shopping_cart_tip">请选择购买商品</string>
     
     <string name="order_total_amount_placeholder">合计：￥%1$.2f</string>
     <string name="order_settlement_placeholder">结算（%1$d）</string>

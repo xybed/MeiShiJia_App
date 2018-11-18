@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
+import com.mumu.meishijia.model.order.ShoppingCart;
 import com.mumu.meishijia.model.product.Product;
 import com.mumu.meishijia.presenter.product.ProductDetailPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -82,10 +83,17 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenter> 
                     startActivity(intent);
                 }else {
                     intent = new Intent(this, OrderConfirmActivity.class);
-                    ArrayList<Product> productList = new ArrayList<>();
-                    product.setNum(1);
-                    productList.add(product);
-                    intent.putExtra(OrderConfirmActivity.PRODUCT_LIST, productList);
+                    ArrayList<ShoppingCart> shoppingCartList = new ArrayList<>();
+                    ShoppingCart shoppingCart = new ShoppingCart();
+                    shoppingCart.setProductId(product.getId());
+                    shoppingCart.setName(product.getName());
+                    shoppingCart.setImage(product.getImage());
+                    shoppingCart.setPrice(product.getPrice());
+                    shoppingCart.setOriginalPrice(product.getOriginalPrice());
+                    shoppingCart.setDiscountPrice(product.getDiscountPrice());
+                    shoppingCart.setNum(1);
+                    shoppingCartList.add(shoppingCart);
+                    intent.putExtra(OrderConfirmActivity.SHOPPING_CART_LIST, shoppingCartList);
                 }
                 startActivity(intent);
                 break;

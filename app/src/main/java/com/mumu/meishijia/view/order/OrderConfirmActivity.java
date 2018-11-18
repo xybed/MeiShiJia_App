@@ -17,6 +17,7 @@ import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.order.OrderConfirmAdapter;
 import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.ReceivingAddress;
+import com.mumu.meishijia.model.order.ShoppingCart;
 import com.mumu.meishijia.model.product.Product;
 import com.mumu.meishijia.presenter.order.OrderConfirmPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -31,7 +32,7 @@ import lib.utils.DensityUtil;
 import lib.utils.NumberUtil;
 
 public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> implements OrderConfirmView{
-    public static final String PRODUCT_LIST = "product_list";
+    public static final String SHOPPING_CART_LIST = "shopping_cart_list";
 
     @BindView(R.id.txt_select_receiving_address)
     TextView txtSelectReceivingAddress;
@@ -48,7 +49,7 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
     @BindView(R.id.txt_total_amount)
     TextView txtTotalAmount;
 
-    private List<Product> productList;
+    private List<ShoppingCart> shoppingCartList;
     private OrderConfirmAdapter adapter;
     private ReceivingAddress receivingAddress;
 
@@ -68,11 +69,11 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
         llayReceivingAddressInfo.setVisibility(View.GONE);
 
         //购买商品列表布局
-        productList = (List<Product>) getIntent().getSerializableExtra(PRODUCT_LIST);
+        shoppingCartList = (List<ShoppingCart>) getIntent().getSerializableExtra(SHOPPING_CART_LIST);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         adapter = new OrderConfirmAdapter(this);
-        adapter.setData(productList);
+        adapter.setData(shoppingCartList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
@@ -85,8 +86,8 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
 
         //底部布局
         double totalAmount = 0;
-        for(Product product : productList){
-            totalAmount += NumberUtil.multiply(product.getNum(), product.getPrice().doubleValue());
+        for(ShoppingCart shoppingCart : shoppingCartList){
+            totalAmount += NumberUtil.multiply(shoppingCart.getNum(), shoppingCart.getPrice().doubleValue());
         }
         txtTotalAmount.setText(getString(R.string.order_total_amount_placeholder, totalAmount));
     }

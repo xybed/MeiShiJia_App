@@ -98,10 +98,12 @@ public class ShoppingCartAdapter extends BaseRecyclerAdapter<ShoppingCart, Shopp
             holder.rbSelect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    item.setSelected(!item.isSelected());
-                    notifyDataSetChanged();
-                    if(listener != null)
-                        listener.onRbClick(item.getPrice().doubleValue(), item.getNum(), item.isSelected());
+                    if(item.getNum() <= item.getStock()){
+                        item.setSelected(!item.isSelected());
+                        notifyDataSetChanged();
+                        if(listener != null)
+                            listener.onRbClick(item.getPrice().doubleValue(), item.getNum(), item.isSelected());
+                    }
                 }
             });
         }else {
