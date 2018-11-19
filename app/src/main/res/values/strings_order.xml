@@ -19,6 +19,26 @@
     <string name="order_wait_receive">待收货</string>
     <string name="order_wait_comment">待评价</string>
     <string name="order_refund">退款</string>
+    <string name="order_wait_buyer_pay">等待买家付款</string>
+    <string name="order_buyer_pay">买家已付款</string>
+    <string name="order_wait_seller_send">等待卖家发货</string>
+    <string name="order_seller_send">卖家已发货</string>
+    <string name="order_trade_success">交易成功</string>
+    <string name="order_trade_close">交易关闭</string>
+    <string name="order_order_detail">订单详情</string>
+    <string name="order_freight">运费</string>
+    <string name="order_store_discount">店铺优惠</string>
+    <string name="order_order_total_amount_pay_detail">订单总价支付明细</string>
+    <string name="order_red_package_deductible">红包抵扣</string>
+    <string name="order_true_pay_amount">实付款</string>
+    <string name="order_order_total_amount_contain_freight">订单总价（含运费）</string>
+    <string name="order_order_info">订单信息</string>
+    <string name="order_order_number_colon">订单编号：</string>
+    <string name="order_create_time_colon">创建时间：</string>
+    <string name="order_pay_time_colon">付款时间：</string>
+    <string name="order_send_time_colon">发货时间：</string>
+    <string name="order_deal_time_colon">成交时间：</string>
+    <string name="order_confirm_of_receive">确认收货</string>
 
     <string name="order_pls_select_shopping_cart_tip">请选择购买商品</string>
     
