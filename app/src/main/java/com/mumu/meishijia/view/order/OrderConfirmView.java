@@ -10,4 +10,6 @@ import com.mumu.meishijia.view.BaseView;
 
 public interface OrderConfirmView extends BaseView{
     void getAddressSuccess(ReceivingAddress receivingAddress);
+
+    void orderSuccess(Integer id);
 }

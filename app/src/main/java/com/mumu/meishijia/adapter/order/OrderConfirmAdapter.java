@@ -3,6 +3,8 @@ package com.mumu.meishijia.adapter.order;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,7 +14,6 @@ import com.bumptech.glide.Glide;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.BaseRecyclerAdapter;
 import com.mumu.meishijia.model.order.ShoppingCart;
-import com.mumu.meishijia.model.product.Product;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +41,7 @@ public class OrderConfirmAdapter extends BaseRecyclerAdapter<ShoppingCart, Order
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        ShoppingCart item = datas.get(position);
+        final ShoppingCart item = datas.get(position);
         Glide.with(context).load(item.getImage()).placeholder(R.drawable.icon_no_image).into(holder.imgProductImage);
         holder.txtName.setText(item.getName());
         holder.txtPrice.setText(context.getString(R.string.product_price_placeholder, item.getPrice().doubleValue()));
@@ -48,6 +49,22 @@ public class OrderConfirmAdapter extends BaseRecyclerAdapter<ShoppingCart, Order
         holder.txtTotalCount.setText(context.getString(R.string.order_total_count_product_placeholder, item.getNum()));
         double totalAmount = NumberUtil.multiply(item.getNum(), item.getPrice().doubleValue());
         holder.txtTotalAmount.setText(context.getString(R.string.product_price_placeholder, totalAmount));
+        holder.editRemark.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                item.setRemark(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     class Holder extends RecyclerView.ViewHolder{

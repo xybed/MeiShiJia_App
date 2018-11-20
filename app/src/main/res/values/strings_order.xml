@@ -5,6 +5,7 @@
     <string name="order_invalid">失效</string>
     <string name="order_confirm_order">确认订单</string>
     <string name="order_submit_order">提交订单</string>
+    <string name="order_placing_order">正在下单</string>
     <string name="order_pay">付款</string>
     <string name="order_distribution_type">配送方式</string>
     <string name="order_express_free">快递&#8201;&#8201;免邮</string>

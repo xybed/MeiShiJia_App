@@ -321,10 +321,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray_c"/>
+    <include layout="@layout/layout_split_line_gray_e"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_44"

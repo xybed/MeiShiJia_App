@@ -31,6 +31,8 @@ public class ShoppingCart implements Serializable {
 
     private boolean isSelected;//app用到的字段，购物车是否被选中
 
+    private String remark;
+
     public Integer getId() {
         return id;
     }
@@ -117,5 +119,13 @@ public class ShoppingCart implements Serializable {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

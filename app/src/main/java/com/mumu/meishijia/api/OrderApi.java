@@ -52,4 +52,7 @@ public interface OrderApi {
 
     @PUT(HttpUrl.ClearShoppingCart)
     Observable<BaseModel<String>> clearShoppingCart(@Body Map<String, Integer> map);
+
+    @POST(HttpUrl.Order)
+    Observable<BaseModel<Integer>> order(@Body Map<String, Object> map);
 }

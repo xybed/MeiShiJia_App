@@ -18,11 +18,13 @@ import com.mumu.meishijia.adapter.order.OrderConfirmAdapter;
 import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.mine.ReceivingAddress;
 import com.mumu.meishijia.model.order.ShoppingCart;
-import com.mumu.meishijia.model.product.Product;
+import com.mumu.meishijia.model.order.ShoppingCartDto;
 import com.mumu.meishijia.presenter.order.OrderConfirmPresenter;
 import com.mumu.meishijia.view.BaseActivity;
 import com.mumu.meishijia.view.mine.ReceivingAddressActivity;
+import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -50,7 +52,6 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
     TextView txtTotalAmount;
 
     private List<ShoppingCart> shoppingCartList;
-    private OrderConfirmAdapter adapter;
     private ReceivingAddress receivingAddress;
 
     @Override
@@ -72,7 +73,7 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
         shoppingCartList = (List<ShoppingCart>) getIntent().getSerializableExtra(SHOPPING_CART_LIST);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        adapter = new OrderConfirmAdapter(this);
+        OrderConfirmAdapter adapter = new OrderConfirmAdapter(this);
         adapter.setData(shoppingCartList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
@@ -100,6 +101,15 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
                 startActivity(intent);
                 break;
             case R.id.btn_submit://提交订单
+                List<ShoppingCartDto> dtoList = new ArrayList<>();
+                for(ShoppingCart shoppingCart : shoppingCartList){
+                    ShoppingCartDto dto = new ShoppingCartDto();
+                    dto.setId(shoppingCart.getId());
+                    dto.setRemark(shoppingCart.getRemark());
+                    dtoList.add(dto);
+                }
+                showLoadingDialog(getString(R.string.order_placing_order));
+                presenter.placeOrder(dtoList, receivingAddress.getId());
                 break;
         }
     }
@@ -107,6 +117,12 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
     @Override
     public void getAddressSuccess(ReceivingAddress receivingAddress) {
         refreshReceivingAddressInfo(receivingAddress);
+    }
+
+    @Override
+    public void orderSuccess(Integer id) {
+        dismissLoadingDialog();
+        Logger.d("订单id："+id);
     }
 
     @Subscribe(
