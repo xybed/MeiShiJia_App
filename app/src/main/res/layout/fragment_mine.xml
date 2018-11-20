@@ -51,6 +51,7 @@
                     android:textColor="@color/black_b"
                     android:textSize="@dimen/text_size_14"/>
                 <TextView
+                    android:id="@+id/txt_all_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/order_see_all_order"
@@ -69,6 +70,7 @@
                 android:layout_marginTop="0.5dp"
                 android:background="@color/white">
                 <LinearLayout
+                    android:id="@+id/llay_wait_pay"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -88,6 +90,7 @@
                         android:textColor="@color/black_a"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/llay_wait_send"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -107,6 +110,7 @@
                         android:textColor="@color/black_a"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/llay_wait_receive"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -126,6 +130,7 @@
                         android:textColor="@color/black_a"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/llay_wait_comment"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -145,6 +150,7 @@
                         android:textColor="@color/black_a"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/llay_refund"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

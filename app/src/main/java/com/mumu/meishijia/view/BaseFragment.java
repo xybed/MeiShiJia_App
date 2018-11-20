@@ -42,6 +42,9 @@ public class BaseFragment<P extends BasePresenter> extends Fragment implements B
 
     private boolean isRegisterRxBus;//是否注册了RxBus
 
+    protected int pageIndex = 1;
+    protected int pageSize = 10;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

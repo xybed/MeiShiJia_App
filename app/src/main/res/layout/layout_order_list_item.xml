@@ -71,18 +71,12 @@
                     android:textColor="@color/black_b"
                     android:textSize="@dimen/text_size_14"/>
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_10"
-                    android:text="@string/order_subtotal_colon"
-                    android:textSize="@dimen/text_size_14"
-                    android:textColor="@color/black_b"/>
-                <TextView
                     android:id="@+id/txt_total_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/product_price_placeholder"
-                    android:textColor="@color/theme_color"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    tools:text="@string/order_total_amount_placeholder"
+                    android:textColor="@color/black_b"
                     android:textSize="@dimen/text_size_14"/>
             </LinearLayout>
         </LinearLayout>

@@ -21,6 +21,7 @@ import com.mumu.meishijia.tencent.dbmodel.ConversationRealmModel;
 import com.mumu.meishijia.test.TestActivity;
 import com.mumu.meishijia.view.BaseFragment;
 import com.mumu.meishijia.view.im.ContactsActivity;
+import com.mumu.meishijia.view.order.OrderListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,7 +99,8 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.llay_top_img, R.id.llay_receiving_address, R.id.llay_conversation, R.id.llay_contacts, R.id.llay_setting})
+    @OnClick({R.id.llay_top_img, R.id.llay_receiving_address, R.id.llay_conversation, R.id.llay_contacts, R.id.llay_setting,
+    R.id.txt_all_order, R.id.llay_wait_pay, R.id.llay_wait_send, R.id.llay_wait_receive, R.id.llay_wait_comment, R.id.llay_refund})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -109,6 +111,24 @@ public class MineFragment extends BaseFragment {
                     intent = new Intent(getActivity(), LoginActivity.class);
                 }
                 startActivity(intent);
+                break;
+            case R.id.txt_all_order:
+                if(MyApplication.getInstance().isLogin()){
+                    intent = new Intent(getActivity(), OrderListActivity.class);
+                }else {
+                    intent = new Intent(getActivity(), LoginActivity.class);
+                }
+                startActivity(intent);
+                break;
+            case R.id.llay_wait_pay:
+                break;
+            case R.id.llay_wait_send:
+                break;
+            case R.id.llay_wait_receive:
+                break;
+            case R.id.llay_wait_comment:
+                break;
+            case R.id.llay_refund:
                 break;
             case R.id.llay_receiving_address:
                 if(MyApplication.getInstance().isLogin()){

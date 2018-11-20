@@ -40,6 +40,7 @@
     <string name="order_send_time_colon">发货时间：</string>
     <string name="order_deal_time_colon">成交时间：</string>
     <string name="order_confirm_of_receive">确认收货</string>
+    <string name="order_no_order">暂无订单</string>
 
     <string name="order_pls_select_shopping_cart_tip">请选择购买商品</string>
     

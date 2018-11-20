@@ -22,6 +22,8 @@ public class Order {
 
     private BigDecimal payAmount;
 
+    private Integer status;
+
     private String createTime;
 
     private String payTime;
@@ -68,6 +70,14 @@ public class Order {
 
     public void setPayAmount(BigDecimal payAmount) {
         this.payAmount = payAmount;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getCreateTime() {
