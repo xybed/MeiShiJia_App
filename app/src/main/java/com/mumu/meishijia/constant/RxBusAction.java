@@ -21,4 +21,7 @@ public class RxBusAction {
     public static final String ReceivingAddressList = "rxReceivingAddressList";
     //选择收货地址后，刷新确认订单界面的地址信息
     public static final String ReceivingAddressData = "rxReceivingAddressData";
+
+    //修改订单状态后，刷新订单列表
+    public static final String OrderList = "rxOrderList";
 }

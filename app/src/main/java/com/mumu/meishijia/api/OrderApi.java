@@ -62,4 +62,7 @@ public interface OrderApi {
 
     @GET(HttpUrl.OrderDetail)
     Observable<BaseModel<Order>> getOrderDetail(@Path("id") Integer id);
+
+    @PUT(HttpUrl.Order)
+    Observable<BaseModel<String>> updateOrderStatus(@Body Map<String, Integer> map);
 }

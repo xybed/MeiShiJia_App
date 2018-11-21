@@ -10,4 +10,7 @@ import com.mumu.meishijia.view.BaseView;
 
 public interface OrderDetailView extends BaseView{
     void getSuccess(Order order);
+
+    void updateSuccess(String s);
+    void updateFail(String errMsg);
 }

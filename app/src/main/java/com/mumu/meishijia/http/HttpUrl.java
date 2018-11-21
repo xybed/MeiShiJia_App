@@ -62,7 +62,7 @@ public class HttpUrl {
     public static final String ShoppingCart = "msj-order/shopping/cart";
     //清除失效商品
     public static final String ClearShoppingCart = "msj-order/shopping/cart/invalid";
-    //下单
+    //下单、修改订单状态
     public static final String Order = "msj-order/order";
     //获取订单列表
     public static final String Orders = "msj-order/orders";

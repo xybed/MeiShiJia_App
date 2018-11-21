@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.order.OrderAdapter;
 import com.mumu.meishijia.constant.OrderStatus;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.order.Order;
 import com.mumu.meishijia.presenter.order.OrderDetailPresenter;
 import com.mumu.meishijia.view.BaseActivity;
@@ -100,18 +102,25 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresenter> impl
 
     @OnClick({R.id.txt_pay, R.id.txt_cancel_order, R.id.txt_confirm_of_receive, R.id.txt_refund, R.id.txt_comment, R.id.txt_delete_order})
     public void onViewClicked(View view) {
+        showLoadingDialog(getString(R.string.com_wait));
         switch (view.getId()) {
             case R.id.txt_pay:
+                presenter.updateOrderStatus(orderId, OrderStatus.WAIT_SEND.getCode());
                 break;
             case R.id.txt_cancel_order:
+                presenter.updateOrderStatus(orderId, OrderStatus.FAIL.getCode());
                 break;
             case R.id.txt_confirm_of_receive:
+                presenter.updateOrderStatus(orderId, OrderStatus.WAIT_COMMENT.getCode());
                 break;
             case R.id.txt_refund:
+                presenter.updateOrderStatus(orderId, OrderStatus.REFUND.getCode());
                 break;
             case R.id.txt_comment:
+                presenter.updateOrderStatus(orderId, OrderStatus.SUCCESS.getCode());
                 break;
             case R.id.txt_delete_order:
+                presenter.updateOrderStatus(orderId, OrderStatus.DELETE.getCode());
                 break;
         }
     }
@@ -205,5 +214,18 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresenter> impl
             txtComment.setVisibility(View.GONE);
             txtDeleteOrder.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void updateSuccess(String s) {
+        dismissLoadingDialog();
+        presenter.getOrderDetail(orderId);
+        RxBus.get().post(RxBusAction.OrderList, "");
+    }
+
+    @Override
+    public void updateFail(String errMsg) {
+        dismissLoadingDialog();
+        toast(errMsg);
     }
 }

@@ -12,9 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hwangjr.rxbus.annotation.Tag;
+import com.hwangjr.rxbus.thread.EventThread;
 import com.mumu.meishijia.MyApplication;
 import com.mumu.meishijia.R;
 import com.mumu.meishijia.adapter.order.OrderListAdapter;
+import com.mumu.meishijia.constant.OrderStatus;
+import com.mumu.meishijia.constant.RxBusAction;
 import com.mumu.meishijia.model.order.Order;
 import com.mumu.meishijia.presenter.order.OrderListPresenter;
 import com.mumu.meishijia.view.BaseFragment;
@@ -64,6 +69,7 @@ public class OrderListFragment extends BaseFragment<OrderListPresenter> implemen
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_list, container, false);
         unbinder = ButterKnife.bind(this, view);
+        registerRxBus();
         initUI();
         showFrameProgress();
         presenter.getOrderList(MyApplication.getInstance().getUser().getId(), orderStatus, pageIndex, pageSize);
@@ -83,32 +89,38 @@ public class OrderListFragment extends BaseFragment<OrderListPresenter> implemen
 
             @Override
             public void onPayClick(int orderId) {
-                toast("付款");
+                showLoadingDialog(getString(R.string.com_wait));
+                presenter.updateOrderStatus(orderId, OrderStatus.WAIT_SEND.getCode());
             }
 
             @Override
             public void onCancelClick(int orderId) {
-                toast("取消订单");
+                showLoadingDialog(getString(R.string.com_wait));
+                presenter.updateOrderStatus(orderId, OrderStatus.FAIL.getCode());
             }
 
             @Override
             public void onConfirmClick(int orderId) {
-                toast("确认收货");
+                showLoadingDialog(getString(R.string.com_wait));
+                presenter.updateOrderStatus(orderId, OrderStatus.WAIT_COMMENT.getCode());
             }
 
             @Override
             public void onRefundClick(int orderId) {
-                toast("退款");
+                showLoadingDialog(getString(R.string.com_wait));
+                presenter.updateOrderStatus(orderId, OrderStatus.REFUND.getCode());
             }
 
             @Override
             public void onCommentClick(int orderId) {
-                toast("评论");
+                showLoadingDialog(getString(R.string.com_wait));
+                presenter.updateOrderStatus(orderId, OrderStatus.SUCCESS.getCode());
             }
 
             @Override
             public void onDeleteClick(int orderId) {
-                toast("删除订单");
+                showLoadingDialog(getString(R.string.com_wait));
+                presenter.updateOrderStatus(orderId, OrderStatus.DELETE.getCode());
             }
         });
         recyclerView.setLayoutManager(layoutManager);
@@ -138,6 +150,17 @@ public class OrderListFragment extends BaseFragment<OrderListPresenter> implemen
 
     @Override
     public void onClickRefresh() {
+        pageIndex = 1;
+        presenter.getOrderList(MyApplication.getInstance().getUser().getId(), orderStatus, pageIndex, pageSize);
+    }
+
+    @Subscribe(
+        thread = EventThread.MAIN_THREAD,
+        tags = {
+            @Tag(RxBusAction.OrderList)
+        }
+    )
+    public void refreshList(String s){
         pageIndex = 1;
         presenter.getOrderList(MyApplication.getInstance().getUser().getId(), orderStatus, pageIndex, pageSize);
     }
@@ -185,5 +208,17 @@ public class OrderListFragment extends BaseFragment<OrderListPresenter> implemen
             refreshLayout.finishLoadMore(false);
         }
         toast(errMsg);
+    }
+
+    @Override
+    public void updateSuccess(String s) {
+        dismissFrameProgress();
+        refreshList("");
+    }
+
+    @Override
+    public void updateFail(String errMsg) {
+        dismissFrameProgress();
+        toastErr(errMsg);
     }
 }

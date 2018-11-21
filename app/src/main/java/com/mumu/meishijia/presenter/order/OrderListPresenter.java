@@ -34,4 +34,21 @@ public class OrderListPresenter extends BasePresenter<OrderListView, OrderListVi
                     }
                 });
     }
+
+    public void updateOrderStatus(int orderId, int status){
+        model.updateOrderStatus(orderId, status)
+                .subscribe(new RxObserver<String>() {
+                    @Override
+                    protected void onSuccess(String s) {
+                        if(view != null)
+                            view.updateSuccess(s);
+                    }
+
+                    @Override
+                    protected void onFail(String errMsg) {
+                        if(view != null)
+                            view.updateFail(errMsg);
+                    }
+                });
+    }
 }

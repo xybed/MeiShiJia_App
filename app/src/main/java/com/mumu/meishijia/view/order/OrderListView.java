@@ -13,4 +13,7 @@ import java.util.List;
 public interface OrderListView extends BaseView{
     void getSuccess(List<Order> orderList);
     void getFail(String errMsg);
+
+    void updateSuccess(String s);
+    void updateFail(String errMsg);
 }

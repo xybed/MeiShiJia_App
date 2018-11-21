@@ -34,4 +34,15 @@ public class OrderListViewModel extends BaseViewModel{
                 .subscribeOn(Schedulers.io())
                 .map(new HttpResultFunc<List<Order>>());
     }
+
+    public Observable<String> updateOrderStatus(int orderId, int status){
+        Map<String, Integer> params = new HashMap<>();
+        params.put("id", orderId);
+        params.put("status", status);
+        return HttpRetrofit.create(OrderApi.class)
+                .updateOrderStatus(params)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .map(new HttpResultFunc<String>());
+    }
 }
