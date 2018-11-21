@@ -113,22 +113,22 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.txt_all_order:
-                if(MyApplication.getInstance().isLogin()){
-                    intent = new Intent(getActivity(), OrderListActivity.class);
-                }else {
-                    intent = new Intent(getActivity(), LoginActivity.class);
-                }
-                startActivity(intent);
+                goOrderList(0);
                 break;
             case R.id.llay_wait_pay:
+                goOrderList(1);
                 break;
             case R.id.llay_wait_send:
+                goOrderList(2);
                 break;
             case R.id.llay_wait_receive:
+                goOrderList(3);
                 break;
             case R.id.llay_wait_comment:
+                goOrderList(4);
                 break;
             case R.id.llay_refund:
+                goOrderList(5);
                 break;
             case R.id.llay_receiving_address:
                 if(MyApplication.getInstance().isLogin()){
@@ -159,6 +159,17 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent);
                 break;
         }
+    }
+
+    private void goOrderList(int currentItem){
+        Intent intent;
+        if(MyApplication.getInstance().isLogin()){
+            intent = new Intent(getActivity(), OrderListActivity.class);
+            intent.putExtra(OrderListActivity.CURRENT_ITEM, currentItem);
+        }else {
+            intent = new Intent(getActivity(), LoginActivity.class);
+        }
+        startActivity(intent);
     }
 
     @Subscribe(

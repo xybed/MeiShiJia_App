@@ -80,7 +80,7 @@ public class OrderConfirmActivity extends BaseActivity<OrderConfirmPresenter> im
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                outRect.bottom = DensityUtil.dip2px(OrderConfirmActivity.this, 10);
+                outRect.bottom = DensityUtil.dip2px(OrderConfirmActivity.this, 15);
             }
         });
         recyclerView.setAdapter(adapter);

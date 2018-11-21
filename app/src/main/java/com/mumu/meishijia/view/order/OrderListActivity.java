@@ -12,6 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class OrderListActivity extends BaseActivity {
+    public static final String CURRENT_ITEM = "current_item";
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -32,5 +33,8 @@ public class OrderListActivity extends BaseActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
+
+        int currentItem = getIntent().getIntExtra(CURRENT_ITEM, 0);
+        viewPager.setCurrentItem(currentItem);
     }
 }

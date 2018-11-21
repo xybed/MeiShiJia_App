@@ -106,7 +106,7 @@ public class ShoppingCartActivity extends BaseActivity<ShoppingCartPresenter> im
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                outRect.top = DensityUtil.dip2px(ShoppingCartActivity.this, 10);
+                outRect.top = DensityUtil.dip2px(ShoppingCartActivity.this, 15);
             }
         });
         recyclerView.setAdapter(adapter);

@@ -22,7 +22,6 @@
     <string name="order_refund">退款</string>
     <string name="order_wait_buyer_pay">等待买家付款</string>
     <string name="order_buyer_pay">买家已付款</string>
-    <string name="order_wait_seller_send">等待卖家发货</string>
     <string name="order_seller_send">卖家已发货</string>
     <string name="order_trade_success">交易成功</string>
     <string name="order_trade_close">交易关闭</string>
@@ -40,6 +39,9 @@
     <string name="order_send_time_colon">发货时间：</string>
     <string name="order_deal_time_colon">成交时间：</string>
     <string name="order_confirm_of_receive">确认收货</string>
+    <string name="order_cancel_order">取消订单</string>
+    <string name="order_comment">评价</string>
+    <string name="order_delete_order">删除订单</string>
     <string name="order_no_order">暂无订单</string>
 
     <string name="order_pls_select_shopping_cart_tip">请选择购买商品</string>

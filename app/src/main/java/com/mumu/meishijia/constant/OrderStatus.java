@@ -1,11 +1,14 @@
 package com.mumu.meishijia.constant;
 
 public enum OrderStatus {
-    WAIT_PAY(0, "代付款"),
-    WAIT_SEND(1, "代发货"),
-    WAIT_RECEIVE(2, "代收货"),
-    WAIT_EVALUATE(3, "代评价"),
-    REFUND(4, "退款");
+    WAIT_PAY(0, "待付款"),
+    WAIT_SEND(1, "待发货"),
+    WAIT_DELIVERY(2, "待收货"),
+    WAIT_COMMENT(3, "待评价"),
+    REFUND(4, "退款"),
+    SUCCESS(5, "交易成功"),
+    FAIL(6, "交易失败"),
+    DELETE(7, "删除");
 
     private Integer code;
 

@@ -77,7 +77,7 @@ public class OrderListFragment extends BaseFragment<OrderListPresenter> implemen
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                outRect.top = DensityUtil.dip2px(getActivity(), 10);
+                outRect.top = DensityUtil.dip2px(getActivity(), 15);
             }
         });
         recyclerView.setAdapter(adapter);
@@ -95,6 +95,12 @@ public class OrderListFragment extends BaseFragment<OrderListPresenter> implemen
                 presenter.getOrderList(MyApplication.getInstance().getUser().getId(), orderStatus, pageIndex, pageSize);
             }
         });
+    }
+
+    @Override
+    public void onClickRefresh() {
+        pageIndex = 1;
+        presenter.getOrderList(MyApplication.getInstance().getUser().getId(), orderStatus, pageIndex, pageSize);
     }
 
     @Override
