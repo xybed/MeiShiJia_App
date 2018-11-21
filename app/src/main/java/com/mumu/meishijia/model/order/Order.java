@@ -28,7 +28,7 @@ public class Order {
 
     private String payTime;
 
-    private String sendTime;
+    private String deliveryTime;
 
     private String dealTime;
 
@@ -96,12 +96,12 @@ public class Order {
         this.payTime = payTime;
     }
 
-    public String getSendTime() {
-        return sendTime;
+    public String getDeliveryTime() {
+        return deliveryTime;
     }
 
-    public void setSendTime(String sendTime) {
-        this.sendTime = sendTime;
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
     }
 
     public String getDealTime() {

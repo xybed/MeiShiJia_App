@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mumu.meishijia.R;
@@ -40,7 +41,7 @@ public class OrderListAdapter extends BaseRecyclerAdapter<Order, OrderListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        Order item = datas.get(position);
+        final Order item = datas.get(position);
         if(item.getStatus().intValue() == OrderStatus.WAIT_PAY.getCode()){
             holder.txtOrderStatus.setText(context.getString(R.string.order_wait_buyer_pay));
             holder.txtPay.setVisibility(View.VISIBLE);
@@ -118,9 +119,76 @@ public class OrderListAdapter extends BaseRecyclerAdapter<Order, OrderListAdapte
         }
         holder.txtTotalCount.setText(context.getString(R.string.order_total_count_product_placeholder, count));
         holder.txtTotalAmount.setText(context.getString(R.string.order_total_amount_placeholder, item.getPayAmount().doubleValue()));
+
+        holder.llayOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null)
+                    listener.onItemCLick(item.getId());
+            }
+        });
+        holder.txtPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null)
+                    listener.onPayClick(item.getId());
+            }
+        });
+        holder.txtCancelOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null)
+                    listener.onCancelClick(item.getId());
+            }
+        });
+        holder.txtConfirmOfReceive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null)
+                    listener.onConfirmClick(item.getId());
+            }
+        });
+        holder.txtRefund.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null)
+                    listener.onRefundClick(item.getId());
+            }
+        });
+        holder.txtComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null)
+                    listener.onCommentClick(item.getId());
+            }
+        });
+        holder.txtDeleteOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener != null)
+                    listener.onDeleteClick(item.getId());
+            }
+        });
+    }
+
+    public void setOnItemClickListner(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
+    private OnItemClickListener listener;
+    public interface OnItemClickListener{
+        void onItemCLick(int orderId);
+        void onPayClick(int orderId);
+        void onCancelClick(int orderId);
+        void onConfirmClick(int orderId);
+        void onRefundClick(int orderId);
+        void onCommentClick(int orderId);
+        void onDeleteClick(int orderId);
     }
 
     class Holder extends RecyclerView.ViewHolder{
+        @BindView(R.id.llay_order)
+        LinearLayout llayOrder;
         @BindView(R.id.txt_order_status)
         TextView txtOrderStatus;
         @BindView(R.id.recycler_view)

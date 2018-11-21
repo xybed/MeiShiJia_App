@@ -59,4 +59,7 @@ public interface OrderApi {
 
     @GET(HttpUrl.Orders)
     Observable<BaseModel<List<Order>>> getOrderList(@QueryMap Map<String, Integer> map);
+
+    @GET(HttpUrl.OrderDetail)
+    Observable<BaseModel<Order>> getOrderDetail(@Path("id") Integer id);
 }

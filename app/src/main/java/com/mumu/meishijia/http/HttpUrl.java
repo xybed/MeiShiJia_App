@@ -66,4 +66,6 @@ public class HttpUrl {
     public static final String Order = "msj-order/order";
     //获取订单列表
     public static final String Orders = "msj-order/orders";
+    //订单详情
+    public static final String OrderDetail = "msj-order/orders/{id}";
 }

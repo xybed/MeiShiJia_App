@@ -1,6 +1,7 @@
 package com.mumu.meishijia.view.order;
 
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -72,6 +73,44 @@ public class OrderListFragment extends BaseFragment<OrderListPresenter> implemen
     private void initUI(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         adapter = new OrderListAdapter(getActivity());
+        adapter.setOnItemClickListner(new OrderListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemCLick(int orderId) {
+                Intent intent = new Intent(getActivity(), OrderDetailActivity.class);
+                intent.putExtra(OrderDetailActivity.ORDER_ID, orderId);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onPayClick(int orderId) {
+                toast("付款");
+            }
+
+            @Override
+            public void onCancelClick(int orderId) {
+                toast("取消订单");
+            }
+
+            @Override
+            public void onConfirmClick(int orderId) {
+                toast("确认收货");
+            }
+
+            @Override
+            public void onRefundClick(int orderId) {
+                toast("退款");
+            }
+
+            @Override
+            public void onCommentClick(int orderId) {
+                toast("评论");
+            }
+
+            @Override
+            public void onDeleteClick(int orderId) {
+                toast("删除订单");
+            }
+        });
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
